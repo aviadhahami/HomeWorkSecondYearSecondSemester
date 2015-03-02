@@ -49,24 +49,26 @@ public class ImageProc {
 					if (x == 0) {
 						out.setRGB(x, y, 0);
 					} else {
-						Color rgb1 = new Color(img.getRGB(x, y));
-						int red1 = rgb1.getRed();
-						int green1 = rgb1.getGreen();
-						int blue1 = rgb1.getBlue();
+						/*
+						 * Color rgb1 = new Color(img.getRGB(x, y)); int red1 =
+						 * rgb1.getRed(); int green1 = rgb1.getGreen(); int
+						 * blue1 = rgb1.getBlue();
+						 * 
+						 * Color rgb2 = new Color(img.getRGB(x - 1, y)); int
+						 * red2 = rgb2.getRed(); int green2 = rgb2.getGreen();
+						 * int blue2 = rgb2.getBlue();
+						 * 
+						 * int redAvg = ((red1 - red2) + 255) / 2; int greenAvg
+						 * = ((green1 - green2) + 255) / 2; int blueAvg =
+						 * ((blue1 - blue2) + 255) / 2;
+						 * 
+						 * // int sum = redAvg + greenAvg + blueAvg; Color
+						 * xDerColor = new Color(redAvg, greenAvg, blueAvg);
+						 */
+						int I = img.getRGB(x, y);
+						int I_1 = img.getRGB(x, y);
 
-						Color rgb2 = new Color(img.getRGB(x - 1, y));
-						int red2 = rgb2.getRed();
-						int green2 = rgb2.getGreen();
-						int blue2 = rgb2.getBlue();
-
-						int redAvg = ((red1 - red2) + 255) / 2;
-						int greenAvg = ((green1 - green2) + 255) / 2;
-						int blueAvg = ((blue1 - blue2) + 255) / 2;
-
-						// int sum = redAvg + greenAvg + blueAvg;
-						Color xDerColor = new Color(redAvg, greenAvg, blueAvg);
-
-						out.setRGB(x, y, xDerColor.getRGB());
+						out.setRGB(x, y, I - I_1);
 					}
 				}
 			}
