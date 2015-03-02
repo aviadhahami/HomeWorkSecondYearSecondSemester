@@ -29,11 +29,12 @@ public class ImageProc {
 		for (int x = 0; x < img.getWidth(); x++) {
 			for (int y = 0; y < img.getHeight(); y++) {
 				Color rgb = new Color(img.getRGB(x, y));
-				int b = rgb.getBlue();
-				int g = rgb.getGreen();
-				int r = rgb.getRed();
-				int greyed = (int) (0.2989 * r + 0.5870 * g + 0 * b);
-				out.setRGB(x, y, greyed);
+				int red = (int) (rgb.getRed() * 0.299);
+				int green = (int) (rgb.getGreen() * 0.587);
+				int blue = (int) (rgb.getBlue() * 0.114);
+				int sum = red + green + blue;
+				Color greyed = new Color(sum, sum, sum);
+				out.setRGB(x, y, greyed.getRGB());
 			}
 		}
 		return out;
