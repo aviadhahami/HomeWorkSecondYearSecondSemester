@@ -1,6 +1,5 @@
 package edu.cg;
 
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 public class Retargeter {
