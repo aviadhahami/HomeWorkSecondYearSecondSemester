@@ -41,13 +41,43 @@ public class ImageProc {
 	}
 
 	public static BufferedImage horizontalDerivative(BufferedImage img) {
-		// TODO implement this
-		return null;
+		BufferedImage out = new BufferedImage(img.getWidth(), img.getHeight(),
+				img.getType());
+		int currentDerivitive;
+		for (int x = 0; x < img.getWidth(); x++) {
+			for (int y = 0; y < img.getHeight(); y++) {
+				if (x == 0 || y == 0 || x == img.getWidth() - 1
+						|| y == img.getHeight() - 1) {
+					currentDerivitive = 0;
+				} else {
+					currentDerivitive = img.getRGB(x + 1, y)
+							- img.getRGB(x - 1, y);
+				}
+
+				out.setRGB(x, y, currentDerivitive);
+			}
+		}
+		return out;
 	}
 
 	public static BufferedImage verticalDerivative(BufferedImage img) {
-		// TODO implement this
-		return null;
+		BufferedImage out = new BufferedImage(img.getWidth(), img.getHeight(),
+				img.getType());
+		int currentDerivitive;
+		for (int x = 0; x < img.getWidth(); x++) {
+			for (int y = 0; y < img.getHeight(); y++) {
+				if (x == 0 || y == 0 || x == img.getWidth() - 1
+						|| y == img.getHeight() - 1) {
+					currentDerivitive = 0;
+				} else {
+					currentDerivitive = img.getRGB(x, y + 1)
+							- img.getRGB(x, y - 1);
+				}
+
+				out.setRGB(x, y, currentDerivitive);
+			}
+		}
+		return out;
 	}
 
 	public static BufferedImage gradientMagnitude(BufferedImage img) {
