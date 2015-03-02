@@ -25,7 +25,6 @@ public class ImageProc {
 	public static BufferedImage grayScale(BufferedImage img) {
 		BufferedImage out = new BufferedImage(img.getWidth(), img.getHeight(),
 				img.getType());
-
 		for (int x = 0; x < img.getWidth(); x++) {
 			for (int y = 0; y < img.getHeight(); y++) {
 				Color rgb = new Color(img.getRGB(x, y));
@@ -43,21 +42,39 @@ public class ImageProc {
 	public static BufferedImage horizontalDerivative(BufferedImage img) {
 		BufferedImage out = new BufferedImage(img.getWidth(), img.getHeight(),
 				img.getType());
-		int currentDerivitive;
-		for (int x = 0; x < img.getWidth(); x++) {
-			for (int y = 0; y < img.getHeight(); y++) {
-				if (x == 0 || y == 0 || x == img.getWidth() - 1
-						|| y == img.getHeight() - 1) {
-					currentDerivitive = 0;
-				} else {
-					currentDerivitive = img.getRGB(x + 1, y)
-							- img.getRGB(x - 1, y);
-				}
+		try {
 
-				out.setRGB(x, y, currentDerivitive);
+			for (int x = 0; x < img.getWidth(); x++) {
+				for (int y = 0; y < img.getHeight(); y++) {
+					if (x == 0) {
+						out.setRGB(x, y, 0);
+					} else {
+						Color rgb1 = new Color(img.getRGB(x, y));
+						int red1 = rgb1.getRed();
+						int green1 = rgb1.getGreen();
+						int blue1 = rgb1.getBlue();
+
+						Color rgb2 = new Color(img.getRGB(x - 1, y));
+						int red2 = rgb2.getRed();
+						int green2 = rgb2.getGreen();
+						int blue2 = rgb2.getBlue();
+
+						int redAvg = ((red1 - red2) + 255) / 2;
+						int greenAvg = ((green1 - green2) + 255) / 2;
+						int blueAvg = ((blue1 - blue2) + 255) / 2;
+
+						// int sum = redAvg + greenAvg + blueAvg;
+						Color xDerColor = new Color(redAvg, greenAvg, blueAvg);
+
+						out.setRGB(x, y, xDerColor.getRGB());
+					}
+				}
 			}
+			return out;
+		} catch (Exception e) {
+			System.out.println(e);
+			return null;
 		}
-		return out;
 	}
 
 	public static BufferedImage verticalDerivative(BufferedImage img) {
@@ -66,13 +83,8 @@ public class ImageProc {
 		int currentDerivitive;
 		for (int x = 0; x < img.getWidth(); x++) {
 			for (int y = 0; y < img.getHeight(); y++) {
-				if (x == 0 || y == 0 || x == img.getWidth() - 1
-						|| y == img.getHeight() - 1) {
-					currentDerivitive = 0;
-				} else {
-					currentDerivitive = img.getRGB(x, y + 1)
-							- img.getRGB(x, y - 1);
-				}
+
+				currentDerivitive = img.getRGB(x, y + 1) - img.getRGB(x, y - 1);
 
 				out.setRGB(x, y, currentDerivitive);
 			}
