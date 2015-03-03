@@ -23,38 +23,37 @@ public class ImageProc {
 	}
 
 	public static BufferedImage grayScale(BufferedImage img) {
-		BufferedImage out = img;
-		for (int x = 0; x < out.getWidth(); ++x) {
-			for (int y = 0; y < out.getHeight(); ++y) {
-				int rgb = out.getRGB(x, y);
-				int r = (rgb >> 16) & 0xFF;
-				int g = (rgb >> 8) & 0xFF;
-				int b = (rgb & 0xFF);
-
-				int grayLevel = (r + g + b) / 3;
-				int gray = (grayLevel << 16) + (grayLevel << 8) + grayLevel;
-				out.setRGB(x, y, gray);
+		BufferedImage out = new BufferedImage(img.getWidth(), img.getHeight(),
+				img.getType());
+		for (int x = 0; x < img.getWidth(); x++) {
+			for (int y = 0; y < img.getHeight(); y++) {
+				Color rgb = new Color(img.getRGB(x, y));
+				int red = (int) (rgb.getRed() * 0.2126);
+				int green = (int) (rgb.getGreen() * 0.7152);
+				int blue = (int) (rgb.getBlue() * 0.0722);
+				int sum = red + green + blue;
+				Color greyed = new Color(sum, sum, sum);
+				out.setRGB(x, y, greyed.getRGB());
 			}
 		}
-
 		return out;
 	}
 
 	public static BufferedImage horizontalDerivative(BufferedImage img) {
 		BufferedImage grayed = grayScale(img);
-		BufferedImage out = new BufferedImage(grayed.getWidth(),
-				grayed.getHeight(), grayed.getType());
+		BufferedImage out = grayed;
 
 		for (int x = 0; x < grayed.getWidth() - 1; x++) {
 			for (int y = 0; y < grayed.getHeight(); y++) {
-				if (x == 0) {
-					out.setRGB(x, y, 0);
-				} else {
-					int I = grayed.getRGB(x + 1, y);
-					int I_1 = grayed.getRGB(x, y);
 
-					out.setRGB(x, y, I - I_1);
-				}
+				int I = grayed.getRGB(x + 1, y);
+				int I_1 = grayed.getRGB(x, y);
+
+				int val = I - I_1;
+				System.out.println(val);
+				val = val < 0 ? -1 * val : val;
+				out.setRGB(x, y, val);
+
 			}
 		}
 		return out;
