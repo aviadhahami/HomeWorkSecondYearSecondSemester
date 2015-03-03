@@ -27,13 +27,15 @@ public class ImageProc {
 				img.getType());
 		for (int x = 0; x < img.getWidth(); x++) {
 			for (int y = 0; y < img.getHeight(); y++) {
-				Color rgb = new Color(img.getRGB(x, y));
-				int red = (int) (rgb.getRed() * 0.2126);
-				int green = (int) (rgb.getGreen() * 0.7152);
-				int blue = (int) (rgb.getBlue() * 0.0722);
-				int sum = red + green + blue;
-				Color greyed = new Color(sum, sum, sum);
-				out.setRGB(x, y, greyed.getRGB());
+				int rgb = img.getRGB(x, y);
+				int r = (rgb >> 16) & 0xFF;
+				int g = (rgb >> 8) & 0xFF;
+				int b = (rgb & 0xFF);
+
+				int grayLevel = (r + g + b) / 3;
+				int gray = (grayLevel << 16) + (grayLevel << 8) + grayLevel;
+				out.setRGB(x, y, gray);
+
 			}
 		}
 		return out;
@@ -46,16 +48,17 @@ public class ImageProc {
 		try {
 			for (int x = 0; x < grayed.getWidth() - 1; x++) {
 				for (int y = 0; y < grayed.getHeight(); y++) {
-					Color rgb_x = new Color(grayed.getRGB(x, y));
-					Color rgb_x_1 = new Color(grayed.getRGB(x + 1, y));
-
-					//R G B are equal in greyscale color.
-					//calculating the delta three times
-					//then pushing it into the new RGB map
-					int val = rgb_x.getRed() - rgb_x_1.getRed();
-					val = val * 3;
-					System.out.println(Integer.toHexString(val));
-					out.setRGB(x, y, val);
+					if (x == 0 || y == 0 || x == grayed.getWidth() - 1
+							|| y == grayed.getHeight() - 1) {
+						out.setRGB(x, y, 0);
+					} else {
+						int currPixRGB = grayed.getRGB(x-1, y);
+						int nxtPixRGB = grayed.getRGB(x + 1, y);
+						// int delta = (nxtPixRGB & 0xFF) - (currPixRGB & 0xFF);
+						int delta = nxtPixRGB - currPixRGB;
+						// int derivAvg = (delta + 255) / 2;
+						out.setRGB(x, y, delta);
+					}
 
 				}
 			}
