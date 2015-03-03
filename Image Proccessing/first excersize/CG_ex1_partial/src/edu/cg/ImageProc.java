@@ -44,19 +44,19 @@ public class ImageProc {
 		BufferedImage out = new BufferedImage(grayed.getWidth(),
 				grayed.getHeight(), grayed.getType());
 
-		for (int x = 0; x < grayed.getWidth(); x++) {
+		for (int x = 0; x < grayed.getWidth()-1; x++) {
 			for (int y = 0; y < grayed.getHeight(); y++) {
-				if (x == grayed.getWidth() - 1) {
+				if (x == 0) {
 					out.setRGB(x, y, 0);
 				} else {
-					int I = img.getRGB(x + 1, y);
-					int I_1 = img.getRGB(x, y);
+					int I = grayed.getRGB(x + 1, y);
+					int I_1 = grayed.getRGB(x, y);
 
 					out.setRGB(x, y, I - I_1);
 				}
 			}
 		}
-		return grayed;
+		return out;
 	}
 
 	public static BufferedImage verticalDerivative(BufferedImage img) {
