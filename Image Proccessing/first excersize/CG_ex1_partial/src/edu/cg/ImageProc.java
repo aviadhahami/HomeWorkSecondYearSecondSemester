@@ -52,12 +52,12 @@ public class ImageProc {
 							|| y == grayed.getHeight() - 1) {
 						out.setRGB(x, y, 0);
 					} else {
-						int currPixRGB = grayed.getRGB(x-1, y);
-						int nxtPixRGB = grayed.getRGB(x + 1, y);
-						// int delta = (nxtPixRGB & 0xFF) - (currPixRGB & 0xFF);
-						int delta = nxtPixRGB - currPixRGB;
-						// int derivAvg = (delta + 255) / 2;
-						out.setRGB(x, y, delta);
+						int currPixRGB = grayed.getRGB(x, y);
+						int prevPixRGB = grayed.getRGB(x - 1, y);
+						int delta = (currPixRGB & 0xFF) - (prevPixRGB & 0xFF);
+						// int delta = prevPixRGB - currPixRGB;
+						int derivAvg = (delta + 255) / 2;
+						out.setRGB(x, y, derivAvg);
 					}
 
 				}
@@ -97,3 +97,4 @@ public class ImageProc {
 	}
 
 }
+//
