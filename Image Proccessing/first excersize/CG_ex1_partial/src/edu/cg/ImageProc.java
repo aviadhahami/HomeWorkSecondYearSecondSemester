@@ -41,21 +41,25 @@ public class ImageProc {
 
 	public static BufferedImage horizontalDerivative(BufferedImage img) {
 		BufferedImage grayed = grayScale(img);
-		BufferedImage out = grayed;
+		BufferedImage out = new BufferedImage(img.getWidth(), img.getHeight(),
+				img.getType());
+		try {
+			for (int x = 0; x < grayed.getWidth() - 1; x++) {
+				for (int y = 0; y < grayed.getHeight(); y++) {
 
-		for (int x = 0; x < grayed.getWidth() - 1; x++) {
-			for (int y = 0; y < grayed.getHeight(); y++) {
+					int I = grayed.getRGB(x + 1, y);
+					int I_1 = grayed.getRGB(x, y);
 
-				int I = grayed.getRGB(x + 1, y);
-				int I_1 = grayed.getRGB(x, y);
+					int val = I - I_1;
 
-				int val = I - I_1;
-				System.out.println(val);
-				val = val < 0 ? -1 * val : val;
-				out.setRGB(x, y, val);
+					out.setRGB(x, y, val);
 
+				}
 			}
+		} catch (Exception e) {
+			System.out.println(e);
 		}
+
 		return out;
 	}
 
