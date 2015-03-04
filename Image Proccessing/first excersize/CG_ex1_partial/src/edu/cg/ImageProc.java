@@ -64,7 +64,7 @@ public class ImageProc {
 					 * xDeriv).getRGB());
 					 */
 
-					int xDeriv = ((grayed.getRGB(x - 1, y) & 0xFF) - (grayed.getRGB(x + 1, y) & 0xFF) + 0xFF) >> 1;
+					int xDeriv = ((grayed.getRGB(x + 1, y) & 0xFF) - (grayed.getRGB(x, y) & 0xFF) + 0xFF) >> 1;
 					out.setRGB(x, y, new Color(xDeriv, xDeriv, xDeriv).getRGB());
 				}
 
@@ -97,7 +97,7 @@ public class ImageProc {
 					 * yDeriv).getRGB());
 					 */
 
-					int yDeriv = ((grayed.getRGB(x, y - 1) & 0xFF) - (grayed.getRGB(x, y + 1) & 0xFF) + 0xFF) >> 1;
+					int yDeriv = ((grayed.getRGB(x, y) & 0xFF) - (grayed.getRGB(x, y - 1) & 0xFF) + 0xFF) >> 1;
 					out.setRGB(x, y, new Color(yDeriv, yDeriv, yDeriv).getRGB());
 
 				}
@@ -119,14 +119,11 @@ public class ImageProc {
 				} else {
 					// x Deriv calc below this
 					int xDerivVal = xDeriv.getRGB(x, y) & 0xFF;
-
 					// y Deriv calc below this
 					int yDerivVal = yDeriv.getRGB(x, y) & 0xFF;
-					// Gradient calc + write below this
 
-					int gradVal = (int) Math.sqrt(xDerivVal * xDerivVal - yDerivVal * yDerivVal);
-
-					out.setRGB(x, y, new Color(gradVal,gradVal,gradVal).getRGB());
+					int gradMagnitude = (int) Math.sqrt(yDerivVal * yDerivVal - xDerivVal * xDerivVal);
+					out.setRGB(x, y, new Color(gradMagnitude, gradMagnitude, gradMagnitude).getRGB());
 				}
 			}
 		}
@@ -136,14 +133,20 @@ public class ImageProc {
 
 	public static BufferedImage retargetSize(BufferedImage img, int width, int height) {
 		// TODO implement this
+		// retarget() runs the seam carving algorithm to resize an image, use
+		// the Retargeter class. You should implement this.
 		return null;
 	}
 
 	public static BufferedImage showSeams(BufferedImage img, int width, int height) {
-		// TODO implement this
-		return null;
+		// showSeams() colors the seams pending for removal/duplication.
+		// You can use here the helper array mentioned in the tips and the seam
+		// order matrix from the Retargeter class. You should implement this.
+		BufferedImage out = new BufferedImage(img.getWidth(), img.getHeight(), img.getType());
+		Retargeter x_retargeter = new Retargeter(img, false);
+		
+		return out;
 
 	}
 
 }
-//
