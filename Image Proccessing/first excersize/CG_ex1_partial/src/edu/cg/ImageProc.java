@@ -110,34 +110,23 @@ public class ImageProc {
 
 	public static BufferedImage gradientMagnitude(BufferedImage img) {
 		BufferedImage out = new BufferedImage(img.getWidth(), img.getHeight(), img.getType());
-
+		BufferedImage xDeriv = horizontalDerivative(img);
+		BufferedImage yDeriv = verticalDerivative(img);
 		for (int x = 0; x < img.getWidth() - 1; x++) {
 			for (int y = 0; y < img.getHeight(); y++) {
 				if (x == 0 || y == 0 || x == img.getWidth() - 1 || y == img.getHeight() - 1) {
 					out.setRGB(x, y, 0x80);
 				} else {
 					// x Deriv calc below this
-					Color x_prevPix = new Color(img.getRGB(x - 1, y));
-					int x_prevPixGrey = (int) (x_prevPix.getRed() * redConst + x_prevPix.getBlue() * blueConst + x_prevPix.getGreen() * greenConst);
-
-					Color x_nextPix = new Color(img.getRGB(x + 1, y));
-					int x_nxtPixGrey = (int) (x_nextPix.getRed() * redConst + x_nextPix.getGreen() * greenConst + x_nextPix.getBlue() * blueConst);
-
-					int xDeriv = (((x_prevPixGrey - x_nxtPixGrey) + 0xFF) / 2);
+					int xDerivVal = xDeriv.getRGB(x, y) & 0xFF;
 
 					// y Deriv calc below this
-					Color y_prevPix = new Color(img.getRGB(x, y - 1));
-					int y_prevPixGrey = (int) (y_prevPix.getRed() * redConst + y_prevPix.getBlue() * blueConst + y_prevPix.getGreen() * greenConst);
-
-					Color y_nextPix = new Color(img.getRGB(x, y + 1));
-					int y_nxtPixGrey = (int) (y_nextPix.getRed() * redConst + y_nextPix.getGreen() * greenConst + y_nextPix.getBlue() * blueConst);
-
-					int yDeriv = (((y_prevPixGrey - y_nxtPixGrey) + 0xFF) / 2);
+					int yDerivVal = yDeriv.getRGB(x, y) & 0xFF;
 					// Gradient calc + write below this
 
-					int gradVal = (int) Math.sqrt(xDeriv * xDeriv - yDeriv * yDeriv);
+					int gradVal = (int) Math.sqrt(xDerivVal * xDerivVal - yDerivVal * yDerivVal);
 
-					out.setRGB(x, y, new Color(gradVal, gradVal, gradVal).getRGB());
+					out.setRGB(x, y, new Color(gradVal,gradVal,gradVal).getRGB());
 				}
 			}
 		}
