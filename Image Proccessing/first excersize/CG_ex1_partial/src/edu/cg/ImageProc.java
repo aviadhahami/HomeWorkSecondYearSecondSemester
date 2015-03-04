@@ -50,15 +50,15 @@ public class ImageProc {
 						|| y == img.getHeight() - 1) {
 					out.setRGB(x, y, 0);
 				} else {
-					Color prevPix = new Color(img.getRGB(x - 1, y));
-					int prevPixGrey = (prevPix.getRed() + prevPix.getBlue() + prevPix
-							.getGreen()) / 3;
+					Color x_prevPix = new Color(img.getRGB(x - 1, y));
+					int x_prevPixGrey = (x_prevPix.getRed()
+							+ x_prevPix.getBlue() + x_prevPix.getGreen()) / 3;
 
-					Color nextPix = new Color(img.getRGB(x + 1, y));
-					int nxtPixGrey = (nextPix.getRed() + nextPix.getGreen() + nextPix
-							.getBlue()) / 3;
+					Color x_nextPix = new Color(img.getRGB(x + 1, y));
+					int x_nxtPixGrey = (x_nextPix.getRed()
+							+ x_nextPix.getGreen() + x_nextPix.getBlue()) / 3;
 
-					int xDeriv = ((prevPixGrey - nxtPixGrey + 255) / 2);
+					int xDeriv = ((x_prevPixGrey - x_nxtPixGrey + 255) / 2);
 
 					out.setRGB(x, y, new Color(xDeriv, xDeriv, xDeriv).getRGB());
 				}
@@ -78,17 +78,17 @@ public class ImageProc {
 						|| y == img.getHeight() - 1) {
 					out.setRGB(x, y, 0);
 				} else {
-					Color prevPix = new Color(img.getRGB(x, y - 1));
-					int prevPixGrey = (prevPix.getRed() + prevPix.getBlue() + prevPix
-							.getGreen()) / 3;
+					Color y_prevPix = new Color(img.getRGB(x, y - 1));
+					int y_prevPixGrey = (y_prevPix.getRed()
+							+ y_prevPix.getBlue() + y_prevPix.getGreen()) / 3;
 
-					Color nextPix = new Color(img.getRGB(x, y + 1));
-					int nxtPixGrey = (nextPix.getRed() + nextPix.getGreen() + nextPix
-							.getBlue()) / 3;
+					Color y_nextPix = new Color(img.getRGB(x, y + 1));
+					int y_nxtPixGrey = (y_nextPix.getRed()
+							+ y_nextPix.getGreen() + y_nextPix.getBlue()) / 3;
 
-					int xDeriv = ((prevPixGrey - nxtPixGrey + 255) / 2);
+					int yDeriv = ((y_prevPixGrey - y_nxtPixGrey + 255) / 2);
 
-					out.setRGB(x, y, new Color(xDeriv, xDeriv, xDeriv).getRGB());
+					out.setRGB(x, y, new Color(yDeriv, yDeriv, yDeriv).getRGB());
 				}
 
 			}
@@ -100,7 +100,42 @@ public class ImageProc {
 	public static BufferedImage gradientMagnitude(BufferedImage img) {
 		BufferedImage out = new BufferedImage(img.getWidth(), img.getHeight(),
 				img.getType());
-		// implement
+		for (int x = 0; x < img.getWidth() - 1; x++) {
+			for (int y = 0; y < img.getHeight(); y++) {
+				if (x == 0 || y == 0 || x == img.getWidth() - 1
+						|| y == img.getHeight() - 1) {
+					out.setRGB(x, y, 0);
+				} else {
+					Color x_prevPix = new Color(img.getRGB(x - 1, y));
+					int x_prevPixGrey = (x_prevPix.getRed()
+							+ x_prevPix.getBlue() + x_prevPix.getGreen()) / 3;
+
+					Color x_nextPix = new Color(img.getRGB(x + 1, y));
+					int x_nxtPixGrey = (x_nextPix.getRed()
+							+ x_nextPix.getGreen() + x_nextPix.getBlue()) / 3;
+
+					int xDeriv = ((x_prevPixGrey - x_nxtPixGrey + 255) / 2);
+
+					Color y_prevPix = new Color(img.getRGB(x, y - 1));
+					int y_prevPixGrey = (y_prevPix.getRed()
+							+ y_prevPix.getBlue() + y_prevPix.getGreen()) / 3;
+
+					Color y_nextPix = new Color(img.getRGB(x, y + 1));
+					int y_nxtPixGrey = (y_nextPix.getRed()
+							+ y_nextPix.getGreen() + y_nextPix.getBlue()) / 3;
+
+					int yDeriv = ((y_prevPixGrey - y_nxtPixGrey + 255) / 2);
+
+					int gradVal = (int) Math.sqrt(yDeriv * yDeriv + xDeriv
+							* xDeriv);
+
+					out.setRGB(x, y, new Color(gradVal,gradVal,gradVal).getRGB());
+
+				}
+
+			}
+		}
+
 		return out;
 	}
 
