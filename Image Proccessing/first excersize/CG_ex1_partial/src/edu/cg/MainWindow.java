@@ -31,12 +31,11 @@ import java.io.File;
 import java.util.Vector;
 import javax.swing.JTextArea;
 
-
 @SuppressWarnings("serial")
 public class MainWindow extends JFrame {
 
 	private BufferedImage img;
-	private String  imgTitle;
+	private String imgTitle;
 	private Vector<JButton> operationButtons = new Vector<JButton>();
 
 	private JPanel contentPane;
@@ -59,14 +58,14 @@ public class MainWindow extends JFrame {
 	 */
 	public MainWindow() {
 		setTitle("ex1: Image Processing Application");
-		//The following line makes sure that all application threads are terminated when this window is closed.
+		// The following line makes sure that all application threads are
+		// terminated when this window is closed.
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-
 
 		// Upper panel
 		JPanel panelFileSelection = new JPanel();
@@ -109,9 +108,8 @@ public class MainWindow extends JFrame {
 		contentPane.add(panelOperations, BorderLayout.CENTER);
 		panelOperations.setLayout(new GridLayout(0, 1, 0, 0));
 
-
-		//Desired Size panel
-		JPanel panelDesiredSize = new JPanel();		
+		// Desired Size panel
+		JPanel panelDesiredSize = new JPanel();
 		panelDesiredSize.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		panelOperations.add(panelDesiredSize);
 		panelDesiredSize.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -129,17 +127,14 @@ public class MainWindow extends JFrame {
 		txtRetargetWidth.setColumns(5);
 		panelDesiredSize.add(txtRetargetWidth);
 
-
-
 		JLabel lblRetargetHeight = new JLabel("Height:");
-		panelDesiredSize.add(lblRetargetHeight);		
+		panelDesiredSize.add(lblRetargetHeight);
 
 		txtRetargetHeight = new JFormattedTextField(new Integer(480));
 		txtRetargetHeight.setColumns(5);
 		panelDesiredSize.add(txtRetargetHeight);
 
-
-		// Retarget 
+		// Retarget
 		JPanel panelRetarget = new JPanel();
 		panelRetarget.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		panelOperations.add(panelRetarget);
@@ -149,19 +144,19 @@ public class MainWindow extends JFrame {
 
 		btnRetarget.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int width = (Integer)txtRetargetWidth.getValue();
-				int height = (Integer)txtRetargetHeight.getValue();
-				BufferedImage bckupimg=MainWindow.this.img;
+				int width = (Integer) txtRetargetWidth.getValue();
+				int height = (Integer) txtRetargetHeight.getValue();
+				BufferedImage bckupimg = MainWindow.this.img;
 				try {
 					BufferedImage img = ImageProc.retargetSize(MainWindow.this.img, width, height);
 					MainWindow.this.img = img;
 					present("Retarget(w=[" + width + "]) (h=[" + height + "])");
 				} catch (Exception ex) {
-					String errormsg=ex.getMessage();
-					if (errormsg==null)
-						errormsg="Error in Retargeting, check the parameters!";										
-					JOptionPane.showMessageDialog(MainWindow.this,errormsg, "Error", JOptionPane.ERROR_MESSAGE);
-					MainWindow.this.img=bckupimg;
+					String errormsg = ex.getMessage();
+					if (errormsg == null)
+						errormsg = "Error in Retargeting, check the parameters!";
+					JOptionPane.showMessageDialog(MainWindow.this, errormsg, "Error", JOptionPane.ERROR_MESSAGE);
+					MainWindow.this.img = bckupimg;
 				}
 			}
 		});
@@ -169,24 +164,26 @@ public class MainWindow extends JFrame {
 		panelRetarget.add(btnRetarget);
 		operationButtons.add(btnRetarget);
 
-
 		JButton btnShowSeams = new JButton("Show seams");
 		btnShowSeams.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int width = (Integer)txtRetargetWidth.getValue();
-				int height = (Integer)txtRetargetHeight.getValue();
-				BufferedImage bckupimg=MainWindow.this.img;//save image without colored seams 
+				int width = (Integer) txtRetargetWidth.getValue();
+				int height = (Integer) txtRetargetHeight.getValue();
+				BufferedImage bckupimg = MainWindow.this.img;// save image
+																// without
+																// colored seams
 				try {
-					BufferedImage img = ImageProc.showSeams(MainWindow.this.img, width, height);					
+					BufferedImage img = ImageProc.showSeams(MainWindow.this.img, width, height);
 					MainWindow.this.img = img;
 					present("ShowSeams(w=[" + width + "])(h=[" + height + "])");
-					MainWindow.this.img=bckupimg;//return to image without colored seams 
+					MainWindow.this.img = bckupimg;// return to image without
+													// colored seams
 				} catch (Exception ex) {
-					String errormsg=ex.getMessage();
-					if (errormsg==null)
-						errormsg="Error Showing Seams, check the parameters!";	
+					String errormsg = ex.getMessage();
+					if (errormsg == null)
+						errormsg = "Error Showing Seams, check the parameters!";
 					JOptionPane.showMessageDialog(MainWindow.this, errormsg, "Error", JOptionPane.ERROR_MESSAGE);
-					MainWindow.this.img=bckupimg;
+					MainWindow.this.img = bckupimg;
 				}
 			}
 		});
@@ -194,24 +191,24 @@ public class MainWindow extends JFrame {
 		panelRetarget.add(btnShowSeams);
 		operationButtons.add(btnShowSeams);
 
-
 		// Derivatives and gradient magnitude
 		JPanel panelMisc = new JPanel();
 		panelMisc.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		panelOperations.add(panelMisc);
-		panelMisc.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));		
+		panelMisc.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		//Horizontal Derivative
+		// Horizontal Derivative
 		JButton btHorzDeriv = new JButton("HorzDeriv");
 		btHorzDeriv.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BufferedImage bckupimg=MainWindow.this.img;
+				BufferedImage bckupimg = MainWindow.this.img;
 				try {
 					img = ImageProc.horizontalDerivative(img);
 					present("Horizontal Derivative");
 				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(MainWindow.this, "Error in horizontal derivative, check the parameters!", "Error", JOptionPane.ERROR_MESSAGE);
-					MainWindow.this.img=bckupimg;
+					JOptionPane.showMessageDialog(MainWindow.this, "Error in horizontal derivative, check the parameters!", "Error",
+							JOptionPane.ERROR_MESSAGE);
+					MainWindow.this.img = bckupimg;
 				}
 
 			}
@@ -220,18 +217,18 @@ public class MainWindow extends JFrame {
 		panelMisc.add(btHorzDeriv);
 		operationButtons.add(btHorzDeriv);
 
-
-		//Vertical Derivative
+		// Vertical Derivative
 		JButton btVertDeriv = new JButton("VertDeriv");
 		btVertDeriv.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BufferedImage bckupimg=MainWindow.this.img;
+				BufferedImage bckupimg = MainWindow.this.img;
 				try {
 					img = ImageProc.verticalDerivative(img);
 					present("Vertical Derivative");
 				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(MainWindow.this, "Error in vertical derivative, check the parameters!", "Error", JOptionPane.ERROR_MESSAGE);
-					MainWindow.this.img=bckupimg;
+					JOptionPane.showMessageDialog(MainWindow.this, "Error in vertical derivative, check the parameters!", "Error",
+							JOptionPane.ERROR_MESSAGE);
+					MainWindow.this.img = bckupimg;
 				}
 
 			}
@@ -240,17 +237,18 @@ public class MainWindow extends JFrame {
 		panelMisc.add(btVertDeriv);
 		operationButtons.add(btVertDeriv);
 
-		//Gradient magnitude
+		// Gradient magnitude
 		JButton btnGradientMag = new JButton("Gradient magnitude");
 		btnGradientMag.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BufferedImage bckupimg=MainWindow.this.img;
+				BufferedImage bckupimg = MainWindow.this.img;
 				try {
 					img = ImageProc.gradientMagnitude(img);
 					present("GradientMag");
 				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(MainWindow.this, "Error in gradient magnitude, check the parameters!", "Error", JOptionPane.ERROR_MESSAGE);
-					MainWindow.this.img=bckupimg;
+					JOptionPane.showMessageDialog(MainWindow.this, "Error in gradient magnitude, check the parameters!", "Error",
+							JOptionPane.ERROR_MESSAGE);
+					MainWindow.this.img = bckupimg;
 				}
 
 			}
@@ -259,28 +257,23 @@ public class MainWindow extends JFrame {
 		panelMisc.add(btnGradientMag);
 		operationButtons.add(btnGradientMag);
 
-
-
-
 		// Gray scale and Scale down
 		JPanel panelGrayScaleDown = new JPanel();
 		panelGrayScaleDown.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		panelOperations.add(panelGrayScaleDown);
 		panelGrayScaleDown.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-
-
-		//Gray scale
+		// Gray scale
 		JButton btnGrayScale = new JButton("Gray scale");
 		btnGrayScale.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BufferedImage bckupimg=MainWindow.this.img;
+				BufferedImage bckupimg = MainWindow.this.img;
 				try {
 					img = ImageProc.grayScale(img);
 					present("GrayScale");
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(MainWindow.this, "Error in gray scale, check the parameters!", "Error", JOptionPane.ERROR_MESSAGE);
-					MainWindow.this.img=bckupimg;
+					MainWindow.this.img = bckupimg;
 				}
 			}
 		});
@@ -288,12 +281,12 @@ public class MainWindow extends JFrame {
 		panelGrayScaleDown.add(btnGrayScale);
 		operationButtons.add(btnGrayScale);
 
-		//Scale Down
+		// Scale Down
 		JButton btnScaleDown = new JButton("Scale down");
 		btnScaleDown.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int factor = (Integer)txtSamplingFactor.getValue();
-				BufferedImage bckupimg=MainWindow.this.img;
+				int factor = (Integer) txtSamplingFactor.getValue();
+				BufferedImage bckupimg = MainWindow.this.img;
 				try {
 					img = ImageProc.scaleDown(img, factor);
 					present("ScaleDown(factor=" + factor + ")");
@@ -301,7 +294,7 @@ public class MainWindow extends JFrame {
 					txtRetargetWidth.setValue(img.getWidth());
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(MainWindow.this, "Error in scale down, check the parameters!", "Error", JOptionPane.ERROR_MESSAGE);
-					MainWindow.this.img=bckupimg;
+					MainWindow.this.img = bckupimg;
 				}
 
 			}
@@ -317,8 +310,6 @@ public class MainWindow extends JFrame {
 		txtSamplingFactor.setColumns(5);
 		panelGrayScaleDown.add(txtSamplingFactor);
 
-
-
 		// Lower panel
 		JPanel panelStatus = new JPanel();
 		panelStatus.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
@@ -328,13 +319,13 @@ public class MainWindow extends JFrame {
 		JLabel lblStatus = new JLabel(" Current image:   ");
 		panelStatus.add(lblStatus, BorderLayout.WEST);
 
-		txtStatus = new JTextArea(); 
+		txtStatus = new JTextArea();
 		txtStatus.setEditable(false);
 		txtStatus.setLineWrap(true);
 		JScrollPane scrollStatus = new JScrollPane(txtStatus);
 		panelStatus.add(scrollStatus);
 
-		//organize all panels in the main window
+		// organize all panels in the main window
 		pack();
 	}
 
@@ -356,7 +347,7 @@ public class MainWindow extends JFrame {
 	}
 
 	void present(String txt) {
-		imgTitle+=(txt + "; ");
+		imgTitle += (txt + "; ");
 		txtStatus.setText(imgTitle.toString());
 		new ImageWindow(img, imgTitle.toString()).setVisible(true);
 	}
