@@ -126,10 +126,11 @@ public class ImageProc {
 
 					int yDeriv = ((y_prevPixGrey - y_nxtPixGrey + 255) / 2);
 
-					int gradVal = (int) Math.sqrt(yDeriv * yDeriv + xDeriv
-							* xDeriv);
+					int gradVal = (int) Math.sqrt(xDeriv * xDeriv - yDeriv
+							* yDeriv);
 
-					out.setRGB(x, y, new Color(gradVal,gradVal,gradVal).getRGB());
+					out.setRGB(x, y,
+							new Color(gradVal, gradVal, gradVal).getRGB());
 
 				}
 
