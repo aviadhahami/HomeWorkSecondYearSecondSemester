@@ -44,19 +44,27 @@ public class ImageProc {
 
 	public static BufferedImage horizontalDerivative(BufferedImage img) {
 		BufferedImage out = new BufferedImage(img.getWidth(), img.getHeight(), img.getType());
+		BufferedImage grayed = grayScale(img);
 		for (int x = 0; x < img.getWidth() - 1; x++) {
 			for (int y = 0; y < img.getHeight(); y++) {
 				if (x == 0 || y == 0 || x == img.getWidth() - 1 || y == img.getHeight() - 1) {
 					out.setRGB(x, y, 0);
 				} else {
-					Color x_prevPix = new Color(img.getRGB(x - 1, y));
-					int x_prevPixGrey = (x_prevPix.getRed() + x_prevPix.getBlue() + x_prevPix.getGreen()) / 3;
+					/*
+					 * Color x_prevPix = new Color(img.getRGB(x - 1, y)); int
+					 * x_prevPixGrey = (x_prevPix.getRed() + x_prevPix.getBlue()
+					 * + x_prevPix.getGreen()) / 3;
+					 * 
+					 * Color x_nextPix = new Color(img.getRGB(x + 1, y)); int
+					 * x_nxtPixGrey = (x_nextPix.getRed() + x_nextPix.getGreen()
+					 * + x_nextPix.getBlue()) / 3;
+					 * 
+					 * int xDeriv = ((x_prevPixGrey - x_nxtPixGrey + 255) / 2);
+					 * out.setRGB(x, y, new Color(xDeriv, xDeriv,
+					 * xDeriv).getRGB());
+					 */
 
-					Color x_nextPix = new Color(img.getRGB(x + 1, y));
-					int x_nxtPixGrey = (x_nextPix.getRed() + x_nextPix.getGreen() + x_nextPix.getBlue()) / 3;
-
-					int xDeriv = ((x_prevPixGrey - x_nxtPixGrey + 255) / 2);
-
+					int xDeriv = ((grayed.getRGB(x - 1, y) & 0xFF) - (grayed.getRGB(x + 1, y) & 0xFF) + 0xFF) >> 1;
 					out.setRGB(x, y, new Color(xDeriv, xDeriv, xDeriv).getRGB());
 				}
 
@@ -68,20 +76,30 @@ public class ImageProc {
 
 	public static BufferedImage verticalDerivative(BufferedImage img) {
 		BufferedImage out = new BufferedImage(img.getWidth(), img.getHeight(), img.getType());
+		BufferedImage grayed = grayScale(img);
 		for (int x = 0; x < img.getWidth() - 1; x++) {
 			for (int y = 0; y < img.getHeight(); y++) {
 				if (x == 0 || y == 0 || x == img.getWidth() - 1 || y == img.getHeight() - 1) {
 					out.setRGB(x, y, 0);
 				} else {
-					Color y_prevPix = new Color(img.getRGB(x, y - 1));
-					int y_prevPixGrey = (y_prevPix.getRed() + y_prevPix.getBlue() + y_prevPix.getGreen()) / 3;
+					/*
+					 * Color y_prevPix = new Color(img.getRGB(x, y - 1)); int
+					 * y_prevPixGrey = (y_prevPix.getRed() + y_prevPix.getBlue()
+					 * + y_prevPix.getGreen()) / 3;
+					 * 
+					 * Color y_nextPix = new Color(img.getRGB(x, y + 1)); int
+					 * y_nxtPixGrey = (y_nextPix.getRed() + y_nextPix.getGreen()
+					 * + y_nextPix.getBlue()) / 3;
+					 * 
+					 * int yDeriv = ((y_prevPixGrey - y_nxtPixGrey + 255) / 2);
+					 * 
+					 * out.setRGB(x, y, new Color(yDeriv, yDeriv,
+					 * yDeriv).getRGB());
+					 */
 
-					Color y_nextPix = new Color(img.getRGB(x, y + 1));
-					int y_nxtPixGrey = (y_nextPix.getRed() + y_nextPix.getGreen() + y_nextPix.getBlue()) / 3;
-
-					int yDeriv = ((y_prevPixGrey - y_nxtPixGrey + 255) / 2);
-
+					int yDeriv = ((grayed.getRGB(x, y - 1) & 0xFF) - (grayed.getRGB(x, y + 1) & 0xFF) + 0xFF) >> 1;
 					out.setRGB(x, y, new Color(yDeriv, yDeriv, yDeriv).getRGB());
+
 				}
 
 			}
