@@ -42,28 +42,28 @@ public class ImageProc {
 	}
 
 	public static BufferedImage horizontalDerivative(BufferedImage img) {
-		BufferedImage grayed = grayScale(img);
 		BufferedImage out = new BufferedImage(img.getWidth(), img.getHeight(),
 				img.getType());
-		try {
-			for (int x = 0; x < grayed.getWidth() - 1; x++) {
-				for (int y = 0; y < grayed.getHeight(); y++) {
-					if (x == 0 || y == 0 || x == grayed.getWidth() - 1
-							|| y == grayed.getHeight() - 1) {
-						out.setRGB(x, y, 0);
-					} else {
-						int currPixRGB = grayed.getRGB(x, y);
-						int prevPixRGB = grayed.getRGB(x - 1, y);
-						int delta = (currPixRGB & 0xFF) - (prevPixRGB & 0xFF);
-						// int delta = prevPixRGB - currPixRGB;
-						int derivAvg = (delta + 255) / 2;
-						out.setRGB(x, y, derivAvg);
-					}
+		for (int x = 0; x < img.getWidth() - 1; x++) {
+			for (int y = 0; y < img.getHeight(); y++) {
+				if (x == 0 || y == 0 || x == img.getWidth() - 1
+						|| y == img.getHeight() - 1) {
+					out.setRGB(x, y, 0);
+				} else {
+					Color prevPix = new Color(img.getRGB(x - 1, y));
+					int prevPixGrey = (prevPix.getRed() + prevPix.getBlue() + prevPix
+							.getGreen()) / 3;
 
+					Color nextPix = new Color(img.getRGB(x + 1, y));
+					int nxtPixGrey = (nextPix.getRed() + nextPix.getGreen() + nextPix
+							.getBlue()) / 3;
+
+					int xDeriv = ((prevPixGrey - nxtPixGrey + 255) / 2);
+
+					out.setRGB(x, y, new Color(xDeriv, xDeriv, xDeriv).getRGB());
 				}
+
 			}
-		} catch (Exception e) {
-			System.out.println(e);
 		}
 
 		return out;
@@ -72,6 +72,27 @@ public class ImageProc {
 	public static BufferedImage verticalDerivative(BufferedImage img) {
 		BufferedImage out = new BufferedImage(img.getWidth(), img.getHeight(),
 				img.getType());
+		for (int x = 0; x < img.getWidth() - 1; x++) {
+			for (int y = 0; y < img.getHeight(); y++) {
+				if (x == 0 || y == 0 || x == img.getWidth() - 1
+						|| y == img.getHeight() - 1) {
+					out.setRGB(x, y, 0);
+				} else {
+					Color prevPix = new Color(img.getRGB(x, y - 1));
+					int prevPixGrey = (prevPix.getRed() + prevPix.getBlue() + prevPix
+							.getGreen()) / 3;
+
+					Color nextPix = new Color(img.getRGB(x, y + 1));
+					int nxtPixGrey = (nextPix.getRed() + nextPix.getGreen() + nextPix
+							.getBlue()) / 3;
+
+					int xDeriv = ((prevPixGrey - nxtPixGrey + 255) / 2);
+
+					out.setRGB(x, y, new Color(xDeriv, xDeriv, xDeriv).getRGB());
+				}
+
+			}
+		}
 
 		return out;
 	}
