@@ -135,6 +135,8 @@ public class ImageProc {
 		// TODO implement this
 		// retarget() runs the seam carving algorithm to resize an image, use
 		// the Retargeter class. You should implement this.
+		boolean flag = true;
+		Retargeter retargeter = new Retargeter(img, flag);
 		return null;
 	}
 
@@ -142,9 +144,11 @@ public class ImageProc {
 		// showSeams() colors the seams pending for removal/duplication.
 		// You can use here the helper array mentioned in the tips and the seam
 		// order matrix from the Retargeter class. You should implement this.
+
+		// Flow : calc seams each time with orig pos array ->
 		BufferedImage out = new BufferedImage(img.getWidth(), img.getHeight(), img.getType());
 		Retargeter x_retargeter = new Retargeter(img, false);
-		
+		//Object x_SOM = x_retargeter.getSeamsOrderMatrix();
 		return out;
 
 	}

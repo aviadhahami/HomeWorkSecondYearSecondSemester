@@ -5,19 +5,24 @@ import java.awt.image.BufferedImage;
 //Retargeter – A class that does seam carving.
 public class Retargeter {
 
+	private BufferedImage originalImg;
+	private BufferedImage currImg;
+
 	public Retargeter(BufferedImage m_img, boolean m_isVertical) {
 		// TODO do initialization and preprocessing here
-		//  does all necessary preprocessing, including the calculation
+		// does all necessary preprocessing, including the calculation
 		// of the seam order matrix. You should implement this.
+		this.originalImg = m_img;
+		this.currImg = m_img;
 		calculateSeamsOrderMatrix();
 	}
 
-	public void getSeamsOrderMatrix() {
-		// you can implement this (change the output type)
+	public int[][] getSeamsOrderMatrix() {
+		return this.calculateSeamsOrderMatrix();
 	}
 
-	public void getOrigPosMatrix() {
-		// you can implement this (change the output type)
+	public int[] getOrigPosMatrix() {
+		return this.calculateCostsMatrix(this.currImg.getWidth());
 	}
 
 	public BufferedImage retarget(int newSize) {
@@ -25,13 +30,16 @@ public class Retargeter {
 		return null;
 	}
 
-	private void calculateSeamsOrderMatrix() {
+	private int[][] calculateSeamsOrderMatrix() {
+
 		// TODO implement this - this calculates the order in which seams are
 		// extracted
+		return null;
 
 	}
 
-	private void calculateCostsMatrix(int w) {
+	private int[] calculateCostsMatrix(int w) {
+		return null;
 		// TODO implement this - cost matrix should be calculated for a given
 		// image width w
 		// to be used inside calculateSeamsOrderMatrix()
