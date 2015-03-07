@@ -1,12 +1,15 @@
 package edu.cg;
 
 import java.awt.image.BufferedImage;
+import java.lang.reflect.Array;
 
 //Retargeter – A class that does seam carving.
 public class Retargeter {
 
 	private BufferedImage originalImg;
 	private BufferedImage currImg;
+	private int[][] seamOrderMatrix;
+	private int[][] costsMatrix;
 
 	public Retargeter(BufferedImage m_img, boolean m_isVertical) {
 		// TODO do initialization and preprocessing here
@@ -14,7 +17,7 @@ public class Retargeter {
 		// of the seam order matrix. You should implement this.
 		this.originalImg = m_img;
 		this.currImg = m_img;
-		calculateSeamsOrderMatrix();
+		this.seamOrderMatrix = calculateSeamsOrderMatrix();
 	}
 
 	public int[][] getSeamsOrderMatrix() {
@@ -38,11 +41,28 @@ public class Retargeter {
 
 	}
 
-	private int[] calculateCostsMatrix(int w) {
-		return null;
+	private int[][] calculateCostsMatrix(int w) {
+
 		// TODO implement this - cost matrix should be calculated for a given
 		// image width w
 		// to be used inside calculateSeamsOrderMatrix()
+		int[][] costMatrix = new int[this.currImg.getWidth()][this.currImg.getHeight()];
+
+		for (int x = 0; x < this.currImg.getWidth(); x++) {
+			for (int y = 0; y < this.currImg.getHeight(); y++) {
+				// TODO: create edge case for edges
+
+				// init the costs
+				int totalCostLeft = costMatrix[x - 1][y - 1] + costLeft;
+				int totalCostVertical = costMatrix[x - 1][y] + costVertical;
+				int totalCostRight = costMatrix[x - 1][y - 1] + costRight;
+				// find min
+				int min = Math.min(totalCostLeft, Math.min(totalCostVertical, totalCostRight));
+				costMatrix[x][y] = min;
+			}
+		}
+
+		return costMatrix;
 	}
 
 }
