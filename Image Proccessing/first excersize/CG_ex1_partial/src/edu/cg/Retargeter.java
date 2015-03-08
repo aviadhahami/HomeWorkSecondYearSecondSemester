@@ -8,7 +8,7 @@ public class Retargeter {
 
 	private BufferedImage originalImg;
 	private BufferedImage currImg;
-	private int[][] seamOrderMatrix;
+	private Coords[][] seamOrderMatrix;
 	private int[][] costsMatrix;
 
 	public Retargeter(BufferedImage m_img, boolean m_isVertical) {
@@ -19,7 +19,7 @@ public class Retargeter {
 		this.currImg = m_img;
 	}
 
-	public int[][] getSeamsOrderMatrix() {
+	public Coords[][] getSeamsOrderMatrix() {
 		return this.seamOrderMatrix;
 	}
 
@@ -34,9 +34,7 @@ public class Retargeter {
 
 	private void calculateSeamsOrderMatrix() {
 
-			calculateCostsMatrix();
-		// TODO implement this - this calculates the order in which seams are
-		// extracted
+		calculateCostsMatrix();
 
 	}
 
