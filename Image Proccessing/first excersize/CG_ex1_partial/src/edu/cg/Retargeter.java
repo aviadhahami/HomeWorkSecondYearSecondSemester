@@ -47,7 +47,9 @@ public class Retargeter {
 		// image width w
 		// to be used inside calculateSeamsOrderMatrix()
 		int[][] costMatrix = new int[this.currImg.getWidth()][this.currImg.getHeight()];
-
+		// TODO: Flow - we should calc this matrix using the base value of the
+		// gradient
+		// plus the "price"/cost of the pixel's value in the grayscale mode
 		for (int x = 0; x < this.currImg.getWidth(); x++) {
 			for (int y = 0; y < this.currImg.getHeight(); y++) {
 				// TODO: create edge case for edges
@@ -58,6 +60,7 @@ public class Retargeter {
 				int totalCostRight = costMatrix[x - 1][y - 1] + costRight;
 				// find min
 				int min = Math.min(totalCostLeft, Math.min(totalCostVertical, totalCostRight));
+
 				costMatrix[x][y] = min;
 			}
 		}
