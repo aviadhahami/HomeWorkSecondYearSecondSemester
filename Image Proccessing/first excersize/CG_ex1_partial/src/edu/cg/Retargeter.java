@@ -8,7 +8,7 @@ public class Retargeter {
 
 	private BufferedImage originalImg;
 	private BufferedImage currImg;
-	private Coords[][] seamOrderMatrix;
+	private int[][] seamOrderMatrix;
 	private int[][] costsMatrix;
 
 	public Retargeter(BufferedImage m_img, boolean m_isVertical) {
@@ -19,7 +19,7 @@ public class Retargeter {
 		this.currImg = m_img;
 	}
 
-	public Coords[][] getSeamsOrderMatrix() {
+	public int[][] getSeamsOrderMatrix() {
 		return this.seamOrderMatrix;
 	}
 
@@ -35,6 +35,17 @@ public class Retargeter {
 	private void calculateSeamsOrderMatrix() {
 
 		calculateCostsMatrix();
+		int k = 0;
+		int min = this.costsMatrix[this.currImg.getWidth() - 1][this.currImg.getHeight() - 1];
+		for (int x = this.currImg.getWidth() - 1; x > -1; x--) {
+			for (int y = this.currImg.getHeight() - 1; y > -1; y--) {
+				if (min > this.costsMatrix[x][y]) {
+					min = this.costsMatrix[x][y];
+					this.seamOrderMatrix[x][k] = y;
+				}
+			}
+			k++;
+		}
 
 	}
 
