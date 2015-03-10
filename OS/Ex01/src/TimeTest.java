@@ -1,3 +1,10 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 /*
  * @Author - Aviad Hahami
  */
@@ -71,8 +78,38 @@ public class TimeTest {
 	 * @return true when copy succeeds, false otherwise
 	 */
 
-	public static boolean copyFile(String srcFileName, String toFileName, int bufferSize, boolean bOverwrite) {
-		return bOverwrite;
+	public static boolean copyFile(String srcFileName, String toFileName, int bufferSize, boolean bOverwrite) throws IOException {
+
+		// lets check if the file is there.
+		// if so, and if bOverwrite is false -> we're out boy !
+		File f = new File(toFileName);
+		if (f.exists() && !f.isDirectory() && !bOverwrite) {
+			return false;
+		}
+
+		BufferedReader inputStream = null;
+		PrintWriter outputStream = null;
+
+		try {
+			inputStream = new BufferedReader(new FileReader(srcFileName));
+			outputStream = new PrintWriter(new FileWriter(toFileName));
+
+			String line;
+			while ((line = inputStream.readLine()) != null) {
+				outputStream.println(line);
+			}
+
+		} catch (Exception e) {
+			// oh-oh ! something happened...!
+			return false;
+		} finally {
+			if (inputStream != null) {
+				inputStream.close();
+			}
+			if (outputStream != null) {
+				outputStream.close();
+			}
+		}
 
 	}
 }
