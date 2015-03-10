@@ -10,10 +10,10 @@ import java.io.PrintWriter;
  */
 public class TimeTest {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
 		// not enough args -> we're out
-		if (args[3] == null) {
+		if (args.length < 3) {
 			System.err.println("check inputs");
 			System.exit(1);
 		}
@@ -35,8 +35,8 @@ public class TimeTest {
 				buffSize = Integer.getInteger(args[2]);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.err.println("check inputs.");
+			// e.printStackTrace();
+			System.err.println("check inputs, you've generated " + e);
 			System.exit(1);
 		}
 
@@ -101,6 +101,13 @@ public class TimeTest {
 
 		} catch (Exception e) {
 			// oh-oh ! something happened...!
+			if (inputStream != null) {
+				inputStream.close();
+			}
+			if (outputStream != null) {
+				outputStream.close();
+			}
+
 			return false;
 		} finally {
 			if (inputStream != null) {
@@ -110,6 +117,7 @@ public class TimeTest {
 				outputStream.close();
 			}
 		}
+		return true;
 
 	}
 }
