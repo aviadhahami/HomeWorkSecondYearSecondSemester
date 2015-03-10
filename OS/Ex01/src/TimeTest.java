@@ -27,7 +27,7 @@ public class TimeTest {
 				// means we go full params
 				sourceFilePath = args[1];
 				destFilePath = args[2];
-				buffSize = Integer.getInteger(args[3]);
+				buffSize = Integer.parseInt(args[3]);
 			} else {
 				// we aint got forcer
 				sourceFilePath = args[0];
@@ -35,7 +35,7 @@ public class TimeTest {
 				buffSize = Integer.getInteger(args[2]);
 			}
 		} catch (Exception e) {
-			// e.printStackTrace();
+			e.printStackTrace();
 			System.err.println("check inputs, you've generated " + e);
 			System.exit(1);
 		}
@@ -54,7 +54,7 @@ public class TimeTest {
 		long endTime = System.currentTimeMillis();
 
 		System.out.println("File " + sourceFilePath + " was copied to " + destFilePath);
-		System.out.println("Runtime: " + (endTime - startTime));
+		System.out.println("Runtime: " + (endTime - startTime) + "ms");
 
 		/*
 		 * Guidelines for the force flag: If the force flag was present, the
@@ -91,7 +91,7 @@ public class TimeTest {
 		PrintWriter outputStream = null;
 
 		try {
-			inputStream = new BufferedReader(new FileReader(srcFileName));
+			inputStream = new BufferedReader(new FileReader(srcFileName), bufferSize);
 			outputStream = new PrintWriter(new FileWriter(toFileName));
 
 			String line;
