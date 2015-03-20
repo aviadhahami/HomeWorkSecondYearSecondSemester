@@ -40,6 +40,11 @@ public class TimeTest {
 			System.exit(1);
 		}
 
+		if (buffSize < 0) {
+			System.err.println("Negative buffer size.... :\\");
+			System.exit(1);
+		}
+
 		// done playing with inputs. GOGO!
 
 		// copy file
