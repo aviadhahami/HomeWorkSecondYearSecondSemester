@@ -8,9 +8,9 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 public class ImageProc {
-	private static double redConst = 0.299;
-	private static double greenConst = 0.587;
-	private static double blueConst = 0.114;
+	//private static double redConst = 0.299;
+	//private static double greenConst = 0.587;
+	//private static double blueConst = 0.114;
 
 	public static BufferedImage scaleDown(BufferedImage img, int factor) {
 		if (factor <= 0)
@@ -130,14 +130,17 @@ public class ImageProc {
 
 		return out;
 	}
+	
+	public static BufferedImage retargetHorizontal(BufferedImage img, int width) {
+		return new Retargeter(img, Math.abs(img.getWidth() - width), false)
+				.retarget(width);
+	}
 
-	public static BufferedImage retargetSize(BufferedImage img, int width, int height) {
-		// TODO implement this
-		// retarget() runs the seam carving algorithm to resize an image, use
-		// the Retargeter class. You should implement this.
-		boolean flag = true;
-		Retargeter retargeter = new Retargeter(img, flag);
-		return null;
+	// Runs the seam carving algorithm to resize an image vertically (change
+	// height)
+	public static BufferedImage retargetVertical(BufferedImage img, int height) {
+		return new Retargeter(img, Math.abs(img.getHeight() - height), true)
+				.retarget(height);
 	}
 
 	public static BufferedImage showSeams(BufferedImage img, int width, int height) {
@@ -147,10 +150,23 @@ public class ImageProc {
 
 		// Flow : calc seams each time with orig pos array ->
 		BufferedImage out = new BufferedImage(img.getWidth(), img.getHeight(), img.getType());
-		Retargeter x_retargeter = new Retargeter(img, false);
+		//Retargeter x_retargeter = new Retargeter(img, false);
 		//Object x_SOM = x_retargeter.getSeamsOrderMatrix();
 		return out;
+	}
+	
+	// Runs the horizontal seam carving algorithm to present the seams for
+	// removal/duplication
+	public static BufferedImage showSeamsHorizontal(BufferedImage img, int width) {
+		return new Retargeter(img, Math.abs(img.getWidth() - width), false)
+				.showSeams(width);
+	}
 
+	// Runs the vertical seam carving algorithm to present the seams for
+	// removal/duplication
+	public static BufferedImage showSeamsVertical(BufferedImage img, int height) {
+		return new Retargeter(img, Math.abs(img.getHeight() - height), true)
+				.showSeams(height);
 	}
 
 }

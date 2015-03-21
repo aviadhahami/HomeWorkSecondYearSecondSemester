@@ -148,7 +148,9 @@ public class MainWindow extends JFrame {
 				int height = (Integer) txtRetargetHeight.getValue();
 				BufferedImage bckupimg = MainWindow.this.img;
 				try {
-					BufferedImage img = ImageProc.retargetSize(MainWindow.this.img, width, height);
+					BufferedImage img = ImageProc.retargetVertical(MainWindow.this.img, height);
+					BufferedImage tempImg = img;
+					img = ImageProc.retargetHorizontal(tempImg, width);
 					MainWindow.this.img = img;
 					present("Retarget(w=[" + width + "]) (h=[" + height + "])");
 				} catch (Exception ex) {
@@ -173,7 +175,9 @@ public class MainWindow extends JFrame {
 																// without
 																// colored seams
 				try {
-					BufferedImage img = ImageProc.showSeams(MainWindow.this.img, width, height);
+					BufferedImage img = ImageProc.showSeamsHorizontal(MainWindow.this.img, width);
+					BufferedImage tempImg = img;
+					img = ImageProc.showSeamsVertical(tempImg, height);
 					MainWindow.this.img = img;
 					present("ShowSeams(w=[" + width + "])(h=[" + height + "])");
 					MainWindow.this.img = bckupimg;// return to image without
