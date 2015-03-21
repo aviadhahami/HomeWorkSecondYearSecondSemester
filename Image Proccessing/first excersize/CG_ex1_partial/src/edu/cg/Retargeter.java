@@ -206,8 +206,6 @@ public class Retargeter {
 	/*
 	 * This helper function takes the minimum cost coordinate and finds the
 	 * whole seam by starting from the given pixel
-	 * 
-	 * @param -
 	 */
 	private void findSeam(int xCoordinate, int imageWidthMinusSeams,
 			int numOfSeams) {
@@ -258,17 +256,20 @@ public class Retargeter {
 	}
 
 	// Calculates the order in which seams are extracted
-	private void calculateSeamsOrderMatrix(int k) {
-
+	private void calculateSeamsOrderMatrix(int k) 
+	{
 		// Return original image if size was not changed
-		if (k == 0) {
+		if (k == 0) 
+		{
 			return;
 		}
 
 		// Save the original x coordinates of the image
 		xOriginal = new int[imageWidth][imageHeight];
-		for (int y = 0; y < imageHeight; y++) {
-			for (int x = 0; x < imageWidth; x++) {
+		for (int y = 0; y < imageHeight; y++) 
+		{
+			for (int x = 0; x < imageWidth; x++) 
+			{
 				xOriginal[x][y] = x;
 			}
 		}
@@ -277,8 +278,10 @@ public class Retargeter {
 		seamsOrderTable = new int[imageWidth][imageHeight];
 
 		// Initialize the "seamsOrderTable" to be the highest value
-		for (int y = 0; y < imageHeight; y++) {
-			for (int x = 0; x < imageWidth; x++) {
+		for (int y = 0; y < imageHeight; y++) 
+		{
+			for (int x = 0; x < imageWidth; x++) 
+			{
 				seamsOrderTable[x][y] = Integer.MAX_VALUE;
 			}
 		}
@@ -286,7 +289,8 @@ public class Retargeter {
 		int minCost, imageWidthMinusSeams, xMinimumCoordinate;
 
 		// Calculate every seam, and shift all pixels to the left of the seam
-		for (int numberOfSeams = 0; numberOfSeams < k; numberOfSeams++) {
+		for (int numberOfSeams = 0; numberOfSeams < k; numberOfSeams++) 
+		{
 			imageWidthMinusSeams = imageWidth - numberOfSeams;
 			calculateCostsMatrix(imageWidthMinusSeams);
 			xMinimumCoordinate = 0;
@@ -294,8 +298,10 @@ public class Retargeter {
 			// Find the minimum pixel at the bottom of the image
 			minCost = costImageTable[0][imageHeight - 1];
 			xMinimumCoordinate = 0;
-			for (int minX = 0; minX < imageWidthMinusSeams; minX++) {
-				if (costImageTable[minX][imageHeight - 1] < minCost) {
+			for (int minX = 0; minX < imageWidthMinusSeams; minX++) 
+			{
+				if (costImageTable[minX][imageHeight - 1] < minCost) 
+				{
 					minCost = costImageTable[minX][imageHeight - 1];
 					xMinimumCoordinate = minX;
 				}
@@ -309,15 +315,18 @@ public class Retargeter {
 	/*
 	 * This helper function shifts all pixels one pixel left starting from index i
 	 */
-	private void shiftPixelsLeft(int[][] tableToShift, int i, int y) {
-		for (int x = i; x < tableToShift.length - 1; x++) {
+	private void shiftPixelsLeft(int[][] tableToShift, int i, int y) 
+	{
+		for (int x = i; x < tableToShift.length - 1; x++) 
+		{
 			tableToShift[x][y] = tableToShift[x + 1][y];
 		}
 	}
 
 	// Calculates the cost matrix for a given image width (w).
 	// To be used inside calculateSeamsOrderMatrix().
-	private void calculateCostsMatrix(int w) {
+	private void calculateCostsMatrix(int w) 
+	{
 		costImageTable = new int[w][imageHeight];
 
 		// Put 1000 at the two upper corner pixels
@@ -325,14 +334,17 @@ public class Retargeter {
 		costImageTable[w - 1][0] = 1000;
 
 		// Fill the top border
-		for (int x = 1; x < w - 1; x++) {
+		for (int x = 1; x < w - 1; x++) 
+		{
 			costImageTable[x][0] = Math.abs(grayOfPixelValues[x + 1][0] - grayOfPixelValues[x - 1][0]);
 		}
 		int vCost, rCost, lCost;
 
 		// Move through the image and calculate the minimum cost of all pixels
-		for (int y = 1; y < imageHeight; y++) {
-			for (int x = 1; x <= w; x++) {
+		for (int y = 1; y < imageHeight; y++) 
+		{
+			for (int x = 1; x <= w; x++) 
+			{
 
 				// Check if we are at the left border
 				if (x == w) {
@@ -342,12 +354,16 @@ public class Retargeter {
 												 costImageTable[1][y - 1] + rCost);
 					
 				// Check if we are at the right border
-				} else if (x == w - 1) {
+				} 
+				else if (x == w - 1) 
+				{
 					lCost = Math.abs(grayOfPixelValues[w - 2][y] - grayOfPixelValues[w - 1][y - 1]);
 					costImageTable[x][y] = costImageTable[w - 2][y]	+ 
 										   Math.min(costImageTable[w - 1][y - 1], 
 												    costImageTable[w - 2][y - 1] + lCost);
-				} else {
+				} 
+				else 
+				{
 					vCost = Math.abs(grayOfPixelValues[x + 1][y] - grayOfPixelValues[x - 1][y]);
 
 					rCost = Math.abs(grayOfPixelValues[x + 1][y] - grayOfPixelValues[x - 1][y])	+ 
