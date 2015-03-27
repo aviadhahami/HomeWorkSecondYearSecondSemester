@@ -242,8 +242,10 @@ public class Vec {
 	 * @return a+b
 	 */
 	public static Vec add(Vec a, Vec b) {
-		// TODO:
-		return null;
+		b.x += a.x;
+		b.y += a.y;
+		b.z += a.z;
+		return b;
 	}
 
 	/**
@@ -256,8 +258,10 @@ public class Vec {
 	 * @return a-b
 	 */
 	public static Vec sub(Vec a, Vec b) {
-		// TODO:
-		return null;
+		a.x -= b.x;
+		a.y -= b.y;
+		a.z -= b.z;
+		return a;
 	}
 
 	/**
@@ -268,8 +272,10 @@ public class Vec {
 	 * @return -1*a
 	 */
 	public static Vec negate(Vec a) {
-		// TODO:
-		return null;
+		a.x *= -1;
+		a.y *= -1;
+		a.z *= -1;
+		return a;
 	}
 
 	/**
@@ -282,8 +288,10 @@ public class Vec {
 	 * @return s*a
 	 */
 	public static Vec scale(double s, Vec a) {
-		// TODO:
-		return null;
+		a.x *= s;
+		a.y *= s;
+		a.z *= s;
+		return a;
 	}
 
 	/**
@@ -296,8 +304,7 @@ public class Vec {
 	 * @return a.*b
 	 */
 	public static Vec scale(Vec a, Vec b) {
-		// TODO:
-		return null;
+		return new Vec(a.x * b.x, a.y * b.y, a.z * b.z);
 	}
 
 	/**
@@ -310,8 +317,7 @@ public class Vec {
 	 * @return a==b
 	 */
 	public static boolean equals(Vec a, Vec b) {
-		// TODO:
-		return false;
+		return (a.x == b.x && a.y == b.y && a.z == b.z);
 	}
 
 	/**
@@ -324,8 +330,7 @@ public class Vec {
 	 * @return a.b
 	 */
 	public static double dotProd(Vec a, Vec b) {
-		// TODO:
-		return Double.NaN;
+		return (a.x * b.x + a.y * b.y + a.z * b.z);
 	}
 
 	/**
