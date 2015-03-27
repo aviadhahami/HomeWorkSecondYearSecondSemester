@@ -97,9 +97,9 @@ public class Vec {
 	 *            Vector
 	 */
 	public void mac(double s, Vec a) {
-		this.x *= s;
-		this.y *= s;
-		this.z *= z;
+		this.x += a.x * s;
+		this.y += a.y * s;
+		this.z += a.z * z;
 	}
 
 	/**
@@ -109,7 +109,9 @@ public class Vec {
 	 *            Scalar
 	 */
 	public void scale(double s) {
-		// TODO:
+		this.x *= s;
+		this.y *= s;
+		this.z *= s;
 	}
 
 	/**
@@ -119,7 +121,9 @@ public class Vec {
 	 *            Vector
 	 */
 	public void scale(Vec a) {
-		// TODO:
+		this.x *= a.x;
+		this.y *= a.y;
+		this.z *= a.z;
 	}
 
 	/**
@@ -128,7 +132,9 @@ public class Vec {
 	 * @return Vector
 	 */
 	public void negate() {
-		// TODO:
+		this.x *= -1;
+		this.y *= -1;
+		this.z *= -1;
 	}
 
 	/**
