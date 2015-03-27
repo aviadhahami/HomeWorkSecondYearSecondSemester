@@ -1,6 +1,5 @@
 package cg.rec.vec;
 
-
 /**
  * 3D vector class that contains three doubles. Could be used to represent
  * Vectors but also Points and Colors.
@@ -17,7 +16,9 @@ public class Vec {
 	 * Initialize vector to (0,0,0)
 	 */
 	public Vec() {
-		//TODO: 
+		this.x = 0;
+		this.y = 0;
+		this.z = 0;
 	}
 
 	/**
@@ -43,7 +44,9 @@ public class Vec {
 	 *            Vector
 	 */
 	public Vec(Vec v) {
-		//TODO:
+		this.x = v.x;
+		this.y = v.y;
+		this.z = v.z;
 	}
 
 	/**
@@ -53,8 +56,8 @@ public class Vec {
 	 * @return The reflected vector
 	 */
 	public Vec reflect(Vec normal) {
-		//TODO:
-		return null;
+		Vec finalVec = new Vec(this.x, this.y, this.z);
+		return sub(finalVec, scale(dotProd(finalVec, normal) * 2, normal));
 	}
 
 	/**
@@ -64,7 +67,7 @@ public class Vec {
 	 *            Vector
 	 */
 	public void add(Vec a) {
-		//TODO:
+		// TODO:
 	}
 
 	/**
@@ -74,9 +77,9 @@ public class Vec {
 	 *            Vector
 	 */
 	public void sub(Vec a) {
-		//TODO:
+		// TODO:
 	}
-	
+
 	/**
 	 * Multiplies & Accumulates vector with given vector and a. v := v + s*a
 	 * 
@@ -86,7 +89,7 @@ public class Vec {
 	 *            Vector
 	 */
 	public void mac(double s, Vec a) {
-		//TODO:
+		// TODO:
 	}
 
 	/**
@@ -96,7 +99,7 @@ public class Vec {
 	 *            Scalar
 	 */
 	public void scale(double s) {
-		//TODO:
+		// TODO:
 	}
 
 	/**
@@ -106,7 +109,7 @@ public class Vec {
 	 *            Vector
 	 */
 	public void scale(Vec a) {
-		//TODO:
+		// TODO:
 	}
 
 	/**
@@ -115,7 +118,7 @@ public class Vec {
 	 * @return Vector
 	 */
 	public void negate() {
-		//TODO:
+		// TODO:
 	}
 
 	/**
@@ -124,7 +127,7 @@ public class Vec {
 	 * @return Scalar
 	 */
 	public double length() {
-		//TODO:
+		// TODO:
 		return Double.NaN;
 	}
 
@@ -134,8 +137,8 @@ public class Vec {
 	 * @return Scalar
 	 */
 	public double lengthSquared() {
-		//TODO:
-		return Double.NaN;		
+		// TODO:
+		return Double.NaN;
 	}
 
 	/**
@@ -146,17 +149,18 @@ public class Vec {
 	 * @return Scalar
 	 */
 	public double dotProd(Vec a) {
-		//TODO:
+		// TODO:
 		return Double.NaN;
 	}
 
 	/**
-	 * Normalizes the vector to have length 1. Throws exception if magnitude is zero.
+	 * Normalizes the vector to have length 1. Throws exception if magnitude is
+	 * zero.
 	 * 
 	 * @throws ArithmeticException
 	 */
 	public void normalize() throws ArithmeticException {
-		//TODO:
+		// TODO:
 	}
 
 	/**
@@ -179,7 +183,7 @@ public class Vec {
 	 * @return the angle in radians in the range [0,PI]
 	 */
 	public final double angle(Vec v1) {
-		//TODO:
+		// TODO:
 		return Double.NaN;
 	}
 
@@ -193,7 +197,7 @@ public class Vec {
 	 * @return Scalar
 	 */
 	static public double distance(Vec a, Vec b) {
-		//TODO:
+		// TODO:
 		return Double.NaN;
 	}
 
@@ -206,8 +210,8 @@ public class Vec {
 	 *            Vector2
 	 * @return Vector1 x Vector2
 	 */
-	public static Vec crossProd(Vec a, Vec b) {	
-		//TODO: 
+	public static Vec crossProd(Vec a, Vec b) {
+		// TODO:
 		return null;
 	}
 
@@ -221,7 +225,7 @@ public class Vec {
 	 * @return a+b
 	 */
 	public static Vec add(Vec a, Vec b) {
-		//TODO:
+		// TODO:
 		return null;
 	}
 
@@ -235,7 +239,7 @@ public class Vec {
 	 * @return a-b
 	 */
 	public static Vec sub(Vec a, Vec b) {
-		//TODO:
+		// TODO:
 		return null;
 	}
 
@@ -247,7 +251,7 @@ public class Vec {
 	 * @return -1*a
 	 */
 	public static Vec negate(Vec a) {
-		//TODO:
+		// TODO:
 		return null;
 	}
 
@@ -261,7 +265,7 @@ public class Vec {
 	 * @return s*a
 	 */
 	public static Vec scale(double s, Vec a) {
-		//TODO:
+		// TODO:
 		return null;
 	}
 
@@ -275,7 +279,7 @@ public class Vec {
 	 * @return a.*b
 	 */
 	public static Vec scale(Vec a, Vec b) {
-		//TODO:
+		// TODO:
 		return null;
 	}
 
@@ -289,7 +293,7 @@ public class Vec {
 	 * @return a==b
 	 */
 	public static boolean equals(Vec a, Vec b) {
-		//TODO:
+		// TODO:
 		return false;
 	}
 
@@ -303,7 +307,7 @@ public class Vec {
 	 * @return a.b
 	 */
 	public static double dotProd(Vec a, Vec b) {
-		//TODO:
+		// TODO:
 		return Double.NaN;
 	}
 
