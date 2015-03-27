@@ -56,8 +56,12 @@ public class Vec {
 	 * @return The reflected vector
 	 */
 	public Vec reflect(Vec normal) {
-		Vec finalVec = new Vec(this.x, this.y, this.z);
+		Vec finalVec = generateLocalVec();
 		return sub(finalVec, scale(dotProd(finalVec, normal) * 2, normal));
+	}
+
+	private Vec generateLocalVec() {
+		return new Vec(this.x, this.y, this.z);
 	}
 
 	/**
@@ -67,7 +71,9 @@ public class Vec {
 	 *            Vector
 	 */
 	public void add(Vec a) {
-		// TODO:
+		this.x += a.x;
+		this.y += a.y;
+		this.z += a.z;
 	}
 
 	/**
@@ -77,7 +83,9 @@ public class Vec {
 	 *            Vector
 	 */
 	public void sub(Vec a) {
-		// TODO:
+		this.x -= a.x;
+		this.y -= a.y;
+		this.y -= a.z;
 	}
 
 	/**
@@ -89,7 +97,9 @@ public class Vec {
 	 *            Vector
 	 */
 	public void mac(double s, Vec a) {
-		// TODO:
+		this.x *= s;
+		this.y *= s;
+		this.z *= z;
 	}
 
 	/**
