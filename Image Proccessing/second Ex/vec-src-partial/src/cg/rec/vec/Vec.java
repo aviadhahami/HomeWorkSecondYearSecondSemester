@@ -143,8 +143,7 @@ public class Vec {
 	 * @return Scalar
 	 */
 	public double length() {
-		// TODO:
-		return Double.NaN;
+		return Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
 	}
 
 	/**
@@ -153,8 +152,7 @@ public class Vec {
 	 * @return Scalar
 	 */
 	public double lengthSquared() {
-		// TODO:
-		return Double.NaN;
+		return (this.x * this.x + this.y * this.y + this.z * this.z);
 	}
 
 	/**
@@ -165,8 +163,7 @@ public class Vec {
 	 * @return Scalar
 	 */
 	public double dotProd(Vec a) {
-		// TODO:
-		return Double.NaN;
+		return (this.x * a.x + this.y * a.y + this.z * a.z);
 	}
 
 	/**
@@ -176,7 +173,14 @@ public class Vec {
 	 * @throws ArithmeticException
 	 */
 	public void normalize() throws ArithmeticException {
-		// TODO:
+		double vecLength = length();
+		if (vecLength <= 0) {
+			throw new ArithmeticException("Length is zero, can't divide by zero");
+		} else {
+			this.x /= vecLength;
+			this.y /= vecLength;
+			this.z /= vecLength;
+		}
 	}
 
 	/**
@@ -199,8 +203,7 @@ public class Vec {
 	 * @return the angle in radians in the range [0,PI]
 	 */
 	public final double angle(Vec v1) {
-		// TODO:
-		return Double.NaN;
+		return Math.acos(dotProd(this, v1) / (this.length() * v1.length()));
 	}
 
 	/**
@@ -213,8 +216,7 @@ public class Vec {
 	 * @return Scalar
 	 */
 	static public double distance(Vec a, Vec b) {
-		// TODO:
-		return Double.NaN;
+		return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2) + Math.pow(a.z - b.z, 2));
 	}
 
 	/**
@@ -227,8 +229,7 @@ public class Vec {
 	 * @return Vector1 x Vector2
 	 */
 	public static Vec crossProd(Vec a, Vec b) {
-		// TODO:
-		return null;
+		return new Vec(b.y * a.z - b.z * a.y, b.z * a.x - b.x * a.z, b.x * a.y - b.y * a.x);
 	}
 
 	/**
