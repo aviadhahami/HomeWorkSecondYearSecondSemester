@@ -43,7 +43,19 @@ public class ExtendedMaxHeap {
 	}
 
 	private void maxHeapify(int loc) {
-		// TODO Auto-generated method stub
+		if (!isLeaf(loc)) {
+			// check for bigger child
+			if (this.heap[loc].getKey() < this.heap[leftChild(loc)].getKey() || this.heap[loc].getKey() < this.heap[rightChild(loc)].getKey()) {
+				// pick biggest child
+				if (this.heap[leftChild(loc)].getKey() > this.heap[rightChild(loc)].getKey()) {
+					swap(loc, leftChild(loc));
+					maxHeapify(leftChild(loc));
+				} else {
+					swap(loc, rightChild(loc));
+					maxHeapify(rightChild(loc));
+				}
+			}
+		}
 
 	}
 
