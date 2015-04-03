@@ -3,22 +3,50 @@ public class ExtendedMaxHeap {
 	private long keysAvg;
 	private HeapElement minKeyElement;
 	private HeapElement[] heap;
-	private int heapSize = this.heap.length;
+	private int heapSize;
+	private int capacity;
 
 	private static final int ROOT = 1;
 
 	public ExtendedMaxHeap(int capacity) {
-
+		this.capacity = capacity;
+		this.heapSize = 0;
+		this.heap = new HeapElement[this.capacity + 1];
+		// init the head
+		this.heap[0] = new HeapElement(Integer.MAX_VALUE, null);
 	}
 
 	public ExtendedMaxHeap(HeapElement[] elementsArray, int capacity) {
+		boolean exceptionFlag = false;
+		// flagging the needed checks according to the Ex instructions
+		exceptionFlag = elementsArray == null || elementsArray.length == 0 || capacity < elementsArray.length ? true : false;
+		if (exceptionFlag) {
+			// means we have something wrong
+			throw new HeapException("failed to initialize a heap. check capacity & initial array");
+		} else {
+			this.capacity = capacity + 1;
+			this.heapSize = elementsArray.length;
+			this.heap = new HeapElement[this.capacity + 1];
+			this.heap[0] = new HeapElement(Integer.MAX_VALUE, null);
+			// we copy the data over. Why not pointer? not sure...
+			for (int i = ROOT; i < elementsArray.length; i++) {
+				this.heap[i] = elementsArray[i];
+			}
+			buildMaxHeap();
+		}
+
+	}
+
+	private void buildMaxHeap() {
+		for (int loc = (this.heapSize / 2); loc >= 1; loc--) {
+			maxHeapify(loc);
+		}
 
 	}
 
 	public void insert(HeapElement e) {
 		this.heap[++this.heapSize] = e;
 		int currentPos = this.heapSize;
-
 		while (this.heap[currentPos].getKey() > this.heap[parent(currentPos)].getKey()) {
 			swap(currentPos, parent(currentPos));
 			currentPos = parent(currentPos);
