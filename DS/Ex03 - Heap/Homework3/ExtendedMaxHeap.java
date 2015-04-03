@@ -3,6 +3,7 @@ public class ExtendedMaxHeap {
 	private long keysAvg;
 	private HeapElement minKeyElement;
 	private HeapElement[] heap;
+	private int heapSize = this.heap.length;
 
 	public ExtendedMaxHeap(int capacity) {
 
@@ -29,10 +30,22 @@ public class ExtendedMaxHeap {
 		return this.keysAvg;
 	}
 
-	public HeapElement getElementWithMinKey() {
+	public HeapElement getElementWithMinKey() throws HeapException {
 		if (this.minKeyElement == null)
 			throw new HeapException("Queue is empty");
 		return this.minKeyElement;
+	}
+
+	private int rightChild(int loc) {
+		return (loc * 2) + 1;
+	}
+
+	private int leftChild(int loc) {
+		return (loc * 2);
+	}
+
+	private int parent(int loc) {
+		return loc / 2;
 	}
 
 }
