@@ -14,6 +14,7 @@ public class ExtendedMaxHeap {
 		this.heap = new HeapElement[this.capacity + 1];
 		// init the head
 		this.heap[0] = new HeapElement(Integer.MAX_VALUE, null);
+		this.minKeyElement = null;
 	}
 
 	public ExtendedMaxHeap(HeapElement[] elementsArray, int capacity) {
@@ -24,6 +25,7 @@ public class ExtendedMaxHeap {
 			// means we have something wrong
 			throw new HeapException("failed to initialize a heap. check capacity & initial array");
 		} else {
+			this.minKeyElement = elementsArray[0];
 			this.capacity = capacity + 1;
 			this.heapSize = elementsArray.length;
 			this.heap = new HeapElement[this.capacity + 1];
@@ -31,6 +33,7 @@ public class ExtendedMaxHeap {
 			// we copy the data over. Why not pointer? not sure...
 			for (int i = ROOT; i < elementsArray.length; i++) {
 				this.heap[i] = elementsArray[i];
+				this.minKeyElement = this.minKeyElement.getKey() > this.heap[i].getKey() ? this.heap[i] : this.minKeyElement;
 			}
 			buildMaxHeap();
 		}
@@ -47,6 +50,8 @@ public class ExtendedMaxHeap {
 	public void insert(HeapElement e) {
 		this.heap[++this.heapSize] = e;
 		int currentPos = this.heapSize;
+		// updating minimal key element if necessary
+		this.minKeyElement = this.minKeyElement == null ? e : this.minKeyElement.getKey() > e.getKey() ? e : this.minKeyElement;
 		while (this.heap[currentPos].getKey() > this.heap[parent(currentPos)].getKey()) {
 			swap(currentPos, parent(currentPos));
 			currentPos = parent(currentPos);
@@ -123,9 +128,9 @@ public class ExtendedMaxHeap {
 
 	public static void main(String... arg) {
 		System.out.println("The Max Heap is ");
-		ExtendedMaxHeap maxHeap = new ExtendedMaxHeap(15);
+		ExtendedMaxHeap maxHeap = new ExtendedMaxHeap(50);
 		maxHeap.insert(new HeapElement(5, null));
-		maxHeap.insert(new HeapElement(3, null));
+		maxHeap.insert(new HeapElement(30, null));
 		maxHeap.insert(new HeapElement(17, null));
 		maxHeap.insert(new HeapElement(10, null));
 		maxHeap.insert(new HeapElement(84, null));
@@ -133,10 +138,13 @@ public class ExtendedMaxHeap {
 		maxHeap.insert(new HeapElement(6, null));
 		maxHeap.insert(new HeapElement(22, null));
 		maxHeap.insert(new HeapElement(9, null));
+		maxHeap.insert(new HeapElement(2, null));
 		maxHeap.buildMaxHeap();
 
 		maxHeap.print();
 		System.out.println("The max val is " + maxHeap.deleteMax().getKey());
+
+		System.out.println("The min key is " + maxHeap.getElementWithMinKey().getKey());
 	}
 
 }
