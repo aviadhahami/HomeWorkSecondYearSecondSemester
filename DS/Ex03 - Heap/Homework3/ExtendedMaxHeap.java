@@ -1,6 +1,7 @@
 public class ExtendedMaxHeap {
 
 	private long keysAvg;
+	private long keysSum;
 	private HeapElement minKeyElement;
 	private HeapElement[] heap;
 	private int heapSize;
@@ -31,7 +32,9 @@ public class ExtendedMaxHeap {
 			// we copy the data over. Why not pointer? not sure...
 			for (int i = ROOT; i < elementsArray.length; i++) {
 				this.heap[i] = elementsArray[i];
+				this.keysSum += elementsArray[i].getKey();
 			}
+			updateAvg(0);
 			buildMaxHeap();
 		}
 
@@ -45,11 +48,22 @@ public class ExtendedMaxHeap {
 	}
 
 	public void insert(HeapElement e) {
+		updateAvg(e.getKey());
 		this.heap[++this.heapSize] = e;
 		int currentPos = this.heapSize;
 		while (this.heap[currentPos].getKey() > this.heap[parent(currentPos)].getKey()) {
 			swap(currentPos, parent(currentPos));
 			currentPos = parent(currentPos);
+		}
+	}
+
+	private void updateAvg(int key) {
+		try {
+			this.keysSum += key;
+			this.keysAvg = this.keysSum / this.heapSize;
+		} catch (ArithmeticException e) {
+			System.out.print("tried to do AE! ");
+			e.printStackTrace();
 		}
 	}
 
@@ -62,12 +76,18 @@ public class ExtendedMaxHeap {
 	}
 
 	public HeapElement deleteMax() throws HeapException {
-		if (this.heap[ROOT] == null)
+		if (this.heap[ROOT] == null) {
 			throw new HeapException("Empty queue, can't delete nothing");
-		HeapElement maxElement = this.heap[ROOT];
-		this.heap[ROOT] = this.heap[this.heapSize--];
-		maxHeapify(ROOT);
-		return maxElement;
+		} else {
+
+			HeapElement maxElement = this.heap[ROOT];
+			this.heapSize--;
+			this.keysSum -= maxElement.getKey();
+			updateAvg(0);
+			this.heap[ROOT] = this.heap[this.heapSize--];
+			maxHeapify(ROOT);
+			return maxElement;
+		}
 	}
 
 	private void maxHeapify(int loc) {
@@ -137,6 +157,7 @@ public class ExtendedMaxHeap {
 
 		maxHeap.print();
 		System.out.println("The max val is " + maxHeap.deleteMax().getKey());
+		System.out.println("The Avg is " + maxHeap.getKeysAverage());
 	}
 
 }
