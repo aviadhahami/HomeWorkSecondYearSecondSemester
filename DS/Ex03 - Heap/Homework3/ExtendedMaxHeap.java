@@ -113,4 +113,30 @@ public class ExtendedMaxHeap {
 		return (loc >= (this.heapSize / 2) && loc <= this.heapSize) ? true : false;
 	}
 
+	public void print() {
+		for (int i = 1; i <= this.heapSize / 2; i++) {
+			System.out.print(" PARENT : " + this.heap[i].getKey() + " LEFT CHILD : " + this.heap[2 * i].getKey() + " RIGHT CHILD :"
+					+ this.heap[2 * i + 1].getKey());
+			System.out.println();
+		}
+	}
+
+	public static void main(String... arg) {
+		System.out.println("The Max Heap is ");
+		ExtendedMaxHeap maxHeap = new ExtendedMaxHeap(15);
+		maxHeap.insert(new HeapElement(5, null));
+		maxHeap.insert(new HeapElement(3, null));
+		maxHeap.insert(new HeapElement(17, null));
+		maxHeap.insert(new HeapElement(10, null));
+		maxHeap.insert(new HeapElement(84, null));
+		maxHeap.insert(new HeapElement(19, null));
+		maxHeap.insert(new HeapElement(6, null));
+		maxHeap.insert(new HeapElement(22, null));
+		maxHeap.insert(new HeapElement(9, null));
+		maxHeap.buildMaxHeap();
+
+		maxHeap.print();
+		System.out.println("The max val is " + maxHeap.deleteMax().getKey());
+	}
+
 }
