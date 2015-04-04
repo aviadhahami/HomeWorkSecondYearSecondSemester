@@ -119,7 +119,7 @@ public class ExtendedMaxHeap {
 	}
 
 	public void print() {
-		for (int i = 1; i <= this.heapSize / 2; i++) {
+		for (int i = 1; i < this.heapSize / 2; i++) {
 			System.out.print(" PARENT : " + this.heap[i].getKey() + " LEFT CHILD : " + this.heap[2 * i].getKey() + " RIGHT CHILD :"
 					+ this.heap[2 * i + 1].getKey());
 			System.out.println();
@@ -139,6 +139,7 @@ public class ExtendedMaxHeap {
 		maxHeap.insert(new HeapElement(22, null));
 		maxHeap.insert(new HeapElement(9, null));
 		maxHeap.insert(new HeapElement(2, null));
+		maxHeap.insert(new HeapElement(-5, null));
 		maxHeap.buildMaxHeap();
 
 		maxHeap.print();
