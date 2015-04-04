@@ -51,6 +51,7 @@ public class ExtendedMaxHeap {
 		if (this.heapSize + 1 > this.capacity) {
 			throw new HeapException("Overload on insert! Capacity is " + this.capacity + " and the current size is " + this.heapSize);
 		} else {
+			updateAvg(e.getKey(), true);
 			this.heap[++this.heapSize] = e;
 			int currentPos = this.heapSize;
 
@@ -60,6 +61,18 @@ public class ExtendedMaxHeap {
 				swap(currentPos, parent(currentPos));
 				currentPos = parent(currentPos);
 			}
+		}
+
+	}
+
+	private void updateAvg(int key, boolean avgFlag) {
+		// if @avgFlag is true -> we should increase the avg
+		// reduce it otherwise.
+		
+		if (avgFlag){
+			//increase AVG logic
+		}else{
+			//decrease avg logic
 		}
 
 	}
