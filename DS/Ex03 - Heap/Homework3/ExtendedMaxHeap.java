@@ -5,12 +5,15 @@ public class ExtendedMaxHeap {
 	private HeapElement[] heap;
 	private int heapSize;
 	private int capacity;
+	private int keysSum;
 
 	private static final int ROOT = 1;
 
 	public ExtendedMaxHeap(int capacity) {
 		this.capacity = capacity;
 		this.heapSize = 0;
+		this.keysAvg = 0;
+		this.keysSum = 0;
 		this.heap = new HeapElement[this.capacity + 1];
 		// init the head
 		this.heap[0] = new HeapElement(Integer.MAX_VALUE, null);
@@ -25,16 +28,19 @@ public class ExtendedMaxHeap {
 			// means we have something wrong
 			throw new HeapException("failed to initialize a heap. check capacity & initial array");
 		} else {
+			this.keysSum = 0; // must init
 			this.minKeyElement = elementsArray[0];
 			this.capacity = capacity + 1;
 			this.heapSize = elementsArray.length;
 			this.heap = new HeapElement[this.capacity + 1];
 			this.heap[0] = new HeapElement(Integer.MAX_VALUE, null);
-			// we copy the data over. Why not pointer? not sure...
+			int localKeysSum = 0;
 			for (int i = ROOT; i < elementsArray.length; i++) {
 				this.heap[i] = elementsArray[i];
 				this.minKeyElement = this.minKeyElement.getKey() > this.heap[i].getKey() ? this.heap[i] : this.minKeyElement;
+				localKeysSum += elementsArray[i].getKey();
 			}
+			updateAvg(localKeysSum, true); // true for increase
 			buildMaxHeap();
 		}
 
@@ -51,8 +57,9 @@ public class ExtendedMaxHeap {
 		if (this.heapSize + 1 > this.capacity) {
 			throw new HeapException("Overload on insert! Capacity is " + this.capacity + " and the current size is " + this.heapSize);
 		} else {
-			updateAvg(e.getKey(), true);
+
 			this.heap[++this.heapSize] = e;
+			updateAvg(e.getKey(), true);
 			int currentPos = this.heapSize;
 
 			// updating minimal key element if necessary
@@ -68,12 +75,9 @@ public class ExtendedMaxHeap {
 	private void updateAvg(int key, boolean avgFlag) {
 		// if @avgFlag is true -> we should increase the avg
 		// reduce it otherwise.
-		
-		if (avgFlag){
-			//increase AVG logic
-		}else{
-			//decrease avg logic
-		}
+
+		this.keysSum = avgFlag ? this.keysSum + key : this.keysSum - key;
+		this.keysAvg = this.keysSum / this.heapSize;
 
 	}
 
@@ -86,12 +90,15 @@ public class ExtendedMaxHeap {
 	}
 
 	public HeapElement deleteMax() throws HeapException {
-		if (this.heap[ROOT] == null)
+		if (this.heap[ROOT] == null) {
 			throw new HeapException("Empty queue, can't delete nothing");
-		HeapElement maxElement = this.heap[ROOT];
-		this.heap[ROOT] = this.heap[this.heapSize--];
-		maxHeapify(ROOT);
-		return maxElement;
+		} else {
+			HeapElement maxElement = this.heap[ROOT];
+			this.heap[ROOT] = this.heap[this.heapSize--];
+			updateAvg(maxElement.getKey(), false);
+			maxHeapify(ROOT);
+			return maxElement;
+		}
 	}
 
 	private void maxHeapify(int loc) {
@@ -149,7 +156,7 @@ public class ExtendedMaxHeap {
 
 	public static void main(String... arg) {
 		System.out.println("The Max Heap is ");
-		ExtendedMaxHeap maxHeap = new ExtendedMaxHeap(0);
+		ExtendedMaxHeap maxHeap = new ExtendedMaxHeap(20);
 		maxHeap.insert(new HeapElement(5, null));
 		maxHeap.insert(new HeapElement(30, null));
 		maxHeap.insert(new HeapElement(17, null));
@@ -167,6 +174,8 @@ public class ExtendedMaxHeap {
 		System.out.println("The max val is " + maxHeap.deleteMax().getKey());
 
 		System.out.println("The min key is " + maxHeap.getElementWithMinKey().getKey());
+		System.out.println("# of elements in heap : " + maxHeap.heapSize + ", keys sum is : " + maxHeap.keysSum);
+		System.out.println("The avg is " + maxHeap.getKeysAverage());
 	}
 
 }
