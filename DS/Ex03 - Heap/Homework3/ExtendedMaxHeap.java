@@ -48,14 +48,20 @@ public class ExtendedMaxHeap {
 	}
 
 	public void insert(HeapElement e) {
-		this.heap[++this.heapSize] = e;
-		int currentPos = this.heapSize;
-		// updating minimal key element if necessary
-		this.minKeyElement = this.minKeyElement == null ? e : this.minKeyElement.getKey() > e.getKey() ? e : this.minKeyElement;
-		while (this.heap[currentPos].getKey() > this.heap[parent(currentPos)].getKey()) {
-			swap(currentPos, parent(currentPos));
-			currentPos = parent(currentPos);
+		if (this.heapSize + 1 > this.capacity) {
+			throw new HeapException("Overload on insert! Capacity is " + this.capacity + " and the current size is " + this.heapSize);
+		} else {
+			this.heap[++this.heapSize] = e;
+			int currentPos = this.heapSize;
+
+			// updating minimal key element if necessary
+			this.minKeyElement = this.minKeyElement == null ? e : this.minKeyElement.getKey() > e.getKey() ? e : this.minKeyElement;
+			while (this.heap[currentPos].getKey() > this.heap[parent(currentPos)].getKey()) {
+				swap(currentPos, parent(currentPos));
+				currentPos = parent(currentPos);
+			}
 		}
+
 	}
 
 	private void swap(int currentPos, int parent) {
@@ -115,6 +121,8 @@ public class ExtendedMaxHeap {
 	}
 
 	private boolean isLeaf(int loc) {
+		// isLeaf checks whether the location is legit and if it's within our
+		// limits
 		return (loc >= (this.heapSize / 2) && loc <= this.heapSize) ? true : false;
 	}
 
@@ -128,7 +136,7 @@ public class ExtendedMaxHeap {
 
 	public static void main(String... arg) {
 		System.out.println("The Max Heap is ");
-		ExtendedMaxHeap maxHeap = new ExtendedMaxHeap(50);
+		ExtendedMaxHeap maxHeap = new ExtendedMaxHeap(0);
 		maxHeap.insert(new HeapElement(5, null));
 		maxHeap.insert(new HeapElement(30, null));
 		maxHeap.insert(new HeapElement(17, null));
