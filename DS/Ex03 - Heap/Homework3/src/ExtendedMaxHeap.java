@@ -8,7 +8,7 @@ public class ExtendedMaxHeap {
 	private int keysSum;
 	private long keysAvg;
 
-	private static final boolean debug = true;
+	private static final boolean debug = false;
 	private static final int ROOT = 1;
 
 	public ExtendedMaxHeap(int capacity) {
@@ -173,13 +173,13 @@ public class ExtendedMaxHeap {
 			sum += e;
 		}
 		maxHeap.buildMaxHeap();
+		if (debug) System.out.println("heap size is : " + maxHeap.heapSize + " but should be " + numArray.length);
 		maxHeap.print();
 		System.out.println("The max val is " + maxHeap.deleteMax().getKey());
-
 		System.out.println("The min key is " + maxHeap.getElementWithMinKey().getKey());
 		System.out.println("# of elements in heap : " + maxHeap.heapSize + ", keys sum is : " + maxHeap.keysSum);
 		System.out.println("heap size is : " + maxHeap.heapSize + " but should be " + numArray.length);
-		System.out.println("The avg is " + maxHeap.getKeysAverage() + " but should be " + sum / numArray.length);
+		System.out.println("The avg is " + maxHeap.getKeysAverage() + " but should be " + (sum-11) / (numArray.length-1));
 	}
 
 }
