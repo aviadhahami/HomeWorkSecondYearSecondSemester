@@ -7,6 +7,7 @@ public class ExtendedMaxHeap {
 	private int capacity;
 	private int keysSum;
 
+	private static final boolean debug = true;
 	private static final int ROOT = 1;
 
 	public ExtendedMaxHeap(int capacity) {
@@ -35,10 +36,12 @@ public class ExtendedMaxHeap {
 			this.heap = new HeapElement[this.capacity + 1];
 			this.heap[0] = new HeapElement(Integer.MAX_VALUE, null);
 			int localKeysSum = 0;
+			int j = 0;
 			for (int i = ROOT; i < elementsArray.length; i++) {
-				this.heap[i] = elementsArray[i];
+				this.heap[i] = elementsArray[j];
 				this.minKeyElement = this.minKeyElement.getKey() > this.heap[i].getKey() ? this.heap[i] : this.minKeyElement;
-				localKeysSum += elementsArray[i].getKey();
+				localKeysSum += elementsArray[j].getKey();
+				j++;
 			}
 			updateAvg(localKeysSum, true); // true for increase
 			buildMaxHeap();
@@ -59,6 +62,11 @@ public class ExtendedMaxHeap {
 		} else {
 
 			this.heap[++this.heapSize] = e;
+			// DEBUG
+			if (debug) {
+				System.out.println("inserting value " + e.getKey() + " current heap size is (post add) " + this.heapSize);
+			}
+			// END DEBUG
 			updateAvg(e.getKey(), true);
 			int currentPos = this.heapSize;
 
@@ -157,25 +165,20 @@ public class ExtendedMaxHeap {
 	public static void main(String... arg) {
 		System.out.println("The Max Heap is ");
 		ExtendedMaxHeap maxHeap = new ExtendedMaxHeap(20);
-		maxHeap.insert(new HeapElement(5, null));
-		maxHeap.insert(new HeapElement(30, null));
-		maxHeap.insert(new HeapElement(17, null));
-		maxHeap.insert(new HeapElement(10, null));
-		maxHeap.insert(new HeapElement(84, null));
-		maxHeap.insert(new HeapElement(19, null));
-		maxHeap.insert(new HeapElement(6, null));
-		maxHeap.insert(new HeapElement(22, null));
-		maxHeap.insert(new HeapElement(9, null));
-		maxHeap.insert(new HeapElement(2, null));
-		maxHeap.insert(new HeapElement(-5, null));
+		int[] numArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+		int sum = 0;
+		for (int e : numArray) {
+			maxHeap.insert(new HeapElement(e, null));
+			sum += e;
+		}
 		maxHeap.buildMaxHeap();
-
 		maxHeap.print();
 		System.out.println("The max val is " + maxHeap.deleteMax().getKey());
 
 		System.out.println("The min key is " + maxHeap.getElementWithMinKey().getKey());
 		System.out.println("# of elements in heap : " + maxHeap.heapSize + ", keys sum is : " + maxHeap.keysSum);
-		System.out.println("The avg is " + maxHeap.getKeysAverage());
+		System.out.println("heap size is : " + maxHeap.heapSize + " but should be " + numArray.length);
+		System.out.println("The avg is " + maxHeap.getKeysAverage() + " but should be " + sum / numArray.length);
 	}
 
 }
