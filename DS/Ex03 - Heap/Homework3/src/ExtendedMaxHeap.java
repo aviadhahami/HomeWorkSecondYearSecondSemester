@@ -1,6 +1,5 @@
 public class ExtendedMaxHeap {
 
-
 	private HeapElement minKeyElement;
 	private HeapElement[] heap;
 	private int heapSize;
@@ -8,7 +7,7 @@ public class ExtendedMaxHeap {
 	private int keysSum;
 	private long keysAvg;
 
-	private static final boolean debug = false;
+	private static final boolean debug = true;
 	private static final int ROOT = 1;
 
 	public ExtendedMaxHeap(int capacity) {
@@ -63,11 +62,6 @@ public class ExtendedMaxHeap {
 		} else {
 
 			this.heap[++this.heapSize] = e;
-			// DEBUG
-			if (debug) {
-				System.out.println("inserting value " + e.getKey() + " current heap size is (post add) " + this.heapSize);
-			}
-			// END DEBUG
 			updateAvg(e.getKey(), true);
 			int currentPos = this.heapSize;
 
@@ -164,7 +158,7 @@ public class ExtendedMaxHeap {
 	}
 
 	public static void main(String... arg) {
-		System.out.println("The Max Heap is ");
+
 		ExtendedMaxHeap maxHeap = new ExtendedMaxHeap(20);
 		int[] numArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
 		int sum = 0;
@@ -173,13 +167,13 @@ public class ExtendedMaxHeap {
 			sum += e;
 		}
 		maxHeap.buildMaxHeap();
-		if (debug) System.out.println("heap size is : " + maxHeap.heapSize + " but should be " + numArray.length);
-		maxHeap.print();
-		System.out.println("The max val is " + maxHeap.deleteMax().getKey());
-		System.out.println("The min key is " + maxHeap.getElementWithMinKey().getKey());
-		System.out.println("# of elements in heap : " + maxHeap.heapSize + ", keys sum is : " + maxHeap.keysSum);
-		System.out.println("heap size is : " + maxHeap.heapSize + " but should be " + numArray.length);
-		System.out.println("The avg is " + maxHeap.getKeysAverage() + " but should be " + (sum-11) / (numArray.length-1));
-	}
+		if (debug) {
+			System.out.println("The Max Heap is ");
+			maxHeap.print();
+			System.out.println("The max val is " + maxHeap.deleteMax().getKey() + " The min key is " + maxHeap.getElementWithMinKey().getKey());
+			System.out.println("# of elements in heap : " + maxHeap.heapSize + ", keys sum is : " + maxHeap.keysSum);
+			System.out.println("The avg is " + maxHeap.getKeysAverage() + " and should be " + (sum - 11) / (numArray.length - 1));
 
+		}
+	}
 }
