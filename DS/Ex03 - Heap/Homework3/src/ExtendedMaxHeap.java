@@ -1,11 +1,12 @@
 public class ExtendedMaxHeap {
 
-	private long keysAvg;
+
 	private HeapElement minKeyElement;
 	private HeapElement[] heap;
 	private int heapSize;
 	private int capacity;
 	private int keysSum;
+	private long keysAvg;
 
 	private static final boolean debug = true;
 	private static final int ROOT = 1;
