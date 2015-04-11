@@ -14,14 +14,16 @@ public class ExtendedMaxHeap {
 
 	}
 
-	public void insert(HeapElement e) {
+	public void insert(HeapElement e) throws HeapException {
 		if (this.currentSize != maxSize) {
-			// minelement init
+			// minElement setting
 			minElement = minElement == null ? e : (minElement.getKey() > e.getKey() ? e : minElement);
 
 			HeapElement newElement = new HeapElement(e.getKey(), e.getData());
 			this.heapArray[this.currentSize] = newElement;
 			trickleUp(this.currentSize++);
+		} else {
+			throw new HeapException("Capacity reached ! ");
 		}
 	}
 
@@ -71,11 +73,14 @@ public class ExtendedMaxHeap {
 
 	}
 
-	public HeapElement getElementWithMinKey() {
-
+	public HeapElement getElementWithMinKey() throws HeapException {
+		if (this.currentSize == 0) {
+			throw new HeapException("Heap is empty!, no min element boy");
+		} else {
+			return this.minElement;
+		}
 	}
 
-	// custom methods
 	public boolean isEmpty() {
 		return this.currentSize == 0;
 	}
