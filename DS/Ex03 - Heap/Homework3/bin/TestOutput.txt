@@ -1,0 +1,27 @@
+PersonWithMoney [name=Shoshi, money=40]
+PersonWithMoney [name=Menahem, money=30]
+PersonWithMoney [name=David, money=20]
+PersonWithMoney [name=Moshe, money=10]
+--------------------------------
+PersonWithMoney [name=Moshe1, money=10]
+PersonWithMoney [name=Moshe4, money=10]
+PersonWithMoney [name=Moshe3, money=10]
+PersonWithMoney [name=Moshe2, money=10]
+--------------------------------
+10
+15
+10
+PersonWithMoney [name=Moshe, money=10]
+Caught exception - Heap is empty
+--------------------------------
+PersonWithMoney [name=Moshe, money=10]
+PersonWithMoney [name=Mush, money=5]
+PersonWithMoney [name=David, money=20]
+PersonWithMoney [name=Moshe, money=10]
+PersonWithMoney [name=Mush, money=5]
+Caught exception - Heap is empty
+--------------------------------
+Caught exception - Heap is empty
+--------------------------------
+50
+119
