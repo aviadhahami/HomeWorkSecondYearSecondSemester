@@ -3,14 +3,27 @@ public class ExtendedMaxHeap {
 	private int maxSize; // size of array
 	private int currentSize; // number of nodes in array
 	private HeapElement minElement;
+	private long keysAvg;
+	private int keysSum;
 
 	public ExtendedMaxHeap(int capacity) {
 		this.maxSize = capacity;
 		this.currentSize = 0;
 		this.heapArray = new HeapElement[capacity]; // create array
+		this.keysAvg = 0;
+		this.keysSum = 0;
 	}
 
 	public ExtendedMaxHeap(HeapElement[] elementsArray, int capacity) {
+		this.maxSize = capacity;
+		this.currentSize = 0;
+		this.heapArray = new HeapElement[capacity]; // create array
+		this.keysAvg = 0;
+		this.keysSum = 0;
+
+		for (HeapElement currentElement : elementsArray) {
+			insert(currentElement);
+		}
 
 	}
 
@@ -22,9 +35,22 @@ public class ExtendedMaxHeap {
 			HeapElement newElement = new HeapElement(e.getKey(), e.getData());
 			this.heapArray[this.currentSize] = newElement;
 			trickleUp(this.currentSize++);
+			updateSum(e.getKey(), true);
+			updateAvg();
+
 		} else {
 			throw new HeapException("Capacity reached ! ");
 		}
+	}
+
+	private void updateSum(int key, boolean actionFlag) {
+		// actionFalg -> if true we increase sum
+		this.keysSum = actionFlag ? this.keysSum + key : this.keysSum - key;
+
+	}
+
+	private void updateAvg() {
+		this.keysAvg = this.currentSize == 0 ? 0 : this.keysSum / this.currentSize;
 	}
 
 	public void trickleUp(int index) {
@@ -43,6 +69,10 @@ public class ExtendedMaxHeap {
 		HeapElement root = heapArray[0];
 		heapArray[0] = heapArray[--currentSize];
 		trickleDown(0);
+
+		updateSum(root.getKey(), false);
+		updateAvg();
+
 		return root;
 	}
 
@@ -70,7 +100,7 @@ public class ExtendedMaxHeap {
 	} // end trickleDown()
 
 	public long getKeysAverage() {
-
+		return this.keysAvg;
 	}
 
 	public HeapElement getElementWithMinKey() throws HeapException {
