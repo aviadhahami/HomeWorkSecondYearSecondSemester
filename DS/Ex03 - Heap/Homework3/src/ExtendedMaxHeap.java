@@ -66,14 +66,18 @@ public class ExtendedMaxHeap {
 	}
 
 	public HeapElement deleteMax() throws HeapException {
-		HeapElement root = heapArray[0];
-		heapArray[0] = heapArray[--currentSize];
-		trickleDown(0);
+		if (this.currentSize == 0) {
+			throw new HeapException("heap is empty, can't delete");
+		} else {
+			HeapElement root = heapArray[0];
+			heapArray[0] = heapArray[--currentSize];
+			trickleDown(0);
 
-		updateSum(root.getKey(), false);
-		updateAvg();
+			updateSum(root.getKey(), false);
+			updateAvg();
 
-		return root;
+			return root;
+		}
 	}
 
 	public void trickleDown(int index) {
@@ -100,6 +104,7 @@ public class ExtendedMaxHeap {
 	} // end trickleDown()
 
 	public long getKeysAverage() {
+		if (this.currentSize == 0 ) throw new HeapException("no keys -> avg is zero");
 		return this.keysAvg;
 	}
 

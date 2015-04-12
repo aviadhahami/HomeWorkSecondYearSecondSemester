@@ -6,6 +6,8 @@ import org.junit.rules.ExpectedException;
 
 public class BankQueueTestCase {
 
+	private boolean testObjectalEquality = true;
+
 	@Test
 	public void regularInitTest() {
 		PersonWithMoney p1 = new PersonWithMoney("Moshe", 10);
@@ -21,7 +23,14 @@ public class BankQueueTestCase {
 		for (int i = 0; i < peopleQueue1.length; i++) {
 			actuals[i] = bq1.dequeue();
 		}
-		assertArrayEquals(expecteds, actuals);
+		// testing for value, not objects
+		for (int i = 0; i < actuals.length; i++) {
+			assertEquals(expecteds[i].getName(), actuals[i].getName());
+			assertEquals(expecteds[i].getMoney(), actuals[i].getMoney());
+		}
+		// testing for objects equality
+		if (testObjectalEquality)
+			assertArrayEquals(expecteds, actuals);
 	}
 
 	@Test
@@ -41,7 +50,12 @@ public class BankQueueTestCase {
 		for (int i = 0; i < peopleQueue2.length; i++) {
 			actuals[i] = bq2.dequeue();
 		}
-		assertArrayEquals(expecteds, actuals);
+		for (int i = 0; i < actuals.length; i++) {
+			assertEquals(expecteds[i].getName(), actuals[i].getName());
+			assertEquals(expecteds[i].getMoney(), actuals[i].getMoney());
+		}
+		if (testObjectalEquality)
+			assertArrayEquals(expecteds, actuals);
 	}
 
 	@Rule
@@ -58,7 +72,11 @@ public class BankQueueTestCase {
 		assertEquals(15, bq3.getAverageMoneyInQueue());
 		bq3.dequeue();
 		assertEquals(10, bq3.getAverageMoneyInQueue());
-		assertEquals(p1, bq3.dequeue());
+		PersonWithMoney deQued = bq3.dequeue();
+		if (testObjectalEquality)
+			assertEquals(p1, deQued);
+		assertEquals(p1.getMoney(), deQued.getMoney());
+		assertEquals(p1.getName(), deQued.getName());
 		exception.expect(HeapException.class);
 		(new BankQueue(10)).dequeue();
 	}
@@ -73,12 +91,38 @@ public class BankQueueTestCase {
 		bq4.enqueue(p5);
 		bq4.enqueue(p1);
 		bq4.enqueue(p2);
-		assertEquals(p1, bq4.getPoorestPerson());
+		if (testObjectalEquality)
+			assertEquals(p1, bq4.getPoorestPerson());
+
+		assertEquals(p1.getName(), bq4.getPoorestPerson().getName());
+		assertEquals(p1.getMoney(), bq4.getPoorestPerson().getMoney());
+
 		bq4.stealFromFirstInQueue(55);
-		assertEquals(p5, bq4.getPoorestPerson());
-		assertEquals(p2, bq4.dequeue());
-		assertEquals(p1, bq4.dequeue());
-		assertEquals(p5, bq4.dequeue());
+		// don't forget to update the dude :)
+		p5.setMoney(5);
+		if (testObjectalEquality)
+			assertEquals(p5, bq4.getPoorestPerson());
+		assertEquals(p5.getName(), bq4.getPoorestPerson().getName());
+		assertEquals(p5.getMoney(), bq4.getPoorestPerson().getMoney());
+		PersonWithMoney[] pulls = new PersonWithMoney[3];
+		for (int i = 0; i < 3; i++) {
+			pulls[i] = bq4.dequeue();
+		}
+
+		if (testObjectalEquality) {
+			assertEquals(p2, pulls[0]);
+			assertEquals(p2, pulls[1]);
+			assertEquals(p2, pulls[2]);
+		}
+		assertEquals(p2.getName(), pulls[0].getName());
+		assertEquals(p2.getMoney(), pulls[0].getMoney());
+
+		assertEquals(p1.getName(), pulls[1].getName());
+		assertEquals(p1.getMoney(), pulls[1].getMoney());
+
+		assertEquals(p5.getName(), pulls[2].getName());
+		assertEquals(p5.getMoney(), pulls[2].getMoney());
+
 		exception.expect(HeapException.class);
 		bq4.getAverageMoneyInQueue();
 
