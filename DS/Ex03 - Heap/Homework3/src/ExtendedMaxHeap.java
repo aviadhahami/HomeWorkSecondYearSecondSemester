@@ -1,23 +1,23 @@
 public class ExtendedMaxHeap {
 	private HeapElement[] heapArray;
-	private int maxSize; // size of array
-	private int currentSize; // number of nodes in array
+	private int heapCapacity; // size of array
+	private int currentHeapSize; // number of nodes in array
 	private HeapElement minElement;
 	private long keysAvg;
 	private int keysSum;
 
 	public ExtendedMaxHeap(int capacity) {
-		this.maxSize = capacity;
-		this.currentSize = 0;
-		this.heapArray = new HeapElement[capacity]; // create array
+		this.heapCapacity = capacity;
+		this.currentHeapSize = 0;
+		this.heapArray = new HeapElement[capacity];
 		this.keysAvg = 0;
 		this.keysSum = 0;
 	}
 
 	public ExtendedMaxHeap(HeapElement[] elementsArray, int capacity) {
-		this.maxSize = capacity;
-		this.currentSize = 0;
-		this.heapArray = new HeapElement[capacity]; // create array
+		this.heapCapacity = capacity;
+		this.currentHeapSize = 0;
+		this.heapArray = new HeapElement[capacity];
 		this.keysAvg = 0;
 		this.keysSum = 0;
 
@@ -28,13 +28,16 @@ public class ExtendedMaxHeap {
 	}
 
 	public void insert(HeapElement e) throws HeapException {
-		if (this.currentSize != maxSize) {
+		if (this.currentHeapSize != heapCapacity) {
 			// minElement setting
+			// if the min elem is null -> set it to the current element
+			// else -> if the value of the curr element is smaller -> replace
 			minElement = minElement == null ? e : (minElement.getKey() > e.getKey() ? e : minElement);
 
 			HeapElement newElement = new HeapElement(e.getKey(), e.getData());
-			this.heapArray[this.currentSize] = newElement;
-			trickleUp(this.currentSize++);
+			this.heapArray[this.currentHeapSize] = newElement;
+
+			percUp(this.currentHeapSize++);
 			updateSum(e.getKey(), true);
 			updateAvg();
 
@@ -50,10 +53,10 @@ public class ExtendedMaxHeap {
 	}
 
 	private void updateAvg() {
-		this.keysAvg = this.currentSize == 0 ? 0 : this.keysSum / this.currentSize;
+		this.keysAvg = this.currentHeapSize == 0 ? 0 : this.keysSum / this.currentHeapSize;
 	}
 
-	public void trickleUp(int index) {
+	public void percUp(int index) {
 		int parent = (index - 1) / 2;
 		HeapElement bottom = heapArray[index];
 
@@ -66,12 +69,12 @@ public class ExtendedMaxHeap {
 	}
 
 	public HeapElement deleteMax() throws HeapException {
-		if (this.currentSize == 0) {
+		if (this.currentHeapSize == 0) {
 			throw new HeapException("heap is empty, can't delete");
 		} else {
 			HeapElement root = heapArray[0];
-			heapArray[0] = heapArray[--currentSize];
-			trickleDown(0);
+			heapArray[0] = heapArray[--currentHeapSize];
+			percDown(0);
 
 			updateSum(root.getKey(), false);
 			updateAvg();
@@ -80,36 +83,37 @@ public class ExtendedMaxHeap {
 		}
 	}
 
-	public void trickleDown(int index) {
-		int largerChild;
+	public void percDown(int index) {
+		int biggestChild;
 		HeapElement top = heapArray[index]; // save root
-		while (index < currentSize / 2) // while node has at
-		{ // least one child,
+		// while node has at-least one child
+		while (index < currentHeapSize / 2) {
 			int leftChild = 2 * index + 1;
 			int rightChild = leftChild + 1;
 			// find larger child
-			if (rightChild < currentSize && // (rightChild exists?)
+			if (rightChild < currentHeapSize && // (rightChild exists?)
 					heapArray[leftChild].getKey() < heapArray[rightChild].getKey())
-				largerChild = rightChild;
+				biggestChild = rightChild;
 			else
-				largerChild = leftChild;
+				biggestChild = leftChild;
 			// top >= largerChild?
-			if (top.getKey() >= heapArray[largerChild].getKey())
+			if (top.getKey() >= heapArray[biggestChild].getKey())
 				break;
-			// shift child up
-			heapArray[index] = heapArray[largerChild];
-			index = largerChild; // go down
-		} // end while
+			// perc child up
+			heapArray[index] = heapArray[biggestChild];
+			index = biggestChild; // go down
+		}
 		heapArray[index] = top; // root to index
-	} // end trickleDown()
+	}
 
 	public long getKeysAverage() {
-		if (this.currentSize == 0 ) throw new HeapException("no keys -> avg is zero");
+		if (this.currentHeapSize == 0)
+			throw new HeapException("no keys -> avg is zero");
 		return this.keysAvg;
 	}
 
 	public HeapElement getElementWithMinKey() throws HeapException {
-		if (this.currentSize == 0) {
+		if (this.currentHeapSize == 0) {
 			throw new HeapException("Heap is empty!, no min element boy");
 		} else {
 			return this.minElement;
@@ -117,6 +121,6 @@ public class ExtendedMaxHeap {
 	}
 
 	public boolean isEmpty() {
-		return this.currentSize == 0;
+		return this.currentHeapSize == 0;
 	}
 }

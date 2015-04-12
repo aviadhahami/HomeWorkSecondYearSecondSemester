@@ -1,4 +1,5 @@
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -6,7 +7,7 @@ import org.junit.rules.ExpectedException;
 
 public class BankQueueTestCase {
 
-	private boolean testObjectalEquality = true;
+	private boolean testObjectalEquality = false;;
 
 	@Test
 	public void regularInitTest() {
