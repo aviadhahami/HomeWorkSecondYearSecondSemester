@@ -20,4 +20,18 @@ public class MatrixMultThread implements Runnable {
 
 		return null;
 	}
+
+	/**
+	 * @Description - should implement a main method that generates two
+	 *              1024x1024 matrices filled with random values. Then, it
+	 *              should multiply them using the mult method described above
+	 *              using at least two threads. Also, it should measure the time
+	 *              in milliseconds it took to perform the multiplication and
+	 *              print this time to the screen.
+	 * @param args
+	 *            - empty
+	 */
+	public static void main(String[] args) {
+
+	}
 }
