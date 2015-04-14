@@ -1,12 +1,47 @@
 public class MatrixMultThread implements Runnable {
-
+	// ---- final static globals --//
 	private static final int n = 1024; // n is the matrix size
 	private static final int classThreadCount = 5; // n is the matrix size
 
+	// ---- end of final static globals --//
+
+	// -- OO variables --//
+	private float[][] i_Mat_A, i_Mat_B, i_ResMat;
+	private int i_startRow, i_endRow;
+	private Thread currentThread;
+
+	// -- End of OO variables //
+	/**
+	 * 
+	 * @param mat_A
+	 *            - first matrix
+	 * @param mat_b
+	 *            - second matrix
+	 * @param resultMat
+	 *            -sult matrix -> post multiplication
+	 * @param startPoint
+	 *            - which row we start from
+	 * @param endPoint
+	 *            - which row we end with
+	 */
+	public MatrixMultThread(float[][] mat_A, float[][] mat_b, float[][] resultMat, int startPoint, int endPoint) {
+		float[][] i_Mat_A = mat_A;
+		float[][] i_Mat_B = mat_b;
+		float[][] i_ResMat = resultMat;
+		int i_startRow = startPoint;
+		int i_endRow = endPoint;
+	}
+
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-
+		// simple matrices multiplication logic following this..
+		for (int i = i_startRow; i <= i_endRow; i++) {
+			for (int j = 0; j < i_Mat_A.length; j++) {
+				for (int k = 0; k < i_Mat_A.length; k++) {
+					i_ResMat[i][j] += (i_Mat_A[i][k] * i_Mat_B[k][j]);
+				}
+			}
+		}
 	}
 
 	/**
