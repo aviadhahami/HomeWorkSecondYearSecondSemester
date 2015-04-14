@@ -1,3 +1,5 @@
+import javax.management.RuntimeErrorException;
+
 public class MatrixMultThread implements Runnable {
 	// ---- final static globals --//
 	private static final int n = 1024; // n is the matrix size
@@ -44,6 +46,11 @@ public class MatrixMultThread implements Runnable {
 		}
 	}
 
+	private void start() {
+		currentThread = currentThread == null ? new Thread(this) : currentThread;
+		currentThread.start();
+	}
+
 	/**
 	 * 
 	 * @param a
@@ -55,8 +62,58 @@ public class MatrixMultThread implements Runnable {
 	 * @return - matrices multiplication
 	 */
 	public static float[][] mult(float[][] a, float[][] b, int threadCount) {
+		// Testing for legit matrix
+		if (a[0].length != b[0].length || a[0].length != a.length || b[0].length != b.length) {
+			throw new RuntimeException("Matrices are not equal or not sqaure !");
+		}
 
-		return null;
+		MatrixMultThread[] threadPool = new MatrixMultThread[threadCount];
+		int i_startingPoint, i_endingPoint;
+		int i_currentMatrixSize = a.length;
+		/**
+		 * amout of rows as the suggested solution
+		 */
+		int i_amountOfRowsNeeded = (i_currentMatrixSize / threadCount);
+
+		float[][] finalizedMatrix = new float[i_currentMatrixSize][i_currentMatrixSize];
+
+		for (int i = 0; i < threadCount; i++) {
+			i_startingPoint = i * i_amountOfRowsNeeded;
+			i_endingPoint = i_startingPoint - 1 + i_amountOfRowsNeeded;
+			i_endingPoint = i_currentMatrixSize <= i_endingPoint ? i_currentMatrixSize - 1 : i_endingPoint;
+
+			// Initialize the thread
+			threadPool[i] = new MatrixMultThread(a, b, finalizedMatrix, i_startingPoint, i_endingPoint);
+			// LOCKED AND LOADED ! (Tania sound)
+			threadPool[i].start();
+			// THREAD LUNCHED !
+		}
+
+		// now we collect the prizes :D
+		for (int i = 0; i < threadCount; i++) {
+			try {
+
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+		return finalizedMatrix;
+	}
+
+	/**
+	 * 
+	 * @param n
+	 *            - size of the square matrix
+	 * @return - randomized matrix
+	 */
+	public static float[][] randomMatrixGenerator(int n) {
+		float[][] matrix = new float[n][n];
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix.length; j++) {
+				matrix[i][j] = (float) Math.random() * 100;
+			}
+		}
+		return matrix;
 	}
 
 	/**
@@ -70,23 +127,15 @@ public class MatrixMultThread implements Runnable {
 	 *            - empty
 	 */
 	public static void main(String[] args) {
-		float[][] matrix_A = new float[n][n];
-		float[][] matrix_B = new float[n][n];
+		// Generating matrices
+		float[][] matrix_A = randomMatrixGenerator(n);
+		float[][] matrix_B = randomMatrixGenerator(n);
 
-		for (int i = 0; i < matrix_A.length; i++) {
-			for (int j = 0; j < matrix_A.length; j++) {
-				matrix_A[i][j] = (float) Math.random() * 100;
-			}
-		}
-		for (int i = 0; i < matrix_B.length; i++) {
-			for (int j = 0; j < matrix_B.length; j++) {
-				matrix_A[i][j] = (float) Math.random() * 100;
-			}
-		}
-
+		// GOGOGO
 		double startTime = System.currentTimeMillis();
 		float[][] resultMatrix = mult(matrix_A, matrix_B, classThreadCount);
 		double endTime = System.currentTimeMillis();
 		System.out.println("Time is : " + (endTime - startTime));
 	}
+
 }
