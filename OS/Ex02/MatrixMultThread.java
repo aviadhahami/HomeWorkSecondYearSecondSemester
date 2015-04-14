@@ -92,9 +92,10 @@ public class MatrixMultThread implements Runnable {
 		// now we collect the prizes :D
 		for (int i = 0; i < threadCount; i++) {
 			try {
-
+				threadPool[i].currentThread.join();
 			} catch (Exception e) {
-				// TODO: handle exception
+				// And I pray to god we won't reach this
+				e.printStackTrace();
 			}
 		}
 		return finalizedMatrix;
