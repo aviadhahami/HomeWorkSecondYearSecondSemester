@@ -1,7 +1,7 @@
 public class MatrixMultThread implements Runnable {
 	// ---- final static globals --//
 	private static final int n = 1024; // n is the matrix size
-	private static final int classThreadCount = 5; // n is the matrix size
+	private static final int classThreadCount = 2; // n is the matrix size
 
 	// ---- end of final static globals --//
 
@@ -68,9 +68,9 @@ public class MatrixMultThread implements Runnable {
 		MatrixMultThread[] threadPool = new MatrixMultThread[threadCount];
 		int i_startingPoint, i_endingPoint;
 		int i_currentMatrixSize = a.length;
-		/**
-		 * amout of rows as the suggested solution
-		 */
+
+		// amount of rows as the suggested solution
+
 		int i_amountOfRowsNeeded = (i_currentMatrixSize / threadCount);
 
 		float[][] finalizedMatrix = new float[i_currentMatrixSize][i_currentMatrixSize];
