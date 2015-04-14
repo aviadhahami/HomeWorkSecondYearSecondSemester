@@ -27,18 +27,18 @@ public class MatrixMultThread implements Runnable {
 	 *            - which row we end with
 	 */
 	public MatrixMultThread(float[][] mat_A, float[][] mat_b, float[][] resultMat, int startPoint, int endPoint) {
-		float[][] i_Mat_A = mat_A;
-		float[][] i_Mat_B = mat_b;
-		float[][] i_ResMat = resultMat;
-		int i_startRow = startPoint;
-		int i_endRow = endPoint;
+		i_Mat_A = mat_A;
+		i_Mat_B = mat_b;
+		i_ResMat = resultMat;
+		i_startRow = startPoint;
+		i_endRow = endPoint;
 	}
 
 	@Override
 	public void run() {
 		// simple matrices multiplication logic following this..
 		for (int i = i_startRow; i <= i_endRow; i++) {
-			for (int j = 0; j < i_Mat_A.length; j++) {
+			for (int j = 0; j < i_Mat_B.length; j++) {
 				for (int k = 0; k < i_Mat_A.length; k++) {
 					i_ResMat[i][j] += (i_Mat_A[i][k] * i_Mat_B[k][j]);
 				}
