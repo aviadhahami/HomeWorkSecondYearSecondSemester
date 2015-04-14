@@ -1,5 +1,3 @@
-import javax.management.RuntimeErrorException;
-
 public class MatrixMultThread implements Runnable {
 	// ---- final static globals --//
 	private static final int n = 1024; // n is the matrix size
@@ -20,7 +18,7 @@ public class MatrixMultThread implements Runnable {
 	 * @param mat_b
 	 *            - second matrix
 	 * @param resultMat
-	 *            -sult matrix -> post multiplication
+	 *            -result matrix -> post multiplication
 	 * @param startPoint
 	 *            - which row we start from
 	 * @param endPoint
@@ -111,7 +109,7 @@ public class MatrixMultThread implements Runnable {
 		float[][] matrix = new float[n][n];
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix.length; j++) {
-				matrix[i][j] = (float) Math.random() * 100;
+				matrix[i][j] = (float) (Math.random() * 100);
 			}
 		}
 		return matrix;
