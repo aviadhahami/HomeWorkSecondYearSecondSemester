@@ -1,5 +1,7 @@
 public class MatrixMultThread implements Runnable {
 
+	private static final int n = 1024; // n is the matrix size
+
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
@@ -32,6 +34,19 @@ public class MatrixMultThread implements Runnable {
 	 *            - empty
 	 */
 	public static void main(String[] args) {
+		float[][] matrix_A = new float[n][n];
+		float[][] matrix_B = new float[n][n];
+
+		for (int i = 0; i < matrix_A.length; i++) {
+			for (int j = 0; j < matrix_A.length; j++) {
+				matrix_A[i][j] = (float) Math.random();
+			}
+		}
+		for (int i = 0; i < matrix_B.length; i++) {
+			for (int j = 0; j < matrix_B.length; j++) {
+				matrix_A[i][j] = (float) Math.random();
+			}
+		}
 
 	}
 }
