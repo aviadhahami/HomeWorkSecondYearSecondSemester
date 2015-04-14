@@ -1,7 +1,7 @@
 public class MatrixMultThread implements Runnable {
 	// ---- final static globals --//
 	private static final int n = 1024; // n is the matrix size
-	private static final int classThreadCount = 5; // n is the matrix size
+	private static int classThreadCount = 2; // n is the matrix size
 
 	// ---- end of final static globals --//
 
@@ -126,15 +126,31 @@ public class MatrixMultThread implements Runnable {
 	 *            - empty
 	 */
 	public static void main(String[] args) {
-		// Generating matrices
-		float[][] matrix_A = randomMatrixGenerator(n);
-		float[][] matrix_B = randomMatrixGenerator(n);
 
-		// GOGOGO
-		double startTime = System.currentTimeMillis();
-		float[][] resultMatrix = mult(matrix_A, matrix_B, classThreadCount);
-		double endTime = System.currentTimeMillis();
-		System.out.println("Time is : " + (endTime - startTime));
+		// thread count options as needed
+		int[] threadCountOptions = { 1, 2, 3, 4, 5, 6, 7, 8 };
+		int[] avg = new int[threadCountOptions.length];
+		for (int i = 0; i < threadCountOptions.length; i++) {
+			// Generating matrices
+			float[][] matrix_A = randomMatrixGenerator(n);
+			float[][] matrix_B = randomMatrixGenerator(n);
+			classThreadCount = threadCountOptions[i];
+			int timeCount = 0;
+			System.out.println("Starting new run, amount of threads -> " + threadCountOptions[i]);
+			for (int j = 0; j < 5; j++) {
+				System.out.println("-> inner iteration. Thread amount " + threadCountOptions[i] + " iteration number " + (j + 1));
+				double startTime = System.currentTimeMillis();
+				float[][] resultMatrix = mult(matrix_A, matrix_B, classThreadCount);
+				double endTime = System.currentTimeMillis();
+				// System.out.println("Time is : " + (endTime - startTime) +
+				// " ms");
+				timeCount += (endTime - startTime);
+			}
+			avg[i] = timeCount / 5;
+		}
+		for (int i = 0; i < avg.length; i++) {
+			System.out.println("Average time for " + threadCountOptions[i] + " threads is : " + avg[i]);
+		}
 	}
 
 }
