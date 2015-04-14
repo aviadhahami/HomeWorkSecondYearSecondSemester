@@ -6,4 +6,18 @@ public class MatrixMultThread implements Runnable {
 
 	}
 
+	/**
+	 * 
+	 * @param a
+	 *            - Left hand matrix
+	 * @param b
+	 *            - Right hand matrix
+	 * @param threadCount
+	 *            - Number of threads
+	 * @return - matrices multiplication
+	 */
+	public static float[][] mult(float[][] a, float[][] b, int threadCount) {
+
+		return null;
+	}
 }
