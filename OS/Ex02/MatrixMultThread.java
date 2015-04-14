@@ -1,6 +1,7 @@
 public class MatrixMultThread implements Runnable {
 
 	private static final int n = 1024; // n is the matrix size
+	private static final int classThreadCount = 5; // n is the matrix size
 
 	@Override
 	public void run() {
@@ -39,14 +40,18 @@ public class MatrixMultThread implements Runnable {
 
 		for (int i = 0; i < matrix_A.length; i++) {
 			for (int j = 0; j < matrix_A.length; j++) {
-				matrix_A[i][j] = (float) Math.random();
+				matrix_A[i][j] = (float) Math.random() * 100;
 			}
 		}
 		for (int i = 0; i < matrix_B.length; i++) {
 			for (int j = 0; j < matrix_B.length; j++) {
-				matrix_A[i][j] = (float) Math.random();
+				matrix_A[i][j] = (float) Math.random() * 100;
 			}
 		}
 
+		double startTime = System.currentTimeMillis();
+		float[][] resultMatrix = mult(matrix_A, matrix_B, classThreadCount);
+		double endTime = System.currentTimeMillis();
+		System.out.println("Time is : " + (endTime - startTime));
 	}
 }
