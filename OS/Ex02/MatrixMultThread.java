@@ -1,7 +1,7 @@
 public class MatrixMultThread implements Runnable {
 	// ---- final static globals --//
 	private static final int n = 1024; // n is the matrix size
-	private static final int classThreadCount = 2; // n is the matrix size
+	private static final int classThreadCount = 5; // n is the matrix size
 
 	// ---- end of final static globals --//
 
