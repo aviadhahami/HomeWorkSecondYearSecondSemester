@@ -140,7 +140,7 @@ public class MatrixMultThread implements Runnable {
 			for (int j = 0; j < 5; j++) {
 				System.out.println("-> inner iteration. Thread amount " + threadCountOptions[i] + " iteration number " + (j + 1));
 				double startTime = System.currentTimeMillis();
-				float[][] resultMatrix = mult(matrix_A, matrix_B, classThreadCount);
+				mult(matrix_A, matrix_B, classThreadCount);
 				double endTime = System.currentTimeMillis();
 				// System.out.println("Time is : " + (endTime - startTime) +
 				// " ms");
