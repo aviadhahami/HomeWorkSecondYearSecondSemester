@@ -9,7 +9,7 @@ public class SynchronizedQueue<T> {
 
 	private T[] buffer;
 	private int producers;
-	// custom private memebers
+	// custom private members
 	private int i_size;
 	private int i_startingPoint;
 	private int i_producers;
@@ -50,7 +50,7 @@ public class SynchronizedQueue<T> {
 	 */
 	public T dequeue() {
 		synchronized (queLocker) {
-			while (this.i_size == 0) {
+			while (i_size == 0) {
 				if (producers == 0) {
 					return null;
 				}
@@ -62,7 +62,7 @@ public class SynchronizedQueue<T> {
 			}
 			T i_item = buffer[i_startingPoint];
 			i_size--;
-			i_startingPoint = (i_startingPoint++) & i_capacity;
+			i_startingPoint = (i_startingPoint++) % i_capacity;
 			queLocker.notifyAll();
 			return i_item;
 		}
