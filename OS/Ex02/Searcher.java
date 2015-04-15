@@ -1,75 +1,37 @@
-/*
- * Name: Aviya Sela
- * ID No: 302221403
- */
-
 import java.io.File;
 
 public class Searcher implements Runnable {
+	private String i_fileExtension;
+	private SynchronizedQueue<File> o_directoryQue;
+	private SynchronizedQueue<File> o_resultsQue;
 
-	private String extension; 
-	private SynchronizedQueue<File> directories;
-	private SynchronizedQueue<File> results;
+	public Searcher(String fEx, SynchronizedQueue<File> resQ, SynchronizedQueue<File> dirQ) {
+		// initialize private variables
+		i_fileExtension = fEx;
+		o_resultsQue = resQ;
+		o_directoryQue = dirQ;
 
-	/**
-	 * Constructor. Initializes the searcher thread. 
-	 * @param extension - File extension to look for 
-	 * @param directories - Lists all the files in the directory
-	 * @param results - Lists all extension-matching files
-	 */
-	public Searcher(String extension, SynchronizedQueue<File> directories, SynchronizedQueue<File> results) {
-		this.extension = extension;
-		this.directories = directories;
-		this.results = results; 
+		o_resultsQue.registerProducer();
 	}
 
-	/**
-	 * Runs the searcher thread. 
-	 * 
-	 * Thread will fetch a directory to search in from the directory queue, 
-	 * then search all files inside it (but will not recursively search subdirectories!). 
-	 * Files that are found to have the given extension are enqueued to the results queue.
-	 *  
-	 * This method begins by registering to the results queue as a producer and when finishes, it unregisters from it.
-	 */
 	@Override
 	public void run() {
-
-		File[] files;
-
-		int currentPos;
-		File currentDir;
-		String currentFile;
-		String currentExt;
-
-		// Enqueues directories to search in
-		while ((currentDir = directories.dequeue()) != null) {
-
-			files = currentDir.listFiles();
-
-			this.results.registerProducer();
-
-			if (files == null) {
-				results.unregisterProducer();
-				return;
-			}
-
-			// Goes through all files in the current directory
-			for (int i = 0; i < files.length; i++) {
-
-				currentFile = files[i].getName();
-				currentPos = currentFile.lastIndexOf('.');
-				currentExt = currentFile.substring(currentPos + 1);
-
-				// Compares their extension with the required extension
-				if (currentPos > 0 && currentExt.equals(extension)) {
-					results.enqueue(files[i]);
+		File i_currentDir;
+		File[] i_directoryFilesArray;
+		int fileEndingPos;
+		while ((i_currentDir = o_directoryQue.dequeue()) != null) {
+			i_directoryFilesArray = i_currentDir.listFiles();
+			if (i_directoryFilesArray != null) {
+				for (int i = 0; i < i_directoryFilesArray.length; i++) {
+					fileEndingPos = i_directoryFilesArray[i].getName().lastIndexOf('.');
+					if (fileEndingPos > 0 && i_directoryFilesArray[i].getName().substring(++fileEndingPos).equals(i_fileExtension)) {
+						o_resultsQue.enqueue(i_directoryFilesArray[i]);
+					}
 				}
 			}
-			
-			results.unregisterProducer();	// Done
+
 		}
+		o_resultsQue.unregisterProducer();
 
 	}
-
 }
