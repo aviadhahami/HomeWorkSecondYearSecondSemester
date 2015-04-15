@@ -17,16 +17,14 @@ public class Searcher implements Runnable {
 	@Override
 	public void run() {
 		File i_currentDir;
-		String i_fName;
 		File[] i_directoryFilesArray;
-		String fNameRegex = i_fileExtension + "$";
-
+		int fileEndingPos;
 		while ((i_currentDir = i_directoryQue.dequeue()) != null) {
 			i_directoryFilesArray = i_currentDir.listFiles();
 			if (i_directoryFilesArray != null) {
 				for (int i = 0; i < i_directoryFilesArray.length; i++) {
-					// TODO: fix the regex
-					if (i_directoryFilesArray[i].getName().matches(fNameRegex)) {
+					fileEndingPos = i_directoryFilesArray[i].getName().lastIndexOf('.');
+					if (fileEndingPos > 0 && i_directoryFilesArray[i].getName().substring(++fileEndingPos).equals(i_fileExtension)) {
 						o_resultsQue.enqueue(i_directoryFilesArray[i]);
 					}
 				}
@@ -36,5 +34,4 @@ public class Searcher implements Runnable {
 		o_resultsQue.unregisterProducer();
 
 	}
-
 }
