@@ -62,7 +62,7 @@ public class SynchronizedQueue<T> {
 			}
 			T i_item = buffer[i_startingPoint];
 			i_size--;
-			i_startingPoint = (i_startingPoint++) % i_capacity;
+			i_startingPoint = (++i_startingPoint) % i_capacity;
 			queLocker.notifyAll();
 			return i_item;
 		}
