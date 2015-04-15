@@ -7,87 +7,81 @@ import java.io.File;
  */
 public class DiskSearcher {
 
-	private static final String ARGS_AMOUNT = "ERROR: Arguments amount is invalid";
-	private static final String SEARCH_AMOUNT_ERR = "ERROR: Please enter a number greater then 0 for searchers to proceed";
-	private static final String WORKERS_AMOUNT_ERR = "ERROR: Please enter a number greater then 0 for copiers to proceed";
-	private static final String INVALID_NUM_ARG = "ERROR: Please enter a valid number for copiers/searchers amount";
+	private static final int DIRECTORY_QUEUE_CAPACITY = 1000;
+	private static final int RESULTS_QUEUE_CAPACITY = 1000;
 
 	public static void main(String[] args) {
-		int searchAmount = 0;
-		int copyWorkersAmount = 0;
+		int o_numberOfSearchThreads = 0;
+		int o_numberOfCopyThreads = 0;
 
 		if (args.length != 5) {
-			System.err.println(ARGS_AMOUNT);
+			System.err.println("Wrong number of args! expected " + 5 + " but recieved : " + args.length);
 			System.exit(1);
 		}
 
-		String extension = args[0];
-		File startDir = new File(args[1]);
-		File destDir = new File(args[2]);
-
-		if (!destDir.isDirectory()) {
-			destDir.mkdir();
-		}
+		// catching incoming arguments
+		String o_fileExtention = args[0];
+		File o_rootFolder = new File(args[1]);
+		File o_destFolder = new File(args[2]);
 
 		try {
-			searchAmount = Integer.parseInt(args[3]);
-			copyWorkersAmount = Integer.parseInt(args[4]);
+			o_numberOfSearchThreads = Integer.parseInt(args[3]);
+			o_numberOfCopyThreads = Integer.parseInt(args[4]);
 		} catch (NumberFormatException e) {
-			System.err.println(INVALID_NUM_ARG);
+			System.err.println("Expected two numbers, got sh*t instead");
+			System.exit(1);
+		}
+		if (o_numberOfCopyThreads < 1 || o_numberOfSearchThreads < 1) {
+			System.err.println("Negative number, negative attitude -> you're out ! ");
 			System.exit(1);
 		}
 
-		validate(searchAmount, copyWorkersAmount);
-
-		SynchronizedQueue<File> dirQueue = new SynchronizedQueue<File>(1000);
-		SynchronizedQueue<File> resQueue = new SynchronizedQueue<File>(1000);
-
-		Searcher[] searcherWorkers = new Searcher[searchAmount];
-		Copier[] copyWorkers = new Copier[copyWorkersAmount];
-
-		Scouter scouter = new Scouter(dirQueue, startDir);
-		Thread scoutingThread = new Thread(scouter);
-		scoutingThread.start();
-
-		Thread[] searchPool = new Thread[searchAmount];
-		Thread[] copyPool = new Thread[copyWorkersAmount];
-
-		for (int i = 0; i < searchAmount; i++) {
-			searcherWorkers[i] = new Searcher(extension, dirQueue, resQueue);
-			searchPool[i] = new Thread(searcherWorkers[i]);
-			searchPool[i].start();
+		// if no destination folder we generate it
+		if (!o_destFolder.isDirectory()) {
+			o_destFolder.mkdir();
 		}
 
-		for (int i = 0; i < copyWorkersAmount; i++) {
-			copyWorkers[i] = new Copier(destDir, resQueue);
-			copyPool[i] = new Thread(copyWorkers[i]);
-			copyPool[i].start();
+		// initializing queues
+		SynchronizedQueue<File> o_directoryQueue = new SynchronizedQueue<File>(DIRECTORY_QUEUE_CAPACITY);
+		SynchronizedQueue<File> o_resultsQueue = new SynchronizedQueue<File>(RESULTS_QUEUE_CAPACITY);
+
+		// gogo gadget - > SCOUT
+		Scouter o_scouter = new Scouter(o_directoryQueue, o_rootFolder);
+		Thread o_scoutingThread = new Thread(o_scouter);
+		o_scoutingThread.start();
+
+		// put water in the pools
+		Thread[] io_searchersPool = new Thread[o_numberOfSearchThreads];
+		Thread[] io_copiersPool = new Thread[o_numberOfCopyThreads];
+
+		// initialize search threads sequence
+		for (int i = 0; i < o_numberOfSearchThreads; i++) {
+			io_searchersPool[i] = new Thread(new Searcher(o_fileExtention, o_resultsQueue, o_directoryQueue));
+			// DEOPLOY THE SENTINELS!
+			io_searchersPool[i].start();
+		}
+
+		// initialize copy threads sequence
+		for (int i = 0; i < o_numberOfCopyThreads; i++) {
+			io_copiersPool[i] = new Thread(new Copier(o_destFolder, o_resultsQueue));
+			// DEOPLOY THE SENTINELS!
+			io_copiersPool[i].start();
 		}
 
 		try {
-			scoutingThread.join();
-			for (int i = 0; i < searchPool.length; i++) {
-				searchPool[i].join();
+			// prepare to die threads !
+			o_scoutingThread.join();
+			for (int i = 0; i < io_searchersPool.length; i++) {
+				io_searchersPool[i].join();
 			}
-			for (int i = 0; i < copyPool.length; i++) {
-				copyPool[i].join();
+			// are you dead?
+			for (int i = 0; i < io_copiersPool.length; i++) {
+				io_copiersPool[i].join();
 			}
 		} catch (InterruptedException e) {
-			// Continue...
+			e.printStackTrace();
 		}
-
-		System.out.println("Operation Completed Successuflly... Thank God !");
+		System.out.println("VICTORY! ALL YOUR BASE ARE BELONG TO US!");
 	}
 
-	private static void validate(int search_Amount, int copyWorkers_Amount) {
-		if (search_Amount < 1) {
-			System.err.println(SEARCH_AMOUNT_ERR);
-			System.exit(1);
-		}
-
-		if (copyWorkers_Amount < 1) {
-			System.err.println(WORKERS_AMOUNT_ERR);
-			System.exit(1);
-		}
-	}
 }
