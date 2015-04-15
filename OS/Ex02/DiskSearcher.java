@@ -15,7 +15,7 @@ public class DiskSearcher {
 		int o_numberOfCopyThreads = 0;
 
 		if (args.length != 5) {
-			System.err.println("Wrong number of args! expected " + 5 + " but recieved : " + args.length);
+			System.err.println("Wrong number of args! expected " + 5 + " but recieved " + args.length);
 			System.exit(1);
 		}
 
