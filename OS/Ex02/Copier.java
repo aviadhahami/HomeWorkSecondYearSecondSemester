@@ -18,7 +18,7 @@ public class Copier implements Runnable {
 	 * @param destFile
 	 *            - destination file
 	 */
-	public Copier(SynchronizedQueue<File> resultQue, File destFile) {
+	public Copier(File destFile, SynchronizedQueue<File> resultQue) {
 		this.filePath = destFile.getAbsolutePath();
 		this.destFile = destFile;
 		this.resultQue = resultQue;
@@ -57,7 +57,7 @@ public class Copier implements Runnable {
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {
-			//closing files 
+			// closing files
 			fIS.close();
 			fOS.close();
 		}

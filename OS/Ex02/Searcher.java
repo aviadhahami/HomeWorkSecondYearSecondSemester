@@ -5,7 +5,7 @@ public class Searcher implements Runnable {
 	private SynchronizedQueue<File> o_directoryQue;
 	private SynchronizedQueue<File> o_resultsQue;
 
-	public Searcher(SynchronizedQueue<File> dirQ, SynchronizedQueue<File> resQ, String fEx) {
+	public Searcher(String fEx, SynchronizedQueue<File> resQ, SynchronizedQueue<File> dirQ) {
 		// initialize private variables
 		i_fileExtension = fEx;
 		o_resultsQue = resQ;
