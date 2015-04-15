@@ -26,10 +26,10 @@ public class Scouter implements Runnable {
 		while ((i_currentDirectory = i_scoutedItemsList.poll()) != null) {
 			i_filesArray = i_currentDirectory.listFiles();
 			if (i_filesArray != null) {
-				for (int i = 0; i < i_filesArray.length; i++) {
-					if (i_filesArray[i].isDirectory()) {
-						o_directoryQue.enqueue(i_filesArray[i]);
-						i_scoutedItemsList.addLast(i_filesArray[i]);
+				for (File i_currFileInArr : i_filesArray) {
+					if (i_currFileInArr.isDirectory()) {
+						o_directoryQue.enqueue(i_currFileInArr);
+						i_scoutedItemsList.addLast(i_currFileInArr);
 					}
 				}
 			}

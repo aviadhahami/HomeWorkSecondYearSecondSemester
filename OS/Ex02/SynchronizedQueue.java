@@ -9,8 +9,7 @@ public class SynchronizedQueue<T> {
 
 	private T[] buffer;
 	private int producers;
-	
-	// custom private members
+	// custom private memebers
 	private int i_size;
 	private int i_startingPoint;
 	private int i_producers;
