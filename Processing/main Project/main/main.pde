@@ -7,6 +7,7 @@ int windowWidth, windowHeight;
 int bgColor = 0;
 
 Person[] people;
+//Tasks[] tasks;
 
 void setup() {
   this.windowWidth = displayWidth;
@@ -19,6 +20,9 @@ void setup() {
   Person david = new Person("David", new personColor(0, 0, 255));
   Person anna = new Person("anna", new personColor(255, 0, 255));
   people = new Person[2];
+  david.increaseAmountOfTasks();
+  david.increaseAmountOfTasks();
+  anna.increaseAmountOfTasks();
   people[0] = david;
   people[1] = anna;
   //everything is dead after this
@@ -27,7 +31,7 @@ void setup() {
 
 void draw() {
   int baseWheelSize = windowWidth/2;
-  baseWheel base = new baseWheel(windowWidth/2, windowHeight/2, baseWheelSize, baseWheelSize, people);
+  baseWheel base = new baseWheel(windowWidth/2, windowHeight/2, baseWheelSize, baseWheelSize, people,10);
   base.generate();
 }
 
