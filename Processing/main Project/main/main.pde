@@ -17,6 +17,7 @@ void setup() {
   background(bgColor);
 
   Person david = new Person("David", new personColor(0, 0, 255));
+  Person anna = new Person("anna", new personColor(255, 0, 255));
   //everything is dead after this
   noLoop();
 }
