@@ -12,6 +12,11 @@ class TopWheel {
 
   int currentItemInTasksArray;
 
+  String currentTaskName;
+  int currentTaskAmout;
+  PImage currentTaskIcon;
+  int currentTaskOriginAmount;
+
   Person activePerson;
 
   TaskDots activePersonDots;
@@ -31,6 +36,7 @@ class TopWheel {
     this.iconY = this.yPos - this.cWidth/2 + 50;
 
     this.currentItemInTasksArray = 0;
+
 
     this.activePerson = person;
   }
@@ -75,6 +81,9 @@ class TopWheel {
         image(tasksToIconsHash.get(taskNames[currentItemInTasksArray]), iconX, iconY, iconWidth, iconHeight);
         text(taskNames[currentItemInTasksArray], xPos - fontSize*2, yPos);
         activePersonDots.generateDots(tasksNamesAndAmount.get (taskNames[currentItemInTasksArray]));
+        //update current task
+        updateCurrentTask(taskNames[currentItemInTasksArray], tasksNamesAndAmount.get (taskNames[currentItemInTasksArray]), tasksToIconsHash.get(taskNames[currentItemInTasksArray]));
+        this.currentTaskOriginAmount = tasksNamesAndAmount.get(taskNames[currentItemInTasksArray]);
         break;
       }
       //clicked right
@@ -85,7 +94,9 @@ class TopWheel {
         image(tasksToIconsHash.get(taskNames[currentItemInTasksArray]), iconX, iconY, iconWidth, iconHeight);
         text(taskNames[currentItemInTasksArray], xPos - fontSize*2, yPos);
         activePersonDots.generateDots(tasksNamesAndAmount.get (taskNames[currentItemInTasksArray]));
-
+        //update current task
+        updateCurrentTask(taskNames[currentItemInTasksArray], tasksNamesAndAmount.get (taskNames[currentItemInTasksArray]), tasksToIconsHash.get(taskNames[currentItemInTasksArray]));
+        this.currentTaskOriginAmount = tasksNamesAndAmount.get(taskNames[currentItemInTasksArray]);
         break;
       }
       //first run
@@ -95,17 +106,56 @@ class TopWheel {
         image(tasksToIconsHash.get(taskNames[currentItemInTasksArray]), iconX, iconY, iconWidth, iconHeight);
         text(taskNames[currentItemInTasksArray], xPos - fontSize*2, yPos);
         activePersonDots.generateDots(tasksNamesAndAmount.get (taskNames[currentItemInTasksArray]));
+        //update current task
+        updateCurrentTask(taskNames[currentItemInTasksArray], tasksNamesAndAmount.get(taskNames[currentItemInTasksArray]), tasksToIconsHash.get(taskNames[currentItemInTasksArray]));
+        this.currentTaskOriginAmount = tasksNamesAndAmount.get(taskNames[currentItemInTasksArray]);
+
         break;
       }
     }
   }
+  void updateCurrentTask(String name, int amount, PImage icon) {
+    this.currentTaskName = name;
+    this.currentTaskAmout = amount;
+    this.currentTaskIcon=icon;
+  }
 
   //shows the amount of options per task
   void generateTaskAmountChooser() {
+    this.activePersonDots = new TaskDots(this.cWidth, this.cHeight, this.cWidth, activePerson);
+    //init stuff
     drawBase(255);
     int fontSize = 35;
     initText(fontSize, 73, 137, 204);
-    text("Pick the amount", xPos - fontSize*2, yPos);
+
+
+    switch(keyCode) {
+      //clicked left
+      case(37):
+      { 
+        //System.out.println("left");
+        this.currentTaskAmout =  this.currentTaskAmout == 0 ? 0 : --this.currentTaskAmout;
+        break;
+      }
+      //clicked right
+      case(39):
+      {
+        //System.out.println("right");
+        this.currentTaskAmout =this.currentTaskAmout == this.currentTaskOriginAmount ? this.currentTaskOriginAmount : ++this.currentTaskAmout;
+        break;
+      }
+      //first run
+      case(0):
+      {
+        System.out.println("first time");
+        break;
+      }
+    }
+    
+    //display icons
+    image(this.currentTaskIcon, iconX, iconY, iconWidth, iconHeight);
+    text(this.currentTaskName, xPos - fontSize*2, yPos);
+    activePersonDots.generateDots(this.currentTaskAmout);
   }
   //iterating all tasks in the tasks list, returns an array with all the names
   Hashtable<String, Integer> mapTasksToHash() {
@@ -119,7 +169,7 @@ class TopWheel {
     }
     return table;
   }
-//maping each task to his proper icon
+  //maping each task to his proper icon
   Hashtable<String, PImage> mapTasksToIcons() {
     Hashtable<String, PImage> table = new Hashtable();
     for (Task t : tasks) {
