@@ -4,10 +4,13 @@ boolean DEBUG = TRUE;
 
 //MAIN PROGRAM GLOBALS
 int windowWidth, windowHeight;
-int bgColor = 0;
+//blue FB
+int bgColorR = 109;
+int bgColorG = 132;
+int bgColorB = 180;
 
 Person[] people;
-//Tasks[] tasks;
+Task[] tasks;
 
 void setup() {
   this.windowWidth = displayWidth;
@@ -15,24 +18,28 @@ void setup() {
   size(windowWidth, windowHeight); //GOING FULL SCREEN BABY ! 
   //setting main window bg
 
-  background(bgColor);
-
-  Person david = new Person("David", new personColor(0, 0, 255));
-  Person anna = new Person("Anna", new personColor(255, 0, 255));
+  background(bgColorR,bgColorG,bgColorB);  
+  //instansiate people
+  Person david = new Person("David", new PersonColor(0, 0, 255));
+  Person anna = new Person("Anna", new PersonColor(255, 0, 255));
   people = new Person[2];
   david.increaseAmountOfTasks();
   david.increaseAmountOfTasks();
   anna.increaseAmountOfTasks();
   people[0] = david;
   people[1] = anna;
+  
+  //instansiate tasks
+  
+  tasks = new Task[6];
   //everything is dead after this
-  //noLoop();
-  flag = true;
+  noLoop();
 }
 
 void draw() {
-  int baseWheelSize = windowWidth/2;
-  baseWheel base = new baseWheel(windowWidth/2, windowHeight/2, baseWheelSize, baseWheelSize, people, 5);
+  int BaseWheelSize = windowWidth/2;
+  int tasksNumber;
+  BaseWheel base = new BaseWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize, people, tasks.length);
   base.generate();
 }
 

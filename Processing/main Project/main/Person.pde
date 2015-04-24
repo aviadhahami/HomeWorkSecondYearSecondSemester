@@ -1,14 +1,14 @@
 class Person {
   String name;
-  personColor c;
+  PersonColor c;
   int amountOfTasks;
 
-  public Person(String name, personColor c) {
+  public Person(String name, PersonColor c) {
     this.name = name;
     this.c = c;
     this.amountOfTasks = 0;
   }
-  personColor getColor() {
+  PersonColor getColor() {
     return this.c;
   }
   int getAmountOfTasks(){
