@@ -39,8 +39,17 @@ void setup() {
 
   tasks = new LinkedList();
   tasks.add( new Task("Laundry", "laundry.png", 1));
+  tasks.add( new Task("Laundry", "laundry.png", 1));
+  tasks.add( new Task("Laundry", "laundry.png", 1));
   tasks.add( new Task("Brooming", "broom.png", 1));
   tasks.add( new Task("Cooking", "food.png", 1));
+  tasks.add( new Task("Cooking", "food.png", 1));
+  tasks.add( new Task("Cooking", "food.png", 1));
+  tasks.add( new Task("Cooking", "food.png", 1));
+  tasks.add( new Task("Trash", "trash.png", 1));
+  tasks.add( new Task("Trash", "trash.png", 1));
+  tasks.add( new Task("Trash", "trash.png", 1));
+  tasks.add( new Task("Trash", "trash.png", 1));
   tasks.add( new Task("Trash", "trash.png", 1));
 
   int BaseWheelSize = windowWidth/2;

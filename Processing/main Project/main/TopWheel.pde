@@ -51,19 +51,29 @@ class TopWheel {
     drawBase(255);
     int fontSize = 35;
     initText(fontSize, 73, 137, 204);
-    
-    String[] tasksNameArray = mapTasksToArray();
+    //mapping the tasks to hash and to task names array for easy iterating
+    Hashtable<String, Integer> tasksNamesAndAmount = mapTasksToHash();
+    String[] taskNames = getTaskNamesArray();
 
-    //on click show the task
-
-    text("this is a test", xPos - fontSize*2, yPos);
-
-    for (String s : tasksNameArray) {
-      System.out.println(s);
+    for (String n : taskNames) {
+      System.out.println(n + " x" + tasksNamesAndAmount.get(n));
     }
+    //on click show the task
+    text("this is a test", xPos - fontSize*2, yPos);
   }
   //iterating all tasks in the tasks list, returns an array with all the names
-  String[] mapTasksToArray() {
+  Hashtable<String, Integer> mapTasksToHash() {
+    Hashtable<String, Integer> table = new Hashtable();
+    for (Task t : tasks) {
+      if (! table.containsKey(t.getName())) {
+        table.put(t.getName(), 1);
+      } else {
+        table.put(t.getName(), table.get(t.getName()) + 1 );
+      }
+    }
+    return table;
+  }
+  String[] getTaskNamesArray() {
     LinkedList<String> list = new LinkedList();
     for (Task t : tasks) {
       if (! list.contains(t.getName())) {
