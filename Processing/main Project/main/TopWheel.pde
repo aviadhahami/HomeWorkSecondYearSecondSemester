@@ -25,6 +25,7 @@ class TopWheel {
   TaskDots activePersonDots;
 
   LinkedList<Person> people;
+  LinkedList<Person> originalPeopleList;
 
   public TopWheel(int xPos, int yPos, int cWidth, int cHeight, LinkedList<Task> tasks, LinkedList<Person> people, Person person) {
     this.xPos = xPos;
@@ -47,6 +48,9 @@ class TopWheel {
     this.amountOfTasks = tasks.size();
 
     this.people = people;
+    
+    //future implementation
+    this.originalPeopleList = people;
   }
 
   //listenenes to mouse hover
@@ -141,9 +145,9 @@ class TopWheel {
         //System.out.println("left");
         this.currentTaskAmout =  this.currentTaskAmout == 0 ? 0 : --this.currentTaskAmout;
         //increase active person tasks
-        if (currentTaskAmout >= 0 ) {
-          updateActivePersonTasks(true);
-        }
+
+        updateActivePersonTasks(true);
+
 
         break;
       }
@@ -153,9 +157,10 @@ class TopWheel {
         //System.out.println("right");
         this.currentTaskAmout =this.currentTaskAmout == this.currentTaskOriginAmount ? this.currentTaskOriginAmount : ++this.currentTaskAmout;
         //decrease active person tasks
-        if ( currentTaskAmout <= currentTaskOriginAmount) {
-          updateActivePersonTasks(false);
-        }
+        //System.out.println(currentTaskAmout + " : " + currentTaskOriginAmount);
+
+        updateActivePersonTasks(false);
+
 
         break;
       }
