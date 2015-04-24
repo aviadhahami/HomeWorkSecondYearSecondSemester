@@ -12,7 +12,7 @@ int bgColorR = 109;
 int bgColorG = 132;
 int bgColorB = 180;
 
-Person[] people;
+LinkedList<Person> people;
 LinkedList<Task> tasks;
 BaseWheel base;
 TopWheel top;
@@ -29,11 +29,15 @@ void setup() {
   //instansiate people
   Person david = new Person("David", new PersonColor(65, 191, 191));
   Person anna = new Person("Anna", new PersonColor(80, 191, 65));
-  people = new Person[2];
+  Person raziel = new Person("Raziel", new PersonColor(204, 73, 102));
+  people = new LinkedList();
+  david.increaseAmountOfTasks();
   david.increaseAmountOfTasks();
   anna.increaseAmountOfTasks();
-  people[0] = david;
-  people[1] = anna;
+  raziel.increaseAmountOfTasks();
+  people.add(david);
+  people.add(anna);
+  people.add(raziel);
   LinkedList<Task> myList = new LinkedList();
   //instansiate tasks
 
@@ -42,10 +46,11 @@ void setup() {
   tasks.add( new Task("Laundry", "laundry.png", 1));
   tasks.add( new Task("Laundry", "laundry.png", 1));
   tasks.add( new Task("Brooming", "broom.png", 1));
-  tasks.add( new Task("Cooking", "food.png", 1));
-  tasks.add( new Task("Cooking", "food.png", 1));
-  tasks.add( new Task("Cooking", "food.png", 1));
-  tasks.add( new Task("Cooking", "food.png", 1));
+  tasks.add( new Task("Brooming", "broom.png", 1));
+  tasks.add( new Task("Dishes", "plate.png", 1));
+  tasks.add( new Task("Dishes", "plate.png", 1));
+  tasks.add( new Task("Dishes", "plate.png", 1));
+  tasks.add( new Task("Dishes", "plate.png", 1));
   tasks.add( new Task("Trash", "trash.png", 1));
   tasks.add( new Task("Trash", "trash.png", 1));
   tasks.add( new Task("Trash", "trash.png", 1));
@@ -57,7 +62,7 @@ void setup() {
   statusFlag = -1;
   base = new BaseWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize, people, tasks.size());
   base.generate();
-  top = new TopWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize, tasks);
+  top = new TopWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize, tasks, people.peek());
   top.generateWaitingPosition();
 
 

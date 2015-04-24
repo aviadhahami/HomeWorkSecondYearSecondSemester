@@ -12,7 +12,11 @@ class TopWheel {
 
   int currentItemInTasksArray;
 
-  public TopWheel(int xPos, int yPos, int cWidth, int cHeight, LinkedList<Task> tasks) {
+  Person activePerson;
+
+  TaskDots activePersonDots;
+
+  public TopWheel(int xPos, int yPos, int cWidth, int cHeight, LinkedList<Task> tasks, Person person) {
     this.xPos = xPos;
     this.yPos = yPos;
     this.cWidth = cWidth/1.2;
@@ -27,6 +31,8 @@ class TopWheel {
     this.iconY = this.yPos - this.cWidth/2 + 50;
 
     this.currentItemInTasksArray = 0;
+
+    this.activePerson = person;
   }
 
   //listenenes to mouse hover
@@ -59,6 +65,7 @@ class TopWheel {
     Hashtable<String, Integer> tasksNamesAndAmount = mapTasksToHash();
     Hashtable<String, PImage> tasksToIconsHash = mapTasksToIcons();
     String[] taskNames = getTaskNamesArray();
+    this.activePersonDots = new TaskDots(this.cWidth, this.cHeight, this.cWidth, activePerson);
     switch(keyCode) {
       //clicked left
       case(37):
@@ -67,6 +74,7 @@ class TopWheel {
         currentItemInTasksArray = currentItemInTasksArray == 0 ? 0 : --currentItemInTasksArray;
         image(tasksToIconsHash.get(taskNames[currentItemInTasksArray]), iconX, iconY, iconWidth, iconHeight);
         text(taskNames[currentItemInTasksArray], xPos - fontSize*2, yPos);
+        activePersonDots.generateDots(tasksNamesAndAmount.get (taskNames[currentItemInTasksArray]));
         break;
       }
       //clicked right
@@ -76,6 +84,8 @@ class TopWheel {
         currentItemInTasksArray = currentItemInTasksArray == taskNames.length-1 ? taskNames.length-1 : ++currentItemInTasksArray;
         image(tasksToIconsHash.get(taskNames[currentItemInTasksArray]), iconX, iconY, iconWidth, iconHeight);
         text(taskNames[currentItemInTasksArray], xPos - fontSize*2, yPos);
+        activePersonDots.generateDots(tasksNamesAndAmount.get (taskNames[currentItemInTasksArray]));
+
         break;
       }
       //first run
@@ -84,6 +94,7 @@ class TopWheel {
         System.out.println("first time");
         image(tasksToIconsHash.get(taskNames[currentItemInTasksArray]), iconX, iconY, iconWidth, iconHeight);
         text(taskNames[currentItemInTasksArray], xPos - fontSize*2, yPos);
+        activePersonDots.generateDots(tasksNamesAndAmount.get (taskNames[currentItemInTasksArray]));
         break;
       }
     }
