@@ -83,6 +83,7 @@ void mousePressed() {
       }
       case(0):
       {
+        
         System.out.println("Task picked, showing status");
         //need to initiate scrolling wheel
         //need to retrieve what the user clicked on
