@@ -5,9 +5,9 @@ class BaseWheel {
   int wheelColor = 255;
   int xPos, yPos, cWidth, cHeight;
   float currentAngel;
-  Person[] people;
+  LinkedList<Person> people;
   int amountOfTasks;
-  public BaseWheel(int xPos, int yPos, int cWidth, int cHeight, Person[] people, int amountOfTasks) {
+  public BaseWheel(int xPos, int yPos, int cWidth, int cHeight, LinkedList<Person> people, int amountOfTasks) {
     this.xPos = xPos;
     this.yPos = yPos;
     this.cWidth = cWidth;
