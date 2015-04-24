@@ -87,11 +87,6 @@ class TopWheel {
         break;
       }
     }
-    /*for (String n : taskNames) {
-     System.out.println(n + " x" + tasksNamesAndAmount.get(n));
-     }*/
-    //System.out.println(keyCode);
-    //on click show the task
   }
 
   //shows the amount of options per task
