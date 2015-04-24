@@ -20,8 +20,8 @@ void setup() {
 
   background(bgColorR,bgColorG,bgColorB);  
   //instansiate people
-  Person david = new Person("David", new PersonColor(0, 0, 255));
-  Person anna = new Person("Anna", new PersonColor(255, 0, 255));
+  Person david = new Person("David", new PersonColor(65, 191, 191));
+  Person anna = new Person("Anna", new PersonColor(80, 191, 65));
   people = new Person[2];
   david.increaseAmountOfTasks();
   david.increaseAmountOfTasks();

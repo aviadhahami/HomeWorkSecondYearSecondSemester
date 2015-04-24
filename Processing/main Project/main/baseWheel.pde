@@ -19,17 +19,18 @@ class BaseWheel {
 
   //generates the first wheel
   void generate() {
+    float arcD = cWidth;
     //initiate base white circle
     drawBase();
     //noStroke();
-    stroke(150);
+    stroke(255);
     for (Person p : people) {
       for (int i=0; i<p.getAmountOfTasks (); i++) {
         int r = p.getColor().getR();
         int g = p.getColor().getG();
         int b  =p.getColor().getB();
         fill(r, g, b);
-        arc(xPos, yPos, cWidth, cHeight, currentAngel, currentAngel + getArcSpan(), PIE); 
+        arc(xPos, yPos, arcD, arcD, currentAngel, currentAngel + getArcSpan(), PIE); 
 
         increaseCurrentAngel();
       }
@@ -41,7 +42,7 @@ class BaseWheel {
   }
   void drawBase() {
     noStroke();
-    fill(wheelColor);
+    fill(216,223,234);
     ellipse(xPos, yPos, cWidth, cWidth);
   }
   void increaseCurrentAngel() {
