@@ -17,6 +17,8 @@ LinkedList<Task> tasks;
 BaseWheel base;
 TopWheel top;
 
+int statusFlag; //can be -1 for waiting, 0 for pick task, 1 for task picked
+
 void setup() {
   this.windowWidth = displayWidth;
   this.windowHeight = displayHeight;
@@ -43,10 +45,13 @@ void setup() {
 
   int BaseWheelSize = windowWidth/2;
   int tasksNumber;
+  statusFlag = -1;
   base = new BaseWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize, people, tasks.size());
   base.generate();
   top = new TopWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize, tasks);
-  top.generate();
+  top.generateWaitingPosition();
+
+
   //everything is dead after this
   //noLoop();
 }
@@ -54,9 +59,26 @@ void setup() {
 //mouse click listener
 void mousePressed() {
   if (top.overCircle(windowWidth/2, windowHeight/2, 500)) {
-    //should start task pick sequence here
-    top.drawBase(0);
-    // top.generate();
+    switch(statusFlag) {
+      case(-1):
+      {
+        System.out.println("User clicked, showing tasks");
+        statusFlag = 0;
+        break;
+      }
+      case(0):
+      {
+        System.out.println("Task picked, showing status");
+        statusFlag = 1;
+        break;
+      }
+      case(1):
+      {
+        System.out.println("Task amount picked, moving to waiting");
+        statusFlag = -1;
+        break;
+      }
+    }
   }
 }
 

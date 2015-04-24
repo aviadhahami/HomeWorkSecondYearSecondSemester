@@ -34,7 +34,7 @@ class TopWheel {
     }
   }
 
-  void generate() {
+  void generateWaitingPosition() {
     drawBase(255);
     //init "waiting" text
     int fontSize = 42;
@@ -45,7 +45,6 @@ class TopWheel {
     PImage waitingIcon = new PImage();
     waitingIcon = loadImage("images/clock.png"); //loading clock image as place holder
     image(waitingIcon, iconX, iconY, iconWidth, iconHeight);
-   
   }
   void drawBase(int c) {
     noStroke();
