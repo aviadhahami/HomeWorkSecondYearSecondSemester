@@ -8,9 +8,9 @@ class TopWheel {
   int wheelColor = 255;
   int xPos, yPos;
   float cWidth, cHeight;
-  Task[] tasks;
+  LinkedList<Task> tasks;
 
-  public TopWheel(int xPos, int yPos, int cWidth, int cHeight, Task[] tasks) {
+  public TopWheel(int xPos, int yPos, int cWidth, int cHeight, LinkedList<Task> tasks) {
     this.xPos = xPos;
     this.yPos = yPos;
     this.cWidth = cWidth/1.2;

@@ -13,7 +13,7 @@ int bgColorG = 132;
 int bgColorB = 180;
 
 Person[] people;
-Task[] tasks;
+LinkedList<Task> tasks;
 BaseWheel base;
 TopWheel top;
 
@@ -32,18 +32,18 @@ void setup() {
   anna.increaseAmountOfTasks();
   people[0] = david;
   people[1] = anna;
-LinkedList<Integer> myList = new LinkedList();
+  LinkedList<Task> myList = new LinkedList();
   //instansiate tasks
 
-  tasks = new Task[4];
-  tasks[0] = new Task("Laundry", "laundry.png", 1);
-  tasks[1] = new Task("Brooming", "broom.png", 1);
-  tasks[2] = new Task("Cooking", "food.png", 1);
-  tasks[3] = new Task("Trash", "trash.png", 1);
+  tasks = new LinkedList();
+  tasks.add( new Task("Laundry", "laundry.png", 1));
+  tasks.add( new Task("Brooming", "broom.png", 1));
+  tasks.add( new Task("Cooking", "food.png", 1));
+  tasks.add( new Task("Trash", "trash.png", 1));
 
   int BaseWheelSize = windowWidth/2;
   int tasksNumber;
-  base = new BaseWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize, people, tasks.length);
+  base = new BaseWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize, people, tasks.size());
   base.generate();
   top = new TopWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize, tasks);
   top.generate();
