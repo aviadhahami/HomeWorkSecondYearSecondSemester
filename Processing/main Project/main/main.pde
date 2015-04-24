@@ -18,21 +18,23 @@ void setup() {
   size(windowWidth, windowHeight); //GOING FULL SCREEN BABY ! 
   //setting main window bg
 
-  background(bgColorR,bgColorG,bgColorB);  
+  background(bgColorR, bgColorG, bgColorB);  
   //instansiate people
   Person david = new Person("David", new PersonColor(65, 191, 191));
   Person anna = new Person("Anna", new PersonColor(80, 191, 65));
   people = new Person[2];
   david.increaseAmountOfTasks();
-  david.increaseAmountOfTasks();
   anna.increaseAmountOfTasks();
   people[0] = david;
   people[1] = anna;
-  
+
   //instansiate tasks
-  
-  tasks = new Task[6];
-  tasks[0] = new Task("Laundry","laundry.png",1);
+
+  tasks = new Task[4];
+  tasks[0] = new Task("Laundry", "laundry.png", 1);
+  tasks[1] = new Task("Brooming", "broom.png", 1);
+  tasks[2] = new Task("Cooking", "food.png", 1);
+  tasks[3] = new Task("Trash", "trash.png", 1);
   //everything is dead after this
   noLoop();
 }
@@ -42,7 +44,7 @@ void draw() {
   int tasksNumber;
   BaseWheel base = new BaseWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize, people, tasks.length);
   base.generate();
-  TopWheel top = new TopWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize,tasks);
+  TopWheel top = new TopWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize, tasks);
   top.generate();
 }
 

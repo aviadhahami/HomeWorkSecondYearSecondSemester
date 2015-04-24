@@ -1,4 +1,6 @@
-
+//BUGS:
+//We override other tasks if we get more tasks than places on the wheel
+//fuck im tired
 class BaseWheel {
   int wheelColor = 255;
   int xPos, yPos, cWidth, cHeight;
@@ -42,7 +44,7 @@ class BaseWheel {
   }
   void drawBase() {
     noStroke();
-    fill(216,223,234);
+    fill(216, 223, 234);
     ellipse(xPos, yPos, cWidth, cWidth);
   }
   void increaseCurrentAngel() {
