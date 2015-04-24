@@ -1,4 +1,10 @@
 class TopWheel {
+
+  final static String PLACEHOLDER = "System is waiting...";
+
+  float iconWidth, iconHeight;
+  float iconX, iconY;
+
   int wheelColor = 255;
   int xPos, yPos;
   float cWidth, cHeight;
@@ -10,16 +16,27 @@ class TopWheel {
     this.cWidth = cWidth/1.2;
     this.cHeight = cHeight/1.2;
     this.tasks = tasks;
+
+
+    this.iconWidth = this.cWidth/4;
+    this.iconHeight = this.cHeight/4;
+
+    this.iconX = this.xPos - this.iconWidth/2;
+    this.iconY = this.yPos - this.cWidth/2 + 50;
   }
 
 
   void generate() {
     drawBase();
-    String placeHolder = "System is waiting...";
-
-    int fontSize = 14;
+    //init "waiting" text
+    int fontSize = 42;
     initText(fontSize, 73, 137, 204);
-    text(placeHolder, xPos, yPos);
+    text(PLACEHOLDER, xPos - fontSize*4, yPos);
+
+    //init waiting image
+    PImage waitingIcon = new PImage();
+    waitingIcon = loadImage("images/clock.png"); //loading clock image as place holder
+    image(waitingIcon, iconX, iconY, iconWidth, iconHeight);
   }
   void drawBase() {
     noStroke();
@@ -27,8 +44,15 @@ class TopWheel {
     ellipse(xPos, yPos, cWidth, cWidth);
   }
   void initText(int fSize, int r, int g, int b) {
-    textFont(createFont("Georgia", fSize));
+    textFont(createFont("Arial", fSize));
     fill(r, g, b);
+  }
+
+  void showTask(Task t) {
+    int fontSize=32;
+    initText(fontSize, 0, 0, 0);
+    text(t.getName(), xPos - fontSize*4, yPos);
+    image(t.getIcon(), this.iconX, this.iconY, iconWidth, iconHeight);
   }
 }
 

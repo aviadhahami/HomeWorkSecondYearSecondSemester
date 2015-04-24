@@ -42,7 +42,7 @@ void draw() {
   int tasksNumber;
   BaseWheel base = new BaseWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize, people, tasks.length);
   base.generate();
-  TopWheel top = new TopWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize);
+  TopWheel top = new TopWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize,tasks);
   top.generate();
 }
 
