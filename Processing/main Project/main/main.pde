@@ -32,6 +32,7 @@ void setup() {
   //instansiate tasks
   
   tasks = new Task[6];
+  tasks[0] = new Task("Laundry","laundry.png",1);
   //everything is dead after this
   noLoop();
 }

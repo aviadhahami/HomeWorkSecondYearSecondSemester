@@ -1,11 +1,18 @@
 class Task {
   String name;
-  PImage icon;
+  String iconSrc;
   int worth;
-  public Task(String name, PImage icon, int worth) {
+  PImage icon;
+  public Task(String name, String icon, int worth) {
     this.name = name;
-    this.icon = icon;
+    this.iconSrc = icon;
     this.worth = worth;
+    try {
+      this.icon = loadImage("images/"+this.iconSrc);
+    }
+    catch(Exception e) {
+      System.out.println(e);
+    }
   }
   PImage getIcon() {
     return this.icon;
