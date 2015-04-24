@@ -24,18 +24,18 @@ class TopWheel {
     this.iconX = this.xPos - this.iconWidth/2;
     this.iconY = this.yPos - this.cWidth/2 + 50;
   }
-
+  
+  //listenenes to mouse hover
   void listen() {
-    ellipse(0,0,100,100);
     if (overCircle(0, 0, 100) ) {
-      System.out.println("hover");
+      //System.out.println("hover");
     }else{
-       System.out.println("====");
+       //System.out.println("====");
     }
   }
 
   void generate() {
-    drawBase();
+    drawBase(255);
     //init "waiting" text
     int fontSize = 42;
     initText(fontSize, 73, 137, 204);
@@ -45,10 +45,11 @@ class TopWheel {
     PImage waitingIcon = new PImage();
     waitingIcon = loadImage("images/clock.png"); //loading clock image as place holder
     image(waitingIcon, iconX, iconY, iconWidth, iconHeight);
+   
   }
-  void drawBase() {
+  void drawBase(int c) {
     noStroke();
-    fill(255);
+    fill(c);
     ellipse(xPos, yPos, cWidth, cWidth);
   }
   void initText(int fSize, int r, int g, int b) {

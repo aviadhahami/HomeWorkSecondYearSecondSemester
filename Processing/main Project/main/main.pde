@@ -37,14 +37,24 @@ void setup() {
   tasks[1] = new Task("Brooming", "broom.png", 1);
   tasks[2] = new Task("Cooking", "food.png", 1);
   tasks[3] = new Task("Trash", "trash.png", 1);
-  //everything is dead after this
-  //noLoop();
+
   int BaseWheelSize = windowWidth/2;
   int tasksNumber;
   base = new BaseWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize, people, tasks.length);
   base.generate();
   top = new TopWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize, tasks);
   top.generate();
+  //everything is dead after this
+  //noLoop();
+}
+
+//mouse click listener
+void mousePressed() {
+  if (top.overCircle(windowWidth/2,windowHeight/2,500)){
+    //should start task pick sequence here
+    top.drawBase(0);
+   // top.generate();
+  }
 }
 
 void draw() {
