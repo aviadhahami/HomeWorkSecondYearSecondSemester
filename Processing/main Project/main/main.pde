@@ -62,7 +62,7 @@ void setup() {
   statusFlag = -1;
   base = new BaseWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize, people, tasks.size());
   base.generate();
-  top = new TopWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize, tasks, people.peek());
+  top = new TopWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize, tasks, raziel);
   top.generateWaitingPosition();
 
 
@@ -94,7 +94,6 @@ void mousePressed() {
       {
         System.out.println("Task amount picked, moving to waiting");
 
-
         top.generateWaitingPosition();
         statusFlag = -1;
         break;
@@ -105,14 +104,20 @@ void mousePressed() {
 
 //key up listener
 void keyReleased() {
-  if (statusFlag == 0) {
-    if (key == CODED) {
-      if (keyCode == 39) {
-        //right key
+  if (key == CODED) {
+    if (keyCode == 39) {
+      //right key
+      if (statusFlag ==0) {
         top.generateTaskChooser();
-      } else if (keyCode == 37) {
-        //left key
+      } else if (statusFlag == 1) {
+        top.generateTaskAmountChooser();
+      }
+    } else if (keyCode == 37) {
+      //left key
+      if (statusFlag ==0) {
         top.generateTaskChooser();
+      } else if (statusFlag == 1) {
+        top.generateTaskAmountChooser();
       }
     }
   }

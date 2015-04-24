@@ -70,7 +70,7 @@ class TopWheel {
       //clicked left
       case(37):
       { 
-        System.out.println("left");
+        //System.out.println("left");
         currentItemInTasksArray = currentItemInTasksArray == 0 ? 0 : --currentItemInTasksArray;
         image(tasksToIconsHash.get(taskNames[currentItemInTasksArray]), iconX, iconY, iconWidth, iconHeight);
         text(taskNames[currentItemInTasksArray], xPos - fontSize*2, yPos);
@@ -80,7 +80,7 @@ class TopWheel {
       //clicked right
       case(39):
       {
-        System.out.println("right");
+        //System.out.println("right");
         currentItemInTasksArray = currentItemInTasksArray == taskNames.length-1 ? taskNames.length-1 : ++currentItemInTasksArray;
         image(tasksToIconsHash.get(taskNames[currentItemInTasksArray]), iconX, iconY, iconWidth, iconHeight);
         text(taskNames[currentItemInTasksArray], xPos - fontSize*2, yPos);
@@ -119,7 +119,7 @@ class TopWheel {
     }
     return table;
   }
-
+//maping each task to his proper icon
   Hashtable<String, PImage> mapTasksToIcons() {
     Hashtable<String, PImage> table = new Hashtable();
     for (Task t : tasks) {
