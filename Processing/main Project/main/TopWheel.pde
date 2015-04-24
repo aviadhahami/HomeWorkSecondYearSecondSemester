@@ -49,15 +49,20 @@ class TopWheel {
 
   void generateTaskChooser() {
     drawBase(255);
-    int fontSize = 20;
+    int fontSize = 35;
     initText(fontSize, 73, 137, 204);
+    
     String[] tasksNameArray = mapTasksToArray();
-    for(String s : tasksNameArray){
+
+    //on click show the task
+
+    text("this is a test", xPos - fontSize*2, yPos);
+
+    for (String s : tasksNameArray) {
       System.out.println(s);
     }
-    
-    text("this is a test", xPos - fontSize*2, yPos);
   }
+  //iterating all tasks in the tasks list, returns an array with all the names
   String[] mapTasksToArray() {
     LinkedList<String> list = new LinkedList();
     for (Task t : tasks) {
