@@ -18,7 +18,7 @@ void setup() {
   background(bgColor);
 
   Person david = new Person("David", new personColor(0, 0, 255));
-  Person anna = new Person("anna", new personColor(255, 0, 255));
+  Person anna = new Person("Anna", new personColor(255, 0, 255));
   people = new Person[2];
   david.increaseAmountOfTasks();
   david.increaseAmountOfTasks();
@@ -26,12 +26,13 @@ void setup() {
   people[0] = david;
   people[1] = anna;
   //everything is dead after this
-  noLoop();
+  //noLoop();
+  flag = true;
 }
 
 void draw() {
   int baseWheelSize = windowWidth/2;
-  baseWheel base = new baseWheel(windowWidth/2, windowHeight/2, baseWheelSize, baseWheelSize, people,10);
+  baseWheel base = new baseWheel(windowWidth/2, windowHeight/2, baseWheelSize, baseWheelSize, people, 5);
   base.generate();
 }
 

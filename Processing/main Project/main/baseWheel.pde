@@ -12,7 +12,7 @@ class baseWheel {
     this.cHeight = cHeight;
 
     this.people = people;
-    this.currentAngel = PI*1.5;
+    this.currentAngel = PI*1.5; // head of cicrle  
 
     this.amountOfTasks = amountOfTasks;
   }
@@ -21,10 +21,14 @@ class baseWheel {
   void generate() {
     //initiate base white circle
     drawBase();
-    noStroke();
+    //noStroke();
+    stroke(150);
     for (Person p : people) {
       for (int i=0; i<p.getAmountOfTasks (); i++) {
-        fill(p.getColor().getGrayScale());
+        int r = p.getColor().getR();
+        int g = p.getColor().getG();
+        int b  =p.getColor().getB();
+        fill(r, g, b);
         arc(xPos, yPos, cWidth, cHeight, currentAngel, currentAngel + getArcSpan(), PIE); 
 
         increaseCurrentAngel();
@@ -41,10 +45,11 @@ class baseWheel {
   }
   void increaseCurrentAngel() {
     currentAngel += getArcSpan();
-    currentAngel = currentAngel > 2*PI ? 2*PI : currentAngel;
+    currentAngel = currentAngel > 2*PI*amountOfTasks ? 2*PI*amountOfTasks : currentAngel;
   }
   void decreaseCurrentAngel() {
     currentAngel -= getArcSpan();
     currentAngel = currentAngel < 0 ? 0 : currentAngel;
   }
 }
+
