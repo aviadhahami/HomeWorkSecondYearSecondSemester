@@ -11,6 +11,8 @@ int bgColorB = 180;
 
 Person[] people;
 Task[] tasks;
+BaseWheel base;
+TopWheel top;
 
 void setup() {
   this.windowWidth = displayWidth;
@@ -37,15 +39,16 @@ void setup() {
   tasks[3] = new Task("Trash", "trash.png", 1);
   //everything is dead after this
   //noLoop();
+  int BaseWheelSize = windowWidth/2;
+  int tasksNumber;
+  base = new BaseWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize, people, tasks.length);
+  base.generate();
+  top = new TopWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize, tasks);
+  top.generate();
 }
 
 void draw() {
-  int BaseWheelSize = windowWidth/2;
-  int tasksNumber;
-  BaseWheel base = new BaseWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize, people, tasks.length);
-  base.generate();
-  TopWheel top = new TopWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize, tasks);
-  top.draw();
-  top.generate();
+
+  this.top.listen();
 }
 

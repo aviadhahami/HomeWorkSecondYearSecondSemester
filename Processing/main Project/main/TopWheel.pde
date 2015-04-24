@@ -25,7 +25,8 @@ class TopWheel {
     this.iconY = this.yPos - this.cWidth/2 + 50;
   }
 
-  void draw() {
+  void listen() {
+    ellipse(0,0,100,100);
     if (overCircle(0, 0, 100) ) {
       System.out.println("hover");
     }else{
