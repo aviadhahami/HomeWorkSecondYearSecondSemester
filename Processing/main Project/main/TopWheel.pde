@@ -10,6 +10,8 @@ class TopWheel {
   float cWidth, cHeight;
   LinkedList<Task> tasks;
 
+  int currentItemInTasksArray;
+
   public TopWheel(int xPos, int yPos, int cWidth, int cHeight, LinkedList<Task> tasks) {
     this.xPos = xPos;
     this.yPos = yPos;
@@ -23,6 +25,8 @@ class TopWheel {
 
     this.iconX = this.xPos - this.iconWidth/2;
     this.iconY = this.yPos - this.cWidth/2 + 50;
+
+    this.currentItemInTasksArray = 0;
   }
 
   //listenenes to mouse hover
@@ -54,12 +58,44 @@ class TopWheel {
     //mapping the tasks to hash and to task names array for easy iterating
     Hashtable<String, Integer> tasksNamesAndAmount = mapTasksToHash();
     String[] taskNames = getTaskNamesArray();
-
-    for (String n : taskNames) {
-      System.out.println(n + " x" + tasksNamesAndAmount.get(n));
+    switch(keyCode) {
+      //clicked left
+      case(37):
+      { 
+        System.out.println("left");
+        currentItemInTasksArray = currentItemInTasksArray == 0 ? 0 : --currentItemInTasksArray;
+        text(taskNames[currentItemInTasksArray], xPos - fontSize*2, yPos);
+        break;
+      }
+      //clicked right
+      case(39):
+      {
+        System.out.println("right");
+        currentItemInTasksArray = currentItemInTasksArray == taskNames.length-1 ? taskNames.length-1 : ++currentItemInTasksArray;
+        text(taskNames[currentItemInTasksArray], xPos - fontSize*2, yPos);
+        break;
+      }
+      //first run
+      case(0):
+      {
+        System.out.println("first time");
+        text(taskNames[currentItemInTasksArray], xPos - fontSize*2, yPos);
+        break;
+      }
     }
+    /*for (String n : taskNames) {
+     System.out.println(n + " x" + tasksNamesAndAmount.get(n));
+     }*/
+    //System.out.println(keyCode);
     //on click show the task
-    text("this is a test", xPos - fontSize*2, yPos);
+  }
+
+  //shows the amount of options per task
+  void generateTaskAmountChooser() {
+    drawBase(255);
+    int fontSize = 35;
+    initText(fontSize, 73, 137, 204);
+    text("Pick the amount", xPos - fontSize*2, yPos);
   }
   //iterating all tasks in the tasks list, returns an array with all the names
   Hashtable<String, Integer> mapTasksToHash() {

@@ -81,18 +81,33 @@ void mousePressed() {
         System.out.println("Task picked, showing status");
         //need to initiate scrolling wheel
         //need to retrieve what the user clicked on
-        
+        top.generateTaskAmountChooser();
         statusFlag = 1;
         break;
       }
       case(1):
       {
         System.out.println("Task amount picked, moving to waiting");
-        
-        
+
+
         top.generateWaitingPosition();
         statusFlag = -1;
         break;
+      }
+    }
+  }
+}
+
+//key up listener
+void keyReleased() {
+  if (statusFlag == 0) {
+    if (key == CODED) {
+      if (keyCode == 39) {
+        //right key
+        top.generateTaskChooser();
+      } else if (keyCode == 37) {
+        //left key
+        top.generateTaskChooser();
       }
     }
   }
