@@ -57,6 +57,7 @@ class TopWheel {
     initText(fontSize, 73, 137, 204);
     //mapping the tasks to hash and to task names array for easy iterating
     Hashtable<String, Integer> tasksNamesAndAmount = mapTasksToHash();
+    Hashtable<String, PImage> tasksToIconsHash = mapTasksToIcons();
     String[] taskNames = getTaskNamesArray();
     switch(keyCode) {
       //clicked left
@@ -64,6 +65,7 @@ class TopWheel {
       { 
         System.out.println("left");
         currentItemInTasksArray = currentItemInTasksArray == 0 ? 0 : --currentItemInTasksArray;
+        image(tasksToIconsHash.get(taskNames[currentItemInTasksArray]), iconX, iconY, iconWidth, iconHeight);
         text(taskNames[currentItemInTasksArray], xPos - fontSize*2, yPos);
         break;
       }
@@ -72,6 +74,7 @@ class TopWheel {
       {
         System.out.println("right");
         currentItemInTasksArray = currentItemInTasksArray == taskNames.length-1 ? taskNames.length-1 : ++currentItemInTasksArray;
+        image(tasksToIconsHash.get(taskNames[currentItemInTasksArray]), iconX, iconY, iconWidth, iconHeight);
         text(taskNames[currentItemInTasksArray], xPos - fontSize*2, yPos);
         break;
       }
@@ -79,6 +82,7 @@ class TopWheel {
       case(0):
       {
         System.out.println("first time");
+        image(tasksToIconsHash.get(taskNames[currentItemInTasksArray]), iconX, iconY, iconWidth, iconHeight);
         text(taskNames[currentItemInTasksArray], xPos - fontSize*2, yPos);
         break;
       }
@@ -107,6 +111,17 @@ class TopWheel {
         table.put(t.getName(), table.get(t.getName()) + 1 );
       }
     }
+    return table;
+  }
+
+  Hashtable<String, PImage> mapTasksToIcons() {
+    Hashtable<String, PImage> table = new Hashtable();
+    for (Task t : tasks) {
+      if (! table.containsKey(t.getName())) {
+        table.put(t.getName(), t.getIcon());
+      }
+    }
+
     return table;
   }
   String[] getTaskNamesArray() {
