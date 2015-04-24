@@ -141,7 +141,10 @@ class TopWheel {
         //System.out.println("left");
         this.currentTaskAmout =  this.currentTaskAmout == 0 ? 0 : --this.currentTaskAmout;
         //increase active person tasks
-        updateActivePersonTasks(true);
+        if (currentTaskAmout >= 0 ) {
+          updateActivePersonTasks(true);
+        }
+
         break;
       }
       //clicked right
@@ -150,7 +153,10 @@ class TopWheel {
         //System.out.println("right");
         this.currentTaskAmout =this.currentTaskAmout == this.currentTaskOriginAmount ? this.currentTaskOriginAmount : ++this.currentTaskAmout;
         //decrease active person tasks
-        updateActivePersonTasks(false);
+        if ( currentTaskAmout <= currentTaskOriginAmount) {
+          updateActivePersonTasks(false);
+        }
+
         break;
       }
       //first run
@@ -168,6 +174,7 @@ class TopWheel {
     //generate new base wheel
     BaseWheel updatedBase = new BaseWheel(xPos, yPos, ellipseRad, ellipseRad, people, amountOfTasks);
     updatedBase.generate();
+
     //draw upper wheel
     drawBase(255);
     int fontSize = 35;
@@ -184,20 +191,18 @@ class TopWheel {
     for (Person p : people) {
       if (p.getName() == activePerson.getName()) {
         if (actionFlag) {
-          if (! (p.getAmountOfTasks()+1 > currentTaskOriginAmount)) {
-            p.increaseAmountOfTasks();
-          }
+          p.increaseAmountOfTasks();
         } else {
-          if (! (p.getAmountOfTasks() -1 < 0)) {
-            p.decreaseAmountOfTasks();
-          }
+          p.decreaseAmountOfTasks();
         }
       }
       newList.add(p);
-      // System.out.println(p.getAmountOfTasks());
     }
     this.people = newList;
+    // System.out.println(p.getAmountOfTasks());
   }
+
+
   //iterating all tasks in the tasks list, returns an array with all the names
   Hashtable<String, Integer> mapTasksToHash() {
     Hashtable<String, Integer> table = new Hashtable(); 

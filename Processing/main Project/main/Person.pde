@@ -11,17 +11,22 @@ class Person {
   PersonColor getColor() {
     return this.c;
   }
-  String getName(){
+  String getName() {
     return this.name;
   }
-  int getAmountOfTasks(){
+  int getAmountOfTasks() {
     return this.amountOfTasks;
   }
-  void increaseAmountOfTasks(){
+  void setAmountOfTasks(int n) {
+    this.amountOfTasks = n;
+  }
+  void increaseAmountOfTasks() {
     this.amountOfTasks++;
   }
-  void decreaseAmountOfTasks(){
-    this.amountOfTasks--;
+  void decreaseAmountOfTasks() {
+    if (!( this.amountOfTasks == 0)) {
+      this.amountOfTasks--;
+    }
   }
 }
 
