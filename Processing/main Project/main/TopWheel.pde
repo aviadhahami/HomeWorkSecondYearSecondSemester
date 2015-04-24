@@ -24,13 +24,13 @@ class TopWheel {
     this.iconX = this.xPos - this.iconWidth/2;
     this.iconY = this.yPos - this.cWidth/2 + 50;
   }
-  
+
   //listenenes to mouse hover
   void listen() {
     if (overCircle(0, 0, 100) ) {
       //System.out.println("hover");
-    }else{
-       //System.out.println("====");
+    } else {
+      //System.out.println("====");
     }
   }
 
@@ -45,6 +45,27 @@ class TopWheel {
     PImage waitingIcon = new PImage();
     waitingIcon = loadImage("images/clock.png"); //loading clock image as place holder
     image(waitingIcon, iconX, iconY, iconWidth, iconHeight);
+  }
+
+  void generateTaskChooser() {
+    drawBase(255);
+    int fontSize = 20;
+    initText(fontSize, 73, 137, 204);
+    String[] tasksNameArray = mapTasksToArray();
+    for(String s : tasksNameArray){
+      System.out.println(s);
+    }
+    
+    text("this is a test", xPos - fontSize*2, yPos);
+  }
+  String[] mapTasksToArray() {
+    LinkedList<String> list = new LinkedList();
+    for (Task t : tasks) {
+      if (! list.contains(t.getName())) {
+        list.add(t.getName());
+      }
+    }
+    return list.toArray(new String[list.size()]);
   }
   void drawBase(int c) {
     noStroke();

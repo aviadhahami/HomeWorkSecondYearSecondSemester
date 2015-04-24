@@ -63,18 +63,25 @@ void mousePressed() {
       case(-1):
       {
         System.out.println("User clicked, showing tasks");
+        top.generateTaskChooser();
         statusFlag = 0;
         break;
       }
       case(0):
       {
         System.out.println("Task picked, showing status");
+        //need to initiate scrolling wheel
+        //need to retrieve what the user clicked on
+        
         statusFlag = 1;
         break;
       }
       case(1):
       {
         System.out.println("Task amount picked, moving to waiting");
+        
+        
+        top.generateWaitingPosition();
         statusFlag = -1;
         break;
       }
@@ -83,7 +90,6 @@ void mousePressed() {
 }
 
 void draw() {
-
   this.top.listen();
 }
 
