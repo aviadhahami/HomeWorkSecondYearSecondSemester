@@ -1,3 +1,6 @@
+import java.util.*;
+
+
 boolean TRUE = true;
 boolean FALSE = false;
 boolean DEBUG = TRUE;
@@ -29,7 +32,7 @@ void setup() {
   anna.increaseAmountOfTasks();
   people[0] = david;
   people[1] = anna;
-
+LinkedList<Integer> myList = new LinkedList();
   //instansiate tasks
 
   tasks = new Task[4];
@@ -50,10 +53,10 @@ void setup() {
 
 //mouse click listener
 void mousePressed() {
-  if (top.overCircle(windowWidth/2,windowHeight/2,500)){
+  if (top.overCircle(windowWidth/2, windowHeight/2, 500)) {
     //should start task pick sequence here
     top.drawBase(0);
-   // top.generate();
+    // top.generate();
   }
 }
 
