@@ -36,7 +36,7 @@ void setup() {
   tasks[2] = new Task("Cooking", "food.png", 1);
   tasks[3] = new Task("Trash", "trash.png", 1);
   //everything is dead after this
-  noLoop();
+  //noLoop();
 }
 
 void draw() {
@@ -45,6 +45,7 @@ void draw() {
   BaseWheel base = new BaseWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize, people, tasks.length);
   base.generate();
   TopWheel top = new TopWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize, tasks);
+  top.draw();
   top.generate();
 }
 
