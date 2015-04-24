@@ -11,6 +11,9 @@ class Person {
   PersonColor getColor() {
     return this.c;
   }
+  String getName(){
+    return this.name;
+  }
   int getAmountOfTasks(){
     return this.amountOfTasks;
   }

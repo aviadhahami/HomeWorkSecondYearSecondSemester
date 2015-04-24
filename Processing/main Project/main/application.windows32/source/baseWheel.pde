@@ -1,11 +1,13 @@
-
+//BUGS:
+//We override other tasks if we get more tasks than places on the wheel
+//fuck im tired
 class BaseWheel {
   int wheelColor = 255;
   int xPos, yPos, cWidth, cHeight;
   float currentAngel;
-  Person[] people;
+  LinkedList<Person> people;
   int amountOfTasks;
-  public BaseWheel(int xPos, int yPos, int cWidth, int cHeight, Person[] people, int amountOfTasks) {
+  public BaseWheel(int xPos, int yPos, int cWidth, int cHeight, LinkedList<Person> people, int amountOfTasks) {
     this.xPos = xPos;
     this.yPos = yPos;
     this.cWidth = cWidth;
@@ -42,7 +44,7 @@ class BaseWheel {
   }
   void drawBase() {
     noStroke();
-    fill(216,223,234);
+    fill(216, 223, 234);
     ellipse(xPos, yPos, cWidth, cWidth);
   }
   void increaseCurrentAngel() {

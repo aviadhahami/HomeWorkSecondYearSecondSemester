@@ -1,6 +1,7 @@
 class TopWheel {
 
   final static String PLACEHOLDER = "System is waiting...";
+  final static float DEVISION_CONSTANT = 1.2;
 
   float iconWidth, iconHeight;
   float iconX, iconY;
@@ -17,15 +18,19 @@ class TopWheel {
   PImage currentTaskIcon;
   int currentTaskOriginAmount;
 
+  int amountOfTasks;
+
   Person activePerson;
 
   TaskDots activePersonDots;
 
-  public TopWheel(int xPos, int yPos, int cWidth, int cHeight, LinkedList<Task> tasks, Person person) {
+  LinkedList<Person> people;
+
+  public TopWheel(int xPos, int yPos, int cWidth, int cHeight, LinkedList<Task> tasks, LinkedList<Person> people, Person person) {
     this.xPos = xPos;
     this.yPos = yPos;
-    this.cWidth = cWidth/1.2;
-    this.cHeight = cHeight/1.2;
+    this.cWidth = cWidth/DEVISION_CONSTANT;
+    this.cHeight = cHeight/DEVISION_CONSTANT;
     this.tasks = tasks;
 
 
@@ -37,8 +42,11 @@ class TopWheel {
 
     this.currentItemInTasksArray = 0;
 
-
     this.activePerson = person;
+
+    this.amountOfTasks = tasks.size();
+
+    this.people = people;
   }
 
   //listenenes to mouse hover
@@ -124,17 +132,16 @@ class TopWheel {
   void generateTaskAmountChooser() {
     this.activePersonDots = new TaskDots(this.cWidth, this.cHeight, this.cWidth, activePerson);
     //init stuff
-    drawBase(255);
-    int fontSize = 35;
-    initText(fontSize, 73, 137, 204);
 
-
+    //update amount of current tasks for a given key press
     switch(keyCode) {
       //clicked left
       case(37):
       { 
         //System.out.println("left");
         this.currentTaskAmout =  this.currentTaskAmout == 0 ? 0 : --this.currentTaskAmout;
+        //increase active person tasks
+        updateActivePersonTasks(true);
         break;
       }
       //clicked right
@@ -142,24 +149,58 @@ class TopWheel {
       {
         //System.out.println("right");
         this.currentTaskAmout =this.currentTaskAmout == this.currentTaskOriginAmount ? this.currentTaskOriginAmount : ++this.currentTaskAmout;
+        //decrease active person tasks
+        updateActivePersonTasks(false);
         break;
       }
       //first run
       case(0):
       {
         System.out.println("first time");
+        //don't ask me about the following line.
+        this.currentTaskAmout = this.currentTaskAmout;
         break;
       }
     }
-    
+    //draw bottom wheel
+    //moving from float to int
+    int ellipseRad = Math.round(cWidth*DEVISION_CONSTANT);
+    //generate new base wheel
+    BaseWheel updatedBase = new BaseWheel(xPos, yPos, ellipseRad, ellipseRad, people, amountOfTasks);
+    updatedBase.generate();
+    //draw upper wheel
+    drawBase(255);
+    int fontSize = 35;
+    initText(fontSize, 73, 137, 204);
     //display icons
     image(this.currentTaskIcon, iconX, iconY, iconWidth, iconHeight);
     text(this.currentTaskName, xPos - fontSize*2, yPos);
     activePersonDots.generateDots(this.currentTaskAmout);
   }
+
+  void updateActivePersonTasks(boolean actionFlag) {
+    //true means we increase
+    LinkedList<Person> newList = new LinkedList<Person>();
+    for (Person p : people) {
+      if (p.getName() == activePerson.getName()) {
+        if (actionFlag) {
+          if (! (p.getAmountOfTasks()+1 > currentTaskOriginAmount)) {
+            p.increaseAmountOfTasks();
+          }
+        } else {
+          if (! (p.getAmountOfTasks() -1 < 0)) {
+            p.decreaseAmountOfTasks();
+          }
+        }
+      }
+      newList.add(p);
+      // System.out.println(p.getAmountOfTasks());
+    }
+    this.people = newList;
+  }
   //iterating all tasks in the tasks list, returns an array with all the names
   Hashtable<String, Integer> mapTasksToHash() {
-    Hashtable<String, Integer> table = new Hashtable();
+    Hashtable<String, Integer> table = new Hashtable(); 
     for (Task t : tasks) {
       if (! table.containsKey(t.getName())) {
         table.put(t.getName(), 1);
@@ -171,7 +212,7 @@ class TopWheel {
   }
   //maping each task to his proper icon
   Hashtable<String, PImage> mapTasksToIcons() {
-    Hashtable<String, PImage> table = new Hashtable();
+    Hashtable<String, PImage> table = new Hashtable(); 
     for (Task t : tasks) {
       if (! table.containsKey(t.getName())) {
         table.put(t.getName(), t.getIcon());
@@ -181,7 +222,7 @@ class TopWheel {
     return table;
   }
   String[] getTaskNamesArray() {
-    LinkedList<String> list = new LinkedList();
+    LinkedList<String> list = new LinkedList(); 
     for (Task t : tasks) {
       if (! list.contains(t.getName())) {
         list.add(t.getName());
@@ -190,19 +231,19 @@ class TopWheel {
     return list.toArray(new String[list.size()]);
   }
   void drawBase(int c) {
-    noStroke();
-    fill(c);
+    noStroke(); 
+    fill(c); 
     ellipse(xPos, yPos, cWidth, cWidth);
   }
   void initText(int fSize, int r, int g, int b) {
-    textFont(createFont("Arial", fSize));
+    textFont(createFont("Arial", fSize)); 
     fill(r, g, b);
   }
 
   void showTask(Task t) {
-    int fontSize=32;
-    initText(fontSize, 0, 0, 0);
-    text(t.getName(), xPos - fontSize*4, yPos);
+    int fontSize=32; 
+    initText(fontSize, 0, 0, 0); 
+    text(t.getName(), xPos - fontSize*4, yPos); 
     image(t.getIcon(), this.iconX, this.iconY, iconWidth, iconHeight);
   }
 
@@ -210,8 +251,8 @@ class TopWheel {
 
   //mouse hover listener
   boolean overCircle(int x, int y, int diameter) {
-    float disX = x - mouseX;
-    float disY = y - mouseY;
+    float disX = x - mouseX; 
+    float disY = y - mouseY; 
     if (sqrt(sq(disX) + sq(disY)) < diameter/2 ) {
       return true;
     } else {

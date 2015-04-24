@@ -17,7 +17,6 @@ class PersonColor {
     return this.b;
   }
   int getGrayScale() {
-    return (this.r+this.b+this.g)/3;
+    return (this.r + this.g + this.b)/3;
   }
 }
-

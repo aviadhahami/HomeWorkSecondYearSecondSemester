@@ -62,7 +62,7 @@ void setup() {
   statusFlag = -1;
   base = new BaseWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize, people, tasks.size());
   base.generate();
-  top = new TopWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize, tasks, raziel);
+  top = new TopWheel(windowWidth/2, windowHeight/2, BaseWheelSize, BaseWheelSize, tasks,people, raziel);
   top.generateWaitingPosition();
 
 
