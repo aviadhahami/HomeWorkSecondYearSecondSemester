@@ -25,50 +25,53 @@ public class MergeSort implements Sort {
 
 	private void mergeSort(int i_Low, int i_High) {
 
-		// check if low is smaller then high, if not then the array is sorted
+		// check if item @ low position is smaller then the item @ high
+		// position, if not then the array is sorted
 		if (i_Low < i_High) {
 
-			// Get the index of the element which is in the middle
+			// get index in the middle of those two buddies
 			int i_ArrayMiddle = i_Low + (i_High - i_Low) / 2;
 
-			// Sort the left side of the array
+			// map the left side of the array to mergeSort recursively
 			mergeSort(i_Low, i_ArrayMiddle);
 
-			// Sort the right side of the array
+			// map the right side of the array to mergeSort recursively
 			mergeSort(i_ArrayMiddle + 1, i_High);
 
-			// Combine them both
+			// reduce results
 			merge(i_Low, i_ArrayMiddle, i_High);
 		}
 	}
 
 	private void merge(int i_Low, int i_Middle, int i_High) {
 
-		// Copy both parts into the helper array
+		// Copy both parts to the helper array and start the reduce.
 		for (int i = i_Low; i <= i_High; i++) {
 			m_HelperArray[i] = m_NumbersArray[i];
 		}
 
-		int i = i_Low;
-		int j = i_Middle + 1;
-		int k = i_Low;
-		// Copy the smallest values from either the left or the right side back
-		// to the original array
-		while (i <= i_Middle && j <= i_High) {
-			if (m_HelperArray[i] <= m_HelperArray[j]) {
-				m_NumbersArray[k] = m_HelperArray[i];
-				i++;
+		int i_LeftSidePointer = i_Low;
+		int i_RightSidePointer = i_Middle + 1;
+		int i_LeftSideMarchingPointer = i_Low;
+
+		// Handpick the smaller value between the two parts of the helper array
+		// and inject it to output array
+		while (i_LeftSidePointer <= i_Middle && i_RightSidePointer <= i_High) {
+			if (m_HelperArray[i_LeftSidePointer] <= m_HelperArray[i_RightSidePointer]) {
+				m_NumbersArray[i_LeftSideMarchingPointer] = m_HelperArray[i_LeftSidePointer];
+				i_LeftSidePointer++;
 			} else {
-				m_NumbersArray[k] = m_HelperArray[j];
-				j++;
+				m_NumbersArray[i_LeftSideMarchingPointer] = m_HelperArray[i_RightSidePointer];
+				i_RightSidePointer++;
 			}
-			k++;
+			i_LeftSideMarchingPointer++;
 		}
-		// Copy the rest of the left side of the array into the target array
-		while (i <= i_Middle) {
-			m_NumbersArray[k] = m_HelperArray[i];
-			k++;
-			i++;
+
+		// we might have some leftovers from the LHS of the helper. copy them in
+		while (i_LeftSidePointer <= i_Middle) {
+			m_NumbersArray[i_LeftSideMarchingPointer] = m_HelperArray[i_LeftSidePointer];
+			i_LeftSideMarchingPointer++;
+			i_LeftSidePointer++;
 		}
 
 	}
