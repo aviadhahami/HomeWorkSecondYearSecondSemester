@@ -81,38 +81,77 @@ public class MergeSortModified implements Sort {
 		// remove b[0] from b
 		// return c
 		// end func*/
-		
-		//allocate pointers
-		int i_LeftPointer =0;
-		int i_RightPointer =0;
-		int i_MiddlePointer =0;
-		
+
+		// allocate pointers
+		int i_LeftPointer = 0;
+		int i_RightPointer = 0;
+		int i_MiddlePointer = 0;
+
 		ArrayList<Integer> i_SortedArray = new ArrayList<Integer>(io_LeftArray.length * 3);
-		
-		int i_CurrentItemFromLeft, i_CurrentItemFromMiddle, i_CurrentItemFromRight;
-		//start merging
+
+		int i_CurrentItemFromLeft = 0;
+		int i_CurrentItemFromMiddle = 0;
+		int i_CurrentItemFromRight = 0;
+		// start merging
 		while (CheckIfHasElements(io_LeftArray) && CheckIfHasElements(io_MiddleArray) && CheckIfHasElements(io_RightArray)) {
-			
-			//for making this shit readable, we put them in variables
-			i_CurrentItemFromLeft=io_LeftArray[i_LeftPointer];
+
+			// for making this shit readable, we put them in variables
+			i_CurrentItemFromLeft = io_LeftArray[i_LeftPointer];
 			i_CurrentItemFromMiddle = io_MiddleArray[i_MiddlePointer];
 			i_CurrentItemFromRight = io_RightArray[i_RightPointer];
-			
-			//now we can play like grown-ups
-			if(i_CurrentItemFromLeft >= i_CurrentItemFromMiddle && i_CurrentItemFromMiddle >= i_CurrentItemFromRight){
-				//means the item from the left pack is the biggest
+
+			// now we can play like grown-ups
+			if (i_CurrentItemFromLeft >= i_CurrentItemFromMiddle && i_CurrentItemFromMiddle >= i_CurrentItemFromRight) {
+				// means the item from the left pack is the biggest
 				i_SortedArray.add(i_CurrentItemFromLeft);
 				i_LeftPointer++;
-			}else if(i_CurrentItemFromMiddle >= i_CurrentItemFromLeft && i_CurrentItemFromMiddle >= i_CurrentItemFromRight){
-				//means the elements from the middle pack is the biggest
+			} else if (i_CurrentItemFromMiddle >= i_CurrentItemFromLeft && i_CurrentItemFromMiddle >= i_CurrentItemFromRight) {
+				// means the elements from the middle pack is the biggest
 				i_SortedArray.add(i_CurrentItemFromLeft);
 				i_MiddlePointer++;
-			}else if(i_CurrentItemFromRight >= i_CurrentItemFromLeft && i_CurrentItemFromRight >= i_CurrentItemFromMiddle){
+			} else if (i_CurrentItemFromRight >= i_CurrentItemFromLeft && i_CurrentItemFromRight >= i_CurrentItemFromMiddle) {
 				i_SortedArray.add(i_CurrentItemFromRight);
 				i_RightPointer++;
 			}
 
 		}
+
+		// Now we need to do something with the remaining stuff
+		while (CheckIfHasElements(io_LeftArray)) {
+			i_SortedArray.add(i_CurrentItemFromLeft);
+			i_LeftPointer++;
+		}
+		while (CheckIfHasElements(io_MiddleArray)) {
+			i_SortedArray.add(i_CurrentItemFromMiddle);
+			i_MiddlePointer++;
+		}
+		while (CheckIfHasElements(io_RightArray)) {
+			i_SortedArray.add(i_CurrentItemFromRight);
+			i_RightPointer++;
+		}
+
+		return convertIntegerArrayListToIntegerArray(i_SortedArray);
+	}
+
+	/*
+	 * long name for iterator
+	 */
+	private int[] convertIntegerArrayListToIntegerArray(ArrayList<Integer> i_SortedArray) {
+		
+		// fixed size
+		i_SortedArray.trimToSize();
+		
+		// allocate size
+		int[] io_CopiedArray = new int[i_SortedArray.size()];
+		int i_CopyPointer = 0;
+		
+		// copy from the array list to array
+		for (int i_currentItem : i_SortedArray) {
+			io_CopiedArray[i_CopyPointer] = i_currentItem;
+			i_CopyPointer++;
+		}
+		
+		return io_CopiedArray;
 	}
 
 	/*
