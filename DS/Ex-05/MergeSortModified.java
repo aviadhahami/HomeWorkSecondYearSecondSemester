@@ -4,73 +4,39 @@
  */
 public class MergeSortModified implements Sort {
 	/*
-	 * Normal merge sort implementation
+	 * Divide by 3 merge sort
 	 */
+	
+/*	func mergesort( var a as array )
+    if ( n == 1 ) return a
 
-	private int[] m_NumbersArray;
-	private int[] m_HelperArray;
+    var l1 as array = a[0] ... a[n/2]
+    var l2 as array = a[n/2+1] ... a[n]
 
-	private int m_ArraySize;
+    l1 = mergesort( l1 )
+    l2 = mergesort( l2 )
 
-	public int[] sort(int[] input) {
-		this.m_NumbersArray = input;
-		this.m_ArraySize = input.length;
-		this.m_HelperArray = new int[m_ArraySize];
-		mergeSort(0, --m_ArraySize );
+    return merge( l1, l2 )
+end func
 
-		return this.m_NumbersArray;
-	}
+func merge( var a as array, var b as array )
+    var c as array
 
-	private void mergeSort(int i_Low, int i_High) {
-
-		// check if item @ low position is smaller then the item @ high
-		// position, if not then the array is sorted
-		if (i_Low < i_High) {
-
-			// get index in the middle of those two buddies
-			int i_ArrayMiddle = i_Low + (i_High - i_Low) / 2;
-
-			// map the left side of the array to mergeSort recursively
-			mergeSort(i_Low, i_ArrayMiddle);
-
-			// map the right side of the array to mergeSort recursively
-			mergeSort(i_ArrayMiddle + 1, i_High);
-
-			// reduce results
-			merge(i_Low, i_ArrayMiddle, i_High);
-		}
-	}
-
-	private void merge(int i_Low, int i_Middle, int i_High) {
-
-		// Copy both parts to the helper array and start the reduce.
-		for (int i = i_Low; i <= i_High; i++) {
-			m_HelperArray[i] = m_NumbersArray[i];
-		}
-
-		int i_LeftSidePointer = i_Low;
-		int i_RightSidePointer = i_Middle + 1;
-		int i_LeftSideMarchingPointer = i_Low;
-
-		// Handpick the smaller value between the two parts of the helper array
-		// and inject it to output array
-		while (i_LeftSidePointer <= i_Middle && i_RightSidePointer <= i_High) {
-			if (m_HelperArray[i_LeftSidePointer] <= m_HelperArray[i_RightSidePointer]) {
-				m_NumbersArray[i_LeftSideMarchingPointer] = m_HelperArray[i_LeftSidePointer];
-				i_LeftSidePointer++;
-			} else {
-				m_NumbersArray[i_LeftSideMarchingPointer] = m_HelperArray[i_RightSidePointer];
-				i_RightSidePointer++;
-			}
-			i_LeftSideMarchingPointer++;
-		}
-
-		// we might have some leftovers from the LHS of the helper. copy them in
-		while (i_LeftSidePointer <= i_Middle) {
-			m_NumbersArray[i_LeftSideMarchingPointer] = m_HelperArray[i_LeftSidePointer];
-			i_LeftSideMarchingPointer++;
-			i_LeftSidePointer++;
-		}
-
-	}
+    while ( a and b have elements )
+         if ( a[0] > b[0] )
+              add b[0] to the end of c
+              remove b[0] from b
+         else
+              add a[0] to the end of c
+              remove a[0] from a
+    while ( a has elements )
+         add a[0] to the end of c
+         remove a[0] from a
+    while ( b has elements )
+         add b[0] to the end of c
+         remove b[0] from b
+    return c
+end func*/
+	
+	
 }
