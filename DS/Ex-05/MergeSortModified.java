@@ -10,7 +10,7 @@ public class MergeSortModified implements Sort {
 	 */
 	public int[] sort(int[] i_InputArray) {
 		ArrayList<Integer> io_GivenArray = new ArrayList<>();
-		for (Integer i_currentIntFromInput : io_GivenArray) {
+		for (Integer i_currentIntFromInput : i_InputArray) {
 			io_GivenArray.add(i_currentIntFromInput);
 		}
 		io_GivenArray.trimToSize();
@@ -21,7 +21,7 @@ public class MergeSortModified implements Sort {
 	 * Actual sorter, the previous one is just to meet interface
 	 */
 	private ArrayList<Integer> mergeSortThreeWay(ArrayList<Integer> i_InputArray) {
-		if (i_InputArray.size() == 1) {
+		if (i_InputArray.size() <= 1) {
 			return i_InputArray;
 		}
 		// calculate array size divided by three
@@ -61,9 +61,9 @@ public class MergeSortModified implements Sort {
 		ArrayList<Integer> i_RightArray = new ArrayList<>(io_RightArray.size());
 
 		// copy the stuff
-		i_LeftArray.addAll(i_LeftArray);
-		i_MiddleArray.addAll(i_MiddleArray);
-		i_RightArray.addAll(i_RightArray);
+		i_LeftArray.addAll(io_LeftArray);
+		i_MiddleArray.addAll(io_MiddleArray);
+		i_RightArray.addAll(io_RightArray);
 
 		// initalize some containers
 		int i_CurrentLeftElement, i_CurrentMiddleElement, i_CurrentRightElement;
