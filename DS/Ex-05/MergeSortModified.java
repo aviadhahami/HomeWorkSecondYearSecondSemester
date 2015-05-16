@@ -16,7 +16,7 @@ public class MergeSortModified implements Sort {
 		this.m_NumbersArray = input;
 		this.m_ArraySize = input.length;
 		this.m_HelperArray = new int[m_ArraySize];
-		mergeSort(0, m_ArraySize - 1);
+		mergeSort(0, --m_ArraySize );
 
 		return this.m_NumbersArray;
 	}
