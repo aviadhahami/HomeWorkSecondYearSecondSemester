@@ -21,21 +21,23 @@ public class BucketSort implements Sort {
 		ArrayList<LinkedList<Integer>> buckets = new ArrayList<LinkedList<Integer>>();
 
 		// Creates new ar.length buckets
-		for (int i = 0; i < io_InputArray.length; i++) {
+		for (int i = 0; i < io_InputArray.length + 1; i++) {
 			buckets.add(new LinkedList<Integer>());
 		}
 
 		// Sorts each value to its destined bucket
-		int i_PositionFormula;
+		double i_PositionFormula;
 		int i_ArraySize = io_InputArray.length;
-
+		int i_MinMaxDiferential = i_ArrayMaximalValue - i_ArrayMinimalValue;
 		for (int i = 0; i < io_InputArray.length; i++) {
-			i_PositionFormula = ((io_InputArray[i] - i_ArrayMinimalValue) / i_ArrayMaximalValue) * i_ArraySize;
-			buckets.get(i_PositionFormula).add(io_InputArray[i]);
+			i_PositionFormula = (io_InputArray[i] - i_ArrayMinimalValue);
+			i_PositionFormula /= i_MinMaxDiferential;
+			i_PositionFormula *= i_ArraySize;
+			Math.floor(i_PositionFormula);
+			buckets.get((int) i_PositionFormula).add(io_InputArray[i]);
 		}
 
 		// Sorts each bucket, using Insertion Sort
-
 		InsertionSort insertion = new InsertionSort();
 		int cur = 0;
 
