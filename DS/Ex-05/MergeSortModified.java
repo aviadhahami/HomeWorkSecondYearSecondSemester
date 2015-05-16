@@ -65,43 +65,84 @@ public class MergeSortModified implements Sort {
 		i_MiddleArray.addAll(io_MiddleArray);
 		i_RightArray.addAll(io_RightArray);
 
-		// initalize some containers
+		// Initialize some containers
 		int i_CurrentLeftElement, i_CurrentMiddleElement, i_CurrentRightElement;
-		while (listHasMoreElements(i_LeftArray) && listHasMoreElements(i_MiddleArray) && listHasMoreElements(i_RightArray)) {
 
-			// make it stylish
-			i_CurrentLeftElement = i_LeftArray.get(0);
-			i_CurrentMiddleElement = i_MiddleArray.get(0);
-			i_CurrentRightElement = i_RightArray.get(0);
+		// that's a bit different from the regular merge
+		while (listHasMoreElements(i_LeftArray) || listHasMoreElements(i_MiddleArray) || listHasMoreElements(i_RightArray)) {
 
-			// filter by smallest
-			if (i_CurrentLeftElement <= i_CurrentRightElement && i_CurrentLeftElement <= i_CurrentMiddleElement) {
-				i_SortedArray.add(i_CurrentLeftElement);
-				i_LeftArray.remove(0);
-			} else if (i_CurrentMiddleElement <= i_CurrentLeftElement && i_CurrentMiddleElement <= i_CurrentRightElement) {
-				i_SortedArray.add(i_CurrentMiddleElement);
-				i_MiddleArray.remove(0);
-			} else {
-				i_SortedArray.add(i_CurrentRightElement);
-				i_RightArray.remove(0);
+			// first iteration over all three
+			while (listHasMoreElements(i_LeftArray) && listHasMoreElements(i_MiddleArray) && listHasMoreElements(i_RightArray)) {
+				// make it stylish
+				i_CurrentLeftElement = i_LeftArray.get(0);
+				i_CurrentMiddleElement = i_MiddleArray.get(0);
+				i_CurrentRightElement = i_RightArray.get(0);
+
+				// filter by smallest
+				if (i_CurrentLeftElement <= i_CurrentRightElement && i_CurrentLeftElement <= i_CurrentMiddleElement) {
+					i_SortedArray.add(i_CurrentLeftElement);
+					i_LeftArray.remove(0);
+				} else if (i_CurrentMiddleElement <= i_CurrentLeftElement && i_CurrentMiddleElement <= i_CurrentRightElement) {
+					i_SortedArray.add(i_CurrentMiddleElement);
+					i_MiddleArray.remove(0);
+				} else {
+					i_SortedArray.add(i_CurrentRightElement);
+					i_RightArray.remove(0);
+				}
+
 			}
 
-		}
+			// left and mid iterator...
+			while (listHasMoreElements(i_LeftArray) && listHasMoreElements(i_MiddleArray)) {
+				// make it stylish
+				i_CurrentLeftElement = i_LeftArray.get(0);
+				i_CurrentMiddleElement = i_MiddleArray.get(0);
 
-		while (listHasMoreElements(i_LeftArray)) {
-			i_CurrentLeftElement = i_LeftArray.get(0);
-			i_SortedArray.add(i_CurrentLeftElement);
-			i_LeftArray.remove(0);
-		}
-		while (listHasMoreElements(i_MiddleArray)) {
-			i_CurrentMiddleElement = i_MiddleArray.get(0);
-			i_SortedArray.add(i_CurrentMiddleElement);
-			i_MiddleArray.remove(0);
-		}
-		while (listHasMoreElements(i_LeftArray)) {
-			i_CurrentRightElement = i_RightArray.get(0);
-			i_SortedArray.add(i_CurrentRightElement);
-			i_RightArray.remove(0);
+				// filter by smallest
+				if (i_CurrentLeftElement <= i_CurrentMiddleElement) {
+					i_SortedArray.add(i_CurrentLeftElement);
+					i_LeftArray.remove(0);
+				} else {
+					i_SortedArray.add(i_CurrentMiddleElement);
+					i_MiddleArray.remove(0);
+				}
+
+			}
+
+			// left and right
+			while (listHasMoreElements(i_LeftArray) && listHasMoreElements(i_RightArray)) {
+				// make it stylish
+				i_CurrentLeftElement = i_LeftArray.get(0);
+				i_CurrentRightElement = i_RightArray.get(0);
+
+				// filter by smallest
+				if (i_CurrentLeftElement <= i_CurrentRightElement) {
+					i_SortedArray.add(i_CurrentLeftElement);
+					i_LeftArray.remove(0);
+				} else {
+					i_SortedArray.add(i_CurrentRightElement);
+					i_RightArray.remove(0);
+				}
+
+			}
+
+			// right and mid
+			while (listHasMoreElements(i_MiddleArray) && listHasMoreElements(i_RightArray)) {
+				// make it stylish
+				i_CurrentMiddleElement = i_MiddleArray.get(0);
+				i_CurrentRightElement = i_RightArray.get(0);
+
+				// filter by smallest
+				if (i_CurrentMiddleElement <= i_CurrentRightElement) {
+					i_SortedArray.add(i_CurrentMiddleElement);
+					i_MiddleArray.remove(0);
+				} else {
+					i_SortedArray.add(i_CurrentRightElement);
+					i_RightArray.remove(0);
+				}
+
+			}
+
 		}
 		return i_SortedArray;
 	}
