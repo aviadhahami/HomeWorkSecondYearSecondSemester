@@ -32,6 +32,7 @@ public class MergeSortModified implements Sort {
 		System.arraycopy(i_InputArray, i_CurrentSizeDividedByThree + 1, io_MiddleArray, 0, i_CurrentSizeDividedByThree);
 		System.arraycopy(i_InputArray, 2 * i_CurrentSizeDividedByThree + 1, io_RightArray, 0, i_CurrentSizeDividedByThree);
 
+		
 		// send to sorter
 		io_LeftArray = mergeSortThreeWay(io_LeftArray);
 		io_MiddleArray = mergeSortThreeWay(io_MiddleArray);
@@ -57,11 +58,41 @@ public class MergeSortModified implements Sort {
 
 		// initalize some containers
 		int i_CurrentLeftElement, i_CurrentMiddleElement, i_CurrentRightElement;
-		while (CheckIfHasElements(i_LeftArray) && CheckIfHasElements(i_MiddleArray) && CheckIfHasElements(i_RightArray)) {
+		while (listHasMoreElements(i_LeftArray) && listHasMoreElements(i_MiddleArray) && listHasMoreElements(i_RightArray)) {
+
+			// make it stylish
 			i_CurrentLeftElement = i_LeftArray.get(0);
 			i_CurrentMiddleElement = i_MiddleArray.get(0);
 			i_CurrentRightElement = i_RightArray.get(0);
-			
+
+			// filter by smallest
+			if (i_CurrentLeftElement <= i_CurrentRightElement && i_CurrentLeftElement <= i_CurrentMiddleElement) {
+				i_SortedArray.add(i_CurrentLeftElement);
+				i_LeftArray.remove(0);
+			} else if (i_CurrentMiddleElement <= i_CurrentLeftElement && i_CurrentMiddleElement <= i_CurrentRightElement) {
+				i_SortedArray.add(i_CurrentMiddleElement);
+				i_MiddleArray.remove(0);
+			} else {
+				i_SortedArray.add(i_CurrentRightElement);
+				i_RightArray.remove(0);
+			}
+
+		}
+
+		while (listHasMoreElements(i_LeftArray)) {
+			i_CurrentLeftElement = i_LeftArray.get(0);
+			i_SortedArray.add(i_CurrentLeftElement);
+			i_LeftArray.remove(0);
+		}
+		while (listHasMoreElements(i_MiddleArray)) {
+			i_CurrentMiddleElement = i_MiddleArray.get(0);
+			i_SortedArray.add(i_CurrentMiddleElement);
+			i_MiddleArray.remove(0);
+		}
+		while (listHasMoreElements(i_LeftArray)) {
+			i_CurrentRightElement = i_RightArray.get(0);
+			i_SortedArray.add(i_CurrentRightElement);
+			i_RightArray.remove(0);
 		}
 		return convertIntegerArrayListToIntegerArray(i_SortedArray);
 	}
@@ -90,7 +121,7 @@ public class MergeSortModified implements Sort {
 	/*
 	 * returns true if the given array has elements
 	 */
-	private boolean CheckIfHasElements(ArrayList<Integer> i_arr) {
+	private boolean listHasMoreElements(ArrayList<Integer> i_arr) {
 		return i_arr.size() == 0 ? false : true;
 	}
 
