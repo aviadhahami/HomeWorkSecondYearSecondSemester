@@ -10,25 +10,31 @@ public class MergeSortModified implements Sort {
 /*	func mergesort( var a as array )
     if ( n == 1 ) return a
 
-    var l1 as array = a[0] ... a[n/2]
-    var l2 as array = a[n/2+1] ... a[n]
+    
+    size = n/3
+    l1 = a[0] .. a[size]
+    l2 = a[size+1]..a[size*2]
+    l3 = a[size*2 + 1]..a[length-1]
 
     l1 = mergesort( l1 )
     l2 = mergesort( l2 )
+    l3 = mergesort( l3 )
 
-    return merge( l1, l2 )
+    return merge( l1, l2, l3 )
 end func
 
-func merge( var a as array, var b as array )
-    var c as array
+func merge( l1,l3,l3)
+    var result as array
 
-    while ( a and b have elements )
+    while ( a and b and c )
          if ( a[0] > b[0] )
               add b[0] to the end of c
               remove b[0] from b
          else
               add a[0] to the end of c
               remove a[0] from a
+              
+              
     while ( a has elements )
          add a[0] to the end of c
          remove a[0] from a
@@ -37,6 +43,16 @@ func merge( var a as array, var b as array )
          remove b[0] from b
     return c
 end func*/
-	
+public int[] sort(int[] io_InputArray) {
+	//TODO : check for needed shit
+		return mergeSortThreeWay(io_InputArray);
+}
+
+	private int[] mergeSortThreeWay(int[] i_InputArray) {
+		if (i_InputArray.length == 1) {
+			return i_InputArray;
+		}
+
+	}
 	
 }
