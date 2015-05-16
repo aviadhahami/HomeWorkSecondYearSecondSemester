@@ -142,7 +142,10 @@ public class MergeSortModified implements Sort {
 				}
 
 			}
-
+			i_SortedArray.addAll(i_LeftArray);
+			i_SortedArray.addAll(i_MiddleArray);
+			i_SortedArray.addAll(i_RightArray);
+			break;
 		}
 		return i_SortedArray;
 	}
