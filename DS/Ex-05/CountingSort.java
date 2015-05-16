@@ -18,24 +18,22 @@ public class CountingSort implements Sort {
 		return countingSort(input, io_MinValueInArray, io_MaxValueInArray);
 	}
 
-	public int[] countingSort(int[] a, int low, int high) {
-		int[] counts = new int[high - low + 1]; // this will hold all possible
-												// values, from low to high
-		for (int x : a)
-			counts[x - low]++; // - low so the lowest possible value is always 0
+	public int[] countingSort(int[] io_InputArray, int io_MinValueInArray, int io_MaxValueInArray) {
+		// this will hold all possible values, from low to high
 
-		int current = 0;
+		int[] counts = new int[io_MaxValueInArray - io_MinValueInArray + 1];
+
+		for (int i_CurrenyArrayItem : io_InputArray)
+			// - low so the lowest possible value is always 0
+			counts[i_CurrenyArrayItem - io_MinValueInArray]++;
+
+		int i_CurrentNumber = 0;
 		for (int i = 0; i < counts.length; i++) {
-			Arrays.fill(a, current, current + counts[i], i + low); // fills
-																	// counts[i]
-																	// elements
-																	// of value
-																	// i + low
-																	// in
-																	// current
-			current += counts[i]; // leap forward by counts[i] steps
+			// fills counts[i] elements of value i + low in current
+			Arrays.fill(io_InputArray, i_CurrentNumber, i_CurrentNumber + counts[i], i + io_MinValueInArray);
+			i_CurrentNumber += counts[i]; // leap forward by counts[i] steps
 		}
-		return a;
+		return io_InputArray;
 	}
 
 }
