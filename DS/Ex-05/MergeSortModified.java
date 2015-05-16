@@ -24,7 +24,7 @@ public class MergeSortModified implements Sort {
 		final E[] buffer = array.clone();
 		sortImpl(buffer, array, fromIndex, toIndex);
 	}
-
+	//test
 	private static <E extends Comparable<? super E>> void sortImpl(final E[] source, final E[] target, final int fromIndex, final int toIndex) {
 		final int RANGE_LENGTH = toIndex - fromIndex;
 
