@@ -40,7 +40,7 @@ public class MergeSortModified implements Sort {
 			return i_InputArray;
 		}
 		// calculate array size divided by three
-		int i_CurrentSizeDividedByThree = i_InputArray.length / 3;
+		int i_CurrentSizeDividedByThree = (i_InputArray.length - 1) / 3;
 
 		// allocate new arrays for further usage
 		int[] io_LeftArray = new int[i_CurrentSizeDividedByThree];
@@ -49,7 +49,7 @@ public class MergeSortModified implements Sort {
 
 		// copy arrays to new allocations
 		System.arraycopy(i_InputArray, 0, io_LeftArray, 0, i_CurrentSizeDividedByThree);
-		System.arraycopy(i_InputArray, ++i_CurrentSizeDividedByThree, io_MiddleArray, 0, i_CurrentSizeDividedByThree);
+		System.arraycopy(i_InputArray, i_CurrentSizeDividedByThree + 1, io_MiddleArray, 0, i_CurrentSizeDividedByThree);
 		System.arraycopy(i_InputArray, 2 * i_CurrentSizeDividedByThree + 1, io_RightArray, 0, i_CurrentSizeDividedByThree);
 
 		// send to sorter
@@ -96,10 +96,22 @@ public class MergeSortModified implements Sort {
 		while (CheckIfHasElements(io_LeftArray) && CheckIfHasElements(io_MiddleArray) && CheckIfHasElements(io_RightArray)) {
 
 			// for making this shit readable, we put them in variables
-			i_CurrentItemFromLeft = io_LeftArray[i_LeftPointer];
-			i_CurrentItemFromMiddle = io_MiddleArray[i_MiddlePointer];
-			i_CurrentItemFromRight = io_RightArray[i_RightPointer];
-
+			try {
+				i_CurrentItemFromLeft = io_LeftArray[i_LeftPointer];
+			} catch (ArrayIndexOutOfBoundsException e) {
+				// means the array is finished
+				i_CurrentItemFromLeft = Integer.MIN_VALUE;
+			}
+			try {
+				i_CurrentItemFromMiddle = io_MiddleArray[i_MiddlePointer];
+			} catch (ArrayIndexOutOfBoundsException e) {
+				i_CurrentItemFromMiddle = Integer.MIN_VALUE;
+			}
+			try {
+				i_CurrentItemFromRight = io_RightArray[i_RightPointer];
+			} catch (ArrayIndexOutOfBoundsException e) {
+				i_CurrentItemFromRight = Integer.MIN_VALUE;
+			}
 			// now we can play like grown-ups
 			if (i_CurrentItemFromLeft >= i_CurrentItemFromMiddle && i_CurrentItemFromMiddle >= i_CurrentItemFromRight) {
 				// means the item from the left pack is the biggest
@@ -137,20 +149,20 @@ public class MergeSortModified implements Sort {
 	 * long name for iterator
 	 */
 	private int[] convertIntegerArrayListToIntegerArray(ArrayList<Integer> i_SortedArray) {
-		
+
 		// fixed size
 		i_SortedArray.trimToSize();
-		
+
 		// allocate size
 		int[] io_CopiedArray = new int[i_SortedArray.size()];
 		int i_CopyPointer = 0;
-		
+
 		// copy from the array list to array
 		for (int i_currentItem : i_SortedArray) {
 			io_CopiedArray[i_CopyPointer] = i_currentItem;
 			i_CopyPointer++;
 		}
-		
+
 		return io_CopiedArray;
 	}
 
