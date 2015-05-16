@@ -13,16 +13,18 @@ public class BucketSort implements Sort {
 		int i_ArrayMinimalValue = io_InputArray[0];
 		int i_ArrayMaximalValue = io_InputArray[0];
 
+		//find range
 		for (int i_CurrentNumberFromInput : io_InputArray) {
 			i_ArrayMinimalValue = Math.min(i_ArrayMinimalValue, i_CurrentNumberFromInput);
 			i_ArrayMaximalValue = Math.max(i_ArrayMaximalValue, i_CurrentNumberFromInput);
 		}
 
-		ArrayList<LinkedList<Integer>> buckets = new ArrayList<LinkedList<Integer>>();
+		
+		ArrayList<LinkedList<Integer>> i_Buckets = new ArrayList<LinkedList<Integer>>();
 
 		// Creates new ar.length buckets
 		for (int i = 0; i < io_InputArray.length + 1; i++) {
-			buckets.add(new LinkedList<Integer>());
+			i_Buckets.add(new LinkedList<Integer>());
 		}
 
 		// Sorts each value to its destined bucket
@@ -34,28 +36,28 @@ public class BucketSort implements Sort {
 			i_PositionFormula /= i_MinMaxDiferential;
 			i_PositionFormula *= i_ArraySize;
 			Math.floor(i_PositionFormula);
-			buckets.get((int) i_PositionFormula).add(io_InputArray[i]);
+			i_Buckets.get((int) i_PositionFormula).add(io_InputArray[i]);
 		}
 
 		// Sorts each bucket, using Insertion Sort
-		InsertionSort insertion = new InsertionSort();
-		int cur = 0;
+		InsertionSort i_insertionSort = new InsertionSort();
+		int i_currentBucket = 0;
 
-		for (int i = 0; i < buckets.size(); i++) {
+		for (int i = 0; i < i_Buckets.size(); i++) {
 
 			// Copies each bucket from a LinkedList form to an array form
-			int[] tempBucket = new int[buckets.get(i).size()];
+			int[] i_TempBucket = new int[i_Buckets.get(i).size()];
 
-			for (int j = 0; j < tempBucket.length; j++) {
-				tempBucket[j] = buckets.get(i).get(j);
+			for (int j = 0; j < i_TempBucket.length; j++) {
+				i_TempBucket[j] = i_Buckets.get(i).get(j);
 			}
 
 			// Sorts the bucket
-			insertion.sort(tempBucket);
+			i_insertionSort.sort(i_TempBucket);
 
 			// Concatenates the buckets into one array
-			System.arraycopy(tempBucket, 0, io_InputArray, cur, buckets.get(i).size());
-			cur += buckets.get(i).size();
+			System.arraycopy(i_TempBucket, 0, io_InputArray, i_currentBucket, i_Buckets.get(i).size());
+			i_currentBucket += i_Buckets.get(i).size();
 		}
 		return io_InputArray;
 	}
