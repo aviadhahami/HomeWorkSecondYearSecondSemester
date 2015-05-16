@@ -13,7 +13,7 @@ public class SortTest {
 
 		testSort(mergeSort, "MergeSort", inputArrayCopy1);
 		testSort(mergeSortModified, "MergeSortModified", inputArrayCopy2);
-		//testSort(bucketSort, "BucketSort", inputArrayCopy3);
+		testSort(bucketSort, "BucketSort", inputArrayCopy3);
 		testSort(countingSort, "CountingSort", inputArrayCopy4);
 
 	}

@@ -1,4 +1,8 @@
 
+/**
+ * @author aviadh
+ *
+ */
 public class BucketSort implements Sort{
 
 	public int[] sort(int[] input) {

@@ -1,3 +1,7 @@
+/**
+ * @author aviadh
+ *
+ */
 public class CountingSort implements Sort {
 
 	public int[] sort(int[] input) {
