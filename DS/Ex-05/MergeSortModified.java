@@ -52,7 +52,31 @@ public int[] sort(int[] io_InputArray) {
 		if (i_InputArray.length == 1) {
 			return i_InputArray;
 		}
-
+		//calculate array size divided by three
+		int i_CurrentSizeDividedByThree = i_InputArray.length / 3;
+		
+		//allocate new arrays for further usage
+		int[] io_LeftArray = new int[i_CurrentSizeDividedByThree];
+		int[] io_MiddleArray = new int[i_CurrentSizeDividedByThree];
+		int[] io_RightArray = new int[i_CurrentSizeDividedByThree];
+		
+		//copy arrays to new allocations
+		System.arraycopy(i_InputArray, 0, io_LeftArray, 0, i_CurrentSizeDividedByThree);
+		System.arraycopy(i_InputArray, ++i_CurrentSizeDividedByThree, io_MiddleArray, 0, i_CurrentSizeDividedByThree);
+		System.arraycopy(i_InputArray, 2 * i_CurrentSizeDividedByThree + 1, io_RightArray, 0, i_CurrentSizeDividedByThree);
+		
+		//send to sorter
+		io_LeftArray = mergeSortThreeWay(io_LeftArray);
+		io_MiddleArray = mergeSortThreeWay(io_MiddleArray);
+		io_RightArray = mergeSortThreeWay(io_RightArray);
+		
+		return merge(io_LeftArray,io_MiddleArray,io_RightArray);
 	}
+
+	private int[] merge(int[] io_LeftArray, int[] io_MiddleArray, int[] io_RightArray) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }
