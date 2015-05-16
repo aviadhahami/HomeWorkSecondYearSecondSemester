@@ -95,10 +95,6 @@ public class MergeSortModified implements Sort {
 		// start merging
 		while (CheckIfHasElements(io_LeftArray) && CheckIfHasElements(io_MiddleArray) && CheckIfHasElements(io_RightArray)) {
 
-			if (Integer.MIN_VALUE == i_CurrentItemFromLeft && i_CurrentItemFromMiddle == i_CurrentItemFromLeft
-					&& i_CurrentItemFromRight == i_CurrentItemFromMiddle) {
-				break;
-			}
 			// for making this shit readable, we put them in variables
 			try {
 				i_CurrentItemFromLeft = io_LeftArray[i_LeftPointer];
@@ -116,35 +112,32 @@ public class MergeSortModified implements Sort {
 			} catch (ArrayIndexOutOfBoundsException e) {
 				i_CurrentItemFromRight = Integer.MIN_VALUE;
 			}
-
-			finally {
-				// now we can play like grown-ups
-				if (i_CurrentItemFromLeft >= i_CurrentItemFromMiddle && i_CurrentItemFromMiddle >= i_CurrentItemFromRight) {
-					// means the item from the left pack is the biggest
-					i_SortedArray.add(i_CurrentItemFromLeft);
-					i_LeftPointer++;
-				} else if (i_CurrentItemFromMiddle >= i_CurrentItemFromLeft && i_CurrentItemFromMiddle >= i_CurrentItemFromRight) {
-					// means the elements from the middle pack is the biggest
-					i_SortedArray.add(i_CurrentItemFromLeft);
-					i_MiddlePointer++;
-				} else if (i_CurrentItemFromRight >= i_CurrentItemFromLeft && i_CurrentItemFromRight >= i_CurrentItemFromMiddle) {
-					i_SortedArray.add(i_CurrentItemFromRight);
-					i_RightPointer++;
-				}
-
+			// now we can play like grown-ups
+			if (i_CurrentItemFromLeft >= i_CurrentItemFromMiddle && i_CurrentItemFromMiddle >= i_CurrentItemFromRight) {
+				// means the item from the left pack is the biggest
+				i_SortedArray.add(i_CurrentItemFromLeft);
+				i_LeftPointer++;
+			} else if (i_CurrentItemFromMiddle >= i_CurrentItemFromLeft && i_CurrentItemFromMiddle >= i_CurrentItemFromRight) {
+				// means the elements from the middle pack is the biggest
+				i_SortedArray.add(i_CurrentItemFromLeft);
+				i_MiddlePointer++;
+			} else if (i_CurrentItemFromRight >= i_CurrentItemFromLeft && i_CurrentItemFromRight >= i_CurrentItemFromMiddle) {
+				i_SortedArray.add(i_CurrentItemFromRight);
+				i_RightPointer++;
 			}
+
 		}
 
 		// Now we need to do something with the remaining stuff
-		while (i_LeftPointer < io_LeftArray.length) {
+		while (CheckIfHasElements(io_LeftArray)) {
 			i_SortedArray.add(i_CurrentItemFromLeft);
 			i_LeftPointer++;
 		}
-		while (i_MiddlePointer < io_MiddleArray.length) {
+		while (CheckIfHasElements(io_MiddleArray)) {
 			i_SortedArray.add(i_CurrentItemFromMiddle);
 			i_MiddlePointer++;
 		}
-		while (i_RightPointer < io_RightArray.length) {
+		while (CheckIfHasElements(io_RightArray)) {
 			i_SortedArray.add(i_CurrentItemFromRight);
 			i_RightPointer++;
 		}
