@@ -8,33 +8,13 @@ public class MergeSortModified implements Sort {
 	/*
 	 * Divide by 3 merge sort
 	 */
-
-	/*
-	 * func mergesort( var a as array ) if ( n == 1 ) return a
-	 * 
-	 * 
-	 * size = n/3 l1 = a[0] .. a[size] l2 = a[size+1]..a[size*2] l3 = a[size*2 +
-	 * 1]..a[length-1]
-	 * 
-	 * l1 = mergesort( l1 ) l2 = mergesort( l2 ) l3 = mergesort( l3 )
-	 * 
-	 * return merge( l1, l2, l3 ) end func
-	 * 
-	 * func merge( l1,l3,l3) var result as array
-	 * 
-	 * while ( a and b and c ) if ( a[0] > b[0] ) add b[0] to the end of c
-	 * remove b[0] from b else add a[0] to the end of c remove a[0] from a
-	 * 
-	 * 
-	 * while ( a has elements ) add a[0] to the end of c remove a[0] from a
-	 * while ( b has elements ) add b[0] to the end of c remove b[0] from b
-	 * return c end func
-	 */
 	public int[] sort(int[] io_InputArray) {
-		// TODO : check for needed shit
 		return mergeSortThreeWay(io_InputArray);
 	}
 
+	/*
+	 * Actual sorter, the previous one is just to meet interface
+	 */
 	private int[] mergeSortThreeWay(int[] i_InputArray) {
 		if (i_InputArray.length == 1) {
 			return i_InputArray;
@@ -49,7 +29,7 @@ public class MergeSortModified implements Sort {
 
 		// copy arrays to new allocations
 		System.arraycopy(i_InputArray, 0, io_LeftArray, 0, i_CurrentSizeDividedByThree);
-		System.arraycopy(i_InputArray, ++i_CurrentSizeDividedByThree, io_MiddleArray, 0, i_CurrentSizeDividedByThree);
+		System.arraycopy(i_InputArray, i_CurrentSizeDividedByThree + 1, io_MiddleArray, 0, i_CurrentSizeDividedByThree);
 		System.arraycopy(i_InputArray, 2 * i_CurrentSizeDividedByThree + 1, io_RightArray, 0, i_CurrentSizeDividedByThree);
 
 		// send to sorter
@@ -61,104 +41,57 @@ public class MergeSortModified implements Sort {
 	}
 
 	private int[] merge(int[] io_LeftArray, int[] io_MiddleArray, int[] io_RightArray) {
-		// func merge( l1,l3,l3)
-		// var result as array
-		//
-		// while ( a and b and c )
-		// if ( a[0] > b[0] )
-		// add b[0] to the end of c
-		// remove b[0] from b
-		// else
-		// add a[0] to the end of c
-		// remove a[0] from a
-		//
-		//
-		// while ( a has elements )
-		// add a[0] to the end of c
-		// remove a[0] from a
-		// while ( b has elements )
-		// add b[0] to the end of c
-		// remove b[0] from b
-		// return c
-		// end func*/
 
-		// allocate pointers
-		int i_LeftPointer = 0;
-		int i_RightPointer = 0;
-		int i_MiddlePointer = 0;
-
+		// allocate array list in triple the size
 		ArrayList<Integer> i_SortedArray = new ArrayList<Integer>(io_LeftArray.length * 3);
 
-		int i_CurrentItemFromLeft = 0;
-		int i_CurrentItemFromMiddle = 0;
-		int i_CurrentItemFromRight = 0;
-		// start merging
-		while (CheckIfHasElements(io_LeftArray) && CheckIfHasElements(io_MiddleArray) && CheckIfHasElements(io_RightArray)) {
+		// allocoate arrays for the inputs
+		ArrayList<Integer> i_LeftArray = new ArrayList<>(io_LeftArray.length);
+		ArrayList<Integer> i_MiddleArray = new ArrayList<>(io_MiddleArray.length);
+		ArrayList<Integer> i_RightArray = new ArrayList<>(io_RightArray.length);
 
-			// for making this shit readable, we put them in variables
-			i_CurrentItemFromLeft = io_LeftArray[i_LeftPointer];
-			i_CurrentItemFromMiddle = io_MiddleArray[i_MiddlePointer];
-			i_CurrentItemFromRight = io_RightArray[i_RightPointer];
+		// copy the stuff
+		i_LeftArray.addAll(i_LeftArray);
+		i_MiddleArray.addAll(i_MiddleArray);
+		i_RightArray.addAll(i_RightArray);
 
-			// now we can play like grown-ups
-			if (i_CurrentItemFromLeft >= i_CurrentItemFromMiddle && i_CurrentItemFromMiddle >= i_CurrentItemFromRight) {
-				// means the item from the left pack is the biggest
-				i_SortedArray.add(i_CurrentItemFromLeft);
-				i_LeftPointer++;
-			} else if (i_CurrentItemFromMiddle >= i_CurrentItemFromLeft && i_CurrentItemFromMiddle >= i_CurrentItemFromRight) {
-				// means the elements from the middle pack is the biggest
-				i_SortedArray.add(i_CurrentItemFromLeft);
-				i_MiddlePointer++;
-			} else if (i_CurrentItemFromRight >= i_CurrentItemFromLeft && i_CurrentItemFromRight >= i_CurrentItemFromMiddle) {
-				i_SortedArray.add(i_CurrentItemFromRight);
-				i_RightPointer++;
-			}
-
+		// initalize some containers
+		int i_CurrentLeftElement, i_CurrentMiddleElement, i_CurrentRightElement;
+		while (CheckIfHasElements(i_LeftArray) && CheckIfHasElements(i_MiddleArray) && CheckIfHasElements(i_RightArray)) {
+			i_CurrentLeftElement = i_LeftArray.get(0);
+			i_CurrentMiddleElement = i_MiddleArray.get(0);
+			i_CurrentRightElement = i_RightArray.get(0);
+			
 		}
-
-		// Now we need to do something with the remaining stuff
-		while (CheckIfHasElements(io_LeftArray)) {
-			i_SortedArray.add(i_CurrentItemFromLeft);
-			i_LeftPointer++;
-		}
-		while (CheckIfHasElements(io_MiddleArray)) {
-			i_SortedArray.add(i_CurrentItemFromMiddle);
-			i_MiddlePointer++;
-		}
-		while (CheckIfHasElements(io_RightArray)) {
-			i_SortedArray.add(i_CurrentItemFromRight);
-			i_RightPointer++;
-		}
-
 		return convertIntegerArrayListToIntegerArray(i_SortedArray);
 	}
 
 	/*
-	 * long name for iterator
+	 * long name for simple iterator
 	 */
 	private int[] convertIntegerArrayListToIntegerArray(ArrayList<Integer> i_SortedArray) {
-		
+
 		// fixed size
 		i_SortedArray.trimToSize();
-		
+
 		// allocate size
 		int[] io_CopiedArray = new int[i_SortedArray.size()];
 		int i_CopyPointer = 0;
-		
+
 		// copy from the array list to array
 		for (int i_currentItem : i_SortedArray) {
 			io_CopiedArray[i_CopyPointer] = i_currentItem;
 			i_CopyPointer++;
 		}
-		
+
 		return io_CopiedArray;
 	}
 
 	/*
 	 * returns true if the given array has elements
 	 */
-	private boolean CheckIfHasElements(int[] i_Array) {
-		return i_Array.length == 0 ? false : true;
+	private boolean CheckIfHasElements(ArrayList<Integer> i_arr) {
+		return i_arr.size() == 0 ? false : true;
 	}
 
 }
