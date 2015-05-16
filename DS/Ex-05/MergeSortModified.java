@@ -88,7 +88,6 @@ public class MergeSortModified implements Sort {
 		int i_MiddlePointer =0;
 		
 		ArrayList<Integer> i_SortedArray = new ArrayList<Integer>(io_LeftArray.length * 3);
-		i_SortedArray.
 		
 		int i_CurrentItemFromLeft, i_CurrentItemFromMiddle, i_CurrentItemFromRight;
 		//start merging
@@ -100,8 +99,17 @@ public class MergeSortModified implements Sort {
 			i_CurrentItemFromRight = io_RightArray[i_RightPointer];
 			
 			//now we can play like grown-ups
-			if(i_CurrentItemFromLeft > i_CurrentItemFromMiddle && i_CurrentItemFromMiddle > i_CurrentItemFromRight){
-				
+			if(i_CurrentItemFromLeft >= i_CurrentItemFromMiddle && i_CurrentItemFromMiddle >= i_CurrentItemFromRight){
+				//means the item from the left pack is the biggest
+				i_SortedArray.add(i_CurrentItemFromLeft);
+				i_LeftPointer++;
+			}else if(i_CurrentItemFromMiddle >= i_CurrentItemFromLeft && i_CurrentItemFromMiddle >= i_CurrentItemFromRight){
+				//means the elements from the middle pack is the biggest
+				i_SortedArray.add(i_CurrentItemFromLeft);
+				i_MiddlePointer++;
+			}else if(i_CurrentItemFromRight >= i_CurrentItemFromLeft && i_CurrentItemFromRight >= i_CurrentItemFromMiddle){
+				i_SortedArray.add(i_CurrentItemFromRight);
+				i_RightPointer++;
 			}
 
 		}
