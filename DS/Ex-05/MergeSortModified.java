@@ -33,14 +33,13 @@ public class MergeSortModified implements Sort {
 		ArrayList<Integer> io_RightArray = new ArrayList<>(i_CurrentSizeDividedByThree);
 		// copy arrays to new allocations
 		for (int i = 0; i < i_InputArray.size(); i++) {
-			if (i < i_CurrentSizeDividedByThree) {
-
-			} else if (i > i_CurrentSizeDividedByThree && i < (i_CurrentSizeDividedByThree * 2)) {
-
+			if (i <= i_CurrentSizeDividedByThree) {
+				io_LeftArray.add(i_InputArray.get(i));
+			} else if (i > i_CurrentSizeDividedByThree && i <= i_CurrentSizeDividedByThree * 2) {
+				io_MiddleArray.add(i_InputArray.get(i));
 			} else {
-
+				io_RightArray.add(i_InputArray.get(i));
 			}
-
 		}
 
 		// send to sorter
@@ -54,12 +53,12 @@ public class MergeSortModified implements Sort {
 	private ArrayList<Integer> merge(ArrayList<Integer> io_LeftArray, ArrayList<Integer> io_MiddleArray, ArrayList<Integer> io_RightArray) {
 
 		// allocate array list in triple the size
-		ArrayList<Integer> i_SortedArray = new ArrayList<Integer>(io_LeftArray.length * 3);
+		ArrayList<Integer> i_SortedArray = new ArrayList<Integer>(io_LeftArray.size() * 3);
 
 		// allocoate arrays for the inputs
-		ArrayList<Integer> i_LeftArray = new ArrayList<>(io_LeftArray.length);
-		ArrayList<Integer> i_MiddleArray = new ArrayList<>(io_MiddleArray.length);
-		ArrayList<Integer> i_RightArray = new ArrayList<>(io_RightArray.length);
+		ArrayList<Integer> i_LeftArray = new ArrayList<>(io_LeftArray.size());
+		ArrayList<Integer> i_MiddleArray = new ArrayList<>(io_MiddleArray.size());
+		ArrayList<Integer> i_RightArray = new ArrayList<>(io_RightArray.size());
 
 		// copy the stuff
 		i_LeftArray.addAll(i_LeftArray);
@@ -104,7 +103,7 @@ public class MergeSortModified implements Sort {
 			i_SortedArray.add(i_CurrentRightElement);
 			i_RightArray.remove(0);
 		}
-		return convertIntegerArrayListToIntegerArray(i_SortedArray);
+		return i_SortedArray;
 	}
 
 	/*
