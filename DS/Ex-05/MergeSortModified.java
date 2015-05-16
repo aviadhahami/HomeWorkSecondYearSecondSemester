@@ -8,31 +8,41 @@ public class MergeSortModified implements Sort {
 	/*
 	 * Divide by 3 merge sort
 	 */
-	public int[] sort(int[] io_InputArray) {
-		return mergeSortThreeWay(io_InputArray);
+	public int[] sort(int[] i_InputArray) {
+		ArrayList<Integer> io_GivenArray = new ArrayList<>();
+		for (Integer i_currentIntFromInput : io_GivenArray) {
+			io_GivenArray.add(i_currentIntFromInput);
+		}
+		io_GivenArray.trimToSize();
+		return convertIntegerArrayListToIntegerArray(mergeSortThreeWay(io_GivenArray));
 	}
 
 	/*
 	 * Actual sorter, the previous one is just to meet interface
 	 */
-	private int[] mergeSortThreeWay(int[] i_InputArray) {
-		if (i_InputArray.length == 1) {
+	private ArrayList<Integer> mergeSortThreeWay(ArrayList<Integer> i_InputArray) {
+		if (i_InputArray.size() == 1) {
 			return i_InputArray;
 		}
 		// calculate array size divided by three
-		int i_CurrentSizeDividedByThree = i_InputArray.length / 3;
+		int i_CurrentSizeDividedByThree = i_InputArray.size() / 3;
 
 		// allocate new arrays for further usage
-		int[] io_LeftArray = new int[i_CurrentSizeDividedByThree];
-		int[] io_MiddleArray = new int[i_CurrentSizeDividedByThree];
-		int[] io_RightArray = new int[i_CurrentSizeDividedByThree];
-
+		ArrayList<Integer> io_LeftArray = new ArrayList<>(i_CurrentSizeDividedByThree);
+		ArrayList<Integer> io_MiddleArray = new ArrayList<>(i_CurrentSizeDividedByThree);
+		ArrayList<Integer> io_RightArray = new ArrayList<>(i_CurrentSizeDividedByThree);
 		// copy arrays to new allocations
-		System.arraycopy(i_InputArray, 0, io_LeftArray, 0, i_CurrentSizeDividedByThree);
-		System.arraycopy(i_InputArray, i_CurrentSizeDividedByThree + 1, io_MiddleArray, 0, i_CurrentSizeDividedByThree);
-		System.arraycopy(i_InputArray, 2 * i_CurrentSizeDividedByThree + 1, io_RightArray, 0, i_CurrentSizeDividedByThree);
+		for (int i = 0; i < i_InputArray.size(); i++) {
+			if (i < i_CurrentSizeDividedByThree) {
 
-		
+			} else if (i > i_CurrentSizeDividedByThree && i < (i_CurrentSizeDividedByThree * 2)) {
+
+			} else {
+
+			}
+
+		}
+
 		// send to sorter
 		io_LeftArray = mergeSortThreeWay(io_LeftArray);
 		io_MiddleArray = mergeSortThreeWay(io_MiddleArray);
@@ -41,7 +51,7 @@ public class MergeSortModified implements Sort {
 		return merge(io_LeftArray, io_MiddleArray, io_RightArray);
 	}
 
-	private int[] merge(int[] io_LeftArray, int[] io_MiddleArray, int[] io_RightArray) {
+	private ArrayList<Integer> merge(ArrayList<Integer> io_LeftArray, ArrayList<Integer> io_MiddleArray, ArrayList<Integer> io_RightArray) {
 
 		// allocate array list in triple the size
 		ArrayList<Integer> i_SortedArray = new ArrayList<Integer>(io_LeftArray.length * 3);
