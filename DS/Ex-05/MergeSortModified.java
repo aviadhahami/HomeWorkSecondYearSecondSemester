@@ -92,6 +92,18 @@ public class MergeSortModified implements Sort {
 
 			}
 
+			/*
+			 * FOLLOWING PART EXPLANATION ! assuming we've arrived here, we can
+			 * tell that we have at least one empty array. Unlike regular merge,
+			 * we can not just "dump" everything inside the main result as we
+			 * have 2 other arrays that may or may not be ordered. Therefore - I
+			 * test all three comparison permutations. At the end of this, I
+			 * still might have one (and one only!) non-empty array, So I just
+			 * dump everything inside and keep going with my life. This thing is
+			 * not pretty, but I have a shit load of homework to complete so I
+			 * will go with this. Please don't show this to job recruiters :)
+			 */
+
 			// left and mid iterator...
 			while (listHasMoreElements(i_LeftArray) && listHasMoreElements(i_MiddleArray)) {
 				// make it stylish
@@ -142,9 +154,13 @@ public class MergeSortModified implements Sort {
 				}
 
 			}
+			
+			//dumping in
 			i_SortedArray.addAll(i_LeftArray);
 			i_SortedArray.addAll(i_MiddleArray);
 			i_SortedArray.addAll(i_RightArray);
+			
+			//ALL IN ! GET OUT !
 			break;
 		}
 		return i_SortedArray;
