@@ -105,7 +105,7 @@ public class MergeSortModified implements Sort {
 			 */
 
 			// left and mid iterator...
-			while (listHasMoreElements(i_LeftArray) && listHasMoreElements(i_MiddleArray)) {
+/*			while (listHasMoreElements(i_LeftArray) && listHasMoreElements(i_MiddleArray)) {
 				// make it stylish
 				i_CurrentLeftElement = i_LeftArray.get(0);
 				i_CurrentMiddleElement = i_MiddleArray.get(0);
@@ -153,7 +153,7 @@ public class MergeSortModified implements Sort {
 					i_RightArray.remove(0);
 				}
 
-			}
+			}*/
 
 			// dumping in
 			i_SortedArray.addAll(i_LeftArray);
