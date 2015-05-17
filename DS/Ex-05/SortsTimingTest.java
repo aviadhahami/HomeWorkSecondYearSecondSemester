@@ -45,7 +45,7 @@ public class SortsTimingTest {
 	
 	
 	public static double calculateAverageSortTime(int size, Sort sort) {
-		int numOfSamples = 	100;
+		int numOfSamples = 	1;
 		long total = 0;
 		for (int i=0; i<numOfSamples; i++) {
 			int [] ar = ArrayFactory.generateRandomArray(size);
