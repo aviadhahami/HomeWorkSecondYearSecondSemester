@@ -1,5 +1,5 @@
 /**
- * @author aviadh
+ * @author Aviad Hahami && Hila Ben Hamo
  *
  */
 
@@ -19,7 +19,7 @@ public class BucketSort implements Sort {
 			i_ArrayMaximalValue = Math.max(i_ArrayMaximalValue, i_CurrentNumberFromInput);
 		}
 
-		
+
 		ArrayList<LinkedList<Integer>> i_Buckets = new ArrayList<LinkedList<Integer>>();
 
 		// Creates new ar.length buckets

@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 /**
- * @author aviadh
+ * @author Aviad Hahami && Hila Ben Hamo
  *
  */
 public class CountingSort implements Sort {

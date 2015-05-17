@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /**
- * @author aviadh
+ * @author Aviad Hahami && Hila Ben Hamo
  *
  */
 public class MergeSortModified implements Sort {

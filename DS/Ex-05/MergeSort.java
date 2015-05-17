@@ -1,5 +1,5 @@
 /**
- * @author aviadh
+ * @author Aviad Hahami && Hila Ben Hamo
  *
  */
 public class MergeSort implements Sort {

@@ -1,3 +1,6 @@
+/*
+ * @author Aviad Hahami && Hila Ben Hamo
+ */
 public class InsertionSort implements Sort {
 
 	public int[] sort(int[] i_InputArray) {
