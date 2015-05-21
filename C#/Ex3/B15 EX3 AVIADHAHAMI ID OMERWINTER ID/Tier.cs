@@ -5,7 +5,7 @@ using System.Text;
 
 namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
 {
-    class Wheel
+    class Tier
     {
         string m_Manufacturer;
         float m_CurrentAirPressure;

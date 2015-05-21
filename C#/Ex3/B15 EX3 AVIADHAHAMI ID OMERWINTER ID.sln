@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex03.GarageLogic", "B15 EX3 AVIADHAHAMI ID OMERWINTER ID\Ex03.GarageLogic.csproj", "{594147B4-669A-435D-89AC-FF6FE885233C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex03.GarageManagmentSystem.ConsoleUI", "Ex03.GarageManagmentSystem.ConsoleUI\Ex03.GarageManagmentSystem.ConsoleUI.csproj", "{94A51970-DBE4-4CEC-AC00-8DE9FF7C9C9D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{594147B4-669A-435D-89AC-FF6FE885233C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{594147B4-669A-435D-89AC-FF6FE885233C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{594147B4-669A-435D-89AC-FF6FE885233C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94A51970-DBE4-4CEC-AC00-8DE9FF7C9C9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94A51970-DBE4-4CEC-AC00-8DE9FF7C9C9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94A51970-DBE4-4CEC-AC00-8DE9FF7C9C9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94A51970-DBE4-4CEC-AC00-8DE9FF7C9C9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
