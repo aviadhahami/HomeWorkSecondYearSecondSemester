@@ -4,7 +4,16 @@
 #include <pthread.h>
 #include "BoundedBuffer.h"
 
+// Create boolean type variable
+typedef int bool;
+
+// Boolean macros
+#define true 1
+#define false 0
+
+// Initialization macros
 #define _INIT_VALUE_ZERO 0
+#define _INIT_VALUE_NULL NULL
 
 /*
  * Initializes the buffer with the specified capacity.
@@ -18,9 +27,9 @@ void bounded_buffer_init(BoundedBuffer *buff, int capacity) {
 	buff->capacity = capacity;
 	buff->head = _INIT_VALUE_ZERO;
 	buff->tail = _INIT_VALUE_ZERO;
-	pthread_mutex_init(&(buff->mutex), NULL);
-	pthread_cond_init(&(buff->cv_empty), NULL);
-	pthread_cond_init(&(buff->cv_full), NULL);
+	pthread_mutex_init(&(buff->mutex), _INIT_VALUE_NULL);
+	pthread_cond_init(&(buff->cv_empty), _INIT_VALUE_NULL);
+	pthread_cond_init(&(buff->cv_full), _INIT_VALUE_NULL);
 	buff->finished = _INIT_VALUE_ZERO;
 }
 
@@ -36,7 +45,7 @@ void bounded_buffer_init(BoundedBuffer *buff, int capacity) {
  */
 int bounded_buffer_enqueue(BoundedBuffer *buff, char *data) {
 
-	// Lock
+	// Enter critical section
 	pthread_mutex_lock(&(buff->mutex));
 
 	// Buffer complete
@@ -45,15 +54,20 @@ int bounded_buffer_enqueue(BoundedBuffer *buff, char *data) {
 		return 0;
 	}
 
-	// Wait for space
-	while (buff->size == buff->capacity) {
+	bool buffSizeEqualsBuffCapacity = buff->size == buff->capacity;
+
+	// We loop until space is freed
+	while (buffSizeEqualsBuffCapacity) {
 		pthread_cond_wait(&(buff->cv_empty), &(buff->mutex));
 
-		// Buffer complete
+		// Check whether buffer completed
 		if (buff->finished) {
 			pthread_mutex_unlock(&(buff->mutex));
 			return 0;
 		}
+
+		// Update the variable
+		buffSizeEqualsBuffCapacity = buff->size == buff->capacity;
 	}
 
 	// Load data to buffer and signal complete
@@ -62,7 +76,7 @@ int bounded_buffer_enqueue(BoundedBuffer *buff, char *data) {
 	buff->size++;
 	pthread_cond_signal(&(buff->cv_full));
 
-	// Unlock
+	// Unlock critical section
 	pthread_mutex_unlock(&(buff->mutex));
 	return 1;
 
@@ -80,18 +94,18 @@ int bounded_buffer_enqueue(BoundedBuffer *buff, char *data) {
 char *bounded_buffer_dequeue(BoundedBuffer *buff) {
 	char* data;
 
-	// Lock
+	// Enter critical section
 	pthread_mutex_lock(&(buff->mutex));
 
-	while (buff->size == 0) {
+	while (buff->size == _INIT_VALUE_ZERO) {
 
-		// Buffer complete
+		// Check if buffer finished
 		if (buff->finished) {
 			pthread_mutex_unlock(&(buff->mutex));
-			return NULL;
+			return _INIT_VALUE_NULL;
 		}
 
-		// Waiting for action.. 
+		// Wait()
 		pthread_cond_wait(&(buff->cv_full), &(buff->mutex));
 	}
 
@@ -101,7 +115,7 @@ char *bounded_buffer_dequeue(BoundedBuffer *buff) {
 	buff->size--;
 	pthread_cond_signal(&(buff->cv_empty));
 
-	// Unlock
+	// Leave critical section and unlock
 	pthread_mutex_unlock(&(buff->mutex));
 	return data;
 }
@@ -114,7 +128,7 @@ char *bounded_buffer_dequeue(BoundedBuffer *buff) {
  */
 void bounded_buffer_finish(BoundedBuffer *buff) {
 
-	// Lock
+	// Enter critical section
 	pthread_mutex_lock(&(buff->mutex));
 
 	// Set finish and notify
@@ -122,7 +136,7 @@ void bounded_buffer_finish(BoundedBuffer *buff) {
 	pthread_cond_signal(&(buff->cv_empty));
 	pthread_cond_signal(&(buff->cv_full));
 
-	// Unlock
+	// Leave critical section and unlock
 	pthread_mutex_unlock(&(buff->mutex));
 }
 
@@ -130,6 +144,8 @@ void bounded_buffer_finish(BoundedBuffer *buff) {
  * Frees the buffer memory and destroys mutex and condition variables.
  */
 void bounded_buffer_destroy(BoundedBuffer *buff) {
+
+	// __Destruct__
 	free(buff->buffer);
 	pthread_mutex_destroy(&(buff->mutex));
 	pthread_cond_destroy(&(buff->cv_empty));
