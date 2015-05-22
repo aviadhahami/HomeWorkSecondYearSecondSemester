@@ -4,6 +4,8 @@
 #include <pthread.h>
 #include "BoundedBuffer.h"
 
+#define _INIT_VALUE_ZERO 0
+
 /*
  * Initializes the buffer with the specified capacity.
  * This function should allocate the buffer, initialize its properties
@@ -12,14 +14,14 @@
  */
 void bounded_buffer_init(BoundedBuffer *buff, int capacity) {
 	buff->buffer = malloc(capacity * sizeof(char*));
-	buff->size = 0;
+	buff->size = _INIT_VALUE_ZERO;
 	buff->capacity = capacity;
-	buff->head = 0;
-	buff->tail = 0;
+	buff->head = _INIT_VALUE_ZERO;
+	buff->tail = _INIT_VALUE_ZERO;
 	pthread_mutex_init(&(buff->mutex), NULL);
 	pthread_cond_init(&(buff->cv_empty), NULL);
 	pthread_cond_init(&(buff->cv_full), NULL);
-	buff->finished = 0;
+	buff->finished = _INIT_VALUE_ZERO;
 }
 
 /*
