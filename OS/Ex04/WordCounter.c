@@ -8,31 +8,37 @@
 #include <sys/stat.h>
 #include "WordCounter.h"
 
+// Size constants
 #define MAX_BOUNDED_BUFF_CAPACITY 50
 #define MAX_LOG_LINE_SIZE 1024
 #define MAX_LINE_SIZE 1024
 #define MAX_DATE_SIZE 25
 
+// Tokens and formats
 #define DATE_FORMAT "%Y-%m-%d %H:%M:%S"
 #define FILE_TOKEN_SEPARATOR "\n"
-#define USAGE "WordCounter pipe_file_name destination_log_file_name\n"
-#define EXIT_MSG "Goodbye!\n"
 
+// User CLI output
+#define SHELL_FORMAT "Follow format : WordCounter <file_name> <destination_logging_file_name>\n"
+#define EXIT_MSG "Program terminated!\n"
 #define PRINT_TO_LOG "Logging results to file %s\n"
-#define WAIT_MSG "Waiting for a connection\n"
-#define CONNECTED_MSG "Connection received\n"
-#define COUNTING_MSG "Counting words for file\n"
+#define WAIT_MSG "Listening..\n"
+#define CONNECTED_MSG "Connection established..\n"
+#define COUNTING_MSG "File words count started..\n"
 #define CMD_EXIT "exit\n"
+
+// Errors stub
 #define ERR_COULD_NOT_CONNECT "Error: could not connect!\n"
 #define ERR_COULD_NOT_OPEN "Error: could not open file %s!\n"
 #define ERR_COULD_NOT_COUNT "Error: could not open file %s for counting!\n"
 
 /*
- * A helper function that prints current time to a string.
- * Time is printed in the format required by exercise specification.
+ *
  */
 void dateprintf(char *buff, int max_size, const char *format) {
+	// Initializes to Jan 1st 1970 UTC
 	time_t timer;
+
 	struct tm *tm_info;
 	time(&timer);
 	tm_info = localtime(&timer);
@@ -94,7 +100,8 @@ void *run_listener(void *param) {
 			while (file_token != NULL) {
 
 				// Get a copy of the file name
-				file_name_copy = malloc((strlen(file_token) + 1) * sizeof(char));
+				file_name_copy = malloc(
+						(strlen(file_token) + 1) * sizeof(char));
 				strcpy(file_name_copy, file_token);
 
 				// Try to enqueue, and check if the application tried to exit
@@ -174,7 +181,7 @@ int count_words_in_file(char *file_name) {
 				in_word = 1; // change flag to true
 				num_words++; // increment number of words count
 
-			// Otherwise if it's whitespace and we were in a word
+				// Otherwise if it's whitespace and we were in a word
 			} else if (!is_alpha && in_word) {
 				in_word = 0; // change flag to false
 			}
@@ -198,7 +205,8 @@ void log_count(WordCounterData *counter_data, char *file_name, int count) {
 	dateprintf(time_buff, MAX_DATE_SIZE, DATE_FORMAT);
 
 	// Save log line to string
-	sprintf(buffer, "%s File: %s || Number of words: %d\n", time_buff, file_name, count);
+	sprintf(buffer, "%s File: %s || Number of words: %d\n", time_buff,
+			file_name, count);
 
 	printf("%s File: %s || Number of words: %d\n", time_buff, file_name, count);
 
@@ -230,7 +238,7 @@ int main(int argc, char *argv[]) {
 
 	// Check argument count
 	if (argc != 3) {
-		printf(USAGE);
+		printf(SHELL_FORMAT);
 		return 1;
 	}
 
@@ -259,8 +267,9 @@ int main(int argc, char *argv[]) {
 	printf(PRINT_TO_LOG, destination_log_file);
 
 	// Start threads
-	pthread_create(&listener, NULL, run_listener, (void*)(&listener_data));
-	pthread_create(&wordcounter, NULL, run_wordcounter, (void*)(&counter_data));
+	pthread_create(&listener, NULL, run_listener, (void*) (&listener_data));
+	pthread_create(&wordcounter, NULL, run_wordcounter,
+			(void*) (&counter_data));
 
 	// Read input in a loop until exit command is given
 	do {
@@ -283,5 +292,4 @@ int main(int argc, char *argv[]) {
 	printf(EXIT_MSG);
 	return 0;
 }
-
 
