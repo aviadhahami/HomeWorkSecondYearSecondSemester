@@ -52,7 +52,7 @@ void *run_wordcounter(void *param);
 /*
  * A word-counting function. Counts the words in file_name and returns the number.
  */
-int count_words_in_file(char *file_name);
+int countwords_in_file(char *file_name);
 
 /*
  * logs the number of words in the file to the output log file.
