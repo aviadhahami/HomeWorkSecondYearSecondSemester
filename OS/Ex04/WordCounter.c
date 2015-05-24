@@ -38,7 +38,6 @@
 void dateprintf(char *buff, int max_size, const char *format) {
 	// Initializes to Jan 1st 1970 UTC
 	time_t timer;
-
 	struct tm *tm_info;
 	time(&timer);
 	tm_info = localtime(&timer);
