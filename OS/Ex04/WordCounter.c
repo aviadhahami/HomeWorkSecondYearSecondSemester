@@ -201,23 +201,26 @@ int countwords_in_file(char *file_name) {
  * logs the number of words in the file to the output log file.
  */
 void log_count(WordCounterData *counter_data, char *file_name, int count) {
-	char buffer[FILE_READ_BUFFER_SIZE], time_buff[MAX_DATE_SIZE];
+	char fileReadBuffer[FILE_READ_BUFFER_SIZE], timeBuffer[MAX_DATE_SIZE];
 
-	// Exit if file could not counted
-	if (count == -1)
+	// Exit method if file is unreachable
+	if (count == -1) {
 		return;
+	}
 
-	// Get time log
-	dateprintf(time_buff, MAX_DATE_SIZE, DATE_FORMAT);
+	// Get current time into @timeBuffer
+	dateprintf(timeBuffer, MAX_DATE_SIZE, DATE_FORMAT);
 
-	// Save log line to string
-	sprintf(buffer, "%s File: %s || Number of words: %d\n", time_buff,
+	// Stringify logged line
+	sprintf(fileReadBuffer, "%s File: %s || Number of words: %d\n", timeBuffer,
 			file_name, count);
 
-	printf("%s File: %s || Number of words: %d\n", time_buff, file_name, count);
+	// CLI output
+	printf("%s File: %s || Number of words: %d\n", timeBuffer, file_name,
+			count);
 
-	// Output line to log file
-	fputs(buffer, counter_data->log_file);
+	// Put @fileReadBuffer into logging file
+	fputs(fileReadBuffer, counter_data->log_file);
 }
 
 /*
@@ -235,66 +238,68 @@ void log_count(WordCounterData *counter_data, char *file_name, int count) {
  * At the end the function should join the threads and exit.
  */
 int main(int argc, char *argv[]) {
-	pthread_t wordcounter, listener;
-	char *pipe_file_name, *destination_log_file;
-	char input_buffer[STDIN_READ_BUFF_SIZE];
-	BoundedBuffer bounded_buff;
-	WordCounterData counter_data;
-	ListenerData listener_data;
+	BoundedBuffer boundedBuffer;
+	WordCounterData wordcounterData;
+	ListenerData listenerData;
+	pthread_t wordcounterThread, listenerThread;
+	char *pipeFileName, *loggingFileLocation;
+	char inputBuffer[STDIN_READ_BUFF_SIZE];
 
-	// Check argument count
+	// Verify CLI input
 	if (argc != 3) {
 		printf(CLI_FORMAT);
 		return 1;
 	}
 
-	// Get arguments
-	pipe_file_name = argv[1];
-	destination_log_file = argv[2];
+	// Parse arguments
+	pipeFileName = argv[1];
+	loggingFileLocation = argv[2];
 
-	// Initialize bounded buffer
-	bounded_buffer_init(&bounded_buff, MAX_BOUNDED_BUFF_CAPACITY);
+	// Initialize bounded buffer & word counter data
+	bounded_buffer_init(&boundedBuffer, MAX_BOUNDED_BUFF_CAPACITY);
+	wordcounterData.buff = &boundedBuffer;
+	wordcounterData.log_file = fopen(loggingFileLocation, "w");
 
-	// Initialize word counter data
-	counter_data.buff = &bounded_buff;
-	counter_data.log_file = fopen(destination_log_file, "w");
-
-	if (!counter_data.log_file) {
-		printf(ERR_COULD_NOT_OPEN, destination_log_file);
-		bounded_buffer_finish(&bounded_buff);
-		bounded_buffer_destroy(&bounded_buff);
+	// Try to open file, free resources and leave if failed
+	if (!wordcounterData.log_file) {
+		printf(ERR_COULD_NOT_OPEN, loggingFileLocation);
+		bounded_buffer_finish(&boundedBuffer);
+		bounded_buffer_destroy(&boundedBuffer);
 		return 1;
 	}
 
-	// Initialize listener data
-	listener_data.buff = &bounded_buff;
-	listener_data.pipe = pipe_file_name;
+	// Initialize listener
+	listenerData.buff = &boundedBuffer;
+	listenerData.pipe = pipeFileName;
 
-	printf(LOGGING_STARTED, destination_log_file);
+	// If we reached here, print logging started
+	printf(LOGGING_STARTED, loggingFileLocation);
 
-	// Start threads
-	pthread_create(&listener, NULL, run_listener, (void*) (&listener_data));
-	pthread_create(&wordcounter, NULL, run_wordcounter,
-			(void*) (&counter_data));
+	// Pop pthreads
+	pthread_create(&listenerThread, NULL, run_listener,
+			(void*) (&listenerData));
+	pthread_create(&wordcounterThread, NULL, run_wordcounter,
+			(void*) (&wordcounterData));
 
-	// Read input in a loop until exit command is given
+	// Read input constantly untill exit message is recieved
 	do {
-		fgets(input_buffer, STDIN_READ_BUFF_SIZE, stdin);
-	} while (strcmp(input_buffer, CMD_EXIT) != 0);
+		fgets(inputBuffer, STDIN_READ_BUFF_SIZE, stdin);
+	} while (strcmp(inputBuffer, CMD_EXIT) != 0);
 
-	// Set buffer as finished
-	bounded_buffer_finish(&bounded_buff);
+	// Free buffer resources
+	bounded_buffer_finish(&boundedBuffer);
 
-	// Join threads
-	pthread_join(wordcounter, NULL);
-	pthread_join(listener, NULL);
+	// Join and kill threads
+	pthread_join(wordcounterThread, NULL);
+	pthread_join(listenerThread, NULL);
 
-	// Close log file
-	fclose(counter_data.log_file);
+	// Close logger
+	fclose(wordcounterData.log_file);
 
-	// Destroy buffer
-	bounded_buffer_destroy(&bounded_buff);
+	// Kill buffer
+	bounded_buffer_destroy(&boundedBuffer);
 
+	// Display bye message and exit nicely
 	printf(EXIT_MSG);
 	return 0;
 }
