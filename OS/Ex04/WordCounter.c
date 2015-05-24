@@ -36,24 +36,22 @@
  *
  */
 void dateprintf(char *buff, int max_size, const char *format) {
+	
 	// Initializes to Jan 1st 1970 UTC
 	time_t timer;
 	struct tm *tm_info;
 	time(&timer);
+	
 	tm_info = localtime(&timer);
 	strftime(buff, max_size, format, tm_info);
 }
 
 /*
- * Function to determine if a character is alphabetic
- * returns 1 if alphabetic, 0 if not
+ * Returns "1" if the given char is a letter, "0" otherwise
+ *
  */
 int is_alphabetic(unsigned char c) {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
-		return 1;
-	} else {
-		return 0;
-	}
+	return  ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) ? 1 : 0;	
 }
 
 /*
