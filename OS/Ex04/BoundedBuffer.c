@@ -92,7 +92,7 @@ int bounded_buffer_enqueue(BoundedBuffer *buff, char *data) {
  * This function should be synchronized on the buffer's mutex!
  */
 char *bounded_buffer_dequeue(BoundedBuffer *buff) {
-	char* data;
+	char* dataFromBuffer;
 
 	// Enter critical section
 	pthread_mutex_lock(&(buff->mutex));
@@ -110,14 +110,14 @@ char *bounded_buffer_dequeue(BoundedBuffer *buff) {
 	}
 
 	// Save data from buffer and signal complete
-	data = buff->buffer[buff->head];
+	dataFromBuffer = buff->buffer[buff->head];
 	buff->head = (buff->head + 1) % buff->capacity;
 	buff->size--;
 	pthread_cond_signal(&(buff->cv_empty));
 
 	// Leave critical section and unlock
 	pthread_mutex_unlock(&(buff->mutex));
-	return data;
+	return dataFromBuffer;
 }
 
 /*
