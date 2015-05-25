@@ -9,13 +9,19 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
         string m_Model;
         string m_LicenseNumber;
         float m_RemainingEnergy;
-        int m_tierPressur;
+        List<Tier> m_tiers;
 
-        public void Vehicle(string i_Model, string i_LicenseNumber, float i_RemainingEnergy)
+        public void Vehicle(string i_Model, string i_LicenseNumber, float i_RemainingEnergy, List<Tier> i_tiers)
         {
             m_Model = i_Model;
             m_LicenseNumber = i_LicenseNumber;
             m_RemainingEnergy = i_RemainingEnergy;
+            m_tiers = i_tiers;
+        }
+
+        public float getRemainingEnergy
+        {
+            get { return m_RemainingEnergy; }
         }
 
         public override sealed bool Equals(object obj)
