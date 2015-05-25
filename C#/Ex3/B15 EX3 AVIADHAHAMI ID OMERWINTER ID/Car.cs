@@ -27,6 +27,7 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
             get { return m_numberOfDors; }
             set { m_numberOfDors = value; }
         }
+        public abstract void PumpAir();
     }
     enum Colors
     {

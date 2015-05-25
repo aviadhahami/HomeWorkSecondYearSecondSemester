@@ -11,7 +11,7 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
 
         public abstract float getMaxEnergyInCharger();
 
-        public abstract void charge(float i_powerToCharge);
+        public abstract void charge(float i_timeToCharge);
 
     }
 }
