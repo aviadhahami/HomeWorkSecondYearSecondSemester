@@ -9,29 +9,50 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
     class FuelCar : Car, fuelVehicle
     {
 
-        private readonly float m_fullTank = 35;
-        private readonly float m_tierPressur = 31;
-        private readonly fuelType m_fuelType = fuelType.Octan96;
-        private readonly int m_numberOfTier = 4;
+        private readonly float FULLTANK = 35;
+        private readonly float MAXTIERPRESSUR = 31;
+        private readonly fuelType FUELTYPE = fuelType.Octan96;
 
+
+        public void PumpAir()
+        {
+            foreach (Tier tier in this.m_tiers)
+            {
+                if (tier.currentAirPressure <= MAXTIERPRESSUR)
+                {
+                    tier.PumpAir = MAXTIERPRESSUR - tier.currentAirPressure;
+                }
+                else
+                {
+                    Console.WriteLine("the pressur is to heigh");
+                }
+            }
+        }
         public override fuelType getFuelType()
         {
-            return m_fuelType;
+            return FUELTYPE;
         }
 
         public override float getMaxFuelInTank()
         {
-            return m_fullTank;
+            return FULLTANK;
         }
 
-        public override void fuel(fuelType i_fuelType, int i_litersOfFuel)
+        public override void fuel(fuelType i_fuelType, float i_litersToFuel)
         {
-
+            if (i_fuelType != FUELTYPE || getCurrentFuelInTank() + i_litersToFuel > FULLTANK)
+            {
+                Console.WriteLine("Didnt add fuel, exceeded max volume or try to fuel with the wrong type of fuel");
+            }
+            else
+            {
+                this.getRemainingEnergy = (getCurrentFuelInTank() + i_litersToFuel) / FULLTANK;
+            }
         }
 
         public override float getCurrentFuelInTank()
         {
-            return m_fullTank * this.getRemainingEnergy;
+            return FULLTANK * this.getRemainingEnergy;
         }
     }
 }

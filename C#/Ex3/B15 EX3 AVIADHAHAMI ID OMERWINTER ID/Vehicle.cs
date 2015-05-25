@@ -6,10 +6,10 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
 {
     class Vehicle
     {
-        string m_Model;
-        string m_LicenseNumber;
-        float m_RemainingEnergy;
-        List<Tier> m_tiers;
+        protected string m_Model;
+        protected string m_LicenseNumber;
+        protected float m_RemainingEnergy;
+        protected List<Tier> m_tiers;
 
         public void Vehicle(string i_Model, string i_LicenseNumber, float i_RemainingEnergy, List<Tier> i_tiers)
         {
@@ -22,6 +22,7 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
         public float getRemainingEnergy
         {
             get { return m_RemainingEnergy; }
+            set { m_RemainingEnergy = value; }
         }
 
         public override sealed bool Equals(object obj)

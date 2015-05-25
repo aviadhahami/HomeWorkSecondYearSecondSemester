@@ -17,6 +17,16 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
             m_MaximalAirPressure = i_MaximalAirPressure;
         }
 
+        public string manufacturer
+        {
+            get { return m_Manufacturer; }
+        }
+
+        public float currentAirPressure
+        {
+            get { return m_CurrentAirPressure; }
+        }
+
         public float PumpAir
         {
             set

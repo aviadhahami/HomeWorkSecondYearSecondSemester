@@ -14,7 +14,7 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
 
         public abstract float getMaxFuelInTank();
 
-        public abstract void fuel(fuelType i_fuelType, int i_litersOfFuel);
+        public abstract void fuel(fuelType i_fuelType, float i_litersToFuel);
 
 
     }

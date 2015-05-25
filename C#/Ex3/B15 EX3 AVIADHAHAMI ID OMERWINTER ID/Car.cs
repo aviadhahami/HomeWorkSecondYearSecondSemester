@@ -16,6 +16,7 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
             m_color = i_color;
             m_numberOfDors = i_numberOfDors;
         }
+
         public Colors getColor
         {
             get { return m_color; }
