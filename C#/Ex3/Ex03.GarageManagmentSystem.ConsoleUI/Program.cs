@@ -8,9 +8,9 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
 {
     class ConsoleUI
     {
-        static void Main(string[] args)
+        static void UIGenerator(string[] args)
         {
-           
+          
         }
     }
 }
