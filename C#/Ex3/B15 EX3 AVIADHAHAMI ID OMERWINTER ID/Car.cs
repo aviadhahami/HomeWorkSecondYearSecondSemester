@@ -13,6 +13,7 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
         private readonly float FULLTANK = 35;
         private readonly FuelType FUELTYPE = FuelType.Octan96;
 
+        Energy m_myEnergy;
         int m_numberOfDors;
         Colors m_color;
         public Car(int i_numberOfDors, Colors i_color, List<float> i_PressurInTiers, bool i_electricCar, string i_Model, string i_LicenseNumber, float i_RemainingEnergy, List<Tier> i_tiers, string i_tierManufacturer)
@@ -23,6 +24,14 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
             this.m_tiers = new List<Tier>(4);
             m_electricCar = i_electricCar;
             setTierData(i_PressurInTiers, MAXTIERPRESSUR, this.m_tierManufacturer);
+            if (i_electricCar)
+            {
+                m_myEnergy = new Electricity(MAXIMUMBUTTRYTIME, MAXIMUMBUTTRYTIME * m_RemainingEnergy);
+            }
+            else
+            {
+                m_myEnergy = new Fuel(MAXIMUMBUTTRYTIME, MAXIMUMBUTTRYTIME * m_RemainingEnergy, FUELTYPE);
+            }
         }
 
         public Colors getColor
@@ -36,11 +45,4 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
             set { m_numberOfDors = value; }
         }
     }
-    enum Colors
-    {
-        GREEN,
-        RED,
-        BLACK,
-        WIGHT
-    };
 }

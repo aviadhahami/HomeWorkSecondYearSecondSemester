@@ -9,8 +9,9 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
     {
         private FuelType m_fuelType;
 
-        public Fuel(float i_maxFuelInTank, float i_currenFuelInTank, FuelType i_fuelType)
-            : base(i_maxFuelInTank, i_currenFuelInTank)
+
+        public Fuel(float i_MaxFuelInTank, float i_CurrenFuelInTank, FuelType i_fuelType)
+            : base(i_MaxFuelInTank, i_CurrenFuelInTank)
         {
             m_fuelType = i_fuelType;
         }

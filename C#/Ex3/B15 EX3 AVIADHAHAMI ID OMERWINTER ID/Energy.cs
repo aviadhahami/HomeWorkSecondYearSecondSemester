@@ -5,7 +5,7 @@ using System.Text;
 
 namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
 {
-    class Energy
+    abstract class Energy
     {
         protected float m_maxCapcityInTank;
         protected float m_currenCapacityInTank;
@@ -30,7 +30,7 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
             get { return 1 - (m_currenCapacityInTank / m_maxCapcityInTank); }
         }
 
-        public void fillEnergy(float value)
+        protected void fillEnergy(float value)
         {
             {
                 if (this.getCurrenCapacityInTank() + value <= this.getMaxCapcityInTank())
