@@ -5,7 +5,7 @@ using System.Text;
 
 namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
 {
-    public enum fuelType
+    public enum FuelType
     {
         Soler,
         Octan95, 

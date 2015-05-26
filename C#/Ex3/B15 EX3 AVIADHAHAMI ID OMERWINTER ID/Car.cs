@@ -11,7 +11,7 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
         private readonly float MAXIMUMBUTTRYTIME = 2.2f;
         private readonly float MAXTIERPRESSUR = 31;
         private readonly float FULLTANK = 35;
-        private readonly fuelType FUELTYPE = fuelType.Octan96;
+        private readonly FuelType FUELTYPE = FuelType.Octan96;
 
         int m_numberOfDors;
         Colors m_color;
