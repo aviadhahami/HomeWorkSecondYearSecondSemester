@@ -9,7 +9,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
 {
     class ConsoleUI
     {
-        UITexts m_UIStrings;
+
         static void Main()
         {
             // Instansiate the UI
@@ -18,6 +18,8 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             // Greet the mofos
             m_UIStrings.sayHi();
             m_UIStrings.HoldScreen();
+
+
         }
     }
 }
