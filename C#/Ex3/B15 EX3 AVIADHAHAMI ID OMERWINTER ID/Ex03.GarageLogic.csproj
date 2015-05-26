@@ -45,10 +45,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Car.cs" />
-    <Compile Include="ElectricCar.cs" />
-    <Compile Include="FuelMotorcycle.cs" />
+    <Compile Include="Electricity.cs" />
     <Compile Include="ElectricMotorcycle.cs" />
-    <Compile Include="FuelCar.cs" />
+    <Compile Include="Energy.cs" />
+    <Compile Include="Fuel.cs" />
+    <Compile Include="fuelType.cs" />
+    <Compile Include="Garage.cs" />
     <Compile Include="Motorcycle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Truck.cs" />

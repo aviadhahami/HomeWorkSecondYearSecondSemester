@@ -46,3 +46,4 @@ Image Proccessing/.metadata/version.ini
 *.tmp
 *.pde
 *.pde
+*.force
