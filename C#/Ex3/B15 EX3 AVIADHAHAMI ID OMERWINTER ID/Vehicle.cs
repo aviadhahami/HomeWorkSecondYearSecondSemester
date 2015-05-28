@@ -4,7 +4,7 @@ using System.Text;
 
 namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
 {
-    abstract class Vehicle
+    class Vehicle
     {
         protected string m_Model;
         protected string m_LicenseNumber;
@@ -13,7 +13,7 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
         protected string m_TierManufacturer;
         protected bool m_ElectricVehicle;
 
-        public Vehicle(string i_Model, string i_LicenseNumber, float i_RemainingEnergy, string i_TierManufacturer)
+        protected Vehicle(string i_Model, string i_LicenseNumber, float i_RemainingEnergy, string i_TierManufacturer)
         {
             m_Model = i_Model;
             m_LicenseNumber = i_LicenseNumber;
@@ -21,17 +21,6 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
             m_TierManufacturer = i_TierManufacturer;
         }
 
-        public override sealed bool Equals(object obj)
-        {
-            bool equals = false;
-            
-            Vehicle toCompareTo = obj as Vehicle;
-            if (toCompareTo != null)
-            {
-                equals = this.m_LicenseNumber == toCompareTo.m_LicenseNumber;
-            }
-            return equals;
-        }
 
         protected void setTierData(List<float> i_PressurInTiers, float i_MaxTierPressur, string i_tierManufacturer)
         {

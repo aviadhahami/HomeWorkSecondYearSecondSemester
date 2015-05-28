@@ -8,7 +8,7 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
     {
         public void BuildVehicle(VihecleInf i_VehicleInfo)
         {
-            bool electricOrFuel = false;
+            VihecleType electricOrFuel;
             if (Garage.Exist(i_VehicleInfo.LicenseNumber))
             {
                 Garage.AppdateStatus(i_VehicleInfo.LicenseNumber, StatusType.Fixing);
@@ -17,11 +17,12 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
             switch (i_VehicleInfo.VihecleType)
             {
                 case VihecleType.Car:
+                    electricOrFuel = VihecleType.Car;
                     Garage.Insert(i_VehicleInfo.UserPhoneNumber, i_VehicleInfo.UserName, StatusType.Fixing, new Car(i_VehicleInfo.NumberOfDors, i_VehicleInfo.Color, i_VehicleInfo.Tiers, electricOrFuel, i_VehicleInfo.Model, i_VehicleInfo.LicenseNumber, i_VehicleInfo.RemainingEnergy, i_VehicleInfo.TierManufacturer));
                     break;
 
                 case VihecleType.ElectricCar:
-                    electricOrFuel = true;
+                    electricOrFuel = VihecleType.ElectricCar;
                     Garage.Insert(i_VehicleInfo.UserPhoneNumber, i_VehicleInfo.UserName, StatusType.Fixing, new Car(i_VehicleInfo.NumberOfDors, i_VehicleInfo.Color, i_VehicleInfo.Tiers, electricOrFuel, i_VehicleInfo.Model, i_VehicleInfo.LicenseNumber, i_VehicleInfo.RemainingEnergy, i_VehicleInfo.TierManufacturer));
                     break;
 
@@ -30,11 +31,12 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
                     break;
 
                 case VihecleType.Motocycle:
+                    electricOrFuel = VihecleType.Motocycle;
                     Garage.Insert(i_VehicleInfo.UserPhoneNumber, i_VehicleInfo.UserName, StatusType.Fixing, new Motorcycle(i_VehicleInfo.Model, i_VehicleInfo.Tiers, i_VehicleInfo.LicenseNumber, i_VehicleInfo.RemainingEnergy, i_VehicleInfo.TierManufacturer, electricOrFuel, i_VehicleInfo.EngineSize, i_VehicleInfo.LicenseType));
                     break;
 
                 case VihecleType.ElectricMotorcycle:
-                    electricOrFuel = true;
+                    electricOrFuel = VihecleType.ElectricMotorcycle;
                     Garage.Insert(i_VehicleInfo.UserPhoneNumber, i_VehicleInfo.UserName, StatusType.Fixing, new Motorcycle(i_VehicleInfo.Model, i_VehicleInfo.Tiers, i_VehicleInfo.LicenseNumber, i_VehicleInfo.RemainingEnergy, i_VehicleInfo.TierManufacturer, electricOrFuel, i_VehicleInfo.EngineSize, i_VehicleInfo.LicenseType));
                     break;
             }
