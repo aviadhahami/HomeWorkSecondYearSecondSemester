@@ -13,12 +13,11 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
         protected string m_tierManufacturer;
         protected bool m_electricCar;
 
-        public Vehicle(string i_Model, string i_LicenseNumber, float i_RemainingEnergy, List<Tier> i_tiers, string i_tierManufacturer, bool i_electricCar)
+        public Vehicle(string i_Model, string i_LicenseNumber, float i_RemainingEnergy, string i_tierManufacturer, bool i_electricCar)
         {
             m_Model = i_Model;
             m_LicenseNumber = i_LicenseNumber;
             m_RemainingEnergy = i_RemainingEnergy;
-            m_tiers = i_tiers;
             m_tierManufacturer = i_tierManufacturer;
             m_electricCar = i_electricCar;
         }
@@ -47,7 +46,7 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
             }
         }
 
-        protected void PumpAir(List<Tier> i_tiersToPump)
+        public void PumpAir(List<Tier> i_tiersToPump)
         {
             foreach (Tier tier in i_tiersToPump)
             {
