@@ -15,13 +15,13 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
         Energy m_myEnergy;
         int m_numberOfDors;
         Colors m_color;
-        public Car(int i_numberOfDors, Colors i_color, List<float> i_PressurInTiers, bool i_ElectricVehicle, string i_Model, string i_LicenseNumber, float i_RemainingEnergy, string i_tierManufacturer)
-            : base(i_Model, i_LicenseNumber, i_RemainingEnergy,i_tierManufacturer, i_ElectricVehicle)
+        public Car(int i_NumberOfDors, Colors i_Color, List<float> i_PressurInTiers, bool i_ElectricVehicle, string i_Model, string i_LicenseNumber, float i_RemainingEnergy, string i_TierManufacturer)
+            : base(i_Model, i_LicenseNumber, i_RemainingEnergy,i_TierManufacturer)
         {
-            m_color = i_color;
-            m_numberOfDors = i_numberOfDors;
-            this.m_tiers = new List<Tier>(NUMBEROFTAIERS);
-            setTierData(i_PressurInTiers, MAXTIERPRESSUR, this.m_tierManufacturer);
+            m_color = i_Color;
+            m_numberOfDors = i_NumberOfDors;
+            this.m_Tiers = new List<Tier>(NUMBEROFTAIERS);
+            setTierData(i_PressurInTiers, MAXTIERPRESSUR, this.m_TierManufacturer);
             if (i_ElectricVehicle)
             {
                 m_myEnergy = new Electricity(MAXIMUMBUTTRYTIME, MAXIMUMBUTTRYTIME * m_RemainingEnergy);
@@ -32,12 +32,12 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
             }
         }
 
-        public Colors getColor
+        public Colors Color
         {
             get { return m_color; }
             set { m_color = value; }
         }
-        public int getNumberOfDors
+        public int NumberOfDors
         {
             get { return m_numberOfDors; }
             set { m_numberOfDors = value; }
