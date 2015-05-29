@@ -12,18 +12,56 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         {
 
             // Instansiate the UI
-            UITexts m_UIStrings = new UITexts();
+            m_UIStrings = new UITexts();
 
             // Greet the mofos
             m_UIStrings.SayHi();
             m_UIStrings.HoldScreen();
+            while (true)
+            {
+                // Suggest options
+                GarageOption userPick = suggestOptionsToUser();
 
-            // Suggest options
-            GarageOption userPick = suggestOptionsToUser();
+                // If we reached this it means we have a legit number picked by the user
+                Console.WriteLine("Goodie! we have valid pick");
+                m_UIStrings.HoldScreen();
+                deployAction(userPick);
+            }
 
-            // If we reached this it means we have a legit number picked by the user
-            Console.WriteLine("Goodie! we have valid pick");
-            m_UIStrings.HoldScreen();
+        }
+
+        private void deployAction(GarageOption userPick)
+        {
+            switch (userPick)
+            {
+                case GarageOption.Insert:
+                    insertVehicle();
+                    break;
+                case GarageOption.DisplayInventory:
+                    displayInventory();
+                    break;
+                case GarageOption.ChangeVehicleStatus:
+                    changeVehicleStatus();
+                    break;
+                case GarageOption.PumpAir:
+                    pumpAirToVehicle();
+                    break;
+                case GarageOption.Refuel:
+                    refuelVehicle();
+                    break;
+                case GarageOption.Recharge:
+                    rechargeVehicle();
+                    break;
+                case GarageOption.DisplaySingleVehicle:
+                    displaySingleVehicle();
+                    break;
+                case GarageOption.Exit:
+                    exitApplication();
+                    break;
+                default:
+                    Console.WriteLine("Something went wrong, contact system admin");
+                    break;
+            }
         }
 
         private static GarageOption suggestOptionsToUser()
@@ -40,7 +78,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                 }
                 else
                 {
-
                     // Delete this when done
                     Console.WriteLine("User picked " + (GarageOption)singleCharConsoleInput);
                     return (GarageOption)singleCharConsoleInput;

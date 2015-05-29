@@ -21,6 +21,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         private const string k_DISPLAY_SINGLE_VEHICLE = "Check if we posses a specific car";
         private const string k_REFUEL_VEHICLE = "Refual a vehicle (ONLY FOR FUEL ENGINED VEHICLES)";
         private const string k_PUMP_AIR = "Pump air to a vehicle";
+        private string k_EXIT_PROGRAM = "Leave the application";
 
         internal void SayHi()
         {
@@ -119,6 +120,9 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                     break;
                 case GarageOption.DisplaySingleVehicle:
                     Console.WriteLine(k_DISPLAY_SINGLE_VEHICLE);
+                    break;
+                case GarageOption.Exit:
+                    Console.WriteLine(k_EXIT_PROGRAM);
                     break;
                 default:
                     // Noting is defaulted

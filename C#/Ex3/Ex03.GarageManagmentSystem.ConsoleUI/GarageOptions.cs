@@ -12,6 +12,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         PumpAir = 4,
         Refuel = 5,
         Recharge = 6,
-        DisplaySingleVehicle = 7
+        DisplaySingleVehicle = 7,
+        Exit = 8
     }
 }
