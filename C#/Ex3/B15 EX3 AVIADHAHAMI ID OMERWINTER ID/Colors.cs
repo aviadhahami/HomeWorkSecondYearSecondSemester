@@ -9,6 +9,6 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
         GREEN,
         RED,
         BLACK,
-        WIGHT
+        WHITE
     };
 }

@@ -4,13 +4,13 @@ using System.Text;
 
 namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
 {
-    class OnerInf
+    class OwnerInfo
     {
         Vehicle m_Vehicle;
         String m_OnerName;
         String m_OnerPhoneNumber;
 
-        public OnerInf(Vehicle i_Vehicle, String i_OnerName, String i_OnerPhoneNumber)
+        public OwnerInfo(Vehicle i_Vehicle, String i_OnerName, String i_OnerPhoneNumber)
         {
             m_OnerName = i_OnerName;
             m_OnerPhoneNumber = i_OnerPhoneNumber;

@@ -18,14 +18,14 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
         License m_LicenseType;
 
 
-        public Motorcycle(string i_Model, List<float> i_PressurInTiers, string i_LicenseNumber, float i_RemainingEnergy, string i_TierManufacturer, VihecleType i_ElectricVehicle, int i_EngineSize, License i_LicenseType)
+        public Motorcycle(string i_Model, List<float> i_PressurInTiers, string i_LicenseNumber, float i_RemainingEnergy, string i_TierManufacturer, VehicleType i_ElectricVehicle, int i_EngineSize, License i_LicenseType)
             : base(i_Model, i_LicenseNumber, i_RemainingEnergy, i_TierManufacturer)
         {
 
             m_EngineSize = i_EngineSize;
             m_LicenseType = i_LicenseType;
             this.m_Tiers = new List<Tier>(NUMBEROFTAIERS);
-            if (i_ElectricVehicle == VihecleType.ElectricMotorcycle)
+            if (i_ElectricVehicle == VehicleType.ElectricMotorcycle)
             {
                 setTierData(i_PressurInTiers, MAXTIERPRESSUROFELECTRIC, this.m_TierManufacturer);
                 m_myEnergy = new Electricity(MAXTBUTERI, MAXTBUTERI * m_RemainingEnergy);
@@ -43,7 +43,7 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
             set { m_LicenseType = value; }
         }
 
-        public int LicenseType
+        public int EngineSize
         {
             get { return m_EngineSize; }
             set { m_EngineSize = value; }
