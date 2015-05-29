@@ -12,6 +12,8 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         private const string k_DECORATED_LINE_SEPARATOR = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
         private const string k_PRESS_ANY_KEY = "Press any key to continue";
         private const string k_WHAT_WOULD_YOU_LIKE_TO_DO = "What would you like to do Sir?";
+        private string k_NO_SUCH_OPTION = "We're sorry, this options doesn't exist in our garage....";
+        private string k_TRY_AGAIN = "Please try again";
 
         internal void SayHi()
         {
@@ -35,11 +37,31 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         {
             Console.Write(k_PRESS_ANY_KEY);
             Console.Read();
+            Console.Clear();
         }
 
         internal void CallForAction()
         {
             Console.Write(k_WHAT_WOULD_YOU_LIKE_TO_DO);
+            ShowSuggestions();
+        }
+
+        internal int ReadFromConsole()
+        {
+            return Console.Read();
+        }
+
+        internal void ShowSuggestions()
+        {
+            // TODO: Genreate seven options
+            Console.WriteLine("some opt");
+        }
+
+        internal void WrongNumberPicked()
+        {
+            Console.WriteLine(k_NO_SUCH_OPTION);
+            Console.WriteLine(k_TRY_AGAIN);
+            HoldScreen();
         }
     }
 }
