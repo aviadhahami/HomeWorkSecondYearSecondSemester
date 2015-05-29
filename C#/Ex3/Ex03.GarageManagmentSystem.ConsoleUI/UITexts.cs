@@ -94,6 +94,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
 
         private void ShowFullOption(GarageOption i_GarageOption)
         {
+            Console.Write((int)i_GarageOption + ") ");
             switch (i_GarageOption)
             {
                 case GarageOption.Insert:
@@ -118,7 +119,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                     Console.WriteLine(k_DISPLAY_SINGLE_VEHICLE);
                     break;
                 default:
-
                     // Noting is defaulted
                     break;
             }
