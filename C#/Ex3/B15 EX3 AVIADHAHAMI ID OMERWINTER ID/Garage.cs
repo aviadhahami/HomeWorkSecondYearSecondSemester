@@ -6,7 +6,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 {
     public class Garage
     {
-
         internal static void UpdateStatus(string p, StatusType statusType)
         {
             throw new NotImplementedException();
