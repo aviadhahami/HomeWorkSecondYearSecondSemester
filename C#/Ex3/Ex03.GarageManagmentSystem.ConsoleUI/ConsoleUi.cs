@@ -38,13 +38,13 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                 }
             }
             // If we reached this it means we have a legit number picked by the user
-
+            Console.WriteLine("Goodie! we have valid pick");
+            m_UIStrings.HoldScreen();
         }
 
         private static bool validateOptionNumber(int i_SingleCharConsoleInput)
         {
             int enumSize = Enum.GetNames(typeof(GarageOption)).Length;
-            Console.WriteLine(i_SingleCharConsoleInput);
             return i_SingleCharConsoleInput >= 1 && i_SingleCharConsoleInput <= enumSize;
         }
     }
