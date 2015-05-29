@@ -4,50 +4,37 @@ using System.Text;
 
 namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
 {
-    abstract class Vehicle
+    class Vehicle
     {
         protected string m_Model;
         protected string m_LicenseNumber;
         protected float m_RemainingEnergy;
-        protected List<Tier> m_tiers;
-        protected string m_tierManufacturer;
-        protected bool m_electricCar;
+        protected List<Tier> m_Tiers;
+        protected string m_TierManufacturer;
+        protected bool m_ElectricVehicle;
 
-        public Vehicle(string i_Model, string i_LicenseNumber, float i_RemainingEnergy, List<Tier> i_tiers, string i_tierManufacturer, bool i_electricCar)
+        protected Vehicle(string i_Model, string i_LicenseNumber, float i_RemainingEnergy, string i_TierManufacturer)
         {
             m_Model = i_Model;
             m_LicenseNumber = i_LicenseNumber;
             m_RemainingEnergy = i_RemainingEnergy;
-            m_tiers = i_tiers;
-            m_tierManufacturer = i_tierManufacturer;
-            m_electricCar = i_electricCar;
+            m_TierManufacturer = i_TierManufacturer;
         }
 
-        public override sealed bool Equals(object obj)
-        {
-            bool equals = false;
-            
-            Vehicle toCompareTo = obj as Vehicle;
-            if (toCompareTo != null)
-            {
-                equals = this.m_LicenseNumber == toCompareTo.m_LicenseNumber;
-            }
-            return equals;
-        }
 
         protected void setTierData(List<float> i_PressurInTiers, float i_MaxTierPressur, string i_tierManufacturer)
         {
             int currentAirPressurPerTier = 0;
-            foreach (Tier tier in m_tiers)
+            foreach (Tier tier in m_Tiers)
             {
-                tier.manufacturer = this.m_tierManufacturer;
+                tier.manufacturer = this.m_TierManufacturer;
                 tier.MaximalAirPressure = i_MaxTierPressur;
                 tier.currentAirPressure = i_PressurInTiers[currentAirPressurPerTier];
                 currentAirPressurPerTier++;
             }
         }
 
-        protected void PumpAir(List<Tier> i_tiersToPump)
+        public void PumpAir(List<Tier> i_tiersToPump)
         {
             foreach (Tier tier in i_tiersToPump)
             {
