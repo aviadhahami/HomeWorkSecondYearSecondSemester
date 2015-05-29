@@ -19,12 +19,12 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             m_UIStrings.SayHi();
             m_UIStrings.HoldScreen();
 
-            //Suggest options
+            // Suggest options
             while (true)
             {
                 m_UIStrings.CallForAction();
 
-                singleCharConsoleInput = m_UIStrings.ReadFromConsole();
+                singleCharConsoleInput = m_UIStrings.ReadUserOptionPick();
                 if (!validateOptionNumber(singleCharConsoleInput))
                 {
                     m_UIStrings.WrongNumberPicked();
@@ -32,6 +32,8 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                 else
                 {
 
+                    // Delete this when done
+                    Console.WriteLine("User picked " + (GarageOption)singleCharConsoleInput);
                     break;
                 }
             }
@@ -39,9 +41,11 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
 
         }
 
-        private static bool validateOptionNumber(int singleCharConsoleInput)
+        private static bool validateOptionNumber(int i_SingleCharConsoleInput)
         {
-            return false;// throw new NotImplementedException();
+            int enumSize = Enum.GetNames(typeof(GarageOption)).Length;
+            Console.WriteLine(i_SingleCharConsoleInput);
+            return i_SingleCharConsoleInput >= 1 && i_SingleCharConsoleInput <= enumSize;
         }
     }
 }

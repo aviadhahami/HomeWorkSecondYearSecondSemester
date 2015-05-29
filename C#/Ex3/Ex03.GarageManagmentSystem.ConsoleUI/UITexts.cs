@@ -12,21 +12,26 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         private const string k_DECORATED_LINE_SEPARATOR = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
         private const string k_PRESS_ANY_KEY = "Press any key to continue";
         private const string k_WHAT_WOULD_YOU_LIKE_TO_DO = "What would you like to do Sir?";
-        private string k_NO_SUCH_OPTION = "We're sorry, this options doesn't exist in our garage....";
-        private string k_TRY_AGAIN = "Please try again";
-        private string k_INSERT_VEHICLE = "Insert a vehicle to the garage";
-        private string k_DISPLAY_INVENTORY = "Ask us what vehicles we currently posses";
-        private string k_CHANGE_VEHICLE_STATUS = "Change single vehicle's status (ONLY IF WE OWN IT)";
-        private string k_RECHARGE_ELECTRICAL = "Recharge an electric car (ONLY FOR ELECTRICAL ENGINED VEHICLES)";
-        private string k_DISPLAY_SINGLE_VEHICLE = "Check if we posses a specific car";
-        private string k_REFUEL_VEHICLE = "Refual a vehicle (ONLY FOR FUEL ENGINED VEHICLES)";
-        private string k_PUMP_AIR = "Pump air to a vehicle";
+        private const string k_NO_SUCH_OPTION = "We're sorry, this options doesn't exist in our garage....";
+        private const string k_TRY_AGAIN = "Please try again";
+        private const string k_INSERT_VEHICLE = "Insert a vehicle to the garage";
+        private const string k_DISPLAY_INVENTORY = "Ask us what vehicles we currently posses";
+        private const string k_CHANGE_VEHICLE_STATUS = "Change single vehicle's status (ONLY IF WE OWN IT)";
+        private const string k_RECHARGE_ELECTRICAL = "Recharge an electric car (ONLY FOR ELECTRICAL ENGINED VEHICLES)";
+        private const string k_DISPLAY_SINGLE_VEHICLE = "Check if we posses a specific car";
+        private const string k_REFUEL_VEHICLE = "Refual a vehicle (ONLY FOR FUEL ENGINED VEHICLES)";
+        private const string k_PUMP_AIR = "Pump air to a vehicle";
 
         internal void SayHi()
         {
             generateLineSpan();
             Console.WriteLine(k_GREETINGS);
             generateHalfLineSpan();
+            ShowDecoratedLineSeparator();
+        }
+
+        private void ShowDecoratedLineSeparator()
+        {
             Console.WriteLine(k_DECORATED_LINE_SEPARATOR);
         }
 
@@ -50,12 +55,33 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         internal void CallForAction()
         {
             Console.WriteLine(k_WHAT_WOULD_YOU_LIKE_TO_DO);
+            ShowDecoratedLineSeparator();
             ShowSuggestions();
         }
 
-        internal int ReadFromConsole()
+        internal int ReadUserOptionPick()
         {
-            return Console.Read();
+            string userInput;
+            int integerOutput;
+
+            // Iterate until we're satisfied with user input
+            while (true)
+            {
+                userInput = Console.ReadLine();
+                // Make sure it's not a line feed (ASCII Code 10)
+                if (userInput.Length > 0)
+                {
+                    // Try to parse an int, if we didn't succeed we tell them to input again
+                    if (int.TryParse(userInput, out integerOutput))
+                    {
+                        return integerOutput;
+                    }
+                    else
+                    {
+                        Console.WriteLine(k_TRY_AGAIN);
+                    }
+                }
+            }
         }
 
         internal void ShowSuggestions()
