@@ -94,7 +94,9 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
 
         private void ShowFullOption(GarageOption i_GarageOption)
         {
+            // First we display the enum int value
             Console.Write((int)i_GarageOption + ") ");
+
             switch (i_GarageOption)
             {
                 case GarageOption.Insert:
