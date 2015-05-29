@@ -43,7 +43,7 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
             set { m_LicenseType = value; }
         }
 
-        public int LicenseType
+        public int EngineSize
         {
             get { return m_EngineSize; }
             set { m_EngineSize = value; }

@@ -32,7 +32,7 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
             set { m_Wight = value; }
         }
 
-        public bool LicenseType
+        public bool DangerousChemical
         {
             get { return m_DangerousChemical; }
             set { m_DangerousChemical = value; }

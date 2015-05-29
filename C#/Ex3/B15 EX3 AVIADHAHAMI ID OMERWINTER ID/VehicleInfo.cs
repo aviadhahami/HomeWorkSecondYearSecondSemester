@@ -4,7 +4,7 @@ using System.Text;
 
 namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
 {
-    public class VehicleType
+    public class VehicleInfo
     {
         private VehicleType m_VihecleType;
         private string m_Model;
