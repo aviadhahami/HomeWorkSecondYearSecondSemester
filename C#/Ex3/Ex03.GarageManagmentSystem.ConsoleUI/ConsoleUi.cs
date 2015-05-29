@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using B15_EX3_AVIADHAHAMI_302188347_OMERWINTER_305526907;
+using Ex03.GarageManagmentSystem.GarageLogic;
 
 namespace Ex03.GarageManagmentSystem.ConsoleUI
 {
@@ -10,7 +10,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         UITexts m_UIStrings;
         public void MainUIProcess()
         {
-
             // Instansiate the UI
             m_UIStrings = new UITexts();
 
@@ -59,7 +58,8 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                     exitApplication();
                     break;
                 default:
-                    Console.WriteLine("Something went wrong, contact system admin");
+                    m_UIStrings.DisplayAdminError();
+                    exitApplication();
                     break;
             }
         }

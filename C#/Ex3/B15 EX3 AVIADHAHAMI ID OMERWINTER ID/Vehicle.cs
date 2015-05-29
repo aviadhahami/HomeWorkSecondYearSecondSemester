@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace B15_EX3_AVIADHAHAMI_302188347_OMERWINTER_305526907
+namespace Ex03.GarageManagmentSystem.GarageLogic
 {
     class Vehicle
     {

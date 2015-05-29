@@ -23,6 +23,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         private const string k_PUMP_AIR = "Pump air to a vehicle";
         private string k_EXIT_PROGRAM = "Leave the application";
         private string k_SAY_GOODBYE = "Thank you and have a bright day!\nAllah wakbar!";
+        private string k_PLEASE_CONTACT_ADMIN = "Something went wrong, contact system admin";
 
         internal void SayHi()
         {
@@ -143,6 +144,11 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             Console.Clear();
             Console.WriteLine(k_SAY_GOODBYE);
             HoldScreen();
+        }
+
+        internal void DisplayAdminError()
+        {
+            Console.WriteLine(k_PLEASE_CONTACT_ADMIN);
         }
     }
 }
