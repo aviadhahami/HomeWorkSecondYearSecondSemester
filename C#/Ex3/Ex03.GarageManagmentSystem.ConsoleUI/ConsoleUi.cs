@@ -14,9 +14,11 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             UITexts m_UIStrings = new UITexts();
             
             // Greet the mofos
-            m_UIStrings.sayHi();
+            m_UIStrings.SayHi();
             m_UIStrings.HoldScreen();
 
+            //Suggest options
+            m_UIStrings.CallForAction();
 
         }
     }
