@@ -47,3 +47,7 @@ Image Proccessing/.metadata/version.ini
 *.pde
 *.pde
 *.force
+
+#folders
+bin/
+obj/
