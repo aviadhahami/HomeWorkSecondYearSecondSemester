@@ -14,6 +14,13 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         private const string k_WHAT_WOULD_YOU_LIKE_TO_DO = "What would you like to do Sir?";
         private string k_NO_SUCH_OPTION = "We're sorry, this options doesn't exist in our garage....";
         private string k_TRY_AGAIN = "Please try again";
+        private string k_INSERT_VEHICLE = "Insert a vehicle to the garage";
+        private string k_DISPLAY_INVENTORY = "Ask us what vehicles we currently posses";
+        private string k_CHANGE_VEHICLE_STATUS = "Change single vehicle's status (ONLY IF WE OWN IT)";
+        private string k_RECHARGE_ELECTRICAL = "Recharge an electric car (ONLY FOR ELECTRICAL ENGINED VEHICLES)";
+        private string k_DISPLAY_SINGLE_VEHICLE = "Check if we posses a specific car";
+        private string k_REFUEL_VEHICLE = "Refual a vehicle (ONLY FOR FUEL ENGINED VEHICLES)";
+        private string k_PUMP_AIR = "Pump air to a vehicle";
 
         internal void SayHi()
         {
@@ -42,7 +49,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
 
         internal void CallForAction()
         {
-            Console.Write(k_WHAT_WOULD_YOU_LIKE_TO_DO);
+            Console.WriteLine(k_WHAT_WOULD_YOU_LIKE_TO_DO);
             ShowSuggestions();
         }
 
@@ -53,8 +60,42 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
 
         internal void ShowSuggestions()
         {
-            // TODO: Genreate seven options
-            Console.WriteLine("some opt");
+            foreach (GarageOption o_GarageOption in Enum.GetValues(typeof(GarageOption)))
+            {
+                ShowFullOption(o_GarageOption);
+            }
+        }
+
+        private void ShowFullOption(GarageOption i_GarageOption)
+        {
+            switch (i_GarageOption)
+            {
+                case GarageOption.Insert:
+                    Console.WriteLine(k_INSERT_VEHICLE);
+                    break;
+                case GarageOption.DisplayInventory:
+                    Console.WriteLine(k_DISPLAY_INVENTORY);
+                    break;
+                case GarageOption.ChangeVehicleStatus:
+                    Console.WriteLine(k_CHANGE_VEHICLE_STATUS);
+                    break;
+                case GarageOption.PumpAir:
+                    Console.WriteLine(k_PUMP_AIR);
+                    break;
+                case GarageOption.Refuel:
+                    Console.WriteLine(k_REFUEL_VEHICLE);
+                    break;
+                case GarageOption.Recharge:
+                    Console.WriteLine(k_RECHARGE_ELECTRICAL);
+                    break;
+                case GarageOption.DisplaySingleVehicle:
+                    Console.WriteLine(k_DISPLAY_SINGLE_VEHICLE);
+                    break;
+                default:
+
+                    // Noting is defaulted
+                    break;
+            }
         }
 
         internal void WrongNumberPicked()
