@@ -61,7 +61,7 @@
     <Compile Include="Vehicle.cs" />
     <Compile Include="Tier.cs" />
     <Compile Include="VehicleInfo.cs" />
-    <Compile Include="VihecleType.cs" />
+    <Compile Include="VehicleType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

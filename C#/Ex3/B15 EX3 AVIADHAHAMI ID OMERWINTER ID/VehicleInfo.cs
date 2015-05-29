@@ -4,9 +4,9 @@ using System.Text;
 
 namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
 {
-    public class VehicleInfo
+    public class VehicleType
     {
-        private VehicleInfo m_VihecleType;
+        private VehicleType m_VihecleType;
         private string m_Model;
         private string m_LicenseNumber;
         private float m_RemainingEnergy;
@@ -21,7 +21,7 @@ namespace B15_EX3_AVIADHAHAMI_ID_OMERWINTER_ID
         private string m_UserPhoneNumber;
         private string m_UserName;
 
-        public VehicleInfo VihecleType
+        public VehicleType VihecleType
         {
             get { return m_VihecleType; }
             set { m_VihecleType = value; }
