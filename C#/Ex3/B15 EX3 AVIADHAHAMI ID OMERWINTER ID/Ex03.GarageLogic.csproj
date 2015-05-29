@@ -46,17 +46,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Car.cs" />
+    <Compile Include="Colors.cs" />
     <Compile Include="Electricity.cs" />
-    <Compile Include="ElectricMotorcycle.cs" />
     <Compile Include="Energy.cs" />
     <Compile Include="Fuel.cs" />
     <Compile Include="fuelType.cs" />
     <Compile Include="Garage.cs" />
+    <Compile Include="License.cs" />
     <Compile Include="Motorcycle.cs" />
+    <Compile Include="OnerInf.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatusType.cs" />
     <Compile Include="Truck.cs" />
     <Compile Include="Vehicle.cs" />
     <Compile Include="Tier.cs" />
+    <Compile Include="VehicleInfo.cs" />
+    <Compile Include="VihecleType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
