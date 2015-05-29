@@ -22,6 +22,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         private const string k_REFUEL_VEHICLE = "Refual a vehicle (ONLY FOR FUEL ENGINED VEHICLES)";
         private const string k_PUMP_AIR = "Pump air to a vehicle";
         private string k_EXIT_PROGRAM = "Leave the application";
+        private string k_SAY_GOODBYE = "Thank you and have a bright day!\nAllah wakbar!";
 
         internal void SayHi()
         {
@@ -49,7 +50,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         internal void HoldScreen()
         {
             Console.Write(k_PRESS_ANY_KEY);
-            Console.Read();
+            Console.ReadLine();
             Console.Clear();
         }
 
@@ -134,6 +135,13 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         {
             Console.WriteLine(k_NO_SUCH_OPTION);
             Console.WriteLine(k_TRY_AGAIN);
+            HoldScreen();
+        }
+
+        internal void SayGoodbye()
+        {
+            Console.Clear();
+            Console.WriteLine(k_SAY_GOODBYE);
             HoldScreen();
         }
     }

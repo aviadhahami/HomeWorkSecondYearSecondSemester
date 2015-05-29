@@ -64,6 +64,47 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             }
         }
 
+        private void displaySingleVehicle()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void rechargeVehicle()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void refuelVehicle()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void pumpAirToVehicle()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void changeVehicleStatus()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void displayInventory()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void insertVehicle()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void exitApplication()
+        {
+            m_UIStrings.SayGoodbye();
+            System.Environment.Exit(0);
+        }
+
         private static GarageOption suggestOptionsToUser()
         {
             int singleCharConsoleInput;
