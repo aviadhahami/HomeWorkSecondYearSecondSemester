@@ -21,9 +21,10 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         private const string k_DISPLAY_SINGLE_VEHICLE = "Check if we posses a specific car";
         private const string k_REFUEL_VEHICLE = "Refual a vehicle (ONLY FOR FUEL ENGINED VEHICLES)";
         private const string k_PUMP_AIR = "Pump air to a vehicle";
-        private string k_EXIT_PROGRAM = "Leave the application";
-        private string k_SAY_GOODBYE = "Thank you and have a bright day!\nAllah wakbar!";
-        private string k_PLEASE_CONTACT_ADMIN = "Something went wrong, contact system admin";
+        private const string k_EXIT_PROGRAM = "Leave the application";
+        private const string k_SAY_GOODBYE = "Thank you and have a bright day!\nAllah wakbar!";
+        private const string k_PLEASE_CONTACT_ADMIN = "Something went wrong, contact system admin";
+        private const string k_SORRY_NO_SUCH_VEHICLE = "We're sorry, we do not posses vehicle licensed with";
 
         internal void SayHi()
         {
@@ -149,6 +150,28 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         internal void DisplayAdminError()
         {
             Console.WriteLine(k_PLEASE_CONTACT_ADMIN);
+        }
+
+        internal void LicenseNumberDoesntExist(string io_licnsePlate)
+        {
+            Console.WriteLine(k_SORRY_NO_SUCH_VEHICLE + formatLicensePlate(io_licnsePlate));
+        }
+
+        private string formatLicensePlate(string io_licnsePlate)
+        {
+            return "<" + io_licnsePlate + ">";
+        }
+
+        internal string AskForLicenseNumber()
+        {
+            //TODO: implement
+            throw new NotImplementedException();
+        }
+
+        internal void DisplayVehicleData(object p)
+        {
+            // TODO : IMPLEMENT
+            throw new NotImplementedException();
         }
     }
 }

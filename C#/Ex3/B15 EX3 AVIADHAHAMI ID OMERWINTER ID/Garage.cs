@@ -20,5 +20,17 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         {
             throw new NotImplementedException();
         }
+
+        public bool CheckIfVehicleExists(string io_licnsePlate)
+        {
+            //TODO : IMPLEMENT
+            throw new NotImplementedException();
+        }
+
+        public object GetVehicle(string io_licnsePlate)
+        {
+            //TODO: IMPLEMENT
+            throw new NotImplementedException();
+        }
     }
 }

@@ -7,10 +7,15 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
     class ConsoleUI
     {
         UITexts m_UIStrings;
+        private GarageLogic.Garage m_Garage;
+
         public void MainUIProcess()
         {
             // Instansiate the UI
             m_UIStrings = new UITexts();
+
+            // Instansiate the garage
+            m_Garage = new Ex03.GarageManagmentSystem.GarageLogic.Garage();
 
             // Greet the mofos
             m_UIStrings.SayHi();
@@ -65,7 +70,21 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
 
         private void displaySingleVehicle()
         {
-            throw new NotImplementedException();
+            string io_licnsePlate;
+            while (true)
+            {
+                io_licnsePlate = m_UIStrings.AskForLicenseNumber();
+                if (m_Garage.CheckIfVehicleExists(io_licnsePlate))
+                {
+                    m_UIStrings.DisplayVehicleData(m_Garage.GetVehicle(io_licnsePlate));
+                }
+                // Else vehicle doesnt exist
+                else
+                {
+                    m_UIStrings.LicenseNumberDoesntExist(io_licnsePlate);
+                }
+
+            }
         }
 
         private void rechargeVehicle()
