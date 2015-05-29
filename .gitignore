@@ -51,3 +51,5 @@ Image Proccessing/.metadata/version.ini
 #folders
 bin/
 obj/
+*.cache
+*.suo
