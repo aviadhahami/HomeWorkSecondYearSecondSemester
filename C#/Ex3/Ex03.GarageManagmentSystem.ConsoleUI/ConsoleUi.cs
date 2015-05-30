@@ -82,6 +82,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                 else
                 {
                     m_UIStrings.LicenseNumberDoesntExist(io_licnsePlate);
+                    // Should ask if he wants to try again, otherwise pop to main screen
                 }
 
             }

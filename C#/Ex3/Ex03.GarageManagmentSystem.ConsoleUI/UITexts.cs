@@ -25,6 +25,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         private const string k_SAY_GOODBYE = "Thank you and have a bright day!\nAllah wakbar!";
         private const string k_PLEASE_CONTACT_ADMIN = "Something went wrong, contact system admin";
         private const string k_SORRY_NO_SUCH_VEHICLE = "We're sorry, we do not posses vehicle licensed with";
+        private string k_PLEASE_INSERT_LICENSE_NUMBER = "Please enter a valid license plate number";
 
         internal void SayHi()
         {
@@ -159,13 +160,26 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
 
         private string formatLicensePlate(string io_licnsePlate)
         {
-            return "<" + io_licnsePlate + ">";
+            return " <" + io_licnsePlate + ">";
         }
 
         internal string AskForLicenseNumber()
         {
-            //TODO: implement
-            throw new NotImplementedException();
+            string o_UserInput;
+            while (true)
+            {
+                Console.WriteLine(k_PLEASE_INSERT_LICENSE_NUMBER);
+                o_UserInput = Console.ReadLine();
+                if (o_UserInput.Length > 0)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine(k_TRY_AGAIN);
+                }
+            }
+            return o_UserInput;
         }
 
         internal void DisplayVehicleData(object p)

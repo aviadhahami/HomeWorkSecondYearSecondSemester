@@ -13,7 +13,8 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
         internal static bool Exist(string p)
         {
-            throw new NotImplementedException();
+            return false;
+            //throw new NotImplementedException();
         }
 
         internal static void Insert(string p, string p_2, StatusType statusType, Vehicle i_Vehicle)
@@ -23,13 +24,12 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
         public bool CheckIfVehicleExists(string io_licnsePlate)
         {
-            //TODO : IMPLEMENT
-            throw new NotImplementedException();
+            return Exist(io_licnsePlate);
         }
 
         public object GetVehicle(string io_licnsePlate)
         {
-            //TODO: IMPLEMENT
+            //TODO 
             throw new NotImplementedException();
         }
     }
