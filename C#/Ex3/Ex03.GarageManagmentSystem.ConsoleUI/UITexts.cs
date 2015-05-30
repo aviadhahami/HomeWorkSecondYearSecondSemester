@@ -37,6 +37,9 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         private const string k_TRUCK_MAX_WEIGHT = "Max weight: ";
         private const string k_TRUCK_DANGEROUS = "Contains dangerous materials";
         private const string k_TRUCK_NOT_DANGER = "Doesn't contain dangerous materials";
+        private const string k_VEHICLE_ENERGY = "Energy status: ";
+        private const string k_TIERS_MANUFACTURER = "Tiers manufacturer: ";
+        private const string k_WHEEL_PRESSURE = "Pressure: ";
 
         internal void SayHi()
         {
@@ -205,10 +208,22 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             DisplayOneLineProperty(k_OWNER_NAME, i_VehicleDataBlock.VehicleInfo.OwnerName);
             DisplayOneLineProperty(k_OWNER_PHONE, i_VehicleDataBlock.VehicleInfo.OwnerPhoneNumber);
 
-            // Show actual vehicle data
+            // Show vehicle type & model
             DisplayOneLineProperty(k_VEHICLE_TYPE, i_VehicleDataBlock.VehicleInfo.VehicleType);
             DisplayOneLineProperty(k_VEHICLE_MODEL, i_VehicleDataBlock.VehicleInfo.Model);
+
+            // Show engine & fuel data
             DisplayOneLineProperty(k_VEHICLE_ENGINE_SIZE, i_VehicleDataBlock.VehicleInfo.EngineSize);
+            DisplayOneLineProperty(k_VEHICLE_ENERGY, i_VehicleDataBlock.VehicleInfo.RemainingEnergy);
+
+            // Show wheels air pressure & manufacturer
+            DisplayOneLineProperty(k_TIERS_MANUFACTURER, i_VehicleDataBlock.VehicleInfo.TierManufacturer);
+            int i = 1;
+            foreach (float tier in i_VehicleDataBlock.VehicleInfo.Tiers)
+            {
+                Console.Write(i + ") ");
+                DisplayOneLineProperty(k_WHEEL_PRESSURE, tier);
+            }
 
             // Car only
             DisplayOneLineProperty(k_VEHICLE_AMOUNT_OF_DOORS, i_VehicleDataBlock.VehicleInfo.NumberOfDoors);
@@ -230,7 +245,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                 DisplayOneLineProperty(o_TruckDanger, i_VehicleDataBlock.VehicleInfo.DangerousChemical);
             }
 
-            // TODO: Should show wheels, engine data
+            // Done, let's move on
             ShowDecoratedLineSeparator();
             HoldScreen();
         }
