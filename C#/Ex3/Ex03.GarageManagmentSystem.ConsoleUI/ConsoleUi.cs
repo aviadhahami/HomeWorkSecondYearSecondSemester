@@ -120,7 +120,9 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
 
         private void displayInventory()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("display inventory");
+            SortingType userSortingPick = m_UIStrings.GetUserSortingChoice();
+            m_UIStrings.HoldScreen();
         }
 
         private void insertVehicle()
