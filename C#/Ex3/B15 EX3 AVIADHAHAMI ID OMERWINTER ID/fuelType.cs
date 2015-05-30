@@ -9,6 +9,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         Soler,
         Octan95, 
         Octan96, 
-        Octan98
+        Octan98,
+        Electric
     };
 }

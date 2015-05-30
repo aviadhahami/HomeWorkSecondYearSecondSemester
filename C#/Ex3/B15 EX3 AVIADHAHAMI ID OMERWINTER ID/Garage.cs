@@ -6,20 +6,53 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 {
     public class Garage
     {
-        internal static void UpdateStatus(string p, StatusType statusType)
+
+        private readonly static Dictionary<string, OwnerInfo> m_VehicleInGarage = new Dictionary<string,OwnerInfo>();
+
+        public static void UpdateStatus(string i_LicenseNumber, StatusType i_statusType)
+
         {
-            throw new NotImplementedException();
+            OwnerInfo ownerInfo = m_VehicleInGarage[i_LicenseNumber];
+            ownerInfo.StatusType = i_statusType;
         }
 
-        internal static bool Exist(string p)
+        internal static bool Exist(string i_LicenseNumber)
         {
-            return false;
-            //throw new NotImplementedException();
+
+            bool exist = false;
+            if (m_VehicleInGarage.ContainsKey(i_LicenseNumber))
+            {
+                exist = true;
+            }
+            return exist;
         }
 
-        internal static void Insert(string p, string p_2, StatusType statusType, Vehicle i_Vehicle)
+        internal static void Insert(string i_UserPhoneNumber, string i_UserName, StatusType i_StatusType, Vehicle i_Vehicle)
         {
-            throw new NotImplementedException();
+            OwnerInfo ownerInfo = new OwnerInfo(i_Vehicle, i_UserName, i_UserPhoneNumber, i_StatusType);
+            m_VehicleInGarage.Add(i_Vehicle.LicenseNumber, ownerInfo);
+        }
+
+        public void FillEnergy(string i_LicenseNumber, FuelType i_FuelType, float i_FuelToFill)
+        {
+            Energy energyOfChoosenVehicle = m_VehicleInGarage[i_LicenseNumber].Vehicle.MyEnergy as Fuel;
+            var currentVehicle = m_VehicleInGarage[i_LicenseNumber].Vehicle;
+
+            if (energyOfChoosenVehicle != null)
+            {
+               // energyOfChoosenVehicle.
+            } 
+            else
+            {
+                Electricity electricity = (Electricity)energyOfChoosenVehicle;
+                electricity.fillElectricity(i_FuelToFill);
+            }
+        }
+
+        public void PumpAir(string i_LicenseNumber)
+        {
+            m_VehicleInGarage[i_LicenseNumber].Vehicle.PumpAir();
+            Console.WriteLine("Pump it up");
         }
 
         public bool CheckIfVehicleExists(string io_licnsePlate)

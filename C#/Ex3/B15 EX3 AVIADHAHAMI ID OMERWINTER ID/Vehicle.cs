@@ -12,6 +12,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         protected List<Tier> m_Tiers;
         protected string m_TierManufacturer;
         protected bool m_ElectricVehicle;
+        protected Energy m_MyEnergy;
 
         protected Vehicle(string i_Model, string i_LicenseNumber, float i_RemainingEnergy, string i_TierManufacturer)
         {
@@ -34,9 +35,19 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             }
         }
 
-        public void PumpAir(List<Tier> i_tiersToPump)
+        public string LicenseNumber
         {
-            foreach (Tier tier in i_tiersToPump)
+            get { return m_LicenseNumber; }
+        }
+
+        public Energy MyEnergy
+        {
+            get { return m_MyEnergy; }
+        }
+
+        public void PumpAir()
+        {
+            foreach (Tier tier in m_Tiers)
             {
                 tier.PumpAir = tier.MaximalAirPressure - tier.currentAirPressure;
             }

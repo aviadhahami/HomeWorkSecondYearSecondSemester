@@ -9,12 +9,20 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         Vehicle m_Vehicle;
         String m_OnerName;
         String m_OnerPhoneNumber;
+        StatusType m_StatusType;
 
-        public OwnerInfo(Vehicle i_Vehicle, String i_OnerName, String i_OnerPhoneNumber)
+        public OwnerInfo(Vehicle i_Vehicle, String i_OnerName, String i_OnerPhoneNumber, StatusType i_StatusType)
         {
             m_OnerName = i_OnerName;
             m_OnerPhoneNumber = i_OnerPhoneNumber;
             m_Vehicle = i_Vehicle;
+            m_StatusType = i_StatusType;
+        }
+
+        public StatusType StatusType
+        {
+            get { return m_StatusType; }
+            set { m_StatusType = value; }
         }
 
         public Vehicle Vehicle
