@@ -6,6 +6,8 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 {
     public class VehicleInfo
     {
+        private StatusType m_StatusType;
+        private Vehicle m_Vehicle;
         private VehicleType m_VihecleType;
         private string m_Model;
         private string m_LicenseNumber;
@@ -20,6 +22,12 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         private List<float> m_Tiers;
         private string m_UserPhoneNumber;
         private string m_UserName;
+
+        public StatusType StatusType
+        {
+            get { return m_StatusType; }
+            set { m_StatusType = value; }
+        }
 
         public VehicleType VihecleType
         {
@@ -104,6 +112,12 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         {
             get { return m_Tiers; }
             set { m_Tiers = value; }
+        }
+
+        public Vehicle Vehicle
+        {
+            get { return m_Vehicle; }
+            set { m_Vehicle = value; }
         }
     }
 }
