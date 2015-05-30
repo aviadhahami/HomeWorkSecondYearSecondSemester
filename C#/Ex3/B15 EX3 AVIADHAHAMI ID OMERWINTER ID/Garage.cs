@@ -7,6 +7,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
     public class Garage
     {
 
+
         private readonly static Dictionary<string, VehicleInfo> m_VehicleInGarage = new Dictionary<string,VehicleInfo>();
 
         public static void UpdateStatus(string i_LicenseNumber, StatusType i_statusType)
@@ -38,9 +39,11 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
             if (CheckIfVehicleExists(i_LicenseNumber) && m_VehicleInGarage[i_LicenseNumber].Vehicle.MyEnergy is Fuel)
             {
+
                 Fuel energySource = (Fuel)m_VehicleInGarage[i_LicenseNumber].Vehicle.MyEnergy;
                 energySource.fillFuel(i_FuelToFill, i_FuelType);
             } 
+
             else
             {
                 throw new FormatException();
