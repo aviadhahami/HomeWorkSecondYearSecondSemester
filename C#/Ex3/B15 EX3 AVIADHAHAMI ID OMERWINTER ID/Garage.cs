@@ -76,9 +76,9 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             return Exist(io_LicenseNumber);
         }
 
-        public VehicleInfo GetVehicleInfo(string i_LicenseNumber)
+        public GarageInfo GetVehicleInfo(string i_LicenseNumber)
         {
-            return m_VehicleInGarage[i_LicenseNumber].VihecleInfo;
+            return m_VehicleInGarage[i_LicenseNumber];
         }
     }
 }
