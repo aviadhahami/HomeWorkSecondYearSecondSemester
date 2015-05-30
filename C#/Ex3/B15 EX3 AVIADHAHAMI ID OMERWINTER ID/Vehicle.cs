@@ -45,6 +45,11 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             get { return m_MyEnergy; }
         }
 
+        public List<Tier> MyTiers
+        {
+            get { return m_Tiers; }
+        }
+
         public void PumpAir()
         {
             foreach (Tier tier in m_Tiers)
