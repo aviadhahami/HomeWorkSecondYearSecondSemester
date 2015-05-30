@@ -25,7 +25,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         private const string k_SAY_GOODBYE = "Thank you and have a bright day!\nAllah wakbar!";
         private const string k_PLEASE_CONTACT_ADMIN = "Something went wrong, contact system admin";
         private const string k_SORRY_NO_SUCH_VEHICLE = "We're sorry, we do not posses vehicle licensed with";
-        private string k_PLEASE_INSERT_LICENSE_NUMBER = "Please enter a valid license plate number";
+        private string k_PLEASE_INSERT_LICENSE_NUMBER = "Please enter a valid license plate number or type \"exit\" to go back";
 
         internal void SayHi()
         {
@@ -91,6 +91,10 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
 
         internal void ShowSuggestions()
         {
+            // Make sure screen is clean
+            Console.Clear();
+            
+            // Show all data
             foreach (GarageOption o_GarageOption in Enum.GetValues(typeof(GarageOption)))
             {
                 ShowFullOption(o_GarageOption);

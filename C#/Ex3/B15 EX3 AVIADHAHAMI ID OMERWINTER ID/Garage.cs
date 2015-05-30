@@ -7,10 +7,9 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
     public class Garage
     {
 
-        private readonly static Dictionary<string, OwnerInfo> m_VehicleInGarage = new Dictionary<string,OwnerInfo>();
+        private readonly static Dictionary<string, OwnerInfo> m_VehicleInGarage = new Dictionary<string, OwnerInfo>();
 
-        public static void UpdateStatus(string i_LicenseNumber, StatusType i_statusType)
-
+        internal static void UpdateStatus(string i_LicenseNumber, StatusType i_statusType)
         {
             OwnerInfo ownerInfo = m_VehicleInGarage[i_LicenseNumber];
             ownerInfo.StatusType = i_statusType;
@@ -40,8 +39,8 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
             if (energyOfChoosenVehicle != null)
             {
-               // energyOfChoosenVehicle.
-            } 
+                // energyOfChoosenVehicle.
+            }
             else
             {
                 Electricity electricity = (Electricity)energyOfChoosenVehicle;

@@ -79,13 +79,17 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                     m_UIStrings.DisplayVehicleData(m_Garage.GetVehicle(io_licnsePlate));
                 }
                 // Else vehicle doesnt exist
+                else if (io_licnsePlate == "exit" || io_licnsePlate == "EXIT")
+                {
+                    break;
+                }
                 else
                 {
                     m_UIStrings.LicenseNumberDoesntExist(io_licnsePlate);
                     // Should ask if he wants to try again, otherwise pop to main screen
                 }
-
             }
+            m_UIStrings.ShowSuggestions();
         }
 
         private void rechargeVehicle()
