@@ -197,40 +197,42 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             return o_UserInput;
         }
 
-        internal void DisplayVehicleData(GarageLogic.GarageInfo i_Vehicle)
+        internal void DisplayVehicleData(GarageLogic.GarageInfo i_VehicleDataBlock)
         {
             ShowDecoratedLineSeparator();
 
             // Show owner info
-            DisplayOneLineProperty(k_OWNER_NAME, i_Vehicle.VehicleInfo.OwnerName);
-            DisplayOneLineProperty(k_OWNER_PHONE, i_Vehicle.VehicleInfo.OwnerPhoneNumber);
+            DisplayOneLineProperty(k_OWNER_NAME, i_VehicleDataBlock.VehicleInfo.OwnerName);
+            DisplayOneLineProperty(k_OWNER_PHONE, i_VehicleDataBlock.VehicleInfo.OwnerPhoneNumber);
 
             // Show actual vehicle data
-            DisplayOneLineProperty(k_VEHICLE_TYPE, i_Vehicle.VehicleInfo.VehicleType);
-            DisplayOneLineProperty(k_VEHICLE_MODEL, i_Vehicle.VehicleInfo.Model);
-            DisplayOneLineProperty(k_VEHICLE_ENGINE_SIZE, i_Vehicle.VehicleInfo.EngineSize);
+            DisplayOneLineProperty(k_VEHICLE_TYPE, i_VehicleDataBlock.VehicleInfo.VehicleType);
+            DisplayOneLineProperty(k_VEHICLE_MODEL, i_VehicleDataBlock.VehicleInfo.Model);
+            DisplayOneLineProperty(k_VEHICLE_ENGINE_SIZE, i_VehicleDataBlock.VehicleInfo.EngineSize);
 
             // Car only
-            DisplayOneLineProperty(k_VEHICLE_AMOUNT_OF_DOORS, i_Vehicle.VehicleInfo.NumberOfDoors);
-            DisplayOneLineProperty(k_VEHICLE_COLOR, i_Vehicle.VehicleInfo.Color);
+            DisplayOneLineProperty(k_VEHICLE_AMOUNT_OF_DOORS, i_VehicleDataBlock.VehicleInfo.NumberOfDoors);
+            DisplayOneLineProperty(k_VEHICLE_COLOR, i_VehicleDataBlock.VehicleInfo.Color);
 
             // Motorcycle only
-            if (i_Vehicle.VehicleInfo.VehicleType == GarageLogic.VehicleType.Motocycle)
+            if (i_VehicleDataBlock.VehicleInfo.VehicleType == GarageLogic.VehicleType.Motocycle)
             {
-                DisplayOneLineProperty(k_VEHICLE_LICENSE_TYPE, i_Vehicle.VehicleInfo.LicenseType);
+                DisplayOneLineProperty(k_VEHICLE_LICENSE_TYPE, i_VehicleDataBlock.VehicleInfo.LicenseType);
             }
 
             // Truck only
-            if (i_Vehicle.VehicleInfo.VehicleType == GarageLogic.VehicleType.Truck)
+            if (i_VehicleDataBlock.VehicleInfo.VehicleType == GarageLogic.VehicleType.Truck)
             {
-                DisplayOneLineProperty(k_TRUCK_MAX_WEIGHT, i_Vehicle.VehicleInfo.Weight);
+                DisplayOneLineProperty(k_TRUCK_MAX_WEIGHT, i_VehicleDataBlock.VehicleInfo.Weight);
 
                 // Check for toxic materials
-                string o_TruckDanger = i_Vehicle.VehicleInfo.DangerousChemical ? k_TRUCK_DANGEROUS : k_TRUCK_NOT_DANGER;
-                DisplayOneLineProperty(o_TruckDanger, i_Vehicle.VehicleInfo.DangerousChemical);
+                string o_TruckDanger = i_VehicleDataBlock.VehicleInfo.DangerousChemical ? k_TRUCK_DANGEROUS : k_TRUCK_NOT_DANGER;
+                DisplayOneLineProperty(o_TruckDanger, i_VehicleDataBlock.VehicleInfo.DangerousChemical);
             }
 
             // Should show wheels, engine data
+
+            DisplayOneLineProperty("Tiers", i_VehicleDataBlock.VehicleInfo.Tiers);
 
             ShowDecoratedLineSeparator();
             HoldScreen();
