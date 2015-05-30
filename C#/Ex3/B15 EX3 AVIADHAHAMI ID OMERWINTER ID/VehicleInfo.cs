@@ -7,6 +7,8 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
     public class VehicleInfo
     {
         private VehicleType m_VehicleType;
+        private StatusType m_StatusType;
+        private Vehicle m_Vehicle;
         private string m_Model;
         private string m_LicenseNumber;
         private float m_RemainingEnergy;
@@ -20,6 +22,12 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         private List<float> m_Tiers;
         private string m_OwnerPhoneNumber;
         private string m_OwnerName;
+
+        internal StatusType StatusType
+        {
+            get { return m_StatusType; }
+            set { m_StatusType = value; }
+        }
 
         public VehicleType VihecleType
         {
@@ -113,7 +121,12 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
         public string GetOwnerPhone()
         {
-            return m_OwnerPhoneNumber();
+            return m_OwnerPhoneNumber;
+        }
+        internal Vehicle Vehicle
+        {
+            get { return m_Vehicle; }
+            set { m_Vehicle = value; }
         }
     }
 }

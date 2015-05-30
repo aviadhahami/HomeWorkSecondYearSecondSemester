@@ -76,7 +76,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                 io_licnsePlate = m_UIStrings.AskForLicenseNumber();
                 if (m_Garage.CheckIfVehicleExists(io_licnsePlate))
                 {
-                    m_UIStrings.DisplayVehicleData(m_Garage.GetVehicle(io_licnsePlate));
+                    m_UIStrings.DisplayVehicleData(m_Garage.GetVehicleInfo(io_licnsePlate));
                     break;
                 }
                 // Else vehicle doesnt exist
