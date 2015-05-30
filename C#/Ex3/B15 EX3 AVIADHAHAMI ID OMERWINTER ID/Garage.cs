@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace B15_EX3_AVIADHAHAMI_302188347_OMERWINTER_305526907
+namespace Ex03.GarageManagmentSystem.GarageLogic
 {
-    class Garage
+    public class Garage
     {
+
         private readonly static Dictionary<string, OwnerInfo> m_VehicleInGarage = new Dictionary<string,OwnerInfo>();
 
         public static void AppdateStatus(string i_LicenseNumber, StatusType i_statusType)
+
         {
             OwnerInfo ownerInfo = m_VehicleInGarage[i_LicenseNumber];
             ownerInfo.StatusType = i_statusType;
@@ -50,6 +52,18 @@ namespace B15_EX3_AVIADHAHAMI_302188347_OMERWINTER_305526907
         {
             m_VehicleInGarage[i_LicenseNumber].Vehicle.PumpAir();
             Console.WriteLine("Pump it up");
+        }
+
+        public bool CheckIfVehicleExists(string io_licnsePlate)
+        {
+            //TODO : IMPLEMENT
+            throw new NotImplementedException();
+        }
+
+        public object GetVehicle(string io_licnsePlate)
+        {
+            //TODO: IMPLEMENT
+            throw new NotImplementedException();
         }
     }
 }
