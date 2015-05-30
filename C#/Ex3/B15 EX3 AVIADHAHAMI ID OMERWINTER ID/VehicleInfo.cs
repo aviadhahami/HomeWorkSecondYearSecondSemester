@@ -6,20 +6,27 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 {
     public class VehicleInfo
     {
+        // Vehicle inner data
         private VehicleType m_VehicleType;
-        private StatusType m_StatusType;
         private Vehicle m_Vehicle;
+        private StatusType m_StatusType;
         private string m_Model;
-        private string m_LicenseNumber;
-        private float m_RemainingEnergy;
-        private string m_TierManufacturer;
         private int m_NumberOfDoors;
-        private Colors m_Color;
         private int m_EngineSize;
-        private License m_LicenseType;
+
+        //Vehicle recommendations
         private bool m_DangerousChemical;
         private float m_Weight;
         private List<float> m_Tiers;
+
+        //Vehicle aux
+        private Colors m_Color;
+        private string m_LicenseNumber;
+        private float m_RemainingEnergy;
+        private string m_TierManufacturer;
+        private License m_LicenseType;
+
+        // Owner info
         private string m_OwnerPhoneNumber;
         private string m_OwnerName;
 
