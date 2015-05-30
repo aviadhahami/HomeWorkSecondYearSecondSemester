@@ -76,10 +76,11 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                 io_licnsePlate = m_UIStrings.AskForLicenseNumber();
                 if (m_Garage.CheckIfVehicleExists(io_licnsePlate))
                 {
-                    m_UIStrings.DisplayVehicleData(m_Garage.GetVehicle(io_licnsePlate));
+                    m_UIStrings.DisplayVehicleData(m_Garage.GetVehicleInfo(io_licnsePlate));
+                    break;
                 }
                 // Else vehicle doesnt exist
-                else if (io_licnsePlate == "exit" || io_licnsePlate == "EXIT")
+                else if (userAskedToQuitCurrentPick(io_licnsePlate))
                 {
                     break;
                 }
@@ -90,6 +91,11 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                 }
             }
             m_UIStrings.ShowSuggestions();
+        }
+
+        private bool userAskedToQuitCurrentPick(string i_UserInput)
+        {
+            return i_UserInput == "exit" || i_UserInput == "EXIT";
         }
 
         private void rechargeVehicle()

@@ -6,22 +6,22 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 {
     public class VehicleInfo
     {
+        private VehicleType m_VehicleType;
         private StatusType m_StatusType;
         private Vehicle m_Vehicle;
-        private VehicleType m_VihecleType;
         private string m_Model;
         private string m_LicenseNumber;
         private float m_RemainingEnergy;
         private string m_TierManufacturer;
-        private int m_NumberOfDors;
+        private int m_NumberOfDoors;
         private Colors m_Color;
         private int m_EngineSize;
         private License m_LicenseType;
         private bool m_DangerousChemical;
-        private float m_Wight;
+        private float m_Weight;
         private List<float> m_Tiers;
-        private string m_UserPhoneNumber;
-        private string m_UserName;
+        private string m_OwnerPhoneNumber;
+        private string m_OwnerName;
 
         public VehicleInfo(int i_NumberOfDors, Colors i_Color, List<float> i_PressurInTiers, VehicleType i_VehicleType, string i_Model, string i_LicenseNumber, float i_RemainingEnergy, string i_TierManufacturer)
         {
@@ -98,7 +98,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         public float RemainingEnergy
         {
             get { return m_RemainingEnergy; }
-            set { m_RemainingEnergy = value; }
         }
 
         public float Wight
@@ -106,7 +105,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             get { return m_Wight; }
         }
 
-       
+
         public int NumberOfDors
         {
             get { return m_NumberOfDors; }
@@ -137,9 +136,5 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             get { return m_Tiers; }
         }
 
-        public Vehicle Vehicle
-        {
-            get { return m_Vehicle; }
-        }
     }
 }

@@ -10,7 +10,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
         private readonly static Dictionary<string, GarageInfo> m_VehicleInGarage = new Dictionary<string,GarageInfo>();
 
-        public static void UpdateStatus(string i_LicenseNumber, StatusType i_statusType)
+        internal static void UpdateStatus(string i_LicenseNumber, StatusType i_statusType)
 
         {
             GarageInfo garageInfo = m_VehicleInGarage[i_LicenseNumber];
@@ -76,7 +76,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             return Exist(io_LicenseNumber);
         }
 
-        public VehicleInfo getVehicleInfo(string i_LicenseNumber)
+        public VehicleInfo GetVehicleInfo(string i_LicenseNumber)
         {
             return m_VehicleInGarage[i_LicenseNumber].VihecleInfo;
         }

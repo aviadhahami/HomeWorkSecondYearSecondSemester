@@ -25,7 +25,9 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         private const string k_SAY_GOODBYE = "Thank you and have a bright day!\nAllah wakbar!";
         private const string k_PLEASE_CONTACT_ADMIN = "Something went wrong, contact system admin";
         private const string k_SORRY_NO_SUCH_VEHICLE = "We're sorry, we do not posses vehicle licensed with";
-        private string k_PLEASE_INSERT_LICENSE_NUMBER = "Please enter a valid license plate number or type \"exit\" to go back";
+        private const string k_PLEASE_INSERT_LICENSE_NUMBER = "Please enter a valid license plate number or type \"exit\" to go back";
+        private const string k_OwnerName = "Owner name : ";
+        private const string k_OwnerPhone = "Owner phone number is: ";
 
         internal void SayHi()
         {
@@ -93,7 +95,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         {
             // Make sure screen is clean
             Console.Clear();
-            
+
             // Show all data
             foreach (GarageOption o_GarageOption in Enum.GetValues(typeof(GarageOption)))
             {
@@ -186,10 +188,19 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             return o_UserInput;
         }
 
-        internal void DisplayVehicleData(object p)
+        internal void DisplayVehicleData(GarageLogic.VehicleInfo i_Vehicle)
         {
-            // TODO : IMPLEMENT
-            throw new NotImplementedException();
+            ShowDecoratedLineSeparator();
+
+            // Show owner info
+            Console.Write(k_OwnerName);
+            Console.WriteLine(i_Vehicle.GetOwnerName());
+            Console.Write(k_OwnerPhone);
+            Console.WriteLine(i_Vehicle.GetOwnerPhone());
+            // Show actual vehicle data
+
+            ShowDecoratedLineSeparator();
+            HoldScreen();
         }
     }
 }
