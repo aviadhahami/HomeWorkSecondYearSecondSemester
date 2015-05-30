@@ -13,7 +13,6 @@ namespace B15_EX3_AVIADHAHAMI_302188347_OMERWINTER_305526907
         private readonly float MAXTANK = 8;
         private readonly FuelType FUELTYPE = FuelType.Octan98;
 
-        Energy m_myEnergy;
         int m_EngineSize;
         License m_LicenseType;
 
@@ -28,12 +27,12 @@ namespace B15_EX3_AVIADHAHAMI_302188347_OMERWINTER_305526907
             if (i_ElectricVehicle == VehicleType.ElectricMotorcycle)
             {
                 setTierData(i_PressurInTiers, MAXTIERPRESSUROFELECTRIC, this.m_TierManufacturer);
-                m_myEnergy = new Electricity(MAXTBUTERI, MAXTBUTERI * m_RemainingEnergy);
+                m_MyEnergy = new Electricity(MAXTBUTERI, MAXTBUTERI * m_RemainingEnergy);
             }
             else
             {
                 setTierData(i_PressurInTiers, MAXTIERPRESSUROFFUEL, this.m_TierManufacturer);
-                m_myEnergy = new Fuel(MAXTANK, MAXTANK * m_RemainingEnergy, FUELTYPE);
+                m_MyEnergy = new Fuel(MAXTANK, MAXTANK * m_RemainingEnergy, FUELTYPE);
             }
         }
 

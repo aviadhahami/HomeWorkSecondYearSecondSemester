@@ -12,7 +12,6 @@ namespace B15_EX3_AVIADHAHAMI_302188347_OMERWINTER_305526907
         private readonly int NUMBEROFTAIERS = 4;
         private readonly FuelType FUELTYPE = FuelType.Octan96;
 
-        Energy m_myEnergy;
         int m_numberOfDors;
         Colors m_color;
         public Car(int i_NumberOfDors, Colors i_Color, List<float> i_PressurInTiers, VehicleType i_ElectricVehicle, string i_Model, string i_LicenseNumber, float i_RemainingEnergy, string i_TierManufacturer)
@@ -24,11 +23,11 @@ namespace B15_EX3_AVIADHAHAMI_302188347_OMERWINTER_305526907
             setTierData(i_PressurInTiers, MAXTIERPRESSUR, this.m_TierManufacturer);
             if (i_ElectricVehicle == VehicleType.ElectricCar)
             {
-                m_myEnergy = new Electricity(MAXIMUMBUTTRYTIME, MAXIMUMBUTTRYTIME * m_RemainingEnergy);
+                m_MyEnergy = new Electricity(MAXIMUMBUTTRYTIME, MAXIMUMBUTTRYTIME * m_RemainingEnergy);
             }
             else
             {
-                m_myEnergy = new Fuel(FULLTANK, FULLTANK * m_RemainingEnergy, FUELTYPE);
+                m_MyEnergy = new Fuel(FULLTANK, FULLTANK * m_RemainingEnergy, FUELTYPE);
             }
         }
 

@@ -9,6 +9,7 @@ namespace B15_EX3_AVIADHAHAMI_302188347_OMERWINTER_305526907
         Soler,
         Octan95, 
         Octan96, 
-        Octan98
+        Octan98,
+        Electric
     };
 }
