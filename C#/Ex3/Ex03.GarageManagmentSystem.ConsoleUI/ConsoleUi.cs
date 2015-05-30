@@ -70,23 +70,23 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
 
         private void displaySingleVehicle()
         {
-            string io_licnsePlate;
+            string io_licensePlate;
             while (true)
             {
-                io_licnsePlate = m_UIStrings.AskForLicenseNumber();
-                if (m_Garage.CheckIfVehicleExists(io_licnsePlate))
+                io_licensePlate = m_UIStrings.AskForLicenseNumber();
+                if (m_Garage.CheckIfVehicleExists(io_licensePlate))
                 {
-                    m_UIStrings.DisplayVehicleData(m_Garage.GetVehicleInfo(io_licnsePlate));
+                    m_UIStrings.DisplayVehicleData(m_Garage.GetVehicleInfo(io_licensePlate));
                     break;
                 }
                 // Else vehicle doesnt exist
-                else if (userAskedToQuitCurrentPick(io_licnsePlate))
+                else if (userAskedToQuitCurrentPick(io_licensePlate))
                 {
                     break;
                 }
                 else
                 {
-                    m_UIStrings.LicenseNumberDoesntExist(io_licnsePlate);
+                    m_UIStrings.LicenseNumberDoesntExist(io_licensePlate);
                     // Should ask if he wants to try again, otherwise pop to main screen
                 }
             }

@@ -202,8 +202,8 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             ShowDecoratedLineSeparator();
 
             // Show owner info
-            DisplayOneLineProperty(k_OWNER_NAME, i_Vehicle.GetOwnerName());
-            DisplayOneLineProperty(k_OWNER_PHONE, i_Vehicle.GetOwnerPhone());
+           // DisplayOneLineProperty(k_OWNER_NAME, i_Vehicle.GetOwnerName());
+           //DisplayVehicleData DisplayOneLineProperty(k_OWNER_PHONE, i_Vehicle.GetOwnerPhone());
 
             // Show actual vehicle data
             DisplayOneLineProperty(k_VEHICLE_TYPE, i_Vehicle.VehicleType);

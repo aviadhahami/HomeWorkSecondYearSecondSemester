@@ -32,10 +32,10 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
         public VehicleInfo(int i_NumberOfDors, Colors i_Color, List<float> i_PressurInTiers, VehicleType i_VehicleType, string i_Model, string i_LicenseNumber, float i_RemainingEnergy, string i_TierManufacturer)
         {
-            m_NumberOfDors = i_NumberOfDors;
+            m_NumberOfDoors = i_NumberOfDors;
             m_Color = i_Color;
             m_Tiers = i_PressurInTiers;
-            m_VihecleType = i_VehicleType;
+            m_VehicleType = i_VehicleType;
             m_Model = i_Model;
             m_LicenseNumber = i_LicenseNumber;
             m_RemainingEnergy = i_RemainingEnergy;
@@ -47,7 +47,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             m_EngineSize = i_EngineSize;
             m_LicenseType = i_LicenseType;
             m_Tiers = i_PressurInTiers;
-            m_VihecleType = i_VehicleType;
+            m_VehicleType = i_VehicleType;
             m_Model = i_Model;
             m_LicenseNumber = i_LicenseNumber;
             m_RemainingEnergy = i_RemainingEnergy;
@@ -57,16 +57,16 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         public VehicleInfo(string i_Model, string i_LicenseNumber, List<float> i_PressurInTiers, float i_RemainingEnergy, string i_TierManufacturer, bool i_DangerousChemical, float i_Wight, VehicleType i_VehicleType)
         {
             m_DangerousChemical = i_DangerousChemical;
-            m_Wight = i_Wight;
+            m_Weight = i_Wight;
             m_Tiers = i_PressurInTiers;
-            m_VihecleType = i_VehicleType;
+            m_VehicleType = i_VehicleType;
             m_Model = i_Model;
             m_LicenseNumber = i_LicenseNumber;
             m_RemainingEnergy = i_RemainingEnergy;
             m_TierManufacturer = i_TierManufacturer;
         }
 
-        public StatusType StatusType
+        internal StatusType StatusType
         {
             get { return m_StatusType; }
             set { m_StatusType = value; }
@@ -74,7 +74,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
         public VehicleType VehicleType
         {
-            get { return m_VihecleType; }
+            get { return m_VehicleType; }
         }
 
         public string Model
@@ -82,14 +82,14 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             get { return m_Model; }
         }
 
-        public string UserPhoneNumber
+        public string OwnerPhoneNumber
         {
-            get { return m_UserPhoneNumber; }
+            get { return m_OwnerPhoneNumber; }
         }
 
-        public string UserName
+        public string OwnerName
         {
-            get { return m_UserName; }
+            get { return m_OwnerName; }
         }
 
         public string LicenseNumber
@@ -109,13 +109,13 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
         public float Weight
         {
-            get { return m_Wight; }
+            get { return m_Weight; }
         }
 
 
         public int NumberOfDoors
         {
-            get { return m_NumberOfDors; }
+            get { return m_NumberOfDoors; }
         }
 
         public Colors Color
