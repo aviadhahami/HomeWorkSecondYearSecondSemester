@@ -26,8 +26,17 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         private const string k_PLEASE_CONTACT_ADMIN = "Something went wrong, contact system admin";
         private const string k_SORRY_NO_SUCH_VEHICLE = "We're sorry, we do not posses vehicle licensed with";
         private const string k_PLEASE_INSERT_LICENSE_NUMBER = "Please enter a valid license plate number or type \"exit\" to go back";
-        private const string k_OwnerName = "Owner name : ";
-        private const string k_OwnerPhone = "Owner phone number is: ";
+        private const string k_OWNER_NAME = "Owner name : ";
+        private const string k_OWNER_PHONE = "Owner phone number is: ";
+        private const string k_VEHICLE_TYPE = "Type: ";
+        private const string k_VEHICLE_MODEL = "Model : ";
+        private const string k_VEHICLE_ENGINE_SIZE = "Engine size : ";
+        private const string k_VEHICLE_AMOUNT_OF_DOORS = "Amount of doors: ";
+        private const string k_VEHICLE_COLOR = "Color: ";
+        private const string k_VEHICLE_LICENSE_TYPE = "License type: ";
+        private const string k_TRUCK_MAX_WEIGHT = "Max weight: ";
+        private const string k_TRUCK_DANGEROUS = "Contains dangerous materials";
+        private const string k_TRUCK_NOT_DANGER = "Doesn't contain dangerous materials";
 
         internal void SayHi()
         {
@@ -193,14 +202,47 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             ShowDecoratedLineSeparator();
 
             // Show owner info
-            Console.Write(k_OwnerName);
-            Console.WriteLine(i_Vehicle.GetOwnerName());
-            Console.Write(k_OwnerPhone);
-            Console.WriteLine(i_Vehicle.GetOwnerPhone());
+            DisplayOneLineProperty(k_OWNER_NAME, i_Vehicle.GetOwnerName());
+            DisplayOneLineProperty(k_OWNER_PHONE, i_Vehicle.GetOwnerPhone());
+
             // Show actual vehicle data
+            DisplayOneLineProperty(k_VEHICLE_TYPE, i_Vehicle.VehicleType);
+            DisplayOneLineProperty(k_VEHICLE_MODEL, i_Vehicle.Model);
+            DisplayOneLineProperty(k_VEHICLE_ENGINE_SIZE, i_Vehicle.EngineSize);
+
+            // Car only
+            DisplayOneLineProperty(k_VEHICLE_AMOUNT_OF_DOORS, i_Vehicle.NumberOfDoors);
+            DisplayOneLineProperty(k_VEHICLE_COLOR, i_Vehicle.Color);
+
+            // Motorcycle only
+            if (i_Vehicle.VehicleType == GarageLogic.VehicleType.Motocycle)
+            {
+                DisplayOneLineProperty(k_VEHICLE_LICENSE_TYPE, i_Vehicle.LicenseType);
+            }
+
+            // Truck only
+            if (i_Vehicle.VehicleType == GarageLogic.VehicleType.Truck)
+            {
+                DisplayOneLineProperty(k_TRUCK_MAX_WEIGHT, i_Vehicle.Weight);
+            }
+            if (i_Vehicle.VehicleType == GarageLogic.VehicleType.Truck)
+            {
+                DisplayOneLineProperty(k_TRUCK_MAX_WEIGHT, i_Vehicle.Weight);
+
+                // Check for toxic materials
+                string o_TruckDanger = i_Vehicle.DangerousChemical ? k_TRUCK_DANGEROUS : k_TRUCK_NOT_DANGER;
+                DisplayOneLineProperty(o_TruckDanger, i_Vehicle.DangerousChemical);
+            }
+
+            // Should show wheels, engine data
 
             ShowDecoratedLineSeparator();
             HoldScreen();
+        }
+
+        private void DisplayOneLineProperty(string i_Property, object i_VehicleData)
+        {
+            Console.WriteLine(i_Property + " - " + i_VehicleData.ToString());
         }
     }
 }
