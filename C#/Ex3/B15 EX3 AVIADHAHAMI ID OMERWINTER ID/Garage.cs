@@ -6,15 +6,12 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 {
     public class Garage
     {
-
-
-        private readonly static Dictionary<string, GarageInfo> m_VehicleInGarage = new Dictionary<string,GarageInfo>();
+        private readonly static Dictionary<string, GarageInfo> m_VehicleInGarage = new Dictionary<string, GarageInfo>();
 
         internal static void UpdateStatus(string i_LicenseNumber, StatusType i_statusType)
-
         {
             GarageInfo garageInfo = m_VehicleInGarage[i_LicenseNumber];
-            garageInfo.VihecleInfo.StatusType = i_statusType;
+            garageInfo.VehicleInfo.StatusType = i_statusType;
         }
 
         internal static bool Exist(string i_LicenseNumber)
@@ -30,33 +27,33 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
         internal static void Insert(GarageInfo i_GarageInfo)
         {
-            m_VehicleInGarage.Add(i_GarageInfo.VihecleInfo.LicenseNumber, i_GarageInfo);
+            m_VehicleInGarage.Add(i_GarageInfo.VehicleInfo.LicenseNumber, i_GarageInfo);
         }
 
         public void FillFuel(string i_LicenseNumber, FuelType i_FuelType, float i_FuelToFill)
         {
 
 
-            if (CheckIfVehicleExists(i_LicenseNumber) && m_VehicleInGarage[i_LicenseNumber].Vihecle.MyEnergy is Fuel)
+            if (CheckIfVehicleExists(i_LicenseNumber) && m_VehicleInGarage[i_LicenseNumber].Vehicle.MyEnergy is Fuel)
             {
 
-                Fuel energySource = (Fuel)m_VehicleInGarage[i_LicenseNumber].Vihecle.MyEnergy;
+                Fuel energySource = (Fuel)m_VehicleInGarage[i_LicenseNumber].Vehicle.MyEnergy;
                 energySource.fillFuel(i_FuelToFill, i_FuelType);
-            } 
+            }
 
             else
             {
                 throw new FormatException();
             }
         }
-        
+
         public void FillCharger(string i_LicenseNumber, float i_FuelToFill)
         {
 
 
-            if (CheckIfVehicleExists(i_LicenseNumber) && m_VehicleInGarage[i_LicenseNumber].Vihecle.MyEnergy is Electricity)
+            if (CheckIfVehicleExists(i_LicenseNumber) && m_VehicleInGarage[i_LicenseNumber].Vehicle.MyEnergy is Electricity)
             {
-                Electricity energySource = (Electricity)m_VehicleInGarage[i_LicenseNumber].Vihecle.MyEnergy;
+                Electricity energySource = (Electricity)m_VehicleInGarage[i_LicenseNumber].Vehicle.MyEnergy;
                 energySource.fillElectricity(i_FuelToFill);
             }
             else
@@ -67,7 +64,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
         public void PumpAir(string i_LicenseNumber)
         {
-            m_VehicleInGarage[i_LicenseNumber].Vihecle.PumpAir();
+            m_VehicleInGarage[i_LicenseNumber].Vehicle.PumpAir();
             Console.WriteLine("Pump it up");
         }
 
