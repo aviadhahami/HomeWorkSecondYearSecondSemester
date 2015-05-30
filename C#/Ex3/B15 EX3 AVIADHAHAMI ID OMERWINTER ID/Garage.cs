@@ -59,7 +59,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             return Exist(io_licnsePlate);
         }
 
-        public object GetVehicle(string io_licnsePlate)
+        public VehicleInfo GetVehicle(string io_licnsePlate)
         {
             //TODO 
             throw new NotImplementedException();

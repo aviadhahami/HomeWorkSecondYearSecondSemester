@@ -6,25 +6,25 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 {
     public class VehicleInfo
     {
-        private VehicleType m_VihecleType;
+        private VehicleType m_VehicleType;
         private string m_Model;
         private string m_LicenseNumber;
         private float m_RemainingEnergy;
         private string m_TierManufacturer;
-        private int m_NumberOfDors;
+        private int m_NumberOfDoors;
         private Colors m_Color;
         private int m_EngineSize;
         private License m_LicenseType;
         private bool m_DangerousChemical;
-        private float m_Wight;
+        private float m_Weight;
         private List<float> m_Tiers;
-        private string m_UserPhoneNumber;
-        private string m_UserName;
+        private string m_OwnerPhoneNumber;
+        private string m_OwnerName;
 
         public VehicleType VihecleType
         {
-            get { return m_VihecleType; }
-            set { m_VihecleType = value; }
+            get { return m_VehicleType; }
+            set { m_VehicleType = value; }
         }
 
         public string Model
@@ -35,14 +35,14 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
         public string UserPhoneNumber
         {
-            get { return m_UserPhoneNumber; }
-            set { m_UserPhoneNumber = value; }
+            get { return m_OwnerPhoneNumber; }
+            set { m_OwnerPhoneNumber = value; }
         }
 
         public string UserName
         {
-            get { return m_UserName; }
-            set { m_UserName = value; }
+            get { return m_OwnerName; }
+            set { m_OwnerName = value; }
         }
 
         public string LicenseNumber
@@ -65,15 +65,15 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
         public float Wight
         {
-            get { return m_Wight; }
-            set { m_Wight = value; }
+            get { return m_Weight; }
+            set { m_Weight = value; }
         }
 
-       
+
         public int NumberOfDors
         {
-            get { return m_NumberOfDors; }
-            set { m_NumberOfDors = value; }
+            get { return m_NumberOfDoors; }
+            set { m_NumberOfDoors = value; }
         }
 
         public Colors Color
@@ -104,6 +104,16 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         {
             get { return m_Tiers; }
             set { m_Tiers = value; }
+        }
+
+        public string GetOwnerName()
+        {
+            return m_OwnerName;
+        }
+
+        public string GetOwnerPhone()
+        {
+            return m_OwnerPhoneNumber();
         }
     }
 }
