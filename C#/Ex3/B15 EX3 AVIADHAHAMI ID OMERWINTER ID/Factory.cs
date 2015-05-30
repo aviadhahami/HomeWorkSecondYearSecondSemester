@@ -14,7 +14,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
                 Garage.UpdateStatus(i_VehicleInfo.LicenseNumber, StatusType.Fixing);
                 Console.WriteLine("Vehicle allready exist");
             }
-            switch (i_VehicleInfo.VihecleType)
+            switch (i_VehicleInfo.VehicleType)
             {
                 case VehicleType.Car:
                     electricOrFuel = VehicleType.Car;

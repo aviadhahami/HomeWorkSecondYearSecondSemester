@@ -36,7 +36,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             set { m_StatusType = value; }
         }
 
-        public VehicleType VihecleType
+        public VehicleType VehicleType
         {
             get { return m_VehicleType; }
             set { m_VehicleType = value; }
