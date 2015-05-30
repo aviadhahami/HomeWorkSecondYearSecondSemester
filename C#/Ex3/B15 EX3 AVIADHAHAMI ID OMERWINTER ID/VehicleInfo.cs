@@ -30,7 +30,43 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         private string m_OwnerPhoneNumber;
         private string m_OwnerName;
 
-        internal StatusType StatusType
+        public VehicleInfo(int i_NumberOfDors, Colors i_Color, List<float> i_PressurInTiers, VehicleType i_VehicleType, string i_Model, string i_LicenseNumber, float i_RemainingEnergy, string i_TierManufacturer)
+        {
+            m_NumberOfDors = i_NumberOfDors;
+            m_Color = i_Color;
+            m_Tiers = i_PressurInTiers;
+            m_VihecleType = i_VehicleType;
+            m_Model = i_Model;
+            m_LicenseNumber = i_LicenseNumber;
+            m_RemainingEnergy = i_RemainingEnergy;
+            m_TierManufacturer = i_TierManufacturer;
+        }
+
+        public VehicleInfo(string i_Model, List<float> i_PressurInTiers, string i_LicenseNumber, float i_RemainingEnergy, string i_TierManufacturer, VehicleType i_VehicleType, int i_EngineSize, License i_LicenseType)
+        {
+            m_EngineSize = i_EngineSize;
+            m_LicenseType = i_LicenseType;
+            m_Tiers = i_PressurInTiers;
+            m_VihecleType = i_VehicleType;
+            m_Model = i_Model;
+            m_LicenseNumber = i_LicenseNumber;
+            m_RemainingEnergy = i_RemainingEnergy;
+            m_TierManufacturer = i_TierManufacturer;
+        }
+
+        public VehicleInfo(string i_Model, string i_LicenseNumber, List<float> i_PressurInTiers, float i_RemainingEnergy, string i_TierManufacturer, bool i_DangerousChemical, float i_Wight, VehicleType i_VehicleType)
+        {
+            m_DangerousChemical = i_DangerousChemical;
+            m_Wight = i_Wight;
+            m_Tiers = i_PressurInTiers;
+            m_VihecleType = i_VehicleType;
+            m_Model = i_Model;
+            m_LicenseNumber = i_LicenseNumber;
+            m_RemainingEnergy = i_RemainingEnergy;
+            m_TierManufacturer = i_TierManufacturer;
+        }
+
+        public StatusType StatusType
         {
             get { return m_StatusType; }
             set { m_StatusType = value; }
@@ -38,102 +74,74 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
         public VehicleType VehicleType
         {
-            get { return m_VehicleType; }
-            set { m_VehicleType = value; }
+            get { return m_VihecleType; }
         }
 
         public string Model
         {
             get { return m_Model; }
-            set { m_Model = value; }
         }
 
         public string UserPhoneNumber
         {
-            get { return m_OwnerPhoneNumber; }
-            set { m_OwnerPhoneNumber = value; }
+            get { return m_UserPhoneNumber; }
         }
 
         public string UserName
         {
-            get { return m_OwnerName; }
-            set { m_OwnerName = value; }
+            get { return m_UserName; }
         }
 
         public string LicenseNumber
         {
             get { return m_LicenseNumber; }
-            set { m_LicenseNumber = value; }
         }
 
         public string TierManufacturer
         {
             get { return m_TierManufacturer; }
-            set { m_TierManufacturer = value; }
         }
 
         public float RemainingEnergy
         {
             get { return m_RemainingEnergy; }
-            set { m_RemainingEnergy = value; }
         }
 
         public float Weight
         {
-            get { return m_Weight; }
-            set { m_Weight = value; }
+            get { return m_Wight; }
         }
 
 
         public int NumberOfDoors
         {
-            get { return m_NumberOfDoors; }
-            set { m_NumberOfDoors = value; }
+            get { return m_NumberOfDors; }
         }
 
         public Colors Color
         {
             get { return m_Color; }
-            set { m_Color = value; }
         }
 
         public int EngineSize
         {
             get { return m_EngineSize; }
-            set { m_EngineSize = value; }
         }
 
         public License LicenseType
         {
             get { return m_LicenseType; }
-            set { m_LicenseType = value; }
         }
 
         public bool DangerousChemical
         {
             get { return m_DangerousChemical; }
-            set { m_DangerousChemical = value; }
         }
 
         public List<float> Tiers
         {
             get { return m_Tiers; }
-            set { m_Tiers = value; }
         }
 
-        public string GetOwnerName()
-        {
-            return m_OwnerName;
-        }
-
-        public string GetOwnerPhone()
-        {
-            return m_OwnerPhoneNumber;
-        }
-        internal Vehicle Vehicle
-        {
-            get { return m_Vehicle; }
-            set { m_Vehicle = value; }
-        }
     }
 }
