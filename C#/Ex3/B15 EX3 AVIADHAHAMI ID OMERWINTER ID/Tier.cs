@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ex03.GarageManagmentSystem.GarageLogic
 {
-    class Tier
+    public class Tier
     {
         string m_Manufacturer;
         float m_CurrentAirPressure;

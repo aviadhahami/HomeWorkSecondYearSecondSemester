@@ -230,10 +230,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                 DisplayOneLineProperty(o_TruckDanger, i_VehicleDataBlock.VehicleInfo.DangerousChemical);
             }
 
-            // Should show wheels, engine data
-
-            DisplayOneLineProperty("Tiers", i_VehicleDataBlock.VehicleInfo.Tiers);
-
+            // TODO: Should show wheels, engine data
             ShowDecoratedLineSeparator();
             HoldScreen();
         }
