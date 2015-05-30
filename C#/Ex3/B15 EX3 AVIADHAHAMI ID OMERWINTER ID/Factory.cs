@@ -18,18 +18,18 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             {
                 case VehicleType.Car:
                     electricOrFuel = VehicleType.Car;
-                    i_VehicleInfo.Vehicle = new Car(i_VehicleInfo.NumberOfDors, i_VehicleInfo.Color, i_VehicleInfo.Tiers, electricOrFuel, i_VehicleInfo.Model, i_VehicleInfo.LicenseNumber, i_VehicleInfo.RemainingEnergy, i_VehicleInfo.TierManufacturer);
+                    i_VehicleInfo.Vehicle = new Car(i_VehicleInfo.NumberOfDoors, i_VehicleInfo.Color, i_VehicleInfo.Tiers, electricOrFuel, i_VehicleInfo.Model, i_VehicleInfo.LicenseNumber, i_VehicleInfo.RemainingEnergy, i_VehicleInfo.TierManufacturer);
                     Garage.Insert(i_VehicleInfo);
                     break;
 
                 case VehicleType.ElectricCar:
                     electricOrFuel = VehicleType.ElectricCar;
-                    i_VehicleInfo.Vehicle = new Car(i_VehicleInfo.NumberOfDors, i_VehicleInfo.Color, i_VehicleInfo.Tiers, electricOrFuel, i_VehicleInfo.Model, i_VehicleInfo.LicenseNumber, i_VehicleInfo.RemainingEnergy, i_VehicleInfo.TierManufacturer);
+                    i_VehicleInfo.Vehicle = new Car(i_VehicleInfo.NumberOfDoors, i_VehicleInfo.Color, i_VehicleInfo.Tiers, electricOrFuel, i_VehicleInfo.Model, i_VehicleInfo.LicenseNumber, i_VehicleInfo.RemainingEnergy, i_VehicleInfo.TierManufacturer);
                     Garage.Insert(i_VehicleInfo);
                     break;
 
                 case VehicleType.Truck:
-                    i_VehicleInfo.Vehicle = new Truck(i_VehicleInfo.Model, i_VehicleInfo.LicenseNumber, i_VehicleInfo.Tiers, i_VehicleInfo.RemainingEnergy, i_VehicleInfo.TierManufacturer, i_VehicleInfo.DangerousChemical, i_VehicleInfo.Wight);
+                    i_VehicleInfo.Vehicle = new Truck(i_VehicleInfo.Model, i_VehicleInfo.LicenseNumber, i_VehicleInfo.Tiers, i_VehicleInfo.RemainingEnergy, i_VehicleInfo.TierManufacturer, i_VehicleInfo.DangerousChemical, i_VehicleInfo.Weight);
                     Garage.Insert(i_VehicleInfo);
                     break;
 

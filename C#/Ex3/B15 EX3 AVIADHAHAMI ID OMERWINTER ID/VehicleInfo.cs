@@ -78,14 +78,14 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             set { m_RemainingEnergy = value; }
         }
 
-        public float Wight
+        public float Weight
         {
             get { return m_Weight; }
             set { m_Weight = value; }
         }
 
 
-        public int NumberOfDors
+        public int NumberOfDoors
         {
             get { return m_NumberOfDoors; }
             set { m_NumberOfDoors = value; }
