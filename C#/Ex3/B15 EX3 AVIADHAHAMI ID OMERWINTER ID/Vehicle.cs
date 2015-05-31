@@ -16,11 +16,18 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
         protected Vehicle(string i_Model, string i_LicenseNumber, string i_TierManufacturer)
         {
-            getQuestions();
+            //getQuestions();
             //m_Model = i_Model;
             //m_LicenseNumber = i_LicenseNumber;
             //m_TierManufacturer = i_TierManufacturer;
+            m_ListOfQuestions = new List<string>();
+            // Should set questions
+            m_ListOfQuestions.Add("Please insert model");
+            m_ListOfQuestions.Add("Please insert license plate number");
+            m_ListOfQuestions.Add("Please insert tier manufacturer");
+
         }
+
 
 
         protected void setTierData(List<float> i_PressurInTiers, float i_MaxTierPressur, string i_tierManufacturer)

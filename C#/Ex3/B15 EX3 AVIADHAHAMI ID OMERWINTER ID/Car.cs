@@ -28,6 +28,11 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             get { return m_Engine; }
             set { m_Engine = value; }
         }
+        public Colors Colors
+        {
+            get { return m_Color; }
+            set { m_Color = value; }
+        }
 
     }
 }
