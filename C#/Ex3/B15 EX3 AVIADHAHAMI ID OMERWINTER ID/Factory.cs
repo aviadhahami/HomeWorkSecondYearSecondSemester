@@ -106,6 +106,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             {
                 (m_VehicleToBuild as Truck).init();
             }
+            // TODO!
             m_Garage.Insert(m_VehicleToBuild);
             nullify(m_VehicleToBuild);
         }
