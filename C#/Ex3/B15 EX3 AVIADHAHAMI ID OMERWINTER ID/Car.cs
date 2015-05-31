@@ -34,6 +34,22 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             set { m_Color = value; }
         }
 
+
+        public FuelType FuelType
+        {
+            get { return FUELTYPE; }
+        }
+
+        public Colors Color
+        {
+            get { return m_color; }
+            set { m_color = value; }
+        }
+        public int NumberOfDors
+        {
+            get { return m_numberOfDors; }
+            set { m_numberOfDors = value; }
+        }
     }
 }
 //    private readonly float MAXIMUMBUTTRYTIME = 2.2f;

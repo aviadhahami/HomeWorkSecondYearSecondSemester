@@ -19,13 +19,43 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             return vehicleType;
         }
 
-        public void initVehicleToBuild(string i_vehicleTobuild)
+        public List<string> initVehicleToBuild(int i_vehicleTobuild)
         {
+
+            switch (i_vehicleTobuild)
+            {
+                case (int) VehicleType.Car :
+                    m_VehicleToBuild = new Car();
+                    Car carToBuild = (Car)m_VehicleToBuild;
+                    carToBuild.Engine = new Fuel(EngineType.FuelEngine);
+                    return carToBuild.getQuestions;
+                    break;
+                case (int)VehicleType.ElectricCar:
+                    m_VehicleToBuild = new Car();
+                    Car carToBuild = (Car)m_VehicleToBuild;
+                    carToBuild.Engine = new Fuel(EngineType.ElectricEngine);
+                    return carToBuild.getQuestions;
+                    break;
+                case (int)VehicleType.ElectricMotorcycle:
+                    m_VehicleToBuild = new Motorcycle();
+                    break;
+                case (int)VehicleType.Motocycle:
+                    m_VehicleToBuild = new Motorcycle();
+                    break;
+                case (int)VehicleType.Truck:
+                    m_VehicleToBuild = new Truck();
+                    break;
+                default:
+                    throw new ArgumentException();
+            }
 
         }
 
 
-       
+
+
+
+/*       
         public void BuildVehicle()
         {
             if (Garage.Exist(i_VehicleInfo.LicenseNumber))
@@ -64,6 +94,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
                     Garage.Insert(garageInfo);
                     break;
             }
-        }
+        }*/
     }
 }
