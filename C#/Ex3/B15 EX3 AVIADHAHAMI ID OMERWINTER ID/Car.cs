@@ -6,14 +6,18 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 {
     class Car : Vehicle
     {
-
-        private readonly float ro_MAXIMUM_BATTERY_TIME = 2.2f;
         private readonly float ro_MAX_TIER_PRESSURE = 31;
         private readonly int ro_NUMBER_OF_TIERS = 4;
 
+        // Stub for later engine creation
+        private readonly FuelType FUELTYPE = FuelType.Octan96;
+        private readonly float ro_MAX_FUEL_LEVEL = 35;
+        private readonly float ro_MAXIMUM_BATTERY_TIME = 2.2f;
+
 
         List<Tier> m_Wheels;
-        EngineType m_Engine;
+        EngineType m_EngineType;
+        Energy m_Engine;
         Colors m_Color;
         int m_NumberOfDoors;
 
@@ -27,10 +31,21 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             get { return m_Wheels; }
             set { m_Wheels = value; }
         }
-        public EngineType Engine
+        public EngineType EngineType
         {
-            get { return m_Engine; }
-            set { m_Engine = value; }
+            get { return m_EngineType; }
+            set
+            {
+                m_EngineType = value;
+                if (value == EngineType.ElectricEngine)
+                {
+                    m_Engine = new Electricity(ro_MAXIMUM_BATTERY_TIME, ro_MAXIMUM_BATTERY_TIME * m_RemainingEnergy);
+                }
+                else
+                {
+                    m_Engine = new Fuel(ro_MAX_FUEL_LEVEL, ro_MAX_FUEL_LEVEL * m_RemainingEnergy, FUELTYPE);
+                }
+            }
         }
         public Colors Colors
         {
@@ -50,3 +65,63 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         }
     }
 }
+
+//    private readonly float MAXIMUMBUTTRYTIME = 2.2f;
+//    private readonly float MAXTIERPRESSUR = 31;
+//    private readonly float FULLTANK = 35;
+//    private readonly int NUMBEROFTAIERS = 4;
+//    private readonly FuelType FUELTYPE;// = FuelType.Octan96;
+
+//    int m_numberOfDors;
+//    Colors m_color;
+
+
+//    public Car(int i_NumberOfDors, Colors i_Color, List<float> i_PressurInTiers, EngineType i_ElectricVehicle, string i_Model, string i_LicenseNumber, float i_RemainingEnergy, string i_TierManufacturer)
+//        : base(i_Model, i_LicenseNumber, i_TierManufacturer)
+//    {
+//        m_color = i_Color;
+//        m_numberOfDors = i_NumberOfDors;
+//        this.m_Tiers = new List<Tier>(NUMBEROFTAIERS);
+//        setTierData(i_PressurInTiers, MAXTIERPRESSUR, this.m_TierManufacturer);
+//        if (i_ElectricVehicle == EngineType.ElectricEngine)
+//        {
+//            m_MyEnergy = new Electricity(MAXIMUMBUTTRYTIME, MAXIMUMBUTTRYTIME * m_RemainingEnergy);
+//        }
+//        else
+//        {
+//            m_MyEnergy = new Fuel(FULLTANK, FULLTANK * m_RemainingEnergy, FUELTYPE);
+//        }
+//    }
+
+//    public float MaxButteryType
+//    {
+//        get { return MAXIMUMBUTTRYTIME; }
+//    }
+
+//    public float MaxTierPressur
+//    {
+//        get { return MAXTIERPRESSUR; }
+//    }
+
+//    public float MaxFuelInTank
+//    {
+//        get { return FULLTANK; }
+//    }
+
+//    public float RemainingEnergy
+//    {
+//        get { return FULLTANK * m_RemainingEnergy; }
+//    }
+
+//    public Colors Color
+//    {
+//        get { return m_color; }
+//        set { m_color = value; }
+//    }
+//    public int NumberOfDors
+//    {
+//        get { return m_numberOfDors; }
+//        set { m_numberOfDors = value; }
+//    }
+//}
+//}
