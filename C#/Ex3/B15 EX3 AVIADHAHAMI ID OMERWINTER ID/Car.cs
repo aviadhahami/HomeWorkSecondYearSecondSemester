@@ -12,11 +12,13 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         private readonly FuelType ro_FUELTYPE = FuelType.Octan96;
         private readonly float ro_MAX_FUEL_LEVEL = 35;
         private readonly float ro_MAXIMUM_BATTERY_TIME = 2.2f;
-
+        private readonly int ro_MIN_AMOUNT_OF_DOORS = 1;
+        private readonly int ro_MAX_AMOUNT_OF_DOORS = 5;
 
         private EngineType m_EngineType;
         private Colors m_Color;
         private int m_NumberOfDoors;
+
 
         public Car()
             : base()
@@ -91,13 +93,51 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             else if (i_QuestionIndex > 5 && i_QuestionIndex <= 5 + ro_NUMBER_OF_TIERS)
             {
                 // Verify tiers
+                o_ValidationIndicator = verifyTiers(i_Answer);
             }
             return o_ValidationIndicator;
         }
 
+        private bool verifyTiers(string i_GivenPressure)
+        {
+            float parsedFloat;
+            bool parsingFlag = float.TryParse(i_GivenPressure, out parsedFloat);
+            if (parsingFlag == false)
+            {
+                throw new FormatException("Bad input for doors amount");
+            }
+            if (parsedFloat >= 0 && parsedFloat <= ro_MAX_TIER_PRESSURE)
+            {
+                foreach (var tier in m_Tiers)
+                {
+                    tier.currentAirPressure = parsedFloat;
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        // Verification zone
         private bool verifyDoorsAmount(string i_GivenDoorsNumber)
         {
-            throw new NotImplementedException();
+            int parsedInt;
+            bool parsingFlag = int.TryParse(i_GivenDoorsNumber, out parsedInt);
+            if (parsingFlag == false)
+            {
+                throw new FormatException("Bad input for doors amount");
+            }
+
+            // Check amount is in range
+            if (parsedInt > ro_MIN_AMOUNT_OF_DOORS && parsedInt <= ro_MAX_AMOUNT_OF_DOORS)
+            {
+                m_NumberOfDoors = parsedInt;
+                return true;
+            }
+            return false;
         }
 
         private bool verifyGivenColor(string i_GivenColor)
