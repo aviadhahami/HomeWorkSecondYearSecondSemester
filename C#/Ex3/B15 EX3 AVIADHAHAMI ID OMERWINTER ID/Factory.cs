@@ -82,6 +82,13 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
         }
 
+        public void init()
+        {
+            if (m_VehicleToBuild is Car)
+            {
+
+            }
+        }
 
 
 

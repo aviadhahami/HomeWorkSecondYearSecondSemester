@@ -27,21 +27,16 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             m_ListOfQuestions.Add("what is yoer pressur in the tiers?");
         }
 
+        public void init()
+        {
+            SetTierData(m_CurrentPressurInTier, ro_MAX_TIER_PRESSURE, m_TierManufacturer);
+            InitEngine(m_EngineType);
+        }
+
         internal EngineType EngineType
         {
             get { return m_EngineType; }
-            set
-            {
-                m_EngineType = value;
-                if (value == EngineType.ElectricEngine)
-                {
-                    m_Engine = new Electricity(ro_MAXIMUM_BATTERY_TIME, ro_MAXIMUM_BATTERY_TIME * m_RemainingEnergy);
-                }
-                else
-                {
-                    m_Engine = new Fuel(ro_MAX_FUEL_LEVEL, ro_MAX_FUEL_LEVEL * m_RemainingEnergy, FUELTYPE);
-                }
-            }
+            set { m_EngineType = value; }
         }
         internal Colors Colors
         {

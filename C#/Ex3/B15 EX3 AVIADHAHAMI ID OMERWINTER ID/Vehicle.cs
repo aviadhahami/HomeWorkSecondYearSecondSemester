@@ -11,6 +11,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         protected string m_Model;
         protected string m_LicenseNumber;
         protected float m_RemainingEnergy;
+        protected float m_CurrentPressurInTier;
         protected List<Tier> m_Tiers;
         protected string m_TierManufacturer;
         protected Energy m_Engine;
@@ -34,14 +35,14 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
 
 
-        protected void setTierData(List<float> i_PressurInTiers, float i_MaxTierPressur, string i_tierManufacturer)
+        protected void setTierData(float i_PressurInTiers, float i_MaxTierPressur, string i_tierManufacturer)
         {
             int currentAirPressurPerTier = 0;
             foreach (Tier tier in m_Tiers)
             {
                 tier.manufacturer = this.m_TierManufacturer;
                 tier.MaximalAirPressure = i_MaxTierPressur;
-                tier.currentAirPressure = i_PressurInTiers[currentAirPressurPerTier];
+                tier.currentAirPressure = i_PressurInTiers;
                 currentAirPressurPerTier++;
             }
         }
@@ -56,7 +57,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             get { return m_Engine; }
         }
 
-        public List<Tier> MyTiers
+        public List<Tier> Tiers
         {
             get { return m_Tiers; }
         }
