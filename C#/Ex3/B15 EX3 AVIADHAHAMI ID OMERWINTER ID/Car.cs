@@ -24,11 +24,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             m_Tiers = new List<Tier>(ro_NUMBER_OF_TIERS);
             m_ListOfQuestions.Add("What is the color of your car?");
             m_ListOfQuestions.Add("How many doors you have in the car?");
-            for (int i = 0; i < ro_NUMBER_OF_TIERS; i++)
-            {
-                m_ListOfQuestions.Add("Specify tiers' pressure?");
-            }
-
+            m_ListOfQuestions.Add("Specify tiers' pressure?");
         }
 
         public void init()
@@ -70,25 +66,35 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         }
         internal bool ValidateAndSetProperty(string i_Answer, int i_QuestionIndex)
         {
+            bool o_ValidationIndicator = false;
             // Check for three first questions
-            if (i_QuestionIndex > 0 && i_QuestionIndex <= 3)
+            if (i_QuestionIndex == 1 || i_QuestionIndex == 3)
             {
                 // First three question are unimportant strings
                 return true;
             }
+            else if (i_QuestionIndex == 2)
+            {
+                // Verify license
+                o_ValidationIndicator = verifyLicense(i_Answer);
+            }
             else if (i_QuestionIndex == 4)
             {
                 // Verify color
+                o_ValidationIndicator = verifyGivenColor(i_Answer);
             }
             else if (i_QuestionIndex == 5)
             {
                 // Verify doors
+                o_ValidationIndicator = verifyDoorsAmount(i_Answer);
             }
             else if (i_QuestionIndex > 5 && i_QuestionIndex <= 5 + ro_NUMBER_OF_TIERS)
             {
                 // Verify tiers
             }
-            return false;
+            return o_ValidationIndicator;
         }
+
+
     }
 }

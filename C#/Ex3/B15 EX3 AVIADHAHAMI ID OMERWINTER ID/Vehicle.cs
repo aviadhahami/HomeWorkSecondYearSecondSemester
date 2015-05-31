@@ -76,6 +76,19 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         {
             m_Engine = new Fuel(io_MaxFuelLevel, io_MaxFuelLevel * m_RemainingEnergy, io_FuelType);
         }
+
+        // Verifications
+        protected bool verifyLicense(string i_GivenLicense)
+        {
+            foreach (char currentChar in i_GivenLicense)
+            {
+                if (!char.IsLetterOrDigit(currentChar))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 
 }
