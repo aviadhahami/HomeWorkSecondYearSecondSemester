@@ -85,6 +85,8 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
                     return false;
                 }
             }
+            // If true set the license
+            m_LicenseNumber = i_GivenLicense;
             return true;
         }
     }

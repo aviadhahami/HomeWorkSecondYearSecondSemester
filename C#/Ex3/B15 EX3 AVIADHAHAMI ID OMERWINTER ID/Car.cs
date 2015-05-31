@@ -95,6 +95,11 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             return o_ValidationIndicator;
         }
 
+        private bool verifyDoorsAmount(string i_GivenDoorsNumber)
+        {
+            throw new NotImplementedException();
+        }
+
         private bool verifyGivenColor(string i_GivenColor)
         {
             Console.WriteLine("VERIFY GIVEN COLOR DEBUGGING -> USER CHOSE " + i_GivenColor);
@@ -103,6 +108,8 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             {
                 if (currentColor.ToString() == givenColorUpperCase)
                 {
+                    // Set the color and return true
+                    m_Color = currentColor;
                     return true;
                 }
             }
