@@ -73,7 +73,20 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             // Check for three first questions
             if (i_QuestionIndex > 0 && i_QuestionIndex <= 3)
             {
+                // First three question are unimportant strings
                 return true;
+            }
+            else if (i_QuestionIndex == 4)
+            {
+                // Verify color
+            }
+            else if (i_QuestionIndex == 5)
+            {
+                // Verify doors
+            }
+            else if (i_QuestionIndex > 5 && i_QuestionIndex <= 5 + ro_NUMBER_OF_TIERS)
+            {
+                // Verify tiers
             }
             return false;
         }
