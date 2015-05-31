@@ -21,7 +21,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             m_DangerousChemical = i_DangerousChemical;
             m_Wight = i_Wight;
             this.m_Tiers = new List<Tier>(NUMBEROFTAIERS);
-            setTierData(i_PressurInTiers, MAXTIERPRESSUR, this.m_TierManufacturer);
+            SetTierData(i_PressurInTiers, MAXTIERPRESSUR, this.m_TierManufacturer);
             m_MyEnergy = new Fuel(FULLTANK, FULLTANK * m_RemainingEnergy, FUELTYPE);
         }
 

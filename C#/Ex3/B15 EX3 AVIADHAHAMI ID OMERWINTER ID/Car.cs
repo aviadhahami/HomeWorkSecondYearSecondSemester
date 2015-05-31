@@ -9,7 +9,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         // Constants for cars
         private readonly float ro_MAX_TIER_PRESSURE = 31;
         private readonly int ro_NUMBER_OF_TIERS = 4;
-        private readonly FuelType FUELTYPE = FuelType.Octan96;
+        private readonly FuelType ro_FUELTYPE = FuelType.Octan96;
         private readonly float ro_MAX_FUEL_LEVEL = 35;
         private readonly float ro_MAXIMUM_BATTERY_TIME = 2.2f;
 
@@ -30,7 +30,14 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         public void init()
         {
             SetTierData(m_CurrentPressurInTier, ro_MAX_TIER_PRESSURE, m_TierManufacturer);
-            InitEngine(m_EngineType);
+            if (m_EngineType == EngineType.ElectricEngine)
+            {
+                InitElectricityEngine(ro_MAXIMUM_BATTERY_TIME);
+            }
+            else
+            {
+                InitFuelEngine(ro_MAX_FUEL_LEVEL, ro_FUELTYPE);
+            }
         }
 
         internal EngineType EngineType

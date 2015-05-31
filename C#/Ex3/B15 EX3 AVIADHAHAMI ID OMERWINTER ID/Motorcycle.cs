@@ -42,12 +42,12 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         //    this.m_Tiers = new List<Tier>(NUMBEROFTAIERS);
         //    if (i_ElectricVehicle == EngineType.ElectricEngine)
         //    {
-        //        setTierData(i_PressurInTiers, MAXTIERPRESSUROFELECTRIC, this.m_TierManufacturer);
+        //        SetTierData(i_PressurInTiers, MAXTIERPRESSUROFELECTRIC, this.m_TierManufacturer);
         //        m_MyEnergy = new Electricity(MAXTBUTERI, MAXTBUTERI * m_RemainingEnergy);
         //    }
         //    else
         //    {
-        //        setTierData(i_PressurInTiers, MAXTIERPRESSUROFFUEL, this.m_TierManufacturer);
+        //        SetTierData(i_PressurInTiers, MAXTIERPRESSUROFFUEL, this.m_TierManufacturer);
         //        m_MyEnergy = new Fuel(MAXTANK, MAXTANK * m_RemainingEnergy, FUELTYPE);
         //    }
         //}
