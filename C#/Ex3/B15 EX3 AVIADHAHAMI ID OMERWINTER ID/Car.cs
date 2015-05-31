@@ -115,6 +115,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         }
         private bool verifyGivenColor(string i_GivenColor)
         {
+            bool o_ValidationIndicator = false;
             Console.WriteLine("VERIFY GIVEN COLOR DEBUGGING -> USER CHOSE " + i_GivenColor);
             string givenColorUpperCase = i_GivenColor.ToUpper();
             foreach (Colors currentColor in Enum.GetValues(typeof(Colors)))
@@ -123,10 +124,10 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
                 {
                     // Set the color and return true
                     m_Color = currentColor;
-                    return true;
+                    o_ValidationIndicator = true;
                 }
             }
-            return false;
+            return o_ValidationIndicator;
         }
     }
 }

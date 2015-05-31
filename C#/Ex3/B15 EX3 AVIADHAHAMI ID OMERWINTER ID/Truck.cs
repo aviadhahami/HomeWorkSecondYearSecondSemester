@@ -58,7 +58,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             }
             else if (i_QuestionIndex == 4)
             {
-                // Verify chemicalss
+                // Verify chemicals
                 o_ValidationIndicator = verifyChemicals(i_Answer);
             }
             else if (i_QuestionIndex == 5)
@@ -113,6 +113,11 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
                 }
             }
             return o_Result;
+        }
+
+        public List<string> Questions
+        {
+            get { return m_ListOfQuestions; }
         }
     }
 }
