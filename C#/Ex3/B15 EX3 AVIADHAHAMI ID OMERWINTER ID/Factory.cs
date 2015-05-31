@@ -106,8 +106,10 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             {
                 (m_VehicleToBuild as Truck).init();
             }
-            GarageInfo o_NewVehicleGarageInfo = new GarageInfo(StatusType.Fixing, i_OwnerInfo, m_VehicleToBuild);
+
+            GarageInfo o_NewVehicleGarageInfo = new GarageInfo(StatusType.FIXING, i_OwnerInfo, m_VehicleToBuild);
             m_Garage.Insert(o_NewVehicleGarageInfo);
+
             nullify(m_VehicleToBuild);
         }
 
