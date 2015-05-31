@@ -6,16 +6,16 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 {
     class Motorcycle : Vehicle
     {
-        private readonly float MAXTIERPRESSUROFELECTRIC = 31;
-        private readonly float MAXTIERPRESSUROFFUEL = 34;
-        private readonly float MAXTBUTERI = 1.2f;
-        private readonly int NUMBEROFTAIERS = 2;
-        private readonly float MAXTANK = 8;
-        private readonly FuelType FUELTYPE = FuelType.Octan98;
-        
+
         private EngineType m_EngineType;
         private int m_EngineSize;
         private License m_LicenseType;
+
+        public Motorcycle()
+            : base()
+        {
+
+        }
 
         internal EngineType EngineType
         {
@@ -23,14 +23,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             set
             {
                 m_EngineType = value;
-                if (value == EngineType.ElectricEngine)
-                {
-                    m_Engine = new Electricity(ro_MAXIMUM_BATTERY_TIME, ro_MAXIMUM_BATTERY_TIME * m_RemainingEnergy);
-                }
-                else
-                {
-                    m_Engine = new Fuel(ro_MAX_FUEL_LEVEL, ro_MAX_FUEL_LEVEL * m_RemainingEnergy, FUELTYPE);
-                }
             }
         }
         //public Motorcycle(string i_Model, List<float> i_PressurInTiers, string i_LicenseNumber, float i_RemainingEnergy, string i_TierManufacturer, EngineType i_ElectricVehicle, int i_EngineSize, License i_LicenseType)

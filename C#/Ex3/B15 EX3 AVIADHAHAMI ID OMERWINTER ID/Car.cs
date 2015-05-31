@@ -6,10 +6,9 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 {
     class Car : Vehicle
     {
+        // Constants for cars
         private readonly float ro_MAX_TIER_PRESSURE = 31;
         private readonly int ro_NUMBER_OF_TIERS = 4;
-
-        // Stub for later engine creation
         private readonly FuelType FUELTYPE = FuelType.Octan96;
         private readonly float ro_MAX_FUEL_LEVEL = 35;
         private readonly float ro_MAXIMUM_BATTERY_TIME = 2.2f;

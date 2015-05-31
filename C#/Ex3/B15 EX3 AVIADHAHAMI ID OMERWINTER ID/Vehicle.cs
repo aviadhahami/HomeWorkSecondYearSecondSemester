@@ -6,6 +6,8 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 {
     class Vehicle
     {
+
+
         protected string m_Model;
         protected string m_LicenseNumber;
         protected float m_RemainingEnergy;
@@ -20,7 +22,9 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             //m_Model = i_Model;
             //m_LicenseNumber = i_LicenseNumber;
             //m_TierManufacturer = i_TierManufacturer;
+
             m_ListOfQuestions = new List<string>();
+
             // Should set questions
             m_ListOfQuestions.Add("Please insert model");
             m_ListOfQuestions.Add("Please insert license plate number");
@@ -63,6 +67,17 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             {
                 tier.PumpAir = tier.MaximalAirPressure - tier.currentAirPressure;
             }
+        }
+
+        // Init engines
+        protected void InitElectricityEngine(float io_MaxBatteryTime)
+        {
+            m_Engine = new Electricity(io_MaxBatteryTime, io_MaxBatteryTime * m_RemainingEnergy);
+
+        }
+        protected void InitFuelEngine(float io_MaxFuelLevel, FuelType io_FuelType)
+        {
+            m_Engine = new Fuel(io_MaxFuelLevel, io_MaxFuelLevel * m_RemainingEnergy, io_FuelType);
         }
     }
 
