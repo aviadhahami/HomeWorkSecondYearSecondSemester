@@ -15,7 +15,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         private readonly float ro_MAXIMUM_BATTERY_TIME = 2.2f;
 
 
-        List<Tier> m_Wheels;
         EngineType m_EngineType;
         Energy m_Engine;
         Colors m_Color;
@@ -26,11 +25,11 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         {
             // Add questions to the list
             m_ListOfQuestions.Add("Enter engine type:");
+
         }
-        internal List<Tier> Tiers
+        internal List<Tier> GetTiers
         {
             get { return m_Wheels; }
-            set { m_Wheels = value; }
         }
         internal EngineType EngineType
         {
