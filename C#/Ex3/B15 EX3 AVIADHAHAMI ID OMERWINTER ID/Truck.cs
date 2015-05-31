@@ -12,7 +12,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         private readonly int ro_NUMBER_OF_TIERS = 16;
         private readonly FuelType ro_FUELTYPE = FuelType.Soler;
 
-        private EngineType m_EngineType;
         private bool m_DangerousChemical;
         private float m_Wight;
 
