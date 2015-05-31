@@ -15,22 +15,19 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         private readonly float ro_MAXIMUM_BATTERY_TIME = 2.2f;
 
 
-        EngineType m_EngineType;
-        Energy m_Engine;
-        Colors m_Color;
-        int m_NumberOfDoors;
+        private EngineType m_EngineType;
+        private Colors m_Color;
+        private int m_NumberOfDoors;
 
-        public Car(string i_Model, string i_LicenseNumber, string i_TierManufacturer)
-            : base(i_Model, i_LicenseNumber, i_TierManufacturer)
+        public Car()
+            : base()
         {
-            // Add questions to the list
-            m_ListOfQuestions.Add("Enter engine type:");
+            m_Tiers = new List<Tier>(ro_NUMBER_OF_TIERS);
+            m_ListOfQuestions.Add("what is the color of your car?");
+            m_ListOfQuestions.Add("how many dors you have in the car?");
+            m_ListOfQuestions.Add("what is yoer pressur in the tiers?");
+        }
 
-        }
-        internal List<Tier> GetTiers
-        {
-            get { return m_Wheels; }
-        }
         internal EngineType EngineType
         {
             get { return m_EngineType; }
@@ -66,7 +63,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             get { return m_RemainingEnergy; }
             set { m_RemainingEnergy = value; }
         }
-        public bool ValidateAndSetProperty(string i_Answer, int i_QuestionIndex)
+        internal bool ValidateAndSetProperty(string i_Answer, int i_QuestionIndex)
         {
             return false;
         }

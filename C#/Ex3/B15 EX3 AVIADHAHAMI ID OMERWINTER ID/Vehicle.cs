@@ -11,10 +11,10 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         protected float m_RemainingEnergy;
         protected List<Tier> m_Tiers;
         protected string m_TierManufacturer;
-        protected Energy m_MyEnergy;
+        protected Energy m_Engine;
         protected List<string> m_ListOfQuestions;
 
-        protected Vehicle(string i_Model, string i_LicenseNumber, string i_TierManufacturer)
+        protected Vehicle()
         {
             //getQuestions();
             //m_Model = i_Model;
@@ -47,9 +47,9 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             get { return m_LicenseNumber; }
         }
 
-        public Energy MyEnergy
+        public Energy Engine
         {
-            get { return m_MyEnergy; }
+            get { return m_Engine; }
         }
 
         public List<Tier> MyTiers
