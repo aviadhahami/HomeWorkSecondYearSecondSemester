@@ -24,7 +24,8 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         public Car(string i_Model, string i_LicenseNumber, string i_TierManufacturer)
             : base(i_Model, i_LicenseNumber, i_TierManufacturer)
         {
-
+            // Add questions to the list
+            m_ListOfQuestions.Add("Enter engine type:");
         }
         internal List<Tier> Tiers
         {
@@ -52,7 +53,10 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             get { return m_Color; }
             set { m_Color = value; }
         }
-
+        public List<string> Questions
+        {
+            get { return m_ListOfQuestions; }
+        }
         internal int Doors
         {
             get { return m_NumberOfDoors; }
@@ -63,9 +67,9 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             get { return m_RemainingEnergy; }
             set { m_RemainingEnergy = value; }
         }
-        bool ValidateAndSetProperty(string i_Answer, int i_QuestionIndex)
+        public bool ValidateAndSetProperty(string i_Answer, int i_QuestionIndex)
         {
-
+            return false;
         }
     }
 }
