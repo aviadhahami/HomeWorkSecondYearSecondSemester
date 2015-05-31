@@ -6,10 +6,28 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 {
     class Factory
     {
-        public void BuildVehicle(VehicleInfo i_VehicleInfo, OwnerInfo i_OwnerInfo)
+
+        private Vehicle m_VehicleToBuild;
+
+        public List<string> getVehicleType()
         {
-            GarageInfo garageInfo;
-            EngineType electricOrFuel;
+            List<string> vehicleType = new List<string>();
+            foreach (VehicleType type in Enum.GetValues(typeof (VehicleType)))
+            {
+                vehicleType.Add(type.ToString());
+            }
+            return vehicleType;
+        }
+
+        public void initVehicleToBuild(string i_vehicleTobuild)
+        {
+
+        }
+
+
+       
+        public void BuildVehicle()
+        {
             if (Garage.Exist(i_VehicleInfo.LicenseNumber))
             {
                 Garage.UpdateStatus(i_VehicleInfo.LicenseNumber, StatusType.Fixing);

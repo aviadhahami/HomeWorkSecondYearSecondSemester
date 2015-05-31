@@ -15,7 +15,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         int m_numberOfDors;
         Colors m_color;
         public Car(int i_NumberOfDors, Colors i_Color, List<float> i_PressurInTiers, EngineType i_ElectricVehicle, string i_Model, string i_LicenseNumber, float i_RemainingEnergy, string i_TierManufacturer)
-            : base(i_Model, i_LicenseNumber, i_RemainingEnergy,i_TierManufacturer)
+            : base(i_Model, i_LicenseNumber, i_TierManufacturer)
         {
             m_color = i_Color;
             m_numberOfDors = i_NumberOfDors;
@@ -29,6 +29,26 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             {
                 m_MyEnergy = new Fuel(FULLTANK, FULLTANK * m_RemainingEnergy, FUELTYPE);
             }
+        }
+
+        public float MaxButteryType
+        {
+            get { return MAXIMUMBUTTRYTIME; }
+        }
+
+        public float MaxTierPressur
+        {
+            get { return MAXTIERPRESSUR; }
+        }
+
+        public float MaxFuelInTank
+        {
+            get { return FULLTANK; }
+        }
+
+        public float RemainingEnergy
+        {
+            get { return FULLTANK * m_RemainingEnergy; }
         }
 
         public Colors Color

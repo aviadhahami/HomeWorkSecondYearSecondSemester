@@ -11,15 +11,15 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         protected float m_RemainingEnergy;
         protected List<Tier> m_Tiers;
         protected string m_TierManufacturer;
-        protected bool m_ElectricVehicle;
         protected Energy m_MyEnergy;
+        protected List<string> m_ListOfQuestions;
 
-        protected Vehicle(string i_Model, string i_LicenseNumber, float i_RemainingEnergy, string i_TierManufacturer)
+        protected Vehicle(string i_Model, string i_LicenseNumber, string i_TierManufacturer)
         {
-            m_Model = i_Model;
-            m_LicenseNumber = i_LicenseNumber;
-            m_RemainingEnergy = i_RemainingEnergy;
-            m_TierManufacturer = i_TierManufacturer;
+            getQuestions();
+            //m_Model = i_Model;
+            //m_LicenseNumber = i_LicenseNumber;
+            //m_TierManufacturer = i_TierManufacturer;
         }
 
 
