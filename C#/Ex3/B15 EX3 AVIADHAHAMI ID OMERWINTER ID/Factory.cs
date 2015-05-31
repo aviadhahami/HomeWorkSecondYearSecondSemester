@@ -6,10 +6,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 {
     class Factory
     {
-
         private Vehicle m_VehicleToBuild;
-        private Garage m_Garage;
-
 
         public List<string> getVehicleType()
         {
@@ -108,7 +105,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             }
 
             GarageInfo o_NewVehicleGarageInfo = new GarageInfo(StatusType.FIXING, i_OwnerInfo, m_VehicleToBuild);
-            m_Garage.Insert(o_NewVehicleGarageInfo);
+            Garage.Insert(o_NewVehicleGarageInfo);
 
             nullify(m_VehicleToBuild);
         }
@@ -117,7 +114,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         {
             m_VehicleToBuild = null;
         }
-
 
 
         /*       
