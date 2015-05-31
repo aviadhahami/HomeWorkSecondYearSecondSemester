@@ -47,12 +47,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\B15 EX3 AVIADHAHAMI ID OMERWINTER ID\Ex03.GarageLogic.csproj">
-      <Project>{594147b4-669a-435d-89ac-ff6fe885233c}</Project>
-      <Name>Ex03.GarageLogic</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
