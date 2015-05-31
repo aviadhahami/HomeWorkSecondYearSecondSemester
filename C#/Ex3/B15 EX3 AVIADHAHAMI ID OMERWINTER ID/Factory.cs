@@ -86,13 +86,13 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             return o_ValidationResult;
 
         }
-        public void NotifyDone()
+        public void NotifyDone(OwnerInfo i_OwnerInfo)
         {
             // Initialize engine
-            init();
+            init(i_OwnerInfo);
         }
 
-        private void init()
+        private void init(OwnerInfo i_OwnerInfo)
         {
             if (m_VehicleToBuild is Car)
             {
@@ -106,7 +106,8 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             {
                 (m_VehicleToBuild as Truck).init();
             }
-            m_Garage.Insert(m_VehicleToBuild);
+            GarageInfo o_NewVehicleGarageInfo = new GarageInfo(StatusType.Fixing, i_OwnerInfo, m_VehicleToBuild);
+            m_Garage.Insert(o_NewVehicleGarageInfo);
             nullify(m_VehicleToBuild);
         }
 

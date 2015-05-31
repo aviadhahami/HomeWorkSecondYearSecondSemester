@@ -71,7 +71,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             if (i_QuestionIndex == 1 || i_QuestionIndex == 3)
             {
                 // First three question are unimportant strings
-                return true;
+                o_ValidationIndicator = true;
             }
             else if (i_QuestionIndex == 2)
             {

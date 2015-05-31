@@ -59,8 +59,8 @@
     <Compile Include="StatusType.cs" />
     <Compile Include="Tier.cs" />
     <Compile Include="Truck.cs" />
+    <Compile Include="ValueOutOfRangeException.cs" />
     <Compile Include="Vehicle.cs" />
-    <Compile Include="VehicleInfo.cs" />
     <Compile Include="VehicleType.cs" />
   </ItemGroup>
   <ItemGroup>
