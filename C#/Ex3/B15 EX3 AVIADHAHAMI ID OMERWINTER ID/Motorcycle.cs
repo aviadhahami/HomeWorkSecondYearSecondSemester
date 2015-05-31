@@ -22,6 +22,10 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         public Motorcycle()
             : base()
         {
+            string licensTypeToString = String.Format(@"what is your licens type? ({0}/{1}/{2}/{3})", License.A, License.A2, License.AB, License.B1);
+            m_ListOfQuestions.Add(licensTypeToString);
+            m_ListOfQuestions.Add("what is your engine size?");
+            m_ListOfQuestions.Add("what is your tier pressur?");
         }
 
         public void init()
