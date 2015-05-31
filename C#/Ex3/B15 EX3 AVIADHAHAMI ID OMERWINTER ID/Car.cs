@@ -51,6 +51,11 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             get { return FULLTANK * m_RemainingEnergy; }
         }
 
+        public FuelType FuelType
+        {
+            get { return FUELTYPE; }
+        }
+
         public Colors Color
         {
             get { return m_color; }
