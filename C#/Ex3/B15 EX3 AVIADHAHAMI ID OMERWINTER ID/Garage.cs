@@ -79,37 +79,37 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         }
 
 
-        public static List<GarageInfo> GetSortedInventory(SortingType sortingType)
+        public static List<GarageInfo> GetFilteredInventory(FiltersType sortingType)
         {
             // Returns a list of garage info
-            List<GarageInfo> io_SortedList = new List<GarageInfo>();
+            List<GarageInfo> io_FilteredList = new List<GarageInfo>();
             switch (sortingType)
             {
-                case SortingType.NONE:
+                case FiltersType.NONE:
 
                     // Just add them to the list
                     foreach (KeyValuePair<string, GarageInfo> entry in m_VehicleInGarage)
                     {
                         // do something with entry.Value or entry.Key
-                        io_SortedList.Add(entry.Value);
+                        io_FilteredList.Add(entry.Value);
                     }
                     break;
-                case SortingType.FUELLEVEL:
+                case FiltersType.FUELLEVEL:
                     break;
-                case SortingType.MANUFACTURER:
+                case FiltersType.MANUFACTURER:
                     break;
-                case SortingType.COLOR:
+                case FiltersType.COLOR:
                     break;
-                case SortingType.STATUS:
+                case FiltersType.STATUS:
                     break;
-                case SortingType.TYPE:
+                case FiltersType.TYPE:
                     break;
-                case SortingType.MODEL:
+                case FiltersType.MODEL:
                     break;
                 default:
                     break;
             }
-            return io_SortedList;
+            return io_FilteredList;
         }
     }
 }

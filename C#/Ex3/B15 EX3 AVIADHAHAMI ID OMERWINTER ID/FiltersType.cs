@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ex03.GarageManagmentSystem.GarageLogic
 {
-    public enum SortingType
+    public enum FiltersType
     {
         NONE = 1,
         FUELLEVEL = 2,
