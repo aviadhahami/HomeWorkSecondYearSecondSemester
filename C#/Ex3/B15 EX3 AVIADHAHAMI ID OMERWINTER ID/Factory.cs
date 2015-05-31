@@ -86,7 +86,15 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         {
             if (m_VehicleToBuild is Car)
             {
-
+                (m_VehicleToBuild as Car).init();
+            }
+            if (m_VehicleToBuild is Motorcycle)
+            {
+                (m_VehicleToBuild as Motorcycle).init();
+            }
+            if (m_VehicleToBuild is Truck)
+            {
+                (m_VehicleToBuild as Truck).init();
             }
         }
 
