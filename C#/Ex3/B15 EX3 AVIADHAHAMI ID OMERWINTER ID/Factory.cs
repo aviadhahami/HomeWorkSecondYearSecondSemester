@@ -9,7 +9,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         public void BuildVehicle(VehicleInfo i_VehicleInfo, OwnerInfo i_OwnerInfo)
         {
             GarageInfo garageInfo;
-            VehicleType electricOrFuel;
+            EngineType electricOrFuel;
             if (Garage.Exist(i_VehicleInfo.LicenseNumber))
             {
                 Garage.UpdateStatus(i_VehicleInfo.LicenseNumber, StatusType.Fixing);
@@ -18,13 +18,13 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             switch (i_VehicleInfo.VehicleType)
             {
                 case VehicleType.Car:
-                    electricOrFuel = VehicleType.Car;
+                    electricOrFuel = EngineType.FuelEngine;
                     garageInfo = new GarageInfo(i_VehicleInfo, i_OwnerInfo, new Car(i_VehicleInfo.NumberOfDoors, i_VehicleInfo.Color, i_VehicleInfo.Tiers, electricOrFuel, i_VehicleInfo.Model, i_VehicleInfo.LicenseNumber, i_VehicleInfo.RemainingEnergy, i_VehicleInfo.TierManufacturer));
                     Garage.Insert(garageInfo);
                     break;
 
                 case VehicleType.ElectricCar:
-                    electricOrFuel = VehicleType.ElectricCar;
+                    electricOrFuel = EngineType.ElectricEngine;
                     garageInfo = new GarageInfo(i_VehicleInfo, i_OwnerInfo, new Car(i_VehicleInfo.NumberOfDoors, i_VehicleInfo.Color, i_VehicleInfo.Tiers, electricOrFuel, i_VehicleInfo.Model, i_VehicleInfo.LicenseNumber, i_VehicleInfo.RemainingEnergy, i_VehicleInfo.TierManufacturer));
                     Garage.Insert(garageInfo);
                     break;
@@ -35,13 +35,13 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
                     break;
 
                 case VehicleType.Motocycle:
-                    electricOrFuel = VehicleType.Motocycle;
+                    electricOrFuel = EngineType.FuelEngine;
                     garageInfo = new GarageInfo(i_VehicleInfo, i_OwnerInfo, new Motorcycle(i_VehicleInfo.Model, i_VehicleInfo.Tiers, i_VehicleInfo.LicenseNumber, i_VehicleInfo.RemainingEnergy, i_VehicleInfo.TierManufacturer, electricOrFuel, i_VehicleInfo.EngineSize, i_VehicleInfo.LicenseType));
                     Garage.Insert(garageInfo);
                     break;
 
                 case VehicleType.ElectricMotorcycle:
-                    electricOrFuel = VehicleType.ElectricMotorcycle;
+                    electricOrFuel = EngineType.ElectricEngine;
                     garageInfo = new GarageInfo(i_VehicleInfo, i_OwnerInfo, new Motorcycle(i_VehicleInfo.Model, i_VehicleInfo.Tiers, i_VehicleInfo.LicenseNumber, i_VehicleInfo.RemainingEnergy, i_VehicleInfo.TierManufacturer, electricOrFuel, i_VehicleInfo.EngineSize, i_VehicleInfo.LicenseType));
                     Garage.Insert(garageInfo);
                     break;
