@@ -120,7 +120,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
 
         private void displayInventory()
         {
-            Console.WriteLine("display inventory");
             m_UIWorker.DisplaySortingOptions();
             int io_userPick;
             while (true)
@@ -133,9 +132,10 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                 else
                 {
                     // Delete this when done
-                    Console.WriteLine("User picked " + (SortingType)io_userPick);
+                    Console.WriteLine("User picked " + (GarageLogic.SortingType)io_userPick);
                     break;
                 }
+                displayInventoryPostSort(GarageLogic.Garage.GetSortedInventory((GarageLogic.SortingType)io_userPick));
             }
 
             // Should display sorted stuff according to user pick
@@ -145,7 +145,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
 
         private bool validateSortingMenuOptionNumber(int i_SingleCharConsoleInput)
         {
-            int enumSize = Enum.GetNames(typeof(SortingType)).Length;
+            int enumSize = Enum.GetNames(typeof(GarageLogic.SortingType)).Length;
             return i_SingleCharConsoleInput >= 1 && i_SingleCharConsoleInput <= enumSize;
         }
 
