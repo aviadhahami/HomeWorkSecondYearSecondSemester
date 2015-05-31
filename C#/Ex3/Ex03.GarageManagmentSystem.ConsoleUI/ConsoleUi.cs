@@ -6,20 +6,20 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
 {
     class ConsoleUI
     {
-        UITexts m_UIStrings;
+        UITexts m_UIWorker;
         private GarageLogic.Garage m_Garage;
 
         public void MainUIProcess()
         {
             // Instansiate the UI
-            m_UIStrings = new UITexts();
+            m_UIWorker = new UITexts();
 
             // Instansiate the garage
-            m_Garage = new Ex03.GarageManagmentSystem.GarageLogic.Garage();
+            m_Garage = new GarageLogic.Garage();
 
             // Greet the mofos
-            m_UIStrings.SayHi();
-            m_UIStrings.HoldScreen();
+            m_UIWorker.SayHi();
+            m_UIWorker.HoldScreen();
             while (true)
             {
                 // Suggest options
@@ -27,7 +27,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
 
                 // If we reached this it means we have a legit number picked by the user
                 Console.WriteLine("Goodie! we have valid pick");
-                m_UIStrings.HoldScreen();
+                m_UIWorker.HoldScreen();
                 deployAction(userPick);
             }
 
@@ -62,7 +62,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                     exitApplication();
                     break;
                 default:
-                    m_UIStrings.DisplayAdminError();
+                    m_UIWorker.DisplayAdminError();
                     exitApplication();
                     break;
             }
@@ -73,10 +73,10 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             string io_licensePlate;
             while (true)
             {
-                io_licensePlate = m_UIStrings.AskForLicenseNumber();
+                io_licensePlate = m_UIWorker.AskForLicenseNumber();
                 if (m_Garage.CheckIfVehicleExists(io_licensePlate))
                 {
-                    m_UIStrings.DisplayVehicleData(m_Garage.GetVehicleInfo(io_licensePlate));
+                    m_UIWorker.DisplayVehicleData(m_Garage.GetVehicleInfo(io_licensePlate));
                     break;
                 }
                 // Else vehicle doesnt exist
@@ -86,11 +86,11 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                 }
                 else
                 {
-                    m_UIStrings.LicenseNumberDoesntExist(io_licensePlate);
+                    m_UIWorker.LicenseNumberDoesntExist(io_licensePlate);
                     // Should ask if he wants to try again, otherwise pop to main screen
                 }
             }
-            m_UIStrings.ShowSuggestions();
+            m_UIWorker.ShowSuggestions();
         }
 
         private bool userAskedToQuitCurrentPick(string i_UserInput)
@@ -121,8 +121,32 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         private void displayInventory()
         {
             Console.WriteLine("display inventory");
-            SortingType userSortingPick = m_UIStrings.GetUserSortingChoice();
-            m_UIStrings.HoldScreen();
+            m_UIWorker.DisplaySortingOptions();
+            int io_userPick;
+            while (true)
+            {
+                io_userPick = m_UIWorker.ReadUserOptionPick();
+                if (!validateSortingMenuOptionNumber(io_userPick))
+                {
+                    m_UIWorker.WrongNumberPicked();
+                }
+                else
+                {
+                    // Delete this when done
+                    Console.WriteLine("User picked " + (SortingType)io_userPick);
+                    break;
+                }
+            }
+
+            // Should display sorted stuff according to user pick
+
+            m_UIWorker.HoldScreen();
+        }
+
+        private bool validateSortingMenuOptionNumber(int i_SingleCharConsoleInput)
+        {
+            int enumSize = Enum.GetNames(typeof(SortingType)).Length;
+            return i_SingleCharConsoleInput >= 1 && i_SingleCharConsoleInput <= enumSize;
         }
 
         private void insertVehicle()
@@ -132,7 +156,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
 
         private void exitApplication()
         {
-            m_UIStrings.SayGoodbye();
+            m_UIWorker.SayGoodbye();
             System.Environment.Exit(0);
         }
 
@@ -144,7 +168,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             {
                 m_UIStrings.CallForAction();
                 singleCharConsoleInput = m_UIStrings.ReadUserOptionPick();
-                if (!validateOptionNumber(singleCharConsoleInput))
+                if (!validateMainMenuOptionNumber(singleCharConsoleInput))
                 {
                     m_UIStrings.WrongNumberPicked();
                 }
@@ -157,7 +181,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             }
         }
 
-        private static bool validateOptionNumber(int i_SingleCharConsoleInput)
+        private static bool validateMainMenuOptionNumber(int i_SingleCharConsoleInput)
         {
             int enumSize = Enum.GetNames(typeof(GarageOption)).Length;
             return i_SingleCharConsoleInput >= 1 && i_SingleCharConsoleInput <= enumSize;

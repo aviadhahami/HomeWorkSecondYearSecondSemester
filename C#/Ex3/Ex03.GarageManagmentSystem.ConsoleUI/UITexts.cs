@@ -40,6 +40,14 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         private const string k_VEHICLE_ENERGY = "Energy status: ";
         private const string k_TIERS_MANUFACTURER = "Tiers manufacturer: ";
         private const string k_WHEEL_PRESSURE = "Pressure: ";
+        private const string k_PLEASE_PICK_SORTING_OPTION = "Please pick a sorting option";
+        private const string k_NO_SORTING = "Display without sorting";
+        private const string k_SORT_BY_FUEL_LEVEL = "Sort by energy level";
+        private const string k_SORT_BY_MANU = "Sort by tiers manufacturer";
+        private const string k_SORT_BY_COLOR = "Sort by color";
+        private const string k_SORT_BY_STATUS = "Sort by garage status (active or not)";
+        private const string k_SORT_BY_TYPE = "Sort by vehicle type";
+        private const string k_SORT_BY_MODEL = "Sort by model";
 
         internal void SayHi()
         {
@@ -255,5 +263,44 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             Console.WriteLine(i_Property + " - " + i_VehicleData.ToString());
         }
 
+        public void DisplaySortingOptions()
+        {
+            Console.WriteLine(k_PLEASE_PICK_SORTING_OPTION);
+            foreach (SortingType sortingType in Enum.GetValues(typeof(SortingType)))
+            {
+                Console.Write((int)sortingType + ") ");
+
+                // TODO : implement actions
+                switch (sortingType)
+                {
+                    case SortingType.NONE:
+                        Console.WriteLine(k_NO_SORTING);
+                        break;
+                    case SortingType.FUELLEVEL:
+                        Console.WriteLine(k_SORT_BY_FUEL_LEVEL);
+                        break;
+                    case SortingType.MANUFACTURER:
+                        Console.WriteLine(k_SORT_BY_MANU);
+                        break;
+                    case SortingType.COLOR:
+                        Console.WriteLine(k_SORT_BY_COLOR);
+                        break;
+                    case SortingType.STATUS:
+                        Console.WriteLine(k_SORT_BY_STATUS);
+                        break;
+                    case SortingType.TYPE:
+                        Console.WriteLine(k_SORT_BY_TYPE);
+                        break;
+                    case SortingType.MODEL:
+                        Console.WriteLine(k_SORT_BY_MODEL);
+                        break;
+                    default:
+
+                        // No defualt
+                        break;
+                }
+
+            }
+        }
     }
 }

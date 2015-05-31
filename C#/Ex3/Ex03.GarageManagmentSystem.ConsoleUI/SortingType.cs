@@ -10,7 +10,8 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         FUELLEVEL = 2,
         MANUFACTURER = 3,
         COLOR = 4,
-        STATUSTYPE = 5,
-        TYPE = 6
+        STATUS = 5,
+        TYPE = 6,
+        MODEL = 7
     }
 }
