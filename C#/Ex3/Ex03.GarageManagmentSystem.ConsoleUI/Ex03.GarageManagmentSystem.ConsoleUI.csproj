@@ -42,7 +42,6 @@
     <Compile Include="ConsoleUi.cs" />
     <Compile Include="Invoker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SortingType.cs" />
     <Compile Include="UITexts.cs" />
   </ItemGroup>
   <ItemGroup>

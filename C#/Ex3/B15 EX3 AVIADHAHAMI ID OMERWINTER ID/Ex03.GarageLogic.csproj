@@ -54,7 +54,7 @@
     <Compile Include="Motorcycle.cs" />
     <Compile Include="OwnerInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SortingType.cs" />
+    <Compile Include="FiltersType.cs" />
     <Compile Include="StatusType.cs" />
     <Compile Include="Tier.cs" />
     <Compile Include="Truck.cs" />
