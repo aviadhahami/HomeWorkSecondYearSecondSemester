@@ -135,11 +135,21 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                     Console.WriteLine("User picked " + (GarageLogic.SortingType)io_userPick);
                     break;
                 }
-                displayInventoryPostSort(GarageLogic.Garage.GetSortedInventory((GarageLogic.SortingType)io_userPick));
+                DisplayInventoryPostSort(GarageLogic.Garage.GetSortedInventory((GarageLogic.SortingType)io_userPick));
             }
 
             // Should display sorted stuff according to user pick
 
+            m_UIWorker.HoldScreen();
+        }
+
+        private void DisplayInventoryPostSort(List<GarageLogic.GarageInfo> list)
+        {
+            foreach (var item in list)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.WriteLine("End of inventory");
             m_UIWorker.HoldScreen();
         }
 

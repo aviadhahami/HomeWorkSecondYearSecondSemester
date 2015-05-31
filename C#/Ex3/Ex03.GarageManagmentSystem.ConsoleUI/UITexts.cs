@@ -263,6 +263,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             Console.WriteLine(i_Property + " - " + i_VehicleData.ToString());
         }
 
+
         public void DisplaySortingOptions()
         {
             Console.WriteLine(k_PLEASE_PICK_SORTING_OPTION);
