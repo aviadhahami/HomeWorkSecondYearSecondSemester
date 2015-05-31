@@ -6,20 +6,21 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 {
     public class GarageInfo
     {
-        private VehicleInfo m_VehicleInfo;
+        private StatusType m_StatusType;
         private OwnerInfo m_OwnerInfo;
         private Vehicle m_Vehicle;
 
-        internal GarageInfo(VehicleInfo o_VehicleInfo, OwnerInfo o_OwnerInfo, Vehicle o_Vehicle)
+        internal GarageInfo(StatusType o_StatusType, OwnerInfo o_OwnerInfo, Vehicle o_Vehicle)
         {
             m_OwnerInfo = o_OwnerInfo;
             m_Vehicle = o_Vehicle;
-            m_VehicleInfo = o_VehicleInfo;
+            m_StatusType = o_StatusType;
         }
 
-        public VehicleInfo VehicleInfo
+        public StatusType StatusType
         {
-            get { return m_VehicleInfo; }
+            get { return m_StatusType; }
+            set { StatusType = value; }
         }
 
         internal Vehicle Vehicle

@@ -13,7 +13,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         {
             m_OnerName = i_OnerName;
             m_OnerPhoneNumber = i_OnerPhoneNumber;
-        }
+            }
         
         public String OnerName 
         {

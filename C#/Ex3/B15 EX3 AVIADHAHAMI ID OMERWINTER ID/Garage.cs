@@ -11,7 +11,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         internal static void UpdateStatus(string i_LicenseNumber, StatusType i_statusType)
         {
             GarageInfo garageInfo = m_VehicleInGarage[i_LicenseNumber];
-            garageInfo.VehicleInfo.StatusType = i_statusType;
+            garageInfo.StatusType = i_statusType;
         }
 
         internal static bool Exist(string i_LicenseNumber)
@@ -27,17 +27,17 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
         internal static void Insert(GarageInfo i_GarageInfo)
         {
-            m_VehicleInGarage.Add(i_GarageInfo.VehicleInfo.LicenseNumber, i_GarageInfo);
+            m_VehicleInGarage.Add(i_GarageInfo.Vehicle.LicenseNumber, i_GarageInfo);
         }
 
         public void FillFuel(string i_LicenseNumber, FuelType i_FuelType, float i_FuelToFill)
         {
 
 
-            if (CheckIfVehicleExists(i_LicenseNumber) && m_VehicleInGarage[i_LicenseNumber].Vehicle.MyEnergy is Fuel)
+            if (CheckIfVehicleExists(i_LicenseNumber) && m_VehicleInGarage[i_LicenseNumber].Vehicle.Engine is Fuel)
             {
 
-                Fuel energySource = (Fuel)m_VehicleInGarage[i_LicenseNumber].Vehicle.MyEnergy;
+                Fuel energySource = (Fuel)m_VehicleInGarage[i_LicenseNumber].Vehicle.Engine;
                 energySource.fillFuel(i_FuelToFill, i_FuelType);
             }
 
@@ -51,9 +51,9 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         {
 
 
-            if (CheckIfVehicleExists(i_LicenseNumber) && m_VehicleInGarage[i_LicenseNumber].Vehicle.MyEnergy is Electricity)
+            if (CheckIfVehicleExists(i_LicenseNumber) && m_VehicleInGarage[i_LicenseNumber].Vehicle.Engine is Electricity)
             {
-                Electricity energySource = (Electricity)m_VehicleInGarage[i_LicenseNumber].Vehicle.MyEnergy;
+                Electricity energySource = (Electricity)m_VehicleInGarage[i_LicenseNumber].Vehicle.Engine;
                 energySource.fillElectricity(i_FuelToFill);
             }
             else
