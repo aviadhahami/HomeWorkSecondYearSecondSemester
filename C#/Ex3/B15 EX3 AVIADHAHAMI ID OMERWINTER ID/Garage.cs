@@ -78,5 +78,10 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             return m_VehicleInGarage[i_LicenseNumber];
         }
 
+
+        public static object GetSortedInventory(SortingType sortingType)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
