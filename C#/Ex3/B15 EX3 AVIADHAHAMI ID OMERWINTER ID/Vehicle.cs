@@ -33,13 +33,11 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
         protected void SetTierData(float i_PressurInTiers, float i_MaxTierPressur, string i_tierManufacturer)
         {
-            int currentAirPressurPerTier = 0;
             foreach (Tier tier in m_Tiers)
             {
                 tier.manufacturer = this.m_TierManufacturer;
                 tier.MaximalAirPressure = i_MaxTierPressur;
                 tier.currentAirPressure = i_PressurInTiers;
-                currentAirPressurPerTier++;
             }
         }
 
