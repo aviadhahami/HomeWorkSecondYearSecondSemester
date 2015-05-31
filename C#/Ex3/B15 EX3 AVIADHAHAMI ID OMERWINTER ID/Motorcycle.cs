@@ -4,8 +4,16 @@ using System.Text;
 
 namespace Ex03.GarageManagmentSystem.GarageLogic
 {
+
     class Motorcycle : Vehicle
     {
+        private readonly float MAXTIERPRESSUROFELECTRIC = 31;
+        private readonly float MAXTIERPRESSUROFFUEL = 34;
+        private readonly float MAXTBUTERI = 1.2f;
+        private readonly int NUMBEROFTAIERS = 2;
+        private readonly float MAXTANK = 8;
+        private readonly FuelType FUELTYPE = FuelType.Octan98;
+
 
         private EngineType m_EngineType;
         private int m_EngineSize;
