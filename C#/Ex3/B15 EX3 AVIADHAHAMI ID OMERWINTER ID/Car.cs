@@ -22,9 +22,13 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             : base()
         {
             m_Tiers = new List<Tier>(ro_NUMBER_OF_TIERS);
-            m_ListOfQuestions.Add("what is the color of your car?");
-            m_ListOfQuestions.Add("how many dors you have in the car?");
-            m_ListOfQuestions.Add("what is yoer pressur in the tiers?");
+            m_ListOfQuestions.Add("What is the color of your car?");
+            m_ListOfQuestions.Add("How many doors you have in the car?");
+            for (int i = 0; i < ro_NUMBER_OF_TIERS; i++)
+            {
+                m_ListOfQuestions.Add("Specify tiers' pressure?");
+            }
+
         }
 
         public void init()
@@ -66,6 +70,11 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         }
         internal bool ValidateAndSetProperty(string i_Answer, int i_QuestionIndex)
         {
+            // Check for three first questions
+            if (i_QuestionIndex > 0 && i_QuestionIndex <= 3)
+            {
+                return true;
+            }
             return false;
         }
     }

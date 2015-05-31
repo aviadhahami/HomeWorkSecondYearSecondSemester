@@ -6,8 +6,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 {
     class Vehicle
     {
-
-
         protected string m_Model;
         protected string m_LicenseNumber;
         protected float m_RemainingEnergy;
@@ -32,8 +30,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             m_ListOfQuestions.Add("Please insert tier manufacturer");
 
         }
-
-
 
         protected void SetTierData(float i_PressurInTiers, float i_MaxTierPressur, string i_tierManufacturer)
         {
