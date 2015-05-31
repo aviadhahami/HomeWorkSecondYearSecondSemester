@@ -7,12 +7,12 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
     class Motorcycle : Vehicle
     {
-        private readonly float MAXTIERPRESSUROFELECTRIC = 31;
-        private readonly float MAXTIERPRESSUROFFUEL = 34;
-        private readonly float MAXTBUTERI = 1.2f;
+        private readonly float ro_MAX_TIER_PRESSURE_ELECTRIC = 31;
+        private readonly float ro_MAX_TIER_PRESSURE_FUEL = 34;
+        private readonly float ro_MAXIMUM_BATTERY_TIME = 1.2f;
         private readonly int NUMBEROFTAIERS = 2;
-        private readonly float MAXTANK = 8;
-        private readonly FuelType FUELTYPE = FuelType.Octan98;
+        private readonly float ro_MAX_FUEL_LEVEL = 8;
+        private readonly FuelType ro_FUELTYPE = FuelType.Octan98;
 
 
         private EngineType m_EngineType;
@@ -22,35 +22,27 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         public Motorcycle()
             : base()
         {
+        }
 
+        public void init()
+        {
+            if (m_EngineType == EngineType.ElectricEngine)
+            {
+                SetTierData(m_CurrentPressurInTier, ro_MAX_TIER_PRESSURE_ELECTRIC, m_TierManufacturer);
+                InitElectricityEngine(ro_MAXIMUM_BATTERY_TIME);
+            }
+            else
+            {
+                SetTierData(m_CurrentPressurInTier, ro_MAX_TIER_PRESSURE_FUEL, m_TierManufacturer);
+                InitFuelEngine(ro_MAX_FUEL_LEVEL, ro_FUELTYPE);
+            }
         }
 
         internal EngineType EngineType
         {
             get { return m_EngineType; }
-            set
-            {
-                m_EngineType = value;
-            }
+            set { m_EngineType = value; }
         }
-        //public Motorcycle(string i_Model, List<float> i_PressurInTiers, string i_LicenseNumber, float i_RemainingEnergy, string i_TierManufacturer, EngineType i_ElectricVehicle, int i_EngineSize, License i_LicenseType)
-        //    : base(i_Model, i_LicenseNumber, i_RemainingEnergy, i_TierManufacturer)
-        //{
-
-        //    m_EngineSize = i_EngineSize;
-        //    m_LicenseType = i_LicenseType;
-        //    this.m_Tiers = new List<Tier>(NUMBEROFTAIERS);
-        //    if (i_ElectricVehicle == EngineType.ElectricEngine)
-        //    {
-        //        SetTierData(i_PressurInTiers, MAXTIERPRESSUROFELECTRIC, this.m_TierManufacturer);
-        //        m_MyEnergy = new Electricity(MAXTBUTERI, MAXTBUTERI * m_RemainingEnergy);
-        //    }
-        //    else
-        //    {
-        //        SetTierData(i_PressurInTiers, MAXTIERPRESSUROFFUEL, this.m_TierManufacturer);
-        //        m_MyEnergy = new Fuel(MAXTANK, MAXTANK * m_RemainingEnergy, FUELTYPE);
-        //    }
-        //}
 
         public License LicenseType
         {
@@ -62,6 +54,11 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         {
             get { return m_EngineSize; }
             set { m_EngineSize = value; }
+        }
+        
+        internal bool ValidateAndSetProperty(string i_Answer, int i_QuestionIndex)
+        {
+            return false;
         }
     }
 }
