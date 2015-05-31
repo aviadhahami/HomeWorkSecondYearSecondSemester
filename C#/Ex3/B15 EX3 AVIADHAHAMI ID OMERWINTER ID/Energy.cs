@@ -38,8 +38,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
                 }
                 else
                 {
-                    // TODO: throw exepsion in the future
-                    Console.WriteLine("the fuel type is incorect or to much gas");
+                    throw new ValueOutOfRangeException(0, m_maxCapcityInTank);
                 }
             }
         }
