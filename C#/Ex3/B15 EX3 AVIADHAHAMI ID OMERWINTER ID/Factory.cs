@@ -26,24 +26,27 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             {
                 case (int) VehicleType.Car :
                     m_VehicleToBuild = new Car();
-                    Car carToBuild = (Car)m_VehicleToBuild;
-                    carToBuild.EngineType = new Fuel(EngineType.FuelEngine);
-                    return carToBuild.getQuestions;
+                    (m_VehicleToBuild as Car).EngineType = EngineType.FuelEngine;
+                    return (m_VehicleToBuild as Car).Questions;
                     break;
                 case (int)VehicleType.ElectricCar:
                     m_VehicleToBuild = new Car();
-                    Car carToBuild = (Car)m_VehicleToBuild;
-                    carToBuild.EngineType = new Fuel(EngineType.ElectricEngine);
-                    return carToBuild.getQuestions;
+                    (m_VehicleToBuild as Car).EngineType = EngineType.ElectricEngine;
+                    return (m_VehicleToBuild as Car).Questions;
                     break;
                 case (int)VehicleType.ElectricMotorcycle:
                     m_VehicleToBuild = new Motorcycle();
+                    (m_VehicleToBuild as Motorcycle).EngineType = EngineType.ElectricEngine;
+                    return (m_VehicleToBuild as Motorcycle).Questions;
                     break;
                 case (int)VehicleType.Motocycle:
                     m_VehicleToBuild = new Motorcycle();
+                    (m_VehicleToBuild as Motorcycle).EngineType = EngineType.FuelEngine;
+                    return (m_VehicleToBuild as Motorcycle).Questions;
                     break;
                 case (int)VehicleType.Truck:
                     m_VehicleToBuild = new Truck();
+                    return (m_VehicleToBuild as Truck).Questions;
                     break;
                 default:
                     throw new ArgumentException();
