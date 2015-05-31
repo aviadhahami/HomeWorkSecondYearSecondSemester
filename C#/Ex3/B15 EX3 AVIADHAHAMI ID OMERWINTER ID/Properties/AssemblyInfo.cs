@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("B15 EX3 AVIADHAHAMI ID OMERWINTER ID")]
+[assembly: AssemblyTitle("Ex03.GarageManagmentSystem.GarageLogic")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("B15 EX3 AVIADHAHAMI ID OMERWINTER ID")]
+[assembly: AssemblyProduct("Ex03.GarageManagmentSystem.GarageLogic")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
