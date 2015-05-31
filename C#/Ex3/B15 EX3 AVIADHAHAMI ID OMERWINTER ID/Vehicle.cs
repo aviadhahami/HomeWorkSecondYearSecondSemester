@@ -89,6 +89,28 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             m_LicenseNumber = i_GivenLicense;
             return true;
         }
+        protected bool verifyTiers(string i_GivenPressure, float i_MaxTierPressure)
+        {
+            float parsedFloat;
+            bool parsingFlag = float.TryParse(i_GivenPressure, out parsedFloat);
+            if (parsingFlag == false)
+            {
+                throw new FormatException("Bad input for doors amount");
+            }
+            if (parsedFloat >= 0 && parsedFloat <= i_MaxTierPressure)
+            {
+                foreach (var tier in m_Tiers)
+                {
+                    tier.currentAirPressure = parsedFloat;
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
     }
 
 }

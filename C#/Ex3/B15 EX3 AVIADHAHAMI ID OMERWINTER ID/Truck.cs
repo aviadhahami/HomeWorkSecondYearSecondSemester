@@ -20,9 +20,9 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             : base()
         {
             m_Tiers = new List<Tier>(ro_NUMBER_OF_TIERS);
-            m_ListOfQuestions.Add("there are dangerous chemicals?");
-            m_ListOfQuestions.Add("what is the the truck weight?");
-            m_ListOfQuestions.Add("what is your tier pressur?");
+            m_ListOfQuestions.Add("Are there dangerous chemicals? (Y/N)");
+            m_ListOfQuestions.Add("What is the truck weight load?");
+            m_ListOfQuestions.Add("Specify tiers' pressure");
         }
 
         public void init()
@@ -58,19 +58,61 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             }
             else if (i_QuestionIndex == 4)
             {
-                // Verify color
-                o_ValidationIndicator = verifyGivenColor(i_Answer);
+                // Verify chemicalss
+                o_ValidationIndicator = verifyChemicals(i_Answer);
             }
             else if (i_QuestionIndex == 5)
             {
-                // Verify doors
-                o_ValidationIndicator = verifyDoorsAmount(i_Answer);
+                // Verify load
+                o_ValidationIndicator = verifyLoad(i_Answer);
             }
             else if (i_QuestionIndex > 5 && i_QuestionIndex <= 5 + ro_NUMBER_OF_TIERS)
             {
                 // Verify tiers
+                o_ValidationIndicator = verifyTiers(i_Answer, ro_MAX_TIER_PRESSURE);
             }
             return o_ValidationIndicator;
+        }
+
+        private bool verifyLoad(string i_GivenTruckLoad)
+        {
+            float parsedValue;
+            bool o_VerificationIndicator = false;
+            bool parsingIndicator = float.TryParse(i_GivenTruckLoad, out parsedValue);
+            if (!parsingIndicator)
+            {
+                throw new FormatException("Truck load got wrong data");
+            }
+            if (parsedValue > 0)
+            {
+                o_VerificationIndicator = true;
+                m_Wight = parsedValue;
+
+            }
+            return o_VerificationIndicator;
+        }
+
+        private bool verifyChemicals(string i_ChemicalsIndication)
+        {
+            bool o_Result = false;
+            if (i_ChemicalsIndication.Length > 1)
+            {
+                throw new FormatException("Length bigger than one for chemicals");
+            }
+            else
+            {
+                if (i_ChemicalsIndication == "Y")
+                {
+                    m_DangerousChemical = true;
+                    o_Result = true;
+                }
+                else if (i_ChemicalsIndication == "N")
+                {
+                    m_DangerousChemical = false;
+                    o_Result = true;
+                }
+            }
+            return o_Result;
         }
     }
 }

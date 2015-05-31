@@ -19,7 +19,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         private Colors m_Color;
         private int m_NumberOfDoors;
 
-
         public Car()
             : base()
         {
@@ -41,7 +40,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
                 InitFuelEngine(ro_MAX_FUEL_LEVEL, ro_FUELTYPE);
             }
         }
-
         internal EngineType EngineType
         {
             get { return m_EngineType; }
@@ -93,34 +91,10 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             else if (i_QuestionIndex > 5 && i_QuestionIndex <= 5 + ro_NUMBER_OF_TIERS)
             {
                 // Verify tiers
-                o_ValidationIndicator = verifyTiers(i_Answer);
+                o_ValidationIndicator = verifyTiers(i_Answer, ro_MAX_TIER_PRESSURE);
             }
             return o_ValidationIndicator;
         }
-
-        private bool verifyTiers(string i_GivenPressure)
-        {
-            float parsedFloat;
-            bool parsingFlag = float.TryParse(i_GivenPressure, out parsedFloat);
-            if (parsingFlag == false)
-            {
-                throw new FormatException("Bad input for doors amount");
-            }
-            if (parsedFloat >= 0 && parsedFloat <= ro_MAX_TIER_PRESSURE)
-            {
-                foreach (var tier in m_Tiers)
-                {
-                    tier.currentAirPressure = parsedFloat;
-                }
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-        }
-
         // Verification zone
         private bool verifyDoorsAmount(string i_GivenDoorsNumber)
         {
@@ -139,7 +113,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             }
             return false;
         }
-
         private bool verifyGivenColor(string i_GivenColor)
         {
             Console.WriteLine("VERIFY GIVEN COLOR DEBUGGING -> USER CHOSE " + i_GivenColor);
