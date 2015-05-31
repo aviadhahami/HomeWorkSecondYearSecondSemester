@@ -51,6 +51,31 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
         }
 
+        // Returns boolean to UI in order to determine whether the shit was good or not.
+        // If it was -> Vehicle sets it
+        public bool Validator(string i_Answer, int i_NumberOfQuestion)
+        {
+            if (m_VehicleToBuild is Car)
+            {
+                if (!(m_VehicleToBuild as Car).ValidateAndSetProperty(i_Answer, i_NumberOfQuestion)){
+                    return false;}
+            }
+            if (m_VehicleToBuild is Motorcycle)
+            {
+                if (!(m_VehicleToBuild as Motorcycle).ValidateAndSetProperty(i_Answer, i_NumberOfQuestion))
+                {
+                    return false;
+                }
+            }
+            if (m_VehicleToBuild is Truck)
+            {
+                if (!(m_VehicleToBuild as Truck).ValidateAndSetProperty(i_Answer, i_NumberOfQuestion))
+                {
+                    return false;
+                }
+            }
+
+        }
 
 
 
