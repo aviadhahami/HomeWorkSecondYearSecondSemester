@@ -6,19 +6,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
 {
     class UITexts
     {
-
-        private const string k_INSERT_VEHICLE = "Insert a vehicle to the garage";
-        private const string k_DISPLAY_INVENTORY = "Ask us what vehicles we currently posses";
-        private const string k_CHANGE_VEHICLE_STATUS = "Change single vehicle's status (ONLY IF WE OWN IT)";
-        private const string k_RECHARGE_ELECTRICAL = "Recharge an electric car (ONLY FOR ELECTRICAL ENGINED VEHICLES)";
-        private const string k_DISPLAY_SINGLE_VEHICLE = "Check if we posses a specific car";
-        private const string k_REFUEL_VEHICLE = "Refual a vehicle (ONLY FOR FUEL ENGINED VEHICLES)";
-        private const string k_PUMP_AIR = "Pump air to a vehicle";
-        private const string k_EXIT_PROGRAM = "Leave the application";
-        private const string k_SAY_GOODBYE = "Thank you and have a bright day!\nAllah wakbar!";
-        private const string k_PLEASE_CONTACT_ADMIN = "Something went wrong, contact system admin";
         private const string k_SORRY_NO_SUCH_VEHICLE = "We're sorry, we do not posses vehicle licensed with";
-        private const string k_PLEASE_INSERT_LICENSE_NUMBER = "Please enter a valid license plate number or type \"exit\" to go back";
         private const string k_OWNER_NAME = "Owner name : ";
         private const string k_OWNER_PHONE = "Owner phone number is: ";
         private const string k_VEHICLE_TYPE = "Type: ";
@@ -39,6 +27,17 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         private const string k_FILTER_BY_NONACTIVE = "Display non-active vehicles";
 
         // New version strings
+
+        private const string k_INSERT_VEHICLE = "Insert a vehicle to the garage";
+        private const string k_DISPLAY_INVENTORY = "Ask us what vehicles we currently posses";
+        private const string k_CHANGE_VEHICLE_STATUS = "Change single vehicle's status (ONLY IF WE OWN IT)";
+        private const string k_RECHARGE_ELECTRICAL = "Recharge an electric car (ONLY FOR ELECTRICAL ENGINED VEHICLES)";
+        private const string k_DISPLAY_SINGLE_VEHICLE = "Check if we posses a specific car";
+        private const string k_REFUEL_VEHICLE = "Refual a vehicle (ONLY FOR FUEL ENGINED VEHICLES)";
+        private const string k_PUMP_AIR = "Pump air to a vehicle";
+        private const string k_EXIT_PROGRAM = "Leave the application";
+        private const string k_SAY_GOODBYE = "Thank you and have a bright day!\nAllah wakbar!";
+        private const string k_PLEASE_CONTACT_ADMIN = "Something went wrong, contact system admin";
         private const string k_LINE_SPAN = "                         ";
         private const string k_HALF_LINE_SPAN = "               ";
         private const string k_THREE_QUARTERS_LINE_SPAN = "                      ";
@@ -52,6 +51,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         private const string k_REMIND_EXIT_TOKEN = "Type \"Exit\" at any time to exit the app";
         private const string k_NO_SUCH_OPTION = "We're sorry, this options doesn't exist in our garage....";
         private const string k_TRY_AGAIN = "Please try again";
+        private const string k_PLEASE_INSERT_LICENSE_NUMBER = "Please enter a valid license plate number";
         private const string k_LOG_OUT = "Log out";
 
 
@@ -108,6 +108,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         internal void LicenseNumberDoesntExist(string io_licnsePlate)
         {
             Console.WriteLine(k_SORRY_NO_SUCH_VEHICLE + formatLicensePlate(io_licnsePlate));
+            HoldScreen();
         }
 
         private string formatLicensePlate(string io_licnsePlate)
@@ -204,6 +205,27 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             Console.WriteLine(k_TRY_AGAIN);
             HoldScreen();
         }
+
+        internal string AskForLicense()
+        {
+            string o_UserInput;
+            Console.Clear();
+            while (true)
+            {
+                Console.WriteLine(k_PLEASE_INSERT_LICENSE_NUMBER);
+                o_UserInput = Console.ReadLine();
+                if (o_UserInput.Length > 0)
+                {
+                    break;
+                }
+                else
+                {
+                    BadInput();
+                }
+            }
+            return o_UserInput;
+        }
+
     }
 }
 

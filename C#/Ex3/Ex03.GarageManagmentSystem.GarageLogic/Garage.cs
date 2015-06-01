@@ -14,15 +14,15 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             garageInfo.StatusType = i_statusType;
         }
 
-        internal static bool Exist(string i_LicenseNumber)
+        public static bool Exist(string i_LicenseNumber)
         {
 
-            bool exist = false;
+            bool o_Exist = false;
             if (m_GarageInventory.ContainsKey(i_LicenseNumber))
             {
-                exist = true;
+                o_Exist = true;
             }
-            return exist;
+            return o_Exist;
         }
 
         internal static void Insert(GarageInfo i_GarageInfo)

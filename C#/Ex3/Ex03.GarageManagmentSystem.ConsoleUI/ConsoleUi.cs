@@ -109,10 +109,10 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                     //refuel();
                     break;
                 case GarageOption.Recharge:
-                  //  recharge();
+                    //  recharge();
                     break;
                 case GarageOption.DisplaySingleVehicle:
-                   // displaySingleVehicle();
+                    displaySingleVehicle();
                     break;
                 case GarageOption.Logout:
                     logOutSequence();
@@ -124,6 +124,62 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             }
             // Go back to main menu
             mainMenuSequence();
+        }
+
+        // Displays single vehicle from inventory
+        // Status : UC
+        private void displaySingleVehicle()
+        {
+            string io_GivenLicense;
+            while (true)
+            {
+                io_GivenLicense = m_UITexts.AskForLicense();
+                if (CheckExitToken(io_GivenLicense))
+                {
+                    mainMenuSequence();
+                }
+                else if (!validLicenseNumber(io_GivenLicense))
+                {
+                    m_UITexts.BadInput();
+                }
+                else
+                {
+                    if (checkVehicleExistance(io_GivenLicense))
+                    {
+                        // Show vehicle
+                        break;
+                    }
+                    else
+                    {
+                        // We aint got this
+                        m_UITexts.LicenseNumberDoesntExist(io_GivenLicense);
+                        break;
+                    }
+                }
+            }
+            mainMenuSequence();
+        }
+
+        // Returns whether a vehicle exists
+        // Status : done, not tested
+        private bool checkVehicleExistance(string io_GivenLicense)
+        {
+            return GarageLogic.Garage.Exist(io_GivenLicense);
+        }
+
+        // Validates a given license number to contain only letters and digits
+        // Status : Done, not tested
+        private bool validLicenseNumber(string i_GivenPlate)
+        {
+            bool o_testResult = true;
+            foreach (char currentChar in i_GivenPlate)
+            {
+                if (!char.IsLetterOrDigit(currentChar))
+                {
+                    o_testResult = false;
+                }
+            }
+            return o_testResult;
         }
 
         // Tests whetther the given string can be found whithin the menue enum
