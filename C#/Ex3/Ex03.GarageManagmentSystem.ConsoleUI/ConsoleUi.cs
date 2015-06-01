@@ -10,20 +10,33 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
 
         // Display main menu
 
-          // Insert
+        // Insert
 
-          // Display inventory
-        
-          // Change vehicle status
+        // Display inventory
 
-          // Pump air
+        // Change vehicle status
 
-          // Refuel
+        // Pump air
 
-          // Recharge
-    
-          // DisplaySingleVehicle
+        // Refuel
 
-          //Logout
+        // Recharge
+
+        // DisplaySingleVehicle
+
+        //Logout
+        UITexts m_UITexts;
+        string m_CurrentUserName;
+        string m_CurrentUserPhone;
+
+        public ConsoleUI()
+        {
+            m_UITexts = new UITexts();
+
+        }
+        internal void ShowLoginScreen()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

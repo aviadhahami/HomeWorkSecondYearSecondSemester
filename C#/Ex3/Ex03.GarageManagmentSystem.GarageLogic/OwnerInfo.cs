@@ -4,24 +4,24 @@ using System.Text;
 
 namespace Ex03.GarageManagmentSystem.GarageLogic
 {
-    class OwnerInfo
+    public class OwnerInfo
     {
-        String m_OnerName;
-        String m_OnerPhoneNumber;
+        String m_OwnerName;
+        String m_OwnerPhoneNumber;
 
         public OwnerInfo(String i_OnerName, String i_OnerPhoneNumber)
         {
-            m_OnerName = i_OnerName;
-            m_OnerPhoneNumber = i_OnerPhoneNumber;
-            }
-        
-        public String OnerName 
-        {
-            get { return m_OnerName; }
+            m_OwnerName = i_OnerName;
+            m_OwnerPhoneNumber = i_OnerPhoneNumber;
         }
-        public String OnerPhoneNumber 
-        { 
-            get { return m_OnerPhoneNumber; }
+
+        public String OnerName
+        {
+            get { return m_OwnerName; }
+        }
+        public String OnerPhoneNumber
+        {
+            get { return m_OwnerPhoneNumber; }
         }
     }
 }
