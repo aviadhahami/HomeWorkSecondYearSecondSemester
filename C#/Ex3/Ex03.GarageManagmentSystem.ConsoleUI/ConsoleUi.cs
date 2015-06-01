@@ -100,7 +100,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                     //displayInventory();
                     break;
                 case GarageOption.ChangeVehicleStatus:
-                    //changeVehicleStatus();
+                    changeVehicleStatus();
                     break;
                 case GarageOption.PumpAir:
                     //pumpAir();
@@ -124,6 +124,18 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             }
             // Go back to main menu
             mainMenuSequence();
+        }
+
+        // Changes vehicle status
+        // Stus : UC
+        private void changeVehicleStatus()
+        {
+            string io_UserInput = m_UITexts.AskForLicense();
+            if (CheckExitToken(io_UserInput))
+            {
+                LoginScreenSequence();
+            }
+            // Keep verification
         }
 
         private void insertVehicle()
@@ -150,7 +162,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                 }
             }
             instansiateVehicle((GarageLogic.VehicleType)io_ParsedInt);
-            // Questions
+            // Questions should come here
         }
 
         // Creates a vehicle
@@ -159,10 +171,11 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         {
             GarageLogic.OwnerInfo o_OwnerInfo = new GarageLogic.OwnerInfo(m_CurrentUserName, m_CurrentUserPhone);
 
-            // Has null, should be vehiclee
-            GarageLogic.GarageInfo o_NewVehicle = new GarageLogic.GarageInfo(GarageLogic.StatusType.PAID, o_OwnerInfo, null);
+            // Has null, should be vehicle
+            // SUPER CRUCIAL@
+         //   GarageLogic.GarageInfo o_NewVehicle = new GarageLogic.GarageInfo(GarageLogic.StatusType.PAID, o_OwnerInfo, null);
 
-            GarageLogic.Garage.Insert(o_NewVehicle);
+            //GarageLogic.Garage.Insert(o_NewVehicle);
         }
 
         // Validates the number picked can be found in the vehicles enum
