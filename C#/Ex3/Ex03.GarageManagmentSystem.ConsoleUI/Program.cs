@@ -9,7 +9,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         public static void Main()
         {
             ConsoleUI consoleUI = new ConsoleUI();
-            consoleUI.ShowLoginScreen();
+            consoleUI.LoginScreenSequence();
         }
     }
 }

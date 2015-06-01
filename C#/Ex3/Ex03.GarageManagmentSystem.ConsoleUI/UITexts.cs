@@ -44,6 +44,8 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         private const string k_NO_FILTER = "Display without sorting";
         private const string k_FILTER_BY_ACTIVE = "Display active vehicles";
         private const string k_FILTER_BY_NONACTIVE = "Display non-active vehicles";
+        private string k_PLEASE_ENTER_USERNAME = "Please state your name";
+        private string k_PLEASE_ENTER_PHONE = "Please specify your phone number";
 
         internal void DisplayWelcomeSequence()
         {
@@ -266,10 +268,45 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             foreach (GarageLogic.FiltersType filterType in Enum.GetValues(typeof(GarageLogic.FiltersType)))
             {
                 Console.Write((int)filterType + ") ");
-               // Console.WriteLine
+                // Console.WriteLine
             }
         }
 
+
+        internal void BadInput()
+        {
+            Console.WriteLine(k_TRY_AGAIN);
+        }
+
+        internal string AskUserForName()
+        {
+            string o_Input;
+            Console.WriteLine(k_PLEASE_ENTER_USERNAME);
+            while (true)
+            {
+                o_Input = Console.ReadLine();
+                if (o_Input.Length > 0)
+                {
+                    return o_Input;
+                }
+            }
+
+
+        }
+
+        internal string AskUserForPhone()
+        {
+            string o_Userinput;
+            Console.WriteLine(k_PLEASE_ENTER_PHONE);
+            while (true)
+            {
+                o_Userinput = Console.ReadLine();
+                if (o_Userinput.Length > 0)
+                {
+                    return o_Userinput;
+                }
+            }
+        }
     }
 }
 

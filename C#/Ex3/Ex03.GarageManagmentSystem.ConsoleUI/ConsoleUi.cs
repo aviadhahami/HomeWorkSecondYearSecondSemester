@@ -33,13 +33,16 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         string m_CurrentUserName;
         string m_CurrentUserPhone;
 
-
+        // Constructor
+        // genereates new texts class
         public ConsoleUI()
         {
             m_UITexts = new UITexts();
         }
 
-        internal void ShowLoginScreen()
+        // Deploys login screen sequence
+        // Status : 
+        internal void LoginScreenSequence()
         {
             m_UITexts.DisplayWelcomeSequence();
 
@@ -47,9 +50,18 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
 
             m_CurrentUserPhone = requireUserPhone();
 
-            invokeMainMenuSequence();
+            mainMenuSequence();
         }
 
+        // Main menue sequencer
+        // Status :
+        private void mainMenuSequence()
+        {
+            throw new NotImplementedException();
+        }
+
+        // Asks user for his phone
+        // Status : 
         private string requireUserPhone()
         {
             string o_UserInput;
@@ -74,6 +86,23 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             }
         }
 
+        // Tests a string for digits only
+        // Status : Done, not tested
+        private bool containsDigitsOnly(string i_Input)
+        {
+            bool o_TestResult = true;
+            foreach (char currentChar in i_Input)
+            {
+                if (!char.IsDigit(currentChar))
+                {
+                    o_TestResult = false;
+                }
+            }
+            return o_TestResult;
+        }
+
+        // Asks entering user for his name
+        // Status : Done, not tested
         private string requireUserName()
         {
             string o_UserInput;
@@ -98,6 +127,8 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             }
         }
 
+        // Verifies the string contains only letters and spaces
+        // Status : Done, not tested
         private bool containsLettersAndSpacesOnly(string o_UserInput)
         {
             bool o_testResult = true;
@@ -112,12 +143,16 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             return o_testResult;
         }
 
+        // Exists the application when invoked
+        // Status : Done and tested
         private void leaveApplication()
         {
             m_UITexts.SayGoodbye();
             Environment.Exit(0);
         }
 
+        // Tests the given string for exit token
+        // Status : Done and tested
         private bool CheckExitToken(string o_UserInput)
         {
             return o_UserInput.ToUpper() == k_EXIT_TOKEN;
