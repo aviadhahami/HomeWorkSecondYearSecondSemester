@@ -45,12 +45,13 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         private const string k_FILTER_BY_ACTIVE = "Display active vehicles";
         private const string k_FILTER_BY_NONACTIVE = "Display non-active vehicles";
 
-        internal void SayHi()
+        internal void DisplayWelcomeSequence()
         {
             generateLineSpan();
             Console.WriteLine(k_GREETINGS);
             generateHalfLineSpan();
             ShowDecoratedLineSeparator();
+            HoldScreen();
         }
 
         private void ShowDecoratedLineSeparator()

@@ -32,11 +32,18 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         public ConsoleUI()
         {
             m_UITexts = new UITexts();
-
         }
+
         internal void ShowLoginScreen()
         {
-            throw new NotImplementedException();
+            m_UITexts.DisplayWelcomeSequence();
+
+            m_CurrentUserName = requireUserName();
+
+            m_CurrentUserPhone = requireUserPhone();
+
+            showMainMenu();
         }
+
     }
 }
