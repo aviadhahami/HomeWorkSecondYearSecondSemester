@@ -138,15 +138,21 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                 {
                     mainMenuSequence();
                 }
+
+                // If the license number isn't exist
                 else if (!validLicenseNumber(io_GivenLicense))
                 {
                     m_UITexts.BadInput();
                 }
+
+                // Else -> number is legit
                 else
                 {
                     if (checkVehicleExistance(io_GivenLicense))
                     {
-                        // Show vehicle
+                        // retrieve vehicle
+                        GarageLogic.GarageInfo io_RetrievedVehcile = GarageLogic.Garage.GetVehicleInfo(io_GivenLicense);
+
                         break;
                     }
                     else
