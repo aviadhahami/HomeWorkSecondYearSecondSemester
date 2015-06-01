@@ -6,7 +6,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 {
     public class Garage
     {
-        private static readonly Dictionary<string, GarageInfo> m_GarageInventory = new Dictionary<string, GarageInfo>();
+        private static Dictionary<string, GarageInfo> m_GarageInventory = new Dictionary<string, GarageInfo>();
         internal static void UpdateStatus(string i_LicenseNumber, StatusType i_statusType)
         {
             GarageInfo garageInfo = m_GarageInventory[i_LicenseNumber];
@@ -26,6 +26,8 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
         public static void Insert(GarageInfo i_GarageInfo)
         {
+            Console.WriteLine("in insert");
+            Console.ReadLine();
             m_GarageInventory.Add(i_GarageInfo.Vehicle.LicenseNumber, i_GarageInfo);
         }
 
@@ -89,6 +91,20 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
                 }
             }
             return io_FilteredList;
+        }
+
+        public static FiltersType GetFilterTypeFromString(string i_FilterTypeString)
+        {
+            // Defulat to none
+            FiltersType o_ChosedFilterType = FiltersType.NONE;
+            foreach (FiltersType type in Enum.GetValues(typeof(FiltersType)))
+            {
+                if (type.ToString() == i_FilterTypeString)
+                {
+                    o_ChosedFilterType = type;
+                }
+            }
+            return o_ChosedFilterType;
         }
     }
 }

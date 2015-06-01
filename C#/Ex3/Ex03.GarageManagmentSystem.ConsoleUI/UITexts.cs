@@ -21,13 +21,13 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         private const string k_VEHICLE_ENERGY = "Energy status: ";
         private const string k_TIERS_MANUFACTURER = "Tiers manufacturer: ";
         private const string k_WHEEL_PRESSURE = "Pressure: ";
-        private const string k_PLEASE_PICK_FILTERING_OPTION = "Please pick a filtering option";
         private const string k_NO_FILTER = "Display without sorting";
         private const string k_FILTER_BY_ACTIVE = "Display active vehicles";
         private const string k_FILTER_BY_NONACTIVE = "Display non-active vehicles";
 
         // New version strings
 
+        private const string k_PLEASE_PICK_FILTERING_OPTION = "Please pick a filtering option";
         private const string k_INSERT_VEHICLE = "Insert a vehicle to the garage";
         private const string k_DISPLAY_INVENTORY = "Ask us what vehicles we currently posses";
         private const string k_CHANGE_VEHICLE_STATUS = "Change single vehicle's status (ONLY IF WE OWN IT)";
@@ -227,7 +227,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             return o_UserInput;
         }
 
-
         internal void DisplayVehicleTypes(List<string> i_VehiclesType)
         {
             Console.Clear();
@@ -253,6 +252,16 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                 }
             }
             return o_UserInput;
+        }
+
+        internal void AskFilteringType(List<string> i_FiltertingType)
+        {
+            Console.Clear();
+            Console.WriteLine(k_PLEASE_PICK_FILTERING_OPTION);
+            foreach (string type in i_FiltertingType)
+            {
+                Console.WriteLine("--> " + type);
+            }
         }
     }
 }

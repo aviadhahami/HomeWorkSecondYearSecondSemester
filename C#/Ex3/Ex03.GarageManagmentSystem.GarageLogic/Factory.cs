@@ -18,6 +18,16 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             return vehicleType;
         }
 
+        public List<string> getFilterType()
+        {
+            List<string> filterType = new List<string>();
+            foreach (FiltersType type in Enum.GetValues(typeof(FiltersType)))
+            {
+                filterType.Add(type.ToString());
+            }
+            return filterType;
+        }
+
         public List<string> initVehicleToBuild(int i_vehicleTobuild)
         {
             List<string> o_Questions;

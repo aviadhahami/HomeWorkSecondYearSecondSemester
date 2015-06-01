@@ -39,7 +39,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         {
             string o_OutputString = "";
 
-            // Add owner
             o_OutputString += m_OwnerInfo.ToString();
             o_OutputString += k_newLineToken;
             o_OutputString += "Status type: " + StatusType.ToString();

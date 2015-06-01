@@ -99,7 +99,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                     insertVehicle();
                     break;
                 case GarageOption.DisplayInventory:
-                    //displayInventory();
+                    displayInventory();
                     break;
                 case GarageOption.ChangeVehicleStatus:
                     changeVehicleStatus();
@@ -128,6 +128,40 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             mainMenuSequence();
         }
 
+        private void displayInventory()
+        {
+            string o_UserInput;
+            while (true)
+            {
+                m_UITexts.AskFilteringType(m_VehiclesFactory.getFilterType());
+                o_UserInput = Console.ReadLine();
+                if (o_UserInput.Length > 0)
+                {
+                    if (CheckExitToken(o_UserInput))
+                    {
+                        logOutSequence();
+                    }
+                    if (m_VehiclesFactory.getFilterType().Contains(o_UserInput))
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        m_UITexts.BadInput();
+                        m_UITexts.HoldScreen();
+                    }
+
+                }
+            }
+            List<string> o_FilteredVehicleLicense = GarageLogic.Garage.GetFilteredInventory(GarageLogic.Garage.GetFilterTypeFromString(o_UserInput));
+            Console.Clear();
+            foreach (string o_vehicleLicense in o_FilteredVehicleLicense)
+            {
+                GarageLogic.Garage.GetVehicleInfo(o_vehicleLicense).ToString();
+            }
+            m_UITexts.HoldScreen();
+        }
+
         // Changes vehicle status
         // Stus : UC
         private void changeVehicleStatus()
@@ -149,7 +183,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                 io_userInput = Console.ReadLine();
                 if (CheckExitToken(io_userInput))
                 {
-                    logOutSequence();
+                    mainMenuSequence();
                 }
                 if (m_VehiclesFactory.getVehicleType().Contains(io_userInput))
                 {
@@ -173,7 +207,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                     o_UserInput = m_UITexts.AskQuestion(currentQuestion);
                     if (CheckExitToken(o_UserInput))
                     {
-                        logOutSequence();
+                        mainMenuSequence();
                     }
                     else
                     {
@@ -194,7 +228,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                 questionIndex++;
             }
         }
-
 
         // Displays single vehicle from inventory
         // Status : Done, not tested
