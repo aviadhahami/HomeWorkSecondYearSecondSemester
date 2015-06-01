@@ -61,7 +61,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             while (true)
             {
                 // Display options
-                m_UITexts.IntroduceOptions();
+                m_UITexts.IntroduceOptions(m_CurrentUserName);
                 i_UserChoice = Console.ReadLine();
                 if (CheckExitToken(i_UserChoice))
                 {

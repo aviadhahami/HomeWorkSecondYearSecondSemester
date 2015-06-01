@@ -14,7 +14,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         private readonly float ro_MAX_FUEL_LEVEL = 8;
         private readonly FuelType ro_FUELTYPE = FuelType.Octan98;
 
-        private const string K_INSERT_LICENS_TYPE = String.Format(@"what is your licens type? ({0}/{1}/{2}/{3})", License.A, License.A2, License.AB, License.B1);
+        private string K_INSERT_LICENS_TYPE = String.Format(@"what is your licens type? ({0}/{1}/{2}/{3})", License.A, License.A2, License.AB, License.B1);
         private const string k_ASK_ENGINE_SIZE = "What is your engine size?";
         private const string K_INSERT_TIER_PRESSURE = "Specify tiers' pressure?";
         private const string K_WRONG_WITH_TIERS = "Something is wrong with motorcycle tiers!";

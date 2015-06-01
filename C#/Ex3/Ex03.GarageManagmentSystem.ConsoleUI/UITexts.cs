@@ -44,11 +44,11 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         private const string k_THREE_QUARTERS_LINE_SPAN = "                      ";
         private const string k_GREETINGS = "Hi, Welcome to Abu Ali's garage!";
         private const string k_DECORATED_LINE_SEPARATOR = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
-        private const string k_PRESS_ANY_KEY = "Press any key to continue";
+        private const string k_PRESS_ANY_KEY = "Press 'Enter' to continue";
         private const string k_PLEASE_ENTER_USERNAME = "Please state your name";
         private const string k_PLEASE_ENTER_PHONE = "Please specify your phone number";
         private const string k_LOGIN_SCREEN_HEADER = "Abu Ali's garage login screen";
-        private const string k_WHAT_WOULD_YOU_LIKE_TO_DO = "What would you like to do Sir?";
+        private const string k_WHAT_WOULD_YOU_LIKE_TO_DO = "What would you like to do";
         private const string k_REMIND_EXIT_TOKEN = "Type \"Exit\" at any time to exit the app";
         private const string k_NO_SUCH_OPTION = "We're sorry, this options doesn't exist in our garage....";
         private const string k_TRY_AGAIN = "Please try again";
@@ -156,10 +156,10 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             ShowDecoratedLineSeparator();
         }
 
-        internal void IntroduceOptions()
+        internal void IntroduceOptions(string i_GivenName)
         {
             Console.Clear();
-            Console.WriteLine(k_WHAT_WOULD_YOU_LIKE_TO_DO);
+            Console.WriteLine(k_WHAT_WOULD_YOU_LIKE_TO_DO + ", " + i_GivenName + "?");
             ShowDecoratedLineSeparator();
             int i = 0;
             foreach (GarageOption currentOption in Enum.GetValues(typeof(GarageOption)))
