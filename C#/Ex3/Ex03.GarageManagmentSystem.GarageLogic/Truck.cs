@@ -7,10 +7,10 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
     class Truck : Vehicle
     {
 
-        private readonly float ro_MAX_TIER_PRESSURE = 25;
-        private readonly float ro_MAX_FUEL_LEVEL = 170;
-        private readonly int ro_NUMBER_OF_TIERS = 16;
-        private readonly FuelType ro_FUELTYPE = FuelType.Soler;
+        private readonly float r_MAX_TIER_PRESSURE = 25;
+        private readonly float r_MAX_FUEL_LEVEL = 170;
+        private readonly int r_NUMBER_OF_TIERS = 16;
+        private readonly FuelType r_FUELTYPE = FuelType.Soler;
 
         private const string K_INSERT_TRUCK_WEIGHT = "What is the truck weight load?";
         private const string K_INSERT_TIER_PRESSURE = "Specify tiers' pressure?";
@@ -26,7 +26,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         public Truck()
             : base()
         {
-            m_Tiers = new List<Tier>(ro_NUMBER_OF_TIERS);
+            m_Tiers = new List<Tier>(r_NUMBER_OF_TIERS);
             m_ListOfQuestions.Add(K_TRUCK_DANGER_OR_NOT);
             m_ListOfQuestions.Add(K_INSERT_TRUCK_WEIGHT);
             m_ListOfQuestions.Add(K_INSERT_TIER_PRESSURE);
@@ -34,8 +34,8 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
         public void init()
         {
-            SetTierData(m_CurrentPressurInTier, ro_MAX_TIER_PRESSURE, m_TierManufacturer);
-            InitFuelEngine(ro_MAX_FUEL_LEVEL, ro_FUELTYPE);
+            SetTierData(m_CurrentPressurInTier, r_MAX_TIER_PRESSURE, m_TierManufacturer);
+            InitFuelEngine(r_MAX_FUEL_LEVEL, r_FUELTYPE);
         }
         public float LicenseType
         {
@@ -73,10 +73,10 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
                 // Verify load
                 o_ValidationIndicator = verifyLoad(i_Answer);
             }
-            else if (i_QuestionIndex > 5 && i_QuestionIndex <= 5 + ro_NUMBER_OF_TIERS)
+            else if (i_QuestionIndex > 5 && i_QuestionIndex <= 5 + r_NUMBER_OF_TIERS)
             {
                 // Verify tiers
-                o_ValidationIndicator = verifyTiers(i_Answer, ro_MAX_TIER_PRESSURE);
+                o_ValidationIndicator = verifyTiers(i_Answer, r_MAX_TIER_PRESSURE);
             }
             return o_ValidationIndicator;
         }
