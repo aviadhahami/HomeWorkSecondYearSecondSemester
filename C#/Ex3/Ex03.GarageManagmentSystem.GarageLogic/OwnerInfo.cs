@@ -15,11 +15,11 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             m_OwnerPhoneNumber = i_OnerPhoneNumber;
         }
 
-        public String OnerName
+        public String OwnerName
         {
             get { return m_OwnerName; }
         }
-        public String OnerPhoneNumber
+        public String OwnerPhoneNumber
         {
             get { return m_OwnerPhoneNumber; }
         }

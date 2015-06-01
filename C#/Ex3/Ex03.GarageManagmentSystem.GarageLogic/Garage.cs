@@ -6,7 +6,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 {
     public class Garage
     {
-        private static readonly Dictionary<string, GarageInfo> m_GarageInventory;
+        private static readonly Dictionary<string, GarageInfo> m_GarageInventory = new Dictionary<string,GarageInfo>();
 
         internal static void UpdateStatus(string i_LicenseNumber, StatusType i_statusType)
         {

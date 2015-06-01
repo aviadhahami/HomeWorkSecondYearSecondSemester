@@ -151,7 +151,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                     if (checkVehicleExistance(io_GivenLicense))
                     {
                         // retrieve vehicle
-                        GarageLogic.GarageInfo io_RetrievedVehcile = GarageLogic.Garage.GetVehicleInfo(io_GivenLicense);
+                        GarageLogic.GarageInfo io_RetrievedVehicle = GarageLogic.Garage.GetVehicleInfo(io_GivenLicense);
 
                         break;
                     }

@@ -28,7 +28,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             m_ListOfQuestions.Add(K_INSERT_TIER_MANUFACTURER);
 
         }
-
         protected void SetTierData(float i_PressurInTiers, float i_MaxTierPressur, string i_tierManufacturer)
         {
             foreach (Tier tier in m_Tiers)
@@ -38,22 +37,18 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
                 tier.currentAirPressure = i_PressurInTiers;
             }
         }
-
         public string LicenseNumber
         {
             get { return m_LicenseNumber; }
         }
-
         public Energy Engine
         {
             get { return m_Engine; }
         }
-
         public List<Tier> Tiers
         {
             get { return m_Tiers; }
         }
-
         public void PumpAir()
         {
             foreach (Tier tier in m_Tiers)
@@ -61,7 +56,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
                 tier.PumpAir = tier.MaximalAirPressure - tier.currentAirPressure;
             }
         }
-
         // Init engines
         protected void InitElectricityEngine(float io_MaxBatteryTime)
         {
@@ -72,7 +66,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         {
             m_Engine = new Fuel(io_MaxFuelLevel, io_MaxFuelLevel * m_RemainingEnergy, io_FuelType);
         }
-
         // Verifications
         protected bool verifyLicense(string i_GivenLicense)
         {
@@ -87,7 +80,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             m_LicenseNumber = i_GivenLicense;
             return true;
         }
-
         protected bool verifyTiers(string i_GivenPressure, float i_MaxTierPressure)
         {
             float parsedFloat;
