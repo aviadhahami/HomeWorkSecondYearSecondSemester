@@ -18,6 +18,8 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         private const string K_INSERT_CAR_COLOR = String.Format(@"What is the color of your car? ({0}/{1}/{2}/{3})", Colors.BLACK, Colors.GREEN, Colors.RED, Colors.WHITE);
         private const string K_INSERT_NUMBER_OF_DOORS = "How many doors you have in the car? (2-5)";
         private const string K_INSERT_TIER_PRESSURE = "Specify tiers' pressure?";
+        private const string K_WRONG_AMOUNT_OF_DOORS = "Bad input for doors amount";
+        private const string K_VERIFY_GIVEN_COLOR = "VERIFY GIVEN COLOR DEBUGGING -> USER CHOSE ";
 
         private EngineType m_EngineType;
         private Colors m_Color;
@@ -106,7 +108,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             bool parsingFlag = int.TryParse(i_GivenDoorsNumber, out parsedInt);
             if (parsingFlag == false)
             {
-                throw new FormatException("Bad input for doors amount");
+                throw new FormatException(K_WRONG_AMOUNT_OF_DOORS);
             }
 
             // Check amount is in range
@@ -120,7 +122,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         private bool verifyGivenColor(string i_GivenColor)
         {
             bool o_ValidationIndicator = false;
-            Console.WriteLine("VERIFY GIVEN COLOR DEBUGGING -> USER CHOSE " + i_GivenColor);
+            Console.WriteLine(K_VERIFY_GIVEN_COLOR + i_GivenColor);
             string givenColorUpperCase = i_GivenColor.ToUpper();
             foreach (Colors currentColor in Enum.GetValues(typeof(Colors)))
             {

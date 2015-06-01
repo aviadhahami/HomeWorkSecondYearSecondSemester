@@ -17,7 +17,10 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         private const string K_INSERT_LICENS_TYPE = String.Format(@"what is your licens type? ({0}/{1}/{2}/{3})", License.A, License.A2, License.AB, License.B1);
         private const string k_ASK_ENGINE_SIZE = "What is your engine size?";
         private const string K_INSERT_TIER_PRESSURE = "Specify tiers' pressure?";
-
+        private const string K_WRONG_WITH_TIERS = "Something is wrong with motorcycle tiers!";
+        private const string K_WRONG_LICENS_TYPE = "Motorcycle license type got bad args";
+        private const string K_WRONG_ENGINE_DATA = "Motorcycle engine got wrong data";
+        
         private EngineType m_EngineType;
         private int m_EngineSize;
         private License m_LicenseType;
@@ -101,7 +104,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
                 }
                 else
                 {
-                    throw new ArgumentException("Something is wrong with motorcycle tiers!");
+                    throw new ArgumentException(K_WRONG_WITH_TIERS);
                 }
             }
             return o_ValidationIndicator;
@@ -112,7 +115,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             bool o_ValidationIndicator = false;
             if (i_GivenLicenseType.Length > 2)
             {
-                throw new FormatException("Motorcycle license type got bad args");
+                throw new FormatException(K_WRONG_LICENS_TYPE);
             }
             string i_givenLicenseTypeUpperCase = i_GivenLicenseType.ToUpper();
             foreach (License licenseType in Enum.GetValues(typeof(License)))
@@ -134,7 +137,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             bool parsingIndicator = int.TryParse(i_GivenEngineSize, out parsedValue);
             if (!parsingIndicator)
             {
-                throw new FormatException("Motorcycle engine got wrong data");
+                throw new FormatException(K_WRONG_ENGINE_DATA);
             }
             if (parsedValue > 0)
             {

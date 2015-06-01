@@ -9,6 +9,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         private const string K_INSERT_MODEL = "Please insert model:";
         private const string K_INSERT_LICENSE_NUMBER = "Please insert license plate number:";
         private const string K_INSERT_TIER_MANUFACTURER = "Please insert tier manufacturer:";
+        private const string K_WRONG_TIER_DATA = "Bad input for tier data"
 
         protected string m_Model;
         protected string m_LicenseNumber;
@@ -93,7 +94,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             bool parsingFlag = float.TryParse(i_GivenPressure, out parsedFloat);
             if (parsingFlag == false)
             {
-                throw new FormatException("Bad input for doors amount");
+                throw new FormatException(K_WRONG_TIER_DATA);
             }
             if (parsedFloat >= 0 && parsedFloat <= i_MaxTierPressure)
             {

@@ -15,6 +15,10 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         private const string K_INSERT_TRUCK_WEIGHT = "What is the truck weight load?";
         private const string K_INSERT_TIER_PRESSURE = "Specify tiers' pressure?";
         private const string K_TRUCK_DANGER_OR_NOT = "Are there dangerous chemicals? (Y/N)";
+        private const string K_WORNG_TRUCK_LOAD = "Truck load got wrong data";
+        private const string K_WORNG_LENGHT_BIGGER_THEN_ONE = "Length bigger than one for chemicals";
+        private const string K_YES = "Y";
+        private const string K_NO = "N";
 
         private bool m_DangerousChemical;
         private float m_Wight;
@@ -84,7 +88,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             bool parsingIndicator = float.TryParse(i_GivenTruckLoad, out parsedValue);
             if (!parsingIndicator)
             {
-                throw new FormatException("Truck load got wrong data");
+                throw new FormatException(K_WORNG_TRUCK_LOAD);
             }
             if (parsedValue > 0)
             {
@@ -100,16 +104,16 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             bool o_Result = false;
             if (i_ChemicalsIndication.Length > 1)
             {
-                throw new FormatException("Length bigger than one for chemicals");
+                throw new FormatException(K_WORNG_LENGHT_BIGGER_THEN_ONE);
             }
             else
             {
-                if (i_ChemicalsIndication == "Y")
+                if (i_ChemicalsIndication == K_YES)
                 {
                     m_DangerousChemical = true;
                     o_Result = true;
                 }
-                else if (i_ChemicalsIndication == "N")
+                else if (i_ChemicalsIndication == K_NO)
                 {
                     m_DangerousChemical = false;
                     o_Result = true;

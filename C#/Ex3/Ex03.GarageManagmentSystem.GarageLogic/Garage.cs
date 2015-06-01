@@ -37,8 +37,9 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             if (CheckIfVehicleExists(i_LicenseNumber) && m_GarageInventory[i_LicenseNumber].Vehicle.Engine is Fuel)
             {
 
-                Fuel energySource = (Fuel)m_GarageInventory[i_LicenseNumber].Vehicle.Engine;
-                energySource.fillFuel(i_FuelToFill, i_FuelType);
+                //Fuel energySource = (Fuel)m_GarageInventory[i_LicenseNumber].Vehicle.Engine;
+                //energySource.fillFuel(i_FuelToFill, i_FuelType);
+                (m_GarageInventory[i_LicenseNumber].Vehicle.Engine as Fuel).fillFuel(i_FuelToFill, i_FuelType);
             }
 
             else
@@ -51,8 +52,9 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         {
             if (CheckIfVehicleExists(i_LicenseNumber) && m_GarageInventory[i_LicenseNumber].Vehicle.Engine is Electricity)
             {
-                Electricity energySource = (Electricity)m_GarageInventory[i_LicenseNumber].Vehicle.Engine;
-                energySource.fillElectricity(i_FuelToFill);
+                //Electricity energySource = (Electricity)m_GarageInventory[i_LicenseNumber].Vehicle.Engine;
+                //energySource.fillElectricity(i_FuelToFill);
+                (m_GarageInventory[i_LicenseNumber].Vehicle.Engine as Electricity).fillElectricity(i_FuelToFill);
             }
             else
             {
