@@ -54,21 +54,62 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         }
 
         // Main menue sequencer
-        // Status :
+        // Status : Done and tested
         private void mainMenuSequence()
         {
-            string io_UserChoice;
+            string i_UserChoice;
             while (true)
             {
-                // display options
+                // Display options
                 m_UITexts.IntroduceOptions();
-                io_UserChoice = Console.ReadLine();
-
+                i_UserChoice = Console.ReadLine();
+                if (CheckExitToken(i_UserChoice))
+                {
+                    logOutSequence();
+                }
+                int o_parsedInt;
+                bool parseResult = int.TryParse(i_UserChoice, out o_parsedInt);
+                if (parseResult && testValidMenueOption(o_parsedInt))
+                {
+                    // If valid
+                    Console.WriteLine("Legit!");
+                    m_UITexts.HoldScreen();
+                }
+                else
+                {
+                    // Not valid
+                    m_UITexts.NoSuchOption();
+                }
             }
         }
 
+        // Tests whetther the given string can be found whithin the menue enum
+        // Status : done and tested
+        private bool testValidMenueOption(int i_GivenInput)
+        {
+            bool o_TestResult = false;
+            foreach (GarageOption currentOption in Enum.GetValues(typeof(GarageOption)))
+            {
+                if ((int)currentOption == i_GivenInput)
+                {
+                    o_TestResult = true;
+                }
+            }
+            return o_TestResult;
+        }
+
+        // Logs the current user out & returns to login screen
+        // Status : Done, not tested
+        private void logOutSequence()
+        {
+            m_UITexts.SayGoodbye();
+            m_CurrentUserPhone = "";
+            m_CurrentUserName = "";
+            LoginScreenSequence();
+        }
+
         // Asks user for his phone
-        // Status : 
+        // Status : Done & tested
         private string requireUserPhone()
         {
             string o_UserInput;
@@ -136,10 +177,10 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
 
         // Verifies the string contains only letters and spaces
         // Status : Done, tested
-        private bool containsLettersAndSpacesOnly(string o_UserInput)
+        private bool containsLettersAndSpacesOnly(string i_UserInput)
         {
             bool o_testResult = true;
-            foreach (char currentChar in o_UserInput)
+            foreach (char currentChar in i_UserInput)
             {
                 // If the current char is not a letter neither a whitespace
                 if (!char.IsLetter(currentChar) && !char.IsWhiteSpace(currentChar))
@@ -160,9 +201,9 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
 
         // Tests the given string for exit token
         // Status : Done and tested
-        private bool CheckExitToken(string o_UserInput)
+        private bool CheckExitToken(string i_UserInput)
         {
-            return o_UserInput.ToUpper() == k_EXIT_TOKEN;
+            return i_UserInput.ToUpper() == k_EXIT_TOKEN;
         }
 
     }

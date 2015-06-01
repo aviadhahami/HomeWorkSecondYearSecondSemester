@@ -93,13 +93,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             Console.Clear();
         }
 
-        internal void WrongNumberPicked()
-        {
-            Console.WriteLine(k_NO_SUCH_OPTION);
-            Console.WriteLine(k_TRY_AGAIN);
-            HoldScreen();
-        }
-
         internal void SayGoodbye()
         {
             Console.Clear();
@@ -184,7 +177,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                         Console.WriteLine(k_CHANGE_VEHICLE_STATUS);
                         break;
                     case GarageOption.PumpAir:
-                        Console.WriteLine(k_WHEEL_PRESSURE);
+                        Console.WriteLine(k_PUMP_AIR);
                         break;
                     case GarageOption.Refuel:
                         Console.WriteLine(k_REFUEL_VEHICLE);
@@ -203,6 +196,13 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                         break;
                 }
             }
+        }
+
+        internal void NoSuchOption()
+        {
+            Console.WriteLine(k_NO_SUCH_OPTION);
+            Console.WriteLine(k_TRY_AGAIN);
+            HoldScreen();
         }
     }
 }
