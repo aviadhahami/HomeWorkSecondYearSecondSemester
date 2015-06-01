@@ -122,6 +122,8 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                     logOutSequence();
                     break;
             }
+            // Go back to main menu
+            mainMenuSequence();
         }
 
         // Tests whetther the given string can be found whithin the menue enum
