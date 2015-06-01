@@ -161,6 +161,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                     m_UITexts.HoldScreen();
                 }
             }
+            List<string> io_Questions = m_VehiclesFactory.initVehicleToBuild((int)m_VehiclesFactory.GetVehicleTypeFromString(io_userInput));
             //instansiateVehicle((GarageLogic.VehicleType)io_ParsedInt);
             // Questions should come here
         }

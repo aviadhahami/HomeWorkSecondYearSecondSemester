@@ -114,5 +114,18 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         {
             m_VehicleToBuild = null;
         }
+
+        public VehicleType GetVehicleTypeFromString(string i_GivenVehcile)
+        {
+            VehicleType o_FoundType = VehicleType.Car ;
+            foreach (VehicleType type in Enum.GetValues(typeof(VehicleType)))
+            {
+                if (type.ToString() == i_GivenVehcile)
+                {
+                    o_FoundType = type;
+                }
+            }
+            return o_FoundType;
+        }
     }
 }

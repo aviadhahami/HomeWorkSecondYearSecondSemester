@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ex03.GarageManagmentSystem.GarageLogic
 {
-    enum VehicleType
+   public enum VehicleType
     {
         Car = 1,
         ElectricCar = 2,
