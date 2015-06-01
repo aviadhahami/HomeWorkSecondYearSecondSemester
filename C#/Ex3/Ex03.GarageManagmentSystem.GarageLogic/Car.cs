@@ -98,7 +98,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             else if (i_QuestionIndex > 5 && i_QuestionIndex <= 5 + ro_NUMBER_OF_TIERS)
             {
                 // Verify tiers
-                o_ValidationIndicator = verifyTiers(i_Answer, ro_MAX_TIER_PRESSURE);
+                o_ValidationIndicator = verifyTiersPressure(i_Answer, ro_MAX_TIER_PRESSURE);
             }
             return o_ValidationIndicator;
         }

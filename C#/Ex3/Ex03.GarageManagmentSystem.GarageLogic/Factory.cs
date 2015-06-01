@@ -93,10 +93,11 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             return o_ValidationResult;
 
         }
-        public void NotifyDone(OwnerInfo i_OwnerInfo)
+        public void NotifyDone(string i_OwnerName, string i_OwnerPhone)
         {
+            OwnerInfo o_OwnerInfo = new OwnerInfo(i_OwnerName, i_OwnerPhone);
             // Initialize engine
-            init(i_OwnerInfo);
+            init(o_OwnerInfo);
         }
 
         private void init(OwnerInfo i_OwnerInfo)
@@ -127,7 +128,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
         public VehicleType GetVehicleTypeFromString(string i_GivenVehcile)
         {
-            VehicleType o_FoundType = VehicleType.Car ;
+            VehicleType o_FoundType = VehicleType.Car;
             foreach (VehicleType type in Enum.GetValues(typeof(VehicleType)))
             {
                 if (type.ToString() == i_GivenVehcile)

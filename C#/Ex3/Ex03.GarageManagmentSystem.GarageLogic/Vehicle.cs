@@ -33,7 +33,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         {
             foreach (Tier tier in m_Tiers)
             {
-                tier.manufacturer = this.m_TierManufacturer;
+                tier.manufacturer = m_TierManufacturer;
                 tier.MaximalAirPressure = i_MaxTierPressur;
                 tier.currentAirPressure = i_PressurInTiers;
             }
@@ -81,7 +81,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             m_LicenseNumber = i_GivenLicense;
             return true;
         }
-        protected bool verifyTiers(string i_GivenPressure, float i_MaxTierPressure)
+        protected bool verifyTiersPressure(string i_GivenPressure, float i_MaxTierPressure)
         {
             float parsedFloat;
             bool parsingFlag = float.TryParse(i_GivenPressure, out parsedFloat);
@@ -118,7 +118,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             o_StringedData += k_NewLineToken;
             o_StringedData += "Amount of tiers: " + m_Tiers.Count;
             o_StringedData += k_NewLineToken;
-            o_StringedData += "Tier manu. " + m_TierManufacturer;
+            o_StringedData += "Tier manu. :" + m_TierManufacturer;
             return o_StringedData;
         }
     }

@@ -97,11 +97,11 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
                 // Verify tiers
                 if (m_EngineType == EngineType.ElectricEngine)
                 {
-                    o_ValidationIndicator = verifyTiers(i_Answer, ro_MAX_TIER_PRESSURE_ELECTRIC);
+                    o_ValidationIndicator = verifyTiersPressure(i_Answer, ro_MAX_TIER_PRESSURE_ELECTRIC);
                 }
                 else if (m_EngineType == EngineType.FuelEngine)
                 {
-                    o_ValidationIndicator = verifyTiers(i_Answer, ro_MAX_TIER_PRESSURE_FUEL);
+                    o_ValidationIndicator = verifyTiersPressure(i_Answer, ro_MAX_TIER_PRESSURE_FUEL);
                 }
                 else
                 {

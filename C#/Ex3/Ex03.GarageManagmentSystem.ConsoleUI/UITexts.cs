@@ -72,7 +72,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             Console.Write(k_THREE_QUARTERS_LINE_SPAN);
         }
 
-        private void ShowDecoratedLineSeparator()
+        public void ShowDecoratedLineSeparator()
         {
             Console.WriteLine(k_DECORATED_LINE_SEPARATOR);
         }

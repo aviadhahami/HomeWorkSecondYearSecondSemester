@@ -155,9 +155,11 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             }
             List<string> o_FilteredVehicleLicense = GarageLogic.Garage.GetFilteredInventory(GarageLogic.Garage.GetFilterTypeFromString(o_UserInput));
             Console.Clear();
+
             foreach (string o_vehicleLicense in o_FilteredVehicleLicense)
             {
-                GarageLogic.Garage.GetVehicleInfo(o_vehicleLicense).ToString();
+                Console.WriteLine(GarageLogic.Garage.GetVehicleInfo(o_vehicleLicense));
+                m_UITexts.ShowDecoratedLineSeparator();
             }
             m_UITexts.HoldScreen();
         }
@@ -198,7 +200,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             List<string> io_Questions = m_VehiclesFactory.initVehicleToBuild((int)m_VehiclesFactory.GetVehicleTypeFromString(io_userInput));
             // Questions should come here
             string o_UserInput;
-            int questionIndex = 1;
+            int io_QuestionIndex = 1;
             foreach (string currentQuestion in io_Questions)
             {
 
@@ -213,7 +215,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                     {
                         try
                         {
-                            if (m_VehiclesFactory.Validator(o_UserInput, questionIndex))
+                            if (m_VehiclesFactory.Validator(o_UserInput, io_QuestionIndex))
                             {
                                 break;
                             }
@@ -225,8 +227,10 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                         }
                     }
                 }
-                questionIndex++;
+                io_QuestionIndex++;
             }
+
+            m_VehiclesFactory.NotifyDone(m_CurrentUserName, m_CurrentUserPhone);
         }
 
         // Displays single vehicle from inventory

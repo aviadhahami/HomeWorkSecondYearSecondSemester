@@ -26,8 +26,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
         public static void Insert(GarageInfo i_GarageInfo)
         {
-            Console.WriteLine("in insert");
-            Console.ReadLine();
             m_GarageInventory.Add(i_GarageInfo.Vehicle.LicenseNumber, i_GarageInfo);
         }
 
@@ -75,6 +73,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
         public static GarageInfo GetVehicleInfo(string i_LicenseNumber)
         {
+          //  return m_GarageInventory.
             return m_GarageInventory[i_LicenseNumber];
         }
 
@@ -82,14 +81,24 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         {
             // Returns a list of garage info
             List<string> io_FilteredList = new List<string>();
-
-            foreach (KeyValuePair<string, GarageInfo> currentGarageEntry in m_GarageInventory)
+            if (i_FilterType == FiltersType.NONE)
             {
-                if (currentGarageEntry.Value.StatusType.Equals(i_FilterType))
+                foreach (KeyValuePair<string, GarageInfo> vehicle in m_GarageInventory)
                 {
-                    io_FilteredList.Add(currentGarageEntry.Key);
+                    io_FilteredList.Add(vehicle.Key);
                 }
             }
+            else
+            {
+                foreach (KeyValuePair<string, GarageInfo> currentGarageEntry in m_GarageInventory)
+                {
+                    if (currentGarageEntry.Value.StatusType.Equals(i_FilterType))
+                    {
+                        io_FilteredList.Add(currentGarageEntry.Key);
+                    }
+                }
+            }
+
             return io_FilteredList;
         }
 
