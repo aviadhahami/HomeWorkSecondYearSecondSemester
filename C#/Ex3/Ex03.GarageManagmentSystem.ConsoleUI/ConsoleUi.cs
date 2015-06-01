@@ -58,7 +58,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                 case GarageOption.DisplaySingleVehicle:
                     displaySingleVehicle();
                     break;
-                case GarageOption.Exit:
+                case GarageOption.Logout:
                     exitApplication();
                     break;
                 default:

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ex03.GarageManagmentSystem.ConsoleUI
 {
-    class Invoker
+    class Program
     {
         public static void Main()
         {

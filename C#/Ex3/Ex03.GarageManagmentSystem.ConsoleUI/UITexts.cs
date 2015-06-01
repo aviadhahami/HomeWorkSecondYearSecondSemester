@@ -147,7 +147,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                 case GarageOption.DisplaySingleVehicle:
                     Console.WriteLine(k_DISPLAY_SINGLE_VEHICLE);
                     break;
-                case GarageOption.Exit:
+                case GarageOption.Logout:
                     Console.WriteLine(k_EXIT_PROGRAM);
                     break;
                 default:

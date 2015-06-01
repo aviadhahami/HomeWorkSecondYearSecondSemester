@@ -13,6 +13,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         Refuel = 5,
         Recharge = 6,
         DisplaySingleVehicle = 7,
-        Exit = 8
+        Logout = 8
     }
 }
