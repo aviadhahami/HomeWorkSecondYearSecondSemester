@@ -12,6 +12,10 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         private readonly int ro_NUMBER_OF_TIERS = 16;
         private readonly FuelType ro_FUELTYPE = FuelType.Soler;
 
+        private const string K_INSERT_TRUCK_WEIGHT = "What is the truck weight load?";
+        private const string K_INSERT_TIER_PRESSURE = "Specify tiers' pressure?";
+        private const string K_TRUCK_DANGER_OR_NOT = "Are there dangerous chemicals? (Y/N)";
+
         private bool m_DangerousChemical;
         private float m_Wight;
 
@@ -19,9 +23,9 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             : base()
         {
             m_Tiers = new List<Tier>(ro_NUMBER_OF_TIERS);
-            m_ListOfQuestions.Add("Are there dangerous chemicals? (Y/N)");
-            m_ListOfQuestions.Add("What is the truck weight load?");
-            m_ListOfQuestions.Add("Specify tiers' pressure");
+            m_ListOfQuestions.Add(K_TRUCK_DANGER_OR_NOT);
+            m_ListOfQuestions.Add(K_INSERT_TRUCK_WEIGHT);
+            m_ListOfQuestions.Add(K_INSERT_TIER_PRESSURE);
         }
 
         public void init()

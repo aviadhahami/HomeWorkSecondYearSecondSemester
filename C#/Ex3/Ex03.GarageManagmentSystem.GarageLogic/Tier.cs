@@ -44,8 +44,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
                 }
                 else
                 {
-                    // Should delete this else when done
-                    Console.WriteLine("Didnt add air, exceeded max volume");
+                    throw new ValueOutOfRangeException(0, m_MaximalAirPressure);
                 }
             }
         }

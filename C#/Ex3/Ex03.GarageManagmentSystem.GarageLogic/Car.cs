@@ -15,6 +15,10 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         private readonly int ro_MIN_AMOUNT_OF_DOORS = 1;
         private readonly int ro_MAX_AMOUNT_OF_DOORS = 5;
 
+        private const string K_INSERT_CAR_COLOR = String.Format(@"What is the color of your car? ({0}/{1}/{2}/{3})", Colors.BLACK, Colors.GREEN, Colors.RED, Colors.WHITE);
+        private const string K_INSERT_NUMBER_OF_DOORS = "How many doors you have in the car? (2-5)";
+        private const string K_INSERT_TIER_PRESSURE = "Specify tiers' pressure?";
+
         private EngineType m_EngineType;
         private Colors m_Color;
         private int m_NumberOfDoors;
@@ -23,9 +27,9 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             : base()
         {
             m_Tiers = new List<Tier>(ro_NUMBER_OF_TIERS);
-            m_ListOfQuestions.Add("What is the color of your car?");
-            m_ListOfQuestions.Add("How many doors you have in the car?");
-            m_ListOfQuestions.Add("Specify tiers' pressure?");
+            m_ListOfQuestions.Add(K_INSERT_CAR_COLOR);
+            m_ListOfQuestions.Add(K_INSERT_NUMBER_OF_DOORS);
+            m_ListOfQuestions.Add(K_INSERT_TIER_PRESSURE);
         }
 
         public void init()
