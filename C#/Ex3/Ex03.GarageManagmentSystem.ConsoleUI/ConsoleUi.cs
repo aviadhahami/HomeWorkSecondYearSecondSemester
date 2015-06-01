@@ -57,7 +57,14 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         // Status :
         private void mainMenuSequence()
         {
-            throw new NotImplementedException();
+            string io_UserChoice;
+            while (true)
+            {
+                // display options
+                m_UITexts.IntroduceOptions();
+                io_UserChoice = Console.ReadLine();
+
+            }
         }
 
         // Asks user for his phone

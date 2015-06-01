@@ -7,9 +7,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
     class UITexts
     {
 
-        private const string k_WHAT_WOULD_YOU_LIKE_TO_DO = "What would you like to do Sir?";
-        private const string k_NO_SUCH_OPTION = "We're sorry, this options doesn't exist in our garage....";
-        private const string k_TRY_AGAIN = "Please try again";
         private const string k_INSERT_VEHICLE = "Insert a vehicle to the garage";
         private const string k_DISPLAY_INVENTORY = "Ask us what vehicles we currently posses";
         private const string k_CHANGE_VEHICLE_STATUS = "Change single vehicle's status (ONLY IF WE OWN IT)";
@@ -51,7 +48,12 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         private const string k_PLEASE_ENTER_USERNAME = "Please state your name";
         private const string k_PLEASE_ENTER_PHONE = "Please specify your phone number";
         private const string k_LOGIN_SCREEN_HEADER = "Abu Ali's garage login screen";
-        private string k_REMIND_EXIT_TOKEN = "Type \"Exit\" at any time to exit the app";
+        private const string k_WHAT_WOULD_YOU_LIKE_TO_DO = "What would you like to do Sir?";
+        private const string k_REMIND_EXIT_TOKEN = "Type \"Exit\" at any time to exit the app";
+        private const string k_NO_SUCH_OPTION = "We're sorry, this options doesn't exist in our garage....";
+        private const string k_TRY_AGAIN = "Please try again";
+        private const string k_LOG_OUT = "Log out";
+
 
         internal void DisplayWelcomeSequence()
         {
@@ -159,6 +161,48 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         {
             Console.WriteLine(k_LOGIN_SCREEN_HEADER);
             ShowDecoratedLineSeparator();
+        }
+
+        internal void IntroduceOptions()
+        {
+            Console.Clear();
+            Console.WriteLine(k_WHAT_WOULD_YOU_LIKE_TO_DO);
+            ShowDecoratedLineSeparator();
+            int i = 0;
+            foreach (GarageOption currentOption in Enum.GetValues(typeof(GarageOption)))
+            {
+                Console.Write((int)currentOption + ") ");
+                switch (currentOption)
+                {
+                    case GarageOption.Insert:
+                        Console.WriteLine(k_INSERT_VEHICLE);
+                        break;
+                    case GarageOption.DisplayInventory:
+                        Console.WriteLine(k_DISPLAY_INVENTORY);
+                        break;
+                    case GarageOption.ChangeVehicleStatus:
+                        Console.WriteLine(k_CHANGE_VEHICLE_STATUS);
+                        break;
+                    case GarageOption.PumpAir:
+                        Console.WriteLine(k_WHEEL_PRESSURE);
+                        break;
+                    case GarageOption.Refuel:
+                        Console.WriteLine(k_REFUEL_VEHICLE);
+                        break;
+                    case GarageOption.Recharge:
+                        Console.WriteLine(k_RECHARGE_ELECTRICAL);
+                        break;
+                    case GarageOption.DisplaySingleVehicle:
+                        Console.WriteLine(k_DISPLAY_SINGLE_VEHICLE);
+                        break;
+                    case GarageOption.Logout:
+                        Console.WriteLine(k_LOG_OUT);
+                        break;
+                    default:
+                        // No defualt
+                        break;
+                }
+            }
         }
     }
 }
