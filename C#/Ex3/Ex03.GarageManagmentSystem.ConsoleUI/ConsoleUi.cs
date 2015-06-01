@@ -41,7 +41,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             m_UITexts = new UITexts();
             m_VehiclesFactory = new GarageLogic.Factory();
         }
-
         // Deploys login screen sequence
         // Status : Done and tested
         internal void LoginScreenSequence()
@@ -54,7 +53,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             m_CurrentUserPhone = requireUserPhone();
             mainMenuSequence();
         }
-
         // Main menue sequencer
         // Status : Done and tested
         private void mainMenuSequence()
@@ -87,7 +85,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             // If we reached here we have a valid user pick, defualt is exit code
             invokeGarageAction(io_ParsedInt);
         }
-
         // Invokes the proper method according to a given option
         // Status : Done, Tested
         private void invokeGarageAction(int i_OpCode)
@@ -127,7 +124,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             // Go back to main menu
             mainMenuSequence();
         }
-
         private void displayInventory()
         {
             string o_UserInput;
@@ -163,7 +159,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             }
             m_UITexts.HoldScreen();
         }
-
         // Changes vehicle status
         // Stus : UC
         private void changeVehicleStatus()
@@ -196,7 +191,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             }
             GarageLogic.Garage.ChangeVehicleStatus(io_UserInput);
         }
-
         private void insertVehicle()
         {
             string io_userInput = "exit";
@@ -253,7 +247,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
 
             m_VehiclesFactory.NotifyDone(m_CurrentUserName, m_CurrentUserPhone);
         }
-
         // Displays single vehicle from inventory
         // Status : Done, not tested
         private void displaySingleVehicle()
@@ -293,14 +286,12 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             }
             mainMenuSequence();
         }
-
         // Returns whether a vehicle exists
         // Status : done, not tested
         private bool checkVehicleExistance(string io_GivenLicense)
         {
             return GarageLogic.Garage.Exist(io_GivenLicense);
         }
-
         // Validates a given license number to contain only letters and digits
         // Status : Done, not tested
         private bool validLicenseNumber(string i_GivenPlate)
@@ -315,7 +306,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             }
             return o_testResult;
         }
-
         // Tests whetther the given string can be found whithin the menue enum
         // Status : done and tested
         private bool testValidMenueOption(int i_GivenInput)
@@ -330,7 +320,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             }
             return o_TestResult;
         }
-
         // Logs the current user out & returns to login screen
         // Status : Done, not tested
         private void logOutSequence()
@@ -340,7 +329,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             m_CurrentUserName = "";
             LoginScreenSequence();
         }
-
         // Asks user for his phone
         // Status : Done & tested
         private string requireUserPhone()
@@ -366,7 +354,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                 }
             }
         }
-
         // Tests a string for digits only
         // Status : Done, tested
         private bool containsDigitsOnly(string i_Input)
@@ -381,7 +368,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             }
             return o_TestResult;
         }
-
         // Asks entering user for his name
         // Status : Done, tested
         private string requireUserName()
@@ -407,7 +393,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                 }
             }
         }
-
         // Verifies the string contains only letters and spaces
         // Status : Done, tested
         private bool containsLettersAndSpacesOnly(string i_UserInput)
@@ -423,7 +408,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             }
             return o_testResult;
         }
-
         // Exists the application when invoked
         // Status : Done and tested
         private void leaveApplication()
@@ -431,13 +415,11 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             m_UITexts.SayGoodbye();
             Environment.Exit(0);
         }
-
         // Tests the given string for exit token
         // Status : Done and tested
         private bool CheckExitToken(string i_UserInput)
         {
             return i_UserInput.ToUpper() == k_EXIT_TOKEN;
         }
-
     }
 }

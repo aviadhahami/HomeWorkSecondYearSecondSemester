@@ -19,18 +19,15 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             m_Vehicle = o_Vehicle;
             m_StatusType = o_StatusType;
         }
-
         public StatusType StatusType
         {
             get { return m_StatusType; }
             set { StatusType = value; }
         }
-
         internal Vehicle Vehicle
         {
             get { return m_Vehicle; }
         }
-
         public OwnerInfo OwnerInfo
         {
             get { return m_OwnerInfo; }

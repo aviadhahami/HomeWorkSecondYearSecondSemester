@@ -7,7 +7,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
     public class Factory
     {
         private Vehicle m_VehicleToBuild;
-
         public List<string> getVehicleType()
         {
             List<string> vehicleType = new List<string>();
@@ -17,7 +16,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             }
             return vehicleType;
         }
-
         public List<string> getFilterType()
         {
             List<string> filterType = new List<string>();
@@ -27,7 +25,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             }
             return filterType;
         }
-
         public List<string> initVehicleToBuild(int i_vehicleTobuild)
         {
             List<string> o_Questions;
@@ -63,7 +60,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             return o_Questions;
 
         }
-
         // Returns boolean to UI in order to determine whether the shit was good or not.
         // If it was -> Vehicle sets it
         public bool Validator(string i_Answer, int io_QuestionIndex)
@@ -99,7 +95,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             // Initialize engine
             init(o_OwnerInfo);
         }
-
         private void init(OwnerInfo i_OwnerInfo)
         {
             if (m_VehicleToBuild is Car)
@@ -120,12 +115,10 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
             nullify(m_VehicleToBuild);
         }
-
         private void nullify(Vehicle m_VehicleToBuild)
         {
             m_VehicleToBuild = null;
         }
-
         public VehicleType GetVehicleTypeFromString(string i_GivenVehcile)
         {
             VehicleType o_FoundType = VehicleType.Car;

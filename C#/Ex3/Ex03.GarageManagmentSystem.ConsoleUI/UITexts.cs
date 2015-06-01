@@ -7,26 +7,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
     class UITexts
     {
         private const string k_SORRY_NO_SUCH_VEHICLE = "We're sorry, we do not posses vehicle licensed with";
-        private const string k_OWNER_NAME = "Owner name : ";
-        private const string k_OWNER_PHONE = "Owner phone number is: ";
-        private const string k_VEHICLE_TYPE = "Type: ";
-        private const string k_VEHICLE_MODEL = "Model : ";
-        private const string k_VEHICLE_ENGINE_SIZE = "Engine size : ";
-        private const string k_VEHICLE_AMOUNT_OF_DOORS = "Amount of doors: ";
-        private const string k_VEHICLE_COLOR = "Color: ";
-        private const string k_VEHICLE_LICENSE_TYPE = "License type: ";
-        private const string k_TRUCK_MAX_WEIGHT = "Max weight: ";
-        private const string k_TRUCK_DANGEROUS = "Contains dangerous materials";
-        private const string k_TRUCK_NOT_DANGER = "Doesn't contain dangerous materials";
-        private const string k_VEHICLE_ENERGY = "Energy status: ";
-        private const string k_TIERS_MANUFACTURER = "Tiers manufacturer: ";
-        private const string k_WHEEL_PRESSURE = "Pressure: ";
-        private const string k_NO_FILTER = "Display without sorting";
-        private const string k_FILTER_BY_ACTIVE = "Display active vehicles";
-        private const string k_FILTER_BY_NONACTIVE = "Display non-active vehicles";
-
-        // New version strings
-
         private const string k_PLEASE_PICK_FILTERING_OPTION = "Please pick a filtering option";
         private const string k_INSERT_VEHICLE = "Insert a vehicle to the garage";
         private const string k_DISPLAY_INVENTORY = "Ask us what vehicles we currently posses";
@@ -55,7 +35,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         private const string k_LOG_OUT = "Log out";
         private const string k_PLEASE_PICK_VEHICLE = "Please pick a vehicle";
 
-
         internal void DisplayWelcomeSequence()
         {
             generateLineSpan();
@@ -66,62 +45,51 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             ShowDecoratedLineSeparator();
             HoldScreen();
         }
-
         private void generateThreeQuartersLineSpan()
         {
             Console.Write(k_THREE_QUARTERS_LINE_SPAN);
         }
-
         public void ShowDecoratedLineSeparator()
         {
             Console.WriteLine(k_DECORATED_LINE_SEPARATOR);
         }
-
         private void generateHalfLineSpan()
         {
             Console.Write(k_HALF_LINE_SPAN);
         }
-
         private void generateLineSpan()
         {
             Console.Write(k_LINE_SPAN);
         }
-
         internal void HoldScreen()
         {
             Console.Write(k_PRESS_ANY_KEY);
             Console.ReadLine();
             Console.Clear();
         }
-
         internal void SayGoodbye()
         {
             Console.Clear();
             Console.WriteLine(k_SAY_GOODBYE);
             HoldScreen();
         }
-
         internal void DisplayAdminError()
         {
             Console.WriteLine(k_PLEASE_CONTACT_ADMIN);
         }
-
         internal void LicenseNumberDoesntExist(string io_licnsePlate)
         {
             Console.WriteLine(k_SORRY_NO_SUCH_VEHICLE + formatLicensePlate(io_licnsePlate));
             HoldScreen();
         }
-
         private string formatLicensePlate(string io_licnsePlate)
         {
             return " <" + io_licnsePlate + ">";
         }
-
         internal void BadInput()
         {
             Console.WriteLine(k_TRY_AGAIN);
         }
-
         internal string AskUserForName()
         {
             string o_Input;
@@ -137,7 +105,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
 
 
         }
-
         internal string AskUserForPhone()
         {
             string o_Userinput;
@@ -151,13 +118,11 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                 }
             }
         }
-
         internal void DisplayLoginHeader()
         {
             Console.WriteLine(k_LOGIN_SCREEN_HEADER);
             ShowDecoratedLineSeparator();
         }
-
         internal void IntroduceOptions(string i_GivenName)
         {
             Console.Clear();
@@ -199,14 +164,12 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                 }
             }
         }
-
         internal void NoSuchOption()
         {
             Console.WriteLine(k_NO_SUCH_OPTION);
             Console.WriteLine(k_TRY_AGAIN);
             HoldScreen();
         }
-
         internal string AskForLicense()
         {
             string o_UserInput;
@@ -226,7 +189,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             }
             return o_UserInput;
         }
-
         internal void DisplayVehicleTypes(List<string> i_VehiclesType)
         {
             Console.Clear();
@@ -236,7 +198,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                 Console.WriteLine("-->" + currentVehicle);
             }
         }
-
         internal string AskQuestion(string i_GivenQuestion)
         {
             string o_UserInput;
@@ -253,7 +214,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             }
             return o_UserInput;
         }
-
         internal void AskFilteringType(List<string> i_FiltertingType)
         {
             Console.Clear();
