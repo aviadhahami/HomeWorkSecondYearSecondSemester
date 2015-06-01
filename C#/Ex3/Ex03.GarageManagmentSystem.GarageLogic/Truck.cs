@@ -19,9 +19,10 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         private const string K_WORNG_LENGHT_BIGGER_THEN_ONE = "Length bigger than one for chemicals";
         private const string K_YES = "Y";
         private const string K_NO = "N";
+        private const string k_NewLineToken = "\n";
 
         private bool m_DangerousChemical;
-        private float m_Wight;
+        private float m_Weight;
 
         public Truck()
             : base()
@@ -39,8 +40,8 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         }
         public float LicenseType
         {
-            get { return m_Wight; }
-            set { m_Wight = value; }
+            get { return m_Weight; }
+            set { m_Weight = value; }
         }
 
         public bool DangerousChemical
@@ -93,7 +94,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             if (parsedValue > 0)
             {
                 o_VerificationIndicator = true;
-                m_Wight = parsedValue;
+                m_Weight = parsedValue;
 
             }
             return o_VerificationIndicator;
@@ -125,6 +126,17 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         public List<string> Questions
         {
             get { return m_ListOfQuestions; }
+        }
+
+        public override string ToString()
+        {
+            string o_OutputString = "";
+            o_OutputString += "Dangerous: " + (m_DangerousChemical ? "Yes" : "False");
+            o_OutputString += k_NewLineToken;
+            o_OutputString += "Weight: " + m_Weight;
+            o_OutputString += k_NewLineToken;
+
+            return o_OutputString + base.ToString();
         }
     }
 }

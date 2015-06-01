@@ -20,7 +20,8 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         private const string K_WRONG_WITH_TIERS = "Something is wrong with motorcycle tiers!";
         private const string K_WRONG_LICENS_TYPE = "Motorcycle license type got bad args";
         private const string K_WRONG_ENGINE_DATA = "Motorcycle engine got wrong data";
-        
+        private const string k_NewLineToken = "\n";
+
         private EngineType m_EngineType;
         private int m_EngineSize;
         private License m_LicenseType;
@@ -151,5 +152,17 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         {
             get { return m_ListOfQuestions; }
         }
+        public override string ToString()
+        {
+            string o_OutputString = "";
+            o_OutputString += "Engine type: " + m_EngineType.ToString();
+            o_OutputString += k_NewLineToken;
+            o_OutputString += "Engine size: " + m_EngineSize;
+            o_OutputString += k_NewLineToken;
+            o_OutputString += "License type: " + m_LicenseType;
+            o_OutputString += k_NewLineToken;
+            return o_OutputString + base.ToString();
+        }
     }
+
 }

@@ -15,11 +15,12 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         private readonly int ro_MIN_AMOUNT_OF_DOORS = 1;
         private readonly int ro_MAX_AMOUNT_OF_DOORS = 5;
 
-        private  string K_INSERT_CAR_COLOR = String.Format(@"What is the color of your car? ({0}/{1}/{2}/{3})", Colors.BLACK, Colors.GREEN, Colors.RED, Colors.WHITE);
+        private string K_INSERT_CAR_COLOR = String.Format(@"What is the color of your car? ({0}/{1}/{2}/{3})", Colors.BLACK, Colors.GREEN, Colors.RED, Colors.WHITE);
         private const string K_INSERT_NUMBER_OF_DOORS = "How many doors you have in the car? (2-5)";
         private const string K_INSERT_TIER_PRESSURE = "Specify tiers' pressure?";
         private const string K_WRONG_AMOUNT_OF_DOORS = "Bad input for doors amount";
         private const string K_VERIFY_GIVEN_COLOR = "VERIFY GIVEN COLOR DEBUGGING -> USER CHOSE ";
+        private const string k_NewLineToken = "\n";
 
         private EngineType m_EngineType;
         private Colors m_Color;
@@ -135,5 +136,16 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             }
             return o_ValidationIndicator;
         }
+        public override string ToString()
+        {
+            string o_OutputString = "";
+            o_OutputString += "Engine type: " + m_EngineType.ToString();
+            o_OutputString += k_NewLineToken;
+            o_OutputString += "Number of doors: " + m_NumberOfDoors;
+            o_OutputString += k_NewLineToken;
+
+            return o_OutputString + base.ToString();
+        }
     }
+
 }
