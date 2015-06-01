@@ -28,6 +28,10 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             : base()
         {
             m_Tiers = new List<Tier>(r_NUMBER_OF_TIERS);
+            for (int i = 0; i < r_NUMBER_OF_TIERS; i++)
+            {
+                m_Tiers.Add(new Tier());
+            }
             m_ListOfQuestions.Add(K_TRUCK_DANGER_OR_NOT);
             m_ListOfQuestions.Add(K_INSERT_TRUCK_WEIGHT);
             m_ListOfQuestions.Add(K_INSERT_TIER_PRESSURE);
@@ -56,6 +60,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             // Check for three first questions
             if (i_QuestionIndex == 1)
             {
+                m_Model = i_Answer;
                 // First three question are unimportant strings
                 return true;
             }

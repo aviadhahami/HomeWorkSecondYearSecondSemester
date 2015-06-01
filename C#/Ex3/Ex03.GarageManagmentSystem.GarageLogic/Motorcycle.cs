@@ -7,19 +7,19 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
     class Motorcycle : Vehicle
     {
-        private readonly float ro_MAX_TIER_PRESSURE_ELECTRIC = 31;
-        private readonly float ro_MAX_TIER_PRESSURE_FUEL = 34;
-        private readonly float ro_MAXIMUM_BATTERY_TIME = 1.2f;
-        private readonly int ro_NUMBER_OF_TIERS = 2;
-        private readonly float ro_MAX_FUEL_LEVEL = 8;
-        private readonly FuelType ro_FUELTYPE = FuelType.Octan98;
+        private readonly float r_MAX_TIER_PRESSURE_ELECTRIC = 31;
+        private readonly float r_MAX_TIER_PRESSURE_FUEL = 34;
+        private readonly float r_MAXIMUM_BATTERY_TIME = 1.2f;
+        private readonly int r_NUMBER_OF_TIERS = 2;
+        private readonly float r_MAX_FUEL_LEVEL = 8;
+        private readonly FuelType r_FUELTYPE = FuelType.Octan98;
 
-        private string K_INSERT_LICENS_TYPE = String.Format(@"what is your licens type? ({0}/{1}/{2}/{3})", License.A, License.A2, License.AB, License.B1);
+        private string k_INSERT_LICENS_TYPE = String.Format(@"what is your licens type? ({0}/{1}/{2}/{3})", License.A, License.A2, License.AB, License.B1);
         private const string k_ASK_ENGINE_SIZE = "What is your engine size?";
-        private const string K_INSERT_TIER_PRESSURE = "Specify tiers' pressure?";
-        private const string K_WRONG_WITH_TIERS = "Something is wrong with motorcycle tiers!";
-        private const string K_WRONG_LICENS_TYPE = "Motorcycle license type got bad args";
-        private const string K_WRONG_ENGINE_DATA = "Motorcycle engine got wrong data";
+        private const string k_INSERT_TIER_PRESSURE = "Specify tiers' pressure?";
+        private const string k_WRONG_WITH_TIERS = "Something is wrong with motorcycle tiers!";
+        private const string k_WRONG_LICENS_TYPE = "Motorcycle license type got bad args";
+        private const string k_WRONG_ENGINE_DATA = "Motorcycle engine got wrong data";
         private const string k_NewLineToken = "\n";
 
         private EngineType m_EngineType;
@@ -30,23 +30,27 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         public Motorcycle()
             : base()
         {
-            m_Tiers = new List<Tier>(ro_NUMBER_OF_TIERS);
-            m_ListOfQuestions.Add(K_INSERT_LICENS_TYPE);
+            m_Tiers = new List<Tier>(r_NUMBER_OF_TIERS);
+            for (int i = 0; i < r_NUMBER_OF_TIERS; i++)
+            {
+                m_Tiers.Add(new Tier());
+            }
+            m_ListOfQuestions.Add(k_INSERT_LICENS_TYPE);
             m_ListOfQuestions.Add(k_ASK_ENGINE_SIZE);
-            m_ListOfQuestions.Add(K_INSERT_TIER_PRESSURE);
+            m_ListOfQuestions.Add(k_INSERT_TIER_PRESSURE);
         }
 
         public void init()
         {
             if (m_EngineType == EngineType.ElectricEngine)
             {
-                SetTierData(m_CurrentPressurInTier, ro_MAX_TIER_PRESSURE_ELECTRIC, m_TierManufacturer);
-                InitElectricityEngine(ro_MAXIMUM_BATTERY_TIME);
+                SetTierData(m_CurrentPressurInTier, r_MAX_TIER_PRESSURE_ELECTRIC, m_TierManufacturer);
+                InitElectricityEngine(r_MAXIMUM_BATTERY_TIME);
             }
             else
             {
-                SetTierData(m_CurrentPressurInTier, ro_MAX_TIER_PRESSURE_FUEL, m_TierManufacturer);
-                InitFuelEngine(ro_MAX_FUEL_LEVEL, ro_FUELTYPE);
+                SetTierData(m_CurrentPressurInTier, r_MAX_TIER_PRESSURE_FUEL, m_TierManufacturer);
+                InitFuelEngine(r_MAX_FUEL_LEVEL, r_FUELTYPE);
             }
         }
 
@@ -98,20 +102,20 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
                 // Verify engine size
                 o_ValidationIndicator = verifyEngineSize(i_Answer);
             }
-            else if (i_QuestionIndex > 5 && i_QuestionIndex <= 5 + ro_NUMBER_OF_TIERS)
+            else if (i_QuestionIndex > 5 && i_QuestionIndex <= 5 + r_NUMBER_OF_TIERS)
             {
                 // Verify tiers
                 if (m_EngineType == EngineType.ElectricEngine)
                 {
-                    o_ValidationIndicator = verifyTiersPressure(i_Answer, ro_MAX_TIER_PRESSURE_ELECTRIC);
+                    o_ValidationIndicator = verifyTiersPressure(i_Answer, r_MAX_TIER_PRESSURE_ELECTRIC);
                 }
                 else if (m_EngineType == EngineType.FuelEngine)
                 {
-                    o_ValidationIndicator = verifyTiersPressure(i_Answer, ro_MAX_TIER_PRESSURE_FUEL);
+                    o_ValidationIndicator = verifyTiersPressure(i_Answer, r_MAX_TIER_PRESSURE_FUEL);
                 }
                 else
                 {
-                    throw new ArgumentException(K_WRONG_WITH_TIERS);
+                    throw new ArgumentException(k_WRONG_WITH_TIERS);
                 }
             }
             return o_ValidationIndicator;
@@ -122,7 +126,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             bool o_ValidationIndicator = false;
             if (i_GivenLicenseType.Length > 2)
             {
-                throw new FormatException(K_WRONG_LICENS_TYPE);
+                throw new FormatException(k_WRONG_LICENS_TYPE);
             }
             string i_givenLicenseTypeUpperCase = i_GivenLicenseType.ToUpper();
             foreach (License licenseType in Enum.GetValues(typeof(License)))
@@ -144,7 +148,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             bool parsingIndicator = int.TryParse(i_GivenEngineSize, out parsedValue);
             if (!parsingIndicator)
             {
-                throw new FormatException(K_WRONG_ENGINE_DATA);
+                throw new FormatException(k_WRONG_ENGINE_DATA);
             }
             if (parsedValue > 0)
             {
