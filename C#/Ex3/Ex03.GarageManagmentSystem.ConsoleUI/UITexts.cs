@@ -237,6 +237,23 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                 Console.WriteLine("-->" + currentVehicle);
             }
         }
+
+        internal string AskQuestion(string i_GivenQuestion)
+        {
+            string o_UserInput;
+            Console.Clear();
+
+            while (true)
+            {
+                Console.WriteLine(i_GivenQuestion);
+                o_UserInput = Console.ReadLine();
+                if (o_UserInput.Length > 0)
+                {
+                    break;
+                }
+            }
+            return o_UserInput;
+        }
     }
 }
 
