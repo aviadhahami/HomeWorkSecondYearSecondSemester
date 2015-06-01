@@ -6,6 +6,9 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 {
     class Fuel : Energy
     {
+
+        private const string K_WRONG_FUEL_TYPE = "the fuel type is incorect";
+
         private FuelType m_fuelType;
 
 
@@ -27,8 +30,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             }
             else
             {
-                // TODO: throw exepsion in the futher
-                Console.WriteLine("the fuel type is incorect or to much gas");
+                throw new ArgumentException(K_WRONG_FUEL_TYPE);
             }
         }
     
