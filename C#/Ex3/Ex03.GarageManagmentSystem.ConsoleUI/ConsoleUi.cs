@@ -164,10 +164,10 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             List<string> io_Questions = m_VehiclesFactory.initVehicleToBuild((int)m_VehiclesFactory.GetVehicleTypeFromString(io_userInput));
             // Questions should come here
             string o_UserInput;
-
+            int questionIndex = 1;
             foreach (string currentQuestion in io_Questions)
             {
-                int questionIndex = 1;
+
                 while (true)
                 {
                     o_UserInput = m_UITexts.AskQuestion(currentQuestion);
@@ -177,9 +177,17 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                     }
                     else
                     {
-                        if (m_VehiclesFactory.Validator(o_UserInput, questionIndex))
+                        try
                         {
-                            break;
+                            if (m_VehiclesFactory.Validator(o_UserInput, questionIndex))
+                            {
+                                break;
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            m_UITexts.BadInput();
+                            m_UITexts.HoldScreen();
                         }
                     }
                 }
