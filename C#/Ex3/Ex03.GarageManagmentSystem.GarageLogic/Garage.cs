@@ -76,7 +76,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             return m_GarageInventory[i_LicenseNumber];
         }
 
-        public static List<GarageInfo> GetFilteredInventory(FiltersType filterType)
+        public static List<string> GetFilteredInventory(FiltersType filterType)
         {
             // Returns a list of garage info
             List<string> io_FilteredList = new List<string>();
