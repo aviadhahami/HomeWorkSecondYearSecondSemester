@@ -74,8 +74,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                 if (parseResult && testValidMenueOption(io_ParsedInt))
                 {
                     // If valid
-                    Console.WriteLine("Legit!");
-                    m_UITexts.HoldScreen();
                     break;
                 }
                 else
@@ -84,6 +82,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                     m_UITexts.NoSuchOption();
                 }
             }
+            // If we reached here we have a valid user pick, defualt is exit code
             invokeGarageAction(io_ParsedInt);
         }
 
@@ -91,8 +90,38 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         // Status : UC
         private void invokeGarageAction(int i_OpCode)
         {
-            Console.WriteLine("Picked" + i_OpCode);
-            m_UITexts.HoldScreen();
+            GarageOption recievedOption = (GarageOption)i_OpCode;
+            switch (recievedOption)
+            {
+                case GarageOption.Insert:
+                    //insertVehicle();
+                    break;
+                case GarageOption.DisplayInventory:
+                    //displayInventory();
+                    break;
+                case GarageOption.ChangeVehicleStatus:
+                    //changeVehicleStatus();
+                    break;
+                case GarageOption.PumpAir:
+                    //pumpAir();
+                    break;
+                case GarageOption.Refuel:
+                    //refuel();
+                    break;
+                case GarageOption.Recharge:
+                  //  recharge();
+                    break;
+                case GarageOption.DisplaySingleVehicle:
+                   // displaySingleVehicle();
+                    break;
+                case GarageOption.Logout:
+                    logOutSequence();
+                    break;
+                default:
+                    m_UITexts.DisplayAdminError();
+                    logOutSequence();
+                    break;
+            }
         }
 
         // Tests whetther the given string can be found whithin the menue enum
