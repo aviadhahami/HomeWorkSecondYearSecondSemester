@@ -63,7 +63,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         public void PumpAir(string i_LicenseNumber)
         {
             m_GarageInventory[i_LicenseNumber].Vehicle.PumpAir();
-            Console.WriteLine("Pump it up");
         }
 
         public bool CheckIfVehicleExists(string io_LicenseNumber)

@@ -6,6 +6,10 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 {
     class Vehicle
     {
+        private const string K_INSERT_MODEL = "Please insert model:";
+        private const string K_INSERT_LICENSE_NUMBER = "Please insert license plate number:";
+        private const string K_INSERT_TIER_MANUFACTURER = "Please insert tier manufacturer:";
+
         protected string m_Model;
         protected string m_LicenseNumber;
         protected float m_RemainingEnergy;
@@ -17,17 +21,10 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
         protected Vehicle()
         {
-            //getQuestions();
-            //m_Model = i_Model;
-            //m_LicenseNumber = i_LicenseNumber;
-            //m_TierManufacturer = i_TierManufacturer;
-
             m_ListOfQuestions = new List<string>();
-
-            // Should set questions
-            m_ListOfQuestions.Add("Please insert model");
-            m_ListOfQuestions.Add("Please insert license plate number");
-            m_ListOfQuestions.Add("Please insert tier manufacturer");
+            m_ListOfQuestions.Add(K_INSERT_MODEL);
+            m_ListOfQuestions.Add(K_INSERT_LICENSE_NUMBER);
+            m_ListOfQuestions.Add(K_INSERT_TIER_MANUFACTURER);
 
         }
 
