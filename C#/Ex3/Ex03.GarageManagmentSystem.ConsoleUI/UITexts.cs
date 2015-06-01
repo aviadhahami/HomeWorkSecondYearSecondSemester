@@ -259,8 +259,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             Console.WriteLine(i_Property + " - " + i_VehicleData.ToString());
         }
 
-
-        public void DisplaySortingOptions()
+        public void DisplayFilteringOptions()
         {
             Console.WriteLine(k_PLEASE_PICK_FILTERING_OPTION);
             foreach (GarageLogic.FiltersType filterType in Enum.GetValues(typeof(GarageLogic.FiltersType)))
