@@ -158,6 +158,8 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         private void instansiateVehicle(GarageLogic.VehicleType vehicleType)
         {
             GarageLogic.OwnerInfo o_OwnerInfo = new GarageLogic.OwnerInfo(m_CurrentUserName, m_CurrentUserPhone);
+
+            // Has null, should be vehiclee
             GarageLogic.GarageInfo o_NewVehicle = new GarageLogic.GarageInfo(GarageLogic.StatusType.PAID, o_OwnerInfo, null);
 
             GarageLogic.Garage.Insert(o_NewVehicle);
