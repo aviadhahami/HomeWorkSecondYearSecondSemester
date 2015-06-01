@@ -6,11 +6,11 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 {
     public class Garage
     {
-        private static readonly Dictionary<string, GarageInfo> m_GarageInventory = new Dictionary<string,GarageInfo>();
+        private static readonly Dictionary<string, GarageInfo> m_GarageInventory = new Dictionary<string, GarageInfo>();
 
         internal static void UpdateStatus(string i_LicenseNumber, StatusType i_statusType)
         {
-            GarageInfo garageInfo = m_GarageInventory[i_LicenseNumber];
+            GarageInfo garageInfo = msr_GarageInventory[i_LicenseNumber];
             garageInfo.StatusType = i_statusType;
         }
 
@@ -18,7 +18,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         {
 
             bool o_Exist = false;
-            if (m_GarageInventory.ContainsKey(i_LicenseNumber))
+            if (msr_GarageInventory.ContainsKey(i_LicenseNumber))
             {
                 o_Exist = true;
             }
@@ -27,19 +27,19 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
         internal static void Insert(GarageInfo i_GarageInfo)
         {
-            m_GarageInventory.Add(i_GarageInfo.Vehicle.LicenseNumber, i_GarageInfo);
+            msr_GarageInventory.Add(i_GarageInfo.Vehicle.LicenseNumber, i_GarageInfo);
         }
 
         public void FillFuel(string i_LicenseNumber, FuelType i_FuelType, float i_FuelToFill)
         {
 
 
-            if (CheckIfVehicleExists(i_LicenseNumber) && m_GarageInventory[i_LicenseNumber].Vehicle.Engine is Fuel)
+            if (CheckIfVehicleExists(i_LicenseNumber) && msr_GarageInventory[i_LicenseNumber].Vehicle.Engine is Fuel)
             {
 
-                //Fuel energySource = (Fuel)m_GarageInventory[i_LicenseNumber].Vehicle.Engine;
+                //Fuel energySource = (Fuel)msr_GarageInventory[i_LicenseNumber].Vehicle.Engine;
                 //energySource.fillFuel(i_FuelToFill, i_FuelType);
-                (m_GarageInventory[i_LicenseNumber].Vehicle.Engine as Fuel).fillFuel(i_FuelToFill, i_FuelType);
+                (msr_GarageInventory[i_LicenseNumber].Vehicle.Engine as Fuel).fillFuel(i_FuelToFill, i_FuelType);
             }
 
             else
@@ -50,11 +50,11 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
         public void FillCharger(string i_LicenseNumber, float i_FuelToFill)
         {
-            if (CheckIfVehicleExists(i_LicenseNumber) && m_GarageInventory[i_LicenseNumber].Vehicle.Engine is Electricity)
+            if (CheckIfVehicleExists(i_LicenseNumber) && msr_GarageInventory[i_LicenseNumber].Vehicle.Engine is Electricity)
             {
-                //Electricity energySource = (Electricity)m_GarageInventory[i_LicenseNumber].Vehicle.Engine;
+                //Electricity energySource = (Electricity)msr_GarageInventory[i_LicenseNumber].Vehicle.Engine;
                 //energySource.fillElectricity(i_FuelToFill);
-                (m_GarageInventory[i_LicenseNumber].Vehicle.Engine as Electricity).fillElectricity(i_FuelToFill);
+                (msr_GarageInventory[i_LicenseNumber].Vehicle.Engine as Electricity).fillElectricity(i_FuelToFill);
             }
             else
             {
@@ -64,7 +64,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
         public void PumpAir(string i_LicenseNumber)
         {
-            m_GarageInventory[i_LicenseNumber].Vehicle.PumpAir();
+            msr_GarageInventory[i_LicenseNumber].Vehicle.PumpAir();
         }
 
         public bool CheckIfVehicleExists(string io_LicenseNumber)
@@ -74,17 +74,17 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
         public static GarageInfo GetVehicleInfo(string i_LicenseNumber)
         {
-            return m_GarageInventory[i_LicenseNumber];
+            return msr_GarageInventory[i_LicenseNumber];
         }
 
-        public static List<string> GetFilteredInventory(FiltersType filterType)
+        public static List<string> GetFilteredInventory(FiltersType i_FilterType)
         {
             // Returns a list of garage info
             List<string> io_FilteredList = new List<string>();
 
-            foreach (KeyValuePair<string, GarageInfo> currentGarageEntry in m_GarageInventory)
+            foreach (KeyValuePair<string, GarageInfo> currentGarageEntry in msr_GarageInventory)
             {
-                if (currentGarageEntry.Value.StatusType.Equals(filterType))
+                if (currentGarageEntry.Value.StatusType.Equals(i_FilterType))
                 {
                     io_FilteredList.Add(currentGarageEntry.Key);
                 }
