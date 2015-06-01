@@ -7,7 +7,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
     public class GarageInfo
     {
         private const string k_newLineToken = "\n";
-        
+
         private StatusType m_StatusType;
         private OwnerInfo m_OwnerInfo;
         private Vehicle m_Vehicle;
@@ -38,8 +38,13 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         public override string ToString()
         {
             string o_OutputString = "";
-            o_OutputString += "Owner name: " + m_OwnerInfo.OwnerName + k_newLineToken;
-            o_OutputString += "Owner Phone: " + m_OwnerInfo.OwnerPhoneNumber + k_newLineToken;
+
+            // Add owner
+            o_OutputString += m_OwnerInfo.ToString();
+            o_OutputString += k_newLineToken;
+            o_OutputString += "Status type: " + StatusType.ToString();
+            o_OutputString += k_newLineToken;
+            o_OutputString += m_Vehicle.ToString();
             return o_OutputString;
         }
     }

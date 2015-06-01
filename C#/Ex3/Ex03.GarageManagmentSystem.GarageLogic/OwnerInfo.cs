@@ -23,5 +23,9 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         {
             get { return m_OwnerPhoneNumber; }
         }
+        public override string ToString()
+        {
+            return "Owner name: " + m_OwnerName + "\n" + "Phone number: " + m_OwnerPhoneNumber;
+        }
     }
 }

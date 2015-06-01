@@ -10,6 +10,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         private const string K_INSERT_LICENSE_NUMBER = "Please insert license plate number:";
         private const string K_INSERT_TIER_MANUFACTURER = "Please insert tier manufacturer:";
         private const string K_WRONG_TIER_DATA = "Bad input for tier data";
+        private const string k_NewLineToken = "\n";
 
         protected string m_Model;
         protected string m_LicenseNumber;
@@ -101,6 +102,24 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
                 return false;
             }
 
+        }
+
+
+        public override string ToString()
+        {
+            string o_StringedData = "";
+            o_StringedData += "License plate: " + m_LicenseNumber;
+            o_StringedData += k_NewLineToken;
+            o_StringedData += "Model: " + m_Model;
+            o_StringedData += k_NewLineToken;
+            o_StringedData += "Current energy: " + m_RemainingEnergy;
+            o_StringedData += k_NewLineToken;
+            o_StringedData += "Current pressure in tiers: " + m_CurrentPressurInTier;
+            o_StringedData += k_NewLineToken;
+            o_StringedData += "Amount of tiers: " + m_Tiers.Count;
+            o_StringedData += k_NewLineToken;
+            o_StringedData += "Tier manu. " + m_TierManufacturer;
+            return o_StringedData;
         }
     }
 
