@@ -6,11 +6,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
 {
     class UITexts
     {
-        private const string k_LINE_SPAN = "                         ";
-        private const string k_HALF_LINE_SPAN = "               ";
-        private const string k_GREETINGS = "Hi, Welcome to Abu Ali's garage!";
-        private const string k_DECORATED_LINE_SEPARATOR = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
-        private const string k_PRESS_ANY_KEY = "Press any key to continue";
+
         private const string k_WHAT_WOULD_YOU_LIKE_TO_DO = "What would you like to do Sir?";
         private const string k_NO_SUCH_OPTION = "We're sorry, this options doesn't exist in our garage....";
         private const string k_TRY_AGAIN = "Please try again";
@@ -44,16 +40,33 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         private const string k_NO_FILTER = "Display without sorting";
         private const string k_FILTER_BY_ACTIVE = "Display active vehicles";
         private const string k_FILTER_BY_NONACTIVE = "Display non-active vehicles";
-        private string k_PLEASE_ENTER_USERNAME = "Please state your name";
-        private string k_PLEASE_ENTER_PHONE = "Please specify your phone number";
+
+        // New version strings
+        private const string k_LINE_SPAN = "                         ";
+        private const string k_HALF_LINE_SPAN = "               ";
+        private const string k_THREE_QUARTERS_LINE_SPAN = "                      ";
+        private const string k_GREETINGS = "Hi, Welcome to Abu Ali's garage!";
+        private const string k_DECORATED_LINE_SEPARATOR = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+        private const string k_PRESS_ANY_KEY = "Press any key to continue";
+        private const string k_PLEASE_ENTER_USERNAME = "Please state your name";
+        private const string k_PLEASE_ENTER_PHONE = "Please specify your phone number";
+        private const string k_LOGIN_SCREEN_HEADER = "Abu Ali's garage login screen";
+        private string k_REMIND_EXIT_TOKEN = "Type \"Exit\" at any time to exit the app";
 
         internal void DisplayWelcomeSequence()
         {
             generateLineSpan();
             Console.WriteLine(k_GREETINGS);
+            generateThreeQuartersLineSpan();
+            Console.WriteLine(k_REMIND_EXIT_TOKEN);
             generateHalfLineSpan();
             ShowDecoratedLineSeparator();
             HoldScreen();
+        }
+
+        private void generateThreeQuartersLineSpan()
+        {
+            Console.Write(k_THREE_QUARTERS_LINE_SPAN);
         }
 
         private void ShowDecoratedLineSeparator()
@@ -140,6 +153,12 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                     return o_Userinput;
                 }
             }
+        }
+
+        internal void DisplayLoginHeader()
+        {
+            Console.WriteLine(k_LOGIN_SCREEN_HEADER);
+            ShowDecoratedLineSeparator();
         }
     }
 }

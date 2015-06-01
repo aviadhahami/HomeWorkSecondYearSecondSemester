@@ -41,15 +41,15 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         }
 
         // Deploys login screen sequence
-        // Status : 
+        // Status : Done and tested
         internal void LoginScreenSequence()
         {
+            // Show welcome message & login header
             m_UITexts.DisplayWelcomeSequence();
+            m_UITexts.DisplayLoginHeader();
 
             m_CurrentUserName = requireUserName();
-
             m_CurrentUserPhone = requireUserPhone();
-
             mainMenuSequence();
         }
 
@@ -87,7 +87,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         }
 
         // Tests a string for digits only
-        // Status : Done, not tested
+        // Status : Done, tested
         private bool containsDigitsOnly(string i_Input)
         {
             bool o_TestResult = true;
@@ -102,7 +102,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         }
 
         // Asks entering user for his name
-        // Status : Done, not tested
+        // Status : Done, tested
         private string requireUserName()
         {
             string o_UserInput;
@@ -128,7 +128,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         }
 
         // Verifies the string contains only letters and spaces
-        // Status : Done, not tested
+        // Status : Done, tested
         private bool containsLettersAndSpacesOnly(string o_UserInput)
         {
             bool o_testResult = true;
