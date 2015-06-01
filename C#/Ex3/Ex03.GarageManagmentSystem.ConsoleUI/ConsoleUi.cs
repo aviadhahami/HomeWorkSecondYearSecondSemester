@@ -57,7 +57,10 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         // Status : Done and tested
         private void mainMenuSequence()
         {
-            string i_UserChoice;
+            // Default this to exit code
+            string i_UserChoice = "8";
+            int io_ParsedInt;
+            bool parseResult;
             while (true)
             {
                 // Display options
@@ -67,13 +70,13 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                 {
                     logOutSequence();
                 }
-                int o_parsedInt;
-                bool parseResult = int.TryParse(i_UserChoice, out o_parsedInt);
-                if (parseResult && testValidMenueOption(o_parsedInt))
+                parseResult = int.TryParse(i_UserChoice, out io_ParsedInt);
+                if (parseResult && testValidMenueOption(io_ParsedInt))
                 {
                     // If valid
                     Console.WriteLine("Legit!");
                     m_UITexts.HoldScreen();
+                    break;
                 }
                 else
                 {
@@ -81,6 +84,15 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                     m_UITexts.NoSuchOption();
                 }
             }
+            invokeGarageAction(io_ParsedInt);
+        }
+
+        // Invokes the proper method according to a given option
+        // Status : UC
+        private void invokeGarageAction(int i_OpCode)
+        {
+            Console.WriteLine("Picked" + i_OpCode);
+            m_UITexts.HoldScreen();
         }
 
         // Tests whetther the given string can be found whithin the menue enum
