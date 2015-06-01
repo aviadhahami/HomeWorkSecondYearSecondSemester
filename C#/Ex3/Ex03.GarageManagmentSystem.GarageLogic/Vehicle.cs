@@ -115,7 +115,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             o_StringedData += k_NewLineToken;
             o_StringedData += "Model: " + m_Model;
             o_StringedData += k_NewLineToken;
-            o_StringedData += "Current energy: " + m_RemainingEnergy;
+            o_StringedData += "Current energy: " + m_Engine.getRemainingEnergy;
             o_StringedData += k_NewLineToken;
             o_StringedData += "Current pressure in tiers: " + m_CurrentPressurInTier;
             o_StringedData += k_NewLineToken;

@@ -115,5 +115,26 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             }
             return o_ChosedStatusType;
         }
+
+        public static void ChangeVehicleStatus(string i_LicenseNumber)
+        {
+            StatusType io_currentStatus = m_GarageInventory[i_LicenseNumber].StatusType;
+            StatusType o_NewStatus = StatusType.FIXED;
+            switch (io_currentStatus)
+            {
+                case StatusType.FIXING:
+                    o_NewStatus = StatusType.FIXED;
+                    break;
+                case StatusType.FIXED:
+                    // Is default
+                    break;
+                case StatusType.PAID:
+                    o_NewStatus = StatusType.FIXING;
+                    break;
+                default:
+                    break;
+            }
+            m_GarageInventory[i_LicenseNumber].StatusType = o_NewStatus;
+        }
     }
 }

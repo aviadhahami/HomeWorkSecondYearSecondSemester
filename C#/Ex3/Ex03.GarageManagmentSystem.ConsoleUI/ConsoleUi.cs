@@ -89,7 +89,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         }
 
         // Invokes the proper method according to a given option
-        // Status : UC
+        // Status : Done, Tested
         private void invokeGarageAction(int i_OpCode)
         {
             GarageOption recievedOption = (GarageOption)i_OpCode;
@@ -168,12 +168,33 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         // Stus : UC
         private void changeVehicleStatus()
         {
-            string io_UserInput = m_UITexts.AskForLicense();
-            if (CheckExitToken(io_UserInput))
+            string io_UserInput;
+            while (true)
             {
-                LoginScreenSequence();
+                io_UserInput = m_UITexts.AskForLicense();
+                if (CheckExitToken(io_UserInput))
+                {
+                    mainMenuSequence();
+                }
+
+                if (validLicenseNumber(io_UserInput))
+                {
+                    if (GarageLogic.Garage.Exist(io_UserInput))
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        m_UITexts.LicenseNumberDoesntExist(io_UserInput);
+                    }
+                }
+                else
+                {
+                    m_UITexts.BadInput();
+                    m_UITexts.HoldScreen();
+                }
             }
-            // Keep verification
+            GarageLogic.Garage.ChangeVehicleStatus(io_UserInput);
         }
 
         private void insertVehicle()
