@@ -73,15 +73,15 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
         public static GarageInfo GetVehicleInfo(string i_LicenseNumber)
         {
-          //  return m_GarageInventory.
+            //  return m_GarageInventory.
             return m_GarageInventory[i_LicenseNumber];
         }
 
-        public static List<string> GetFilteredInventory(FiltersType i_FilterType)
+        public static List<string> GetFilteredInventory(StatusType i_FilterType)
         {
             // Returns a list of garage info
             List<string> io_FilteredList = new List<string>();
-            if (i_FilterType == FiltersType.NONE)
+            if (i_FilterType == StatusType.PAID)
             {
                 foreach (KeyValuePair<string, GarageInfo> vehicle in m_GarageInventory)
                 {
@@ -102,18 +102,18 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             return io_FilteredList;
         }
 
-        public static FiltersType GetFilterTypeFromString(string i_FilterTypeString)
+        public static StatusType GetFilterTypeFromString(string i_FilterTypeString)
         {
             // Defulat to none
-            FiltersType o_ChosedFilterType = FiltersType.NONE;
-            foreach (FiltersType type in Enum.GetValues(typeof(FiltersType)))
+            StatusType o_ChosedStatusType = StatusType.PAID;
+            foreach (StatusType type in Enum.GetValues(typeof(StatusType)))
             {
                 if (type.ToString() == i_FilterTypeString)
                 {
-                    o_ChosedFilterType = type;
+                    o_ChosedStatusType = type;
                 }
             }
-            return o_ChosedFilterType;
+            return o_ChosedStatusType;
         }
     }
 }

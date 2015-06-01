@@ -6,8 +6,8 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 {
     public enum StatusType
     {
-        FIXING,
-        FIXED,
-        PAID
+        FIXING = 1,
+        FIXED = 2,
+        PAID = 3
     };
 }

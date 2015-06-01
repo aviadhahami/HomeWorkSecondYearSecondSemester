@@ -21,7 +21,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         public List<string> getFilterType()
         {
             List<string> filterType = new List<string>();
-            foreach (FiltersType type in Enum.GetValues(typeof(FiltersType)))
+            foreach (StatusType type in Enum.GetValues(typeof(StatusType)))
             {
                 filterType.Add(type.ToString());
             }

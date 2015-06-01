@@ -95,6 +95,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
                 {
                     tier.currentAirPressure = parsedFloat;
                 }
+                m_CurrentPressurInTier = parsedFloat;
                 return true;
             }
             else
@@ -108,6 +109,8 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         public override string ToString()
         {
             string o_StringedData = "";
+            o_StringedData += "Vehicle type: " + this.GetType().Name;
+            o_StringedData += k_NewLineToken;
             o_StringedData += "License plate: " + m_LicenseNumber;
             o_StringedData += k_NewLineToken;
             o_StringedData += "Model: " + m_Model;
@@ -118,7 +121,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             o_StringedData += k_NewLineToken;
             o_StringedData += "Amount of tiers: " + m_Tiers.Count;
             o_StringedData += k_NewLineToken;
-            o_StringedData += "Tier manu. :" + m_TierManufacturer;
+            o_StringedData += "Tier manu.: " + m_TierManufacturer;
             return o_StringedData;
         }
     }

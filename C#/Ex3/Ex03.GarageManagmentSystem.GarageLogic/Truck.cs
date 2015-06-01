@@ -54,7 +54,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         {
             bool o_ValidationIndicator = false;
             // Check for three first questions
-            if (i_QuestionIndex == 1 || i_QuestionIndex == 3)
+            if (i_QuestionIndex == 1)
             {
                 // First three question are unimportant strings
                 return true;
@@ -63,6 +63,11 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             {
                 // Verify license
                 o_ValidationIndicator = verifyLicense(i_Answer);
+            }
+            else if (i_QuestionIndex == 3)
+            {
+                m_TierManufacturer = i_Answer;
+                o_ValidationIndicator = true;
             }
             else if (i_QuestionIndex == 4)
             {
