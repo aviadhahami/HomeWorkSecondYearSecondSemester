@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ex03.GarageManagmentSystem.GarageLogic
 {
-    class Factory
+    public class Factory
     {
         private Vehicle m_VehicleToBuild;
 

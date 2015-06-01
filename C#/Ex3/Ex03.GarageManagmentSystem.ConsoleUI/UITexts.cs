@@ -228,13 +228,13 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         }
 
 
-        internal void DisplayVehicleTypes()
+        internal void DisplayVehicleTypes(List<string> i_VehiclesType)
         {
             Console.Clear();
             Console.WriteLine(k_PLEASE_PICK_VEHICLE);
-            foreach (GarageLogic.VehicleType type in Enum.GetValues(typeof(GarageLogic.VehicleType)))
+            foreach (string currentVehicle in i_VehiclesType)
             {
-                Console.WriteLine((int)type + ") " + type.ToString());
+                Console.WriteLine("-->" + currentVehicle);
             }
         }
     }

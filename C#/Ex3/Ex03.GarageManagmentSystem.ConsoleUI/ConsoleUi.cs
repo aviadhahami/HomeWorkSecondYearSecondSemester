@@ -30,6 +30,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
 
 
         UITexts m_UITexts;
+        GarageLogic.Factory m_VehiclesFactory;
         string m_CurrentUserName;
         string m_CurrentUserPhone;
 
@@ -38,6 +39,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         public ConsoleUI()
         {
             m_UITexts = new UITexts();
+            m_VehiclesFactory = new GarageLogic.Factory();
         }
 
         // Deploys login screen sequence
@@ -141,17 +143,15 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         private void insertVehicle()
         {
             string io_userInput = "exit";
-            int io_ParsedInt = 0;
             while (true)
             {
-                m_UITexts.DisplayVehicleTypes();
+                m_UITexts.DisplayVehicleTypes(m_VehiclesFactory.getVehicleType());
                 io_userInput = Console.ReadLine();
                 if (CheckExitToken(io_userInput))
                 {
                     logOutSequence();
                 }
-                bool parsingFlag = int.TryParse(io_userInput, out io_ParsedInt);
-                if (parsingFlag && validateProperVehiclePick(io_ParsedInt))
+                if (m_VehiclesFactory.getVehicleType().Contains(io_userInput))
                 {
                     break;
                 }
@@ -161,37 +161,10 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                     m_UITexts.HoldScreen();
                 }
             }
-            instansiateVehicle((GarageLogic.VehicleType)io_ParsedInt);
+            //instansiateVehicle((GarageLogic.VehicleType)io_ParsedInt);
             // Questions should come here
         }
 
-        // Creates a vehicle
-        // Status : UC
-        private void instansiateVehicle(GarageLogic.VehicleType vehicleType)
-        {
-            GarageLogic.OwnerInfo o_OwnerInfo = new GarageLogic.OwnerInfo(m_CurrentUserName, m_CurrentUserPhone);
-
-            // Has null, should be vehicle
-            // SUPER CRUCIAL@
-         //   GarageLogic.GarageInfo o_NewVehicle = new GarageLogic.GarageInfo(GarageLogic.StatusType.PAID, o_OwnerInfo, null);
-
-            //GarageLogic.Garage.Insert(o_NewVehicle);
-        }
-
-        // Validates the number picked can be found in the vehicles enum
-        // Status: UC
-        private bool validateProperVehiclePick(int i_GivenEnumIndex)
-        {
-            bool o_TestResult = false;
-            foreach (GarageLogic.VehicleType type in Enum.GetValues(typeof(GarageLogic.VehicleType)))
-            {
-                if (i_GivenEnumIndex == (int)type)
-                {
-                    o_TestResult = true;
-                }
-            }
-            return o_TestResult;
-        }
 
         // Displays single vehicle from inventory
         // Status : Done, not tested
