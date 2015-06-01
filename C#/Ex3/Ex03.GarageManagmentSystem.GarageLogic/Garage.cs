@@ -24,7 +24,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             return o_Exist;
         }
 
-        internal static void Insert(GarageInfo i_GarageInfo)
+        public static void Insert(GarageInfo i_GarageInfo)
         {
             m_GarageInventory.Add(i_GarageInfo.Vehicle.LicenseNumber, i_GarageInfo);
         }

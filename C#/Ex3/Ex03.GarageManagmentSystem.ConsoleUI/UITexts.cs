@@ -53,6 +53,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
         private const string k_TRY_AGAIN = "Please try again";
         private const string k_PLEASE_INSERT_LICENSE_NUMBER = "Please enter a valid license plate number";
         private const string k_LOG_OUT = "Log out";
+        private const string k_PLEASE_PICK_VEHICLE = "Please pick a vehicle";
 
 
         internal void DisplayWelcomeSequence()
@@ -226,6 +227,16 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             return o_UserInput;
         }
 
+
+        internal void DisplayVehicleTypes()
+        {
+            Console.Clear();
+            Console.WriteLine(k_PLEASE_PICK_VEHICLE);
+            foreach (GarageLogic.VehicleType type in Enum.GetValues(typeof(GarageLogic.VehicleType)))
+            {
+                Console.WriteLine((int)type + ") " + type.ToString());
+            }
+        }
     }
 }
 

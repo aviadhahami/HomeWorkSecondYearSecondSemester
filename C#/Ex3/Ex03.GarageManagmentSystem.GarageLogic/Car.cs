@@ -147,5 +147,5 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             return o_OutputString + base.ToString();
         }
     }
-
 }
+

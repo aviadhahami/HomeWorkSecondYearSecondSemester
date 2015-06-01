@@ -94,7 +94,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             switch (recievedOption)
             {
                 case GarageOption.Insert:
-                    //insertVehicle();
+                    insertVehicle();
                     break;
                 case GarageOption.DisplayInventory:
                     //displayInventory();
@@ -126,8 +126,60 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             mainMenuSequence();
         }
 
-        // Displays single vehicle from inventory
+        private void insertVehicle()
+        {
+            string io_userInput = "exit";
+            int io_ParsedInt = 0;
+            while (true)
+            {
+                m_UITexts.DisplayVehicleTypes();
+                io_userInput = Console.ReadLine();
+                if (CheckExitToken(io_userInput))
+                {
+                    logOutSequence();
+                }
+                bool parsingFlag = int.TryParse(io_userInput, out io_ParsedInt);
+                if (parsingFlag && validateProperVehiclePick(io_ParsedInt))
+                {
+                    break;
+                }
+                else
+                {
+                    m_UITexts.BadInput();
+                    m_UITexts.HoldScreen();
+                }
+            }
+            instansiateVehicle((GarageLogic.VehicleType)io_ParsedInt);
+            // Questions
+        }
+
+        // Creates a vehicle
         // Status : UC
+        private void instansiateVehicle(GarageLogic.VehicleType vehicleType)
+        {
+            GarageLogic.OwnerInfo o_OwnerInfo = new GarageLogic.OwnerInfo(m_CurrentUserName, m_CurrentUserPhone);
+            GarageLogic.GarageInfo o_NewVehicle = new GarageLogic.GarageInfo(GarageLogic.StatusType.PAID, o_OwnerInfo, null);
+
+            GarageLogic.Garage.Insert(o_NewVehicle);
+        }
+
+        // Validates the number picked can be found in the vehicles enum
+        // Status: UC
+        private bool validateProperVehiclePick(int i_GivenEnumIndex)
+        {
+            bool o_TestResult = false;
+            foreach (GarageLogic.VehicleType type in Enum.GetValues(typeof(GarageLogic.VehicleType)))
+            {
+                if (i_GivenEnumIndex == (int)type)
+                {
+                    o_TestResult = true;
+                }
+            }
+            return o_TestResult;
+        }
+
+        // Displays single vehicle from inventory
+        // Status : Done, not tested
         private void displaySingleVehicle()
         {
             string io_GivenLicense;
