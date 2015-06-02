@@ -190,6 +190,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                 }
             }
             GarageLogic.Garage.ChangeVehicleStatus(io_UserInput);
+            // TODO
         }
         private void insertVehicle()
         {

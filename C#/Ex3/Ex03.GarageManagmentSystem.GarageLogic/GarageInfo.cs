@@ -22,7 +22,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         public StatusType StatusType
         {
             get { return m_StatusType; }
-            set { StatusType = value; }
+            set { m_StatusType = value; }
         }
         internal Vehicle Vehicle
         {
