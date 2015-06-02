@@ -26,26 +26,21 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         {
             m_GarageInventory.Add(i_GarageInfo.Vehicle.LicenseNumber, i_GarageInfo);
         }
-        public void FillFuel(string i_LicenseNumber, FuelType i_FuelType, float i_FuelToFill)
+        public static void FillFuel(string i_LicenseNumber, int i_FuelType, float i_FuelToFill)
         {
-
-
-            if (CheckIfVehicleExists(i_LicenseNumber) && m_GarageInventory[i_LicenseNumber].Vehicle.Engine is Fuel)
+            FuelType o_FuelType = (FuelType)i_FuelType;
+            if (m_GarageInventory[i_LicenseNumber].Vehicle.Engine is Fuel)
             {
-
-                //Fuel energySource = (Fuel)m_GarageInventory[i_LicenseNumber].Vehicle.Engine;
-                //energySource.fillFuel(i_FuelToFill, i_FuelType);
-                (m_GarageInventory[i_LicenseNumber].Vehicle.Engine as Fuel).fillFuel(i_FuelToFill, i_FuelType);
+                (m_GarageInventory[i_LicenseNumber].Vehicle.Engine as Fuel).fillFuel(i_FuelToFill, o_FuelType);
             }
-
             else
             {
                 throw new FormatException();
             }
         }
-        public void FillCharger(string i_LicenseNumber, float i_FuelToFill)
+        public static void FillCharger(string i_LicenseNumber, float i_FuelToFill)
         {
-            if (CheckIfVehicleExists(i_LicenseNumber) && m_GarageInventory[i_LicenseNumber].Vehicle.Engine is Electricity)
+            if (m_GarageInventory[i_LicenseNumber].Vehicle.Engine is Electricity)
             {
                 //Electricity energySource = (Electricity)m_GarageInventory[i_LicenseNumber].Vehicle.Engine;
                 //energySource.fillElectricity(i_FuelToFill);
@@ -125,6 +120,43 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
                     break;
             }
             m_GarageInventory[i_LicenseNumber].StatusType = o_NewStatus;
+        }
+
+        public static string GetFuelTypes()
+        {
+            string o_FuelTypes = "";
+            foreach (FuelType type in Enum.GetValues(typeof(FuelType)))
+            {
+                o_FuelTypes += (int)type + ") " + type.ToString() + "\n";
+            }
+            return o_FuelTypes;
+        }
+
+        public static bool ValidateFuelType(string i_InputFuelType)
+        {
+            bool o_testResult = false;
+            foreach (FuelType type in Enum.GetValues(typeof(FuelType)))
+            {
+                if (type.ToString() == i_InputFuelType)
+                {
+                    o_testResult = true;
+                }
+            }
+            return o_testResult;
+        }
+
+        public static int GetFuelTypeByString(string io_FuelType)
+        {
+            int o_EnumValue = 0;
+
+            foreach (FuelType type in Enum.GetValues(typeof(FuelType)))
+            {
+                if (type.ToString() == io_FuelType)
+                {
+                    o_EnumValue = (int)type;
+                }
+            }
+            return o_EnumValue;
         }
     }
 }

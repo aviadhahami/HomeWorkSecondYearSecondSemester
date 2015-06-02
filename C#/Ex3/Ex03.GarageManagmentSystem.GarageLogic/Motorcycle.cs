@@ -26,7 +26,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         private int m_EngineSize;
         private License m_LicenseType;
 
-
         public Motorcycle()
             : base()
         {
@@ -39,7 +38,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             m_ListOfQuestions.Add(k_ASK_ENGINE_SIZE);
             m_ListOfQuestions.Add(k_INSERT_TIER_PRESSURE);
         }
-
         public void init()
         {
             if (m_EngineType == EngineType.ElectricEngine)
@@ -53,25 +51,21 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
                 InitFuelEngine(r_MAX_FUEL_LEVEL, r_FUELTYPE);
             }
         }
-
         internal EngineType EngineType
         {
             get { return m_EngineType; }
             set { m_EngineType = value; }
         }
-
         public License LicenseType
         {
             get { return m_LicenseType; }
             set { m_LicenseType = value; }
         }
-
         public int EngineSize
         {
             get { return m_EngineSize; }
             set { m_EngineSize = value; }
         }
-
         internal bool ValidateAndSetProperty(string i_Answer, int i_QuestionIndex)
         {
             bool o_ValidationIndicator = false;
@@ -120,7 +114,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             }
             return o_ValidationIndicator;
         }
-
         private bool verifyLicenseType(string i_GivenLicenseType)
         {
             bool o_ValidationIndicator = false;
@@ -140,7 +133,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             }
             return o_ValidationIndicator;
         }
-
         private bool verifyEngineSize(string i_GivenEngineSize)
         {
             int parsedValue;
@@ -157,7 +149,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             }
             return o_VerificationIndicator;
         }
-
         public List<string> Questions
         {
             get { return m_ListOfQuestions; }

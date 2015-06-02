@@ -84,7 +84,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                     pumpAir();
                     break;
                 case GarageOption.Refuel:
-                    //refuel();
+                    refuel();
                     break;
                 case GarageOption.Recharge:
                     //  recharge();
@@ -102,6 +102,90 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             }
             // Go back to main menu
             mainMenuSequence();
+        }
+
+        private void refuel()
+        {
+            string io_LicenseNumber;
+            // Retrieve license
+            while (true)
+            {
+                io_LicenseNumber = m_UITexts.AskForLicense();
+                if (CheckExitToken(io_LicenseNumber))
+                {
+                    mainMenuSequence();
+                }
+
+                if (validLicenseNumber(io_LicenseNumber))
+                {
+                    if (GarageLogic.Garage.Exist(io_LicenseNumber))
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        m_UITexts.LicenseNumberDoesntExist(io_LicenseNumber);
+                    }
+                }
+                else
+                {
+                    m_UITexts.BadInput();
+                    m_UITexts.HoldScreen();
+                }
+            }
+
+            // Get amount of fuel
+            string io_AmountOfFuel = "0";
+            float i_AmountOfFuel;
+            while (true)
+            {
+                io_AmountOfFuel = m_UITexts.AskForFuelToFill();
+                if (CheckExitToken(io_AmountOfFuel))
+                {
+                    mainMenuSequence();
+                }
+                if (float.TryParse(io_AmountOfFuel, out i_AmountOfFuel))
+                {
+                    break;
+                }
+                else
+                {
+                    m_UITexts.BadInput();
+                    m_UITexts.HoldScreen();
+                }
+            }
+
+            // Get fuel type
+            string io_FuelType = "";
+            int o_FuelTypeEnum = 0;
+            while (true)
+            {
+                io_FuelType = m_UITexts.AskForFuelType(GarageLogic.Garage.GetFuelTypes());
+                if (CheckExitToken(io_FuelType))
+                {
+                    mainMenuSequence();
+                }
+                if (GarageLogic.Garage.ValidateFuelType(io_FuelType))
+                {
+                    o_FuelTypeEnum = GarageLogic.Garage.GetFuelTypeByString(io_FuelType);
+                    break;
+                }
+                else
+                {
+                    m_UITexts.BadInput();
+                    m_UITexts.HoldScreen();
+                }
+            }
+            try
+            {
+                GarageLogic.Garage.FillFuel(io_LicenseNumber, o_FuelTypeEnum, i_AmountOfFuel);
+
+            }
+            catch (Exception)
+            {
+                m_UITexts.BadInput();
+                m_UITexts.HoldScreen();
+            }
         }
 
         private void pumpAir()

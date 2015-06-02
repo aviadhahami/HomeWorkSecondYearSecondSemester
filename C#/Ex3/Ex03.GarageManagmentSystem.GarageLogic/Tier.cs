@@ -19,25 +19,21 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             m_Manufacturer = i_Manufacturer;
             m_MaximalAirPressure = i_MaximalAirPressure;
         }
-
         public string manufacturer
         {
             get { return m_Manufacturer; }
             set { m_Manufacturer = value; }
         }
-
         public float currentAirPressure
         {
             get { return m_CurrentAirPressure; }
             set { m_CurrentAirPressure = value; }
         }
-
         public float MaximalAirPressure
         {
             get { return m_MaximalAirPressure; }
             set { m_MaximalAirPressure = value; }
         }
-
         public float PumpAir
         {
             set
