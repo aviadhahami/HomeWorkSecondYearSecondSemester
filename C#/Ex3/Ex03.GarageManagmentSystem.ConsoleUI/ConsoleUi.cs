@@ -6,28 +6,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
 {
     class ConsoleUI
     {
-        // Display login screen
-
-        // Display main menu
-
-        // Insert
-
-        // Display inventory
-
-        // Change vehicle status
-
-        // Pump air
-
-        // Refuel
-
-        // Recharge
-
-        // DisplaySingleVehicle
-
-        //Logout
-
         private const string k_EXIT_TOKEN = "EXIT";
-
 
         UITexts m_UITexts;
         GarageLogic.Factory m_VehiclesFactory;
@@ -102,7 +81,7 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                     changeVehicleStatus();
                     break;
                 case GarageOption.PumpAir:
-                    //pumpAir();
+                    pumpAir();
                     break;
                 case GarageOption.Refuel:
                     //refuel();
@@ -123,6 +102,37 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
             }
             // Go back to main menu
             mainMenuSequence();
+        }
+
+        private void pumpAir()
+        {
+            string io_UserInput;
+            while (true)
+            {
+                io_UserInput = m_UITexts.AskForLicense();
+                if (CheckExitToken(io_UserInput))
+                {
+                    mainMenuSequence();
+                }
+
+                if (validLicenseNumber(io_UserInput))
+                {
+                    if (GarageLogic.Garage.Exist(io_UserInput))
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        m_UITexts.LicenseNumberDoesntExist(io_UserInput);
+                    }
+                }
+                else
+                {
+                    m_UITexts.BadInput();
+                    m_UITexts.HoldScreen();
+                }
+            }
+            GarageLogic.Garage.PumpAir(io_UserInput);
         }
         private void displayInventory()
         {
@@ -190,7 +200,6 @@ namespace Ex03.GarageManagmentSystem.ConsoleUI
                 }
             }
             GarageLogic.Garage.ChangeVehicleStatus(io_UserInput);
-            // TODO
         }
         private void insertVehicle()
         {

@@ -9,7 +9,11 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         string m_Manufacturer;
         float m_CurrentAirPressure;
         float m_MaximalAirPressure;
-        public void Wheel(string i_Manufacturer, float i_CurrentAirPressure, float i_MaximalAirPressure)
+        public Tier()
+        {
+
+        }
+        public Tier(string i_Manufacturer, float i_CurrentAirPressure, float i_MaximalAirPressure)
         {
             m_CurrentAirPressure = i_CurrentAirPressure;
             m_Manufacturer = i_Manufacturer;
@@ -38,7 +42,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         {
             set
             {
-                if (value > 0 && value + m_CurrentAirPressure <= m_MaximalAirPressure)
+                if (value >= 0 && value + m_CurrentAirPressure <= m_MaximalAirPressure)
                 {
                     m_CurrentAirPressure += value;
                 }

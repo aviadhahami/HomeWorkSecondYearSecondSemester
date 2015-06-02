@@ -56,6 +56,7 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             {
                 tier.PumpAir = tier.MaximalAirPressure - tier.currentAirPressure;
             }
+            m_CurrentPressurInTier = m_Tiers[1].currentAirPressure;
         }
         // Init engines
         protected void InitElectricityEngine(float io_MaxBatteryTime)

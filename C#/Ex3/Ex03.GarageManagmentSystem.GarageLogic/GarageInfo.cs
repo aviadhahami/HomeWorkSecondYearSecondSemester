@@ -12,7 +12,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
         private OwnerInfo m_OwnerInfo;
         private Vehicle m_Vehicle;
 
-
         internal GarageInfo(StatusType o_StatusType, OwnerInfo o_OwnerInfo, Vehicle o_Vehicle)
         {
             m_OwnerInfo = o_OwnerInfo;

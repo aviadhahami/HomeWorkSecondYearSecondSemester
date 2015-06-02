@@ -30,9 +30,11 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             : base()
         {
             m_Tiers = new List<Tier>(r_NUMBER_OF_TIERS);
+            Tier o_ConstructionTier = new Tier();
+            o_ConstructionTier.MaximalAirPressure = r_MAX_TIER_PRESSURE;
             for (int i = 0; i < r_NUMBER_OF_TIERS; i++)
             {
-                m_Tiers.Add(new Tier());
+                m_Tiers.Add(o_ConstructionTier);
             }
             m_ListOfQuestions.Add(k_INSERT_CAR_COLOR);
             m_ListOfQuestions.Add(k_INSERT_NUMBER_OF_DOORS);

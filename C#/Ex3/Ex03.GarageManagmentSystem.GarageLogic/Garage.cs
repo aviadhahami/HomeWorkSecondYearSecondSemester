@@ -12,7 +12,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             GarageInfo garageInfo = m_GarageInventory[i_LicenseNumber];
             garageInfo.StatusType = i_statusType;
         }
-
         public static bool Exist(string i_LicenseNumber)
         {
 
@@ -23,12 +22,10 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             }
             return o_Exist;
         }
-
         public static void Insert(GarageInfo i_GarageInfo)
         {
             m_GarageInventory.Add(i_GarageInfo.Vehicle.LicenseNumber, i_GarageInfo);
         }
-
         public void FillFuel(string i_LicenseNumber, FuelType i_FuelType, float i_FuelToFill)
         {
 
@@ -46,7 +43,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
                 throw new FormatException();
             }
         }
-
         public void FillCharger(string i_LicenseNumber, float i_FuelToFill)
         {
             if (CheckIfVehicleExists(i_LicenseNumber) && m_GarageInventory[i_LicenseNumber].Vehicle.Engine is Electricity)
@@ -60,23 +56,19 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
                 throw new FormatException();
             }
         }
-
-        public void PumpAir(string i_LicenseNumber)
+        public static void PumpAir(string i_LicenseNumber)
         {
             m_GarageInventory[i_LicenseNumber].Vehicle.PumpAir();
         }
-
         public bool CheckIfVehicleExists(string io_LicenseNumber)
         {
             return Exist(io_LicenseNumber);
         }
-
         public static GarageInfo GetVehicleInfo(string i_LicenseNumber)
         {
             //  return m_GarageInventory.
             return m_GarageInventory[i_LicenseNumber];
         }
-
         public static List<string> GetFilteredInventory(StatusType i_FilterType)
         {
             // Returns a list of garage info
@@ -101,7 +93,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
 
             return io_FilteredList;
         }
-
         public static StatusType GetFilterTypeFromString(string i_FilterTypeString)
         {
             // Defulat to none
@@ -115,7 +106,6 @@ namespace Ex03.GarageManagmentSystem.GarageLogic
             }
             return o_ChosedStatusType;
         }
-
         public static void ChangeVehicleStatus(string i_LicenseNumber)
         {
             StatusType io_currentStatus = m_GarageInventory[i_LicenseNumber].StatusType;
