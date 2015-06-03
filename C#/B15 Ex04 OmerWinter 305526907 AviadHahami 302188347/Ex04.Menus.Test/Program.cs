@@ -10,6 +10,9 @@ namespace Ex04.Menus.Test
         {
             Console.WriteLine("test");
             Console.ReadKey();
+            Interfaces.MainMenu interfacesMenu = new Interfaces.MainMenu();
+            Console.WriteLine(interfacesMenu.MethodsMenu);
+            Console.ReadKey();
         }
     }
 }

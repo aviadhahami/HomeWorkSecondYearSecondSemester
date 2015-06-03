@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ex04.Menus.Interfaces
 {
-    class ShowDateOrTimeMenue : IShowDateOrTime
+    class ShowDateOrTimeMenu : IShowDateOrTime
     {
         private const string k_DATE_FORMAT = "d";
         private const string k_TIME_FORMAT = "h:mm:ss tt";
