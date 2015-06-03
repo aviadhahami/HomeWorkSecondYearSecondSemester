@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex03.GarageManagmentSystem.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex03.GarageLogic", "Ex03.GarageManagmentSystem.GarageLogic\Ex03.GarageLogic.csproj", "{594147B4-669A-435D-89AC-FF6FE885233C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2C394416-CEF8-4EF4-90C3-763D3F900978}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\Downloads\New-Text-Document\B15 Ex03 OmerWinter 305526907 AviadHahami 302188347.docx = ..\..\..\..\Downloads\New-Text-Document\B15 Ex03 OmerWinter 305526907 AviadHahami 302188347.docx
+		Submission.txt = Submission.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
