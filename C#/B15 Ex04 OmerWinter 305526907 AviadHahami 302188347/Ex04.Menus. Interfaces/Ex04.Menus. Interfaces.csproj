@@ -34,7 +34,6 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HelpAttribute.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="InfoMenu.cs" />
     <Compile Include="IInfo.cs" />
