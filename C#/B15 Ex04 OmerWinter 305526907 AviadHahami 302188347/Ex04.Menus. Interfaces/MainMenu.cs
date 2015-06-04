@@ -38,7 +38,7 @@ namespace Ex04.Menus.Interfaces
                     try
                     {
                         Console.WriteLine(test[parsedVal - 1].GetType().Name);
-                        displayClass(test[parsedVal - 1].GetType().Name);
+                        displayClass(test[parsedVal - 1].GetType().FullName);
                     }
                     catch (IndexOutOfRangeException e)
                     {
@@ -59,11 +59,44 @@ namespace Ex04.Menus.Interfaces
         private void displayClass(string i_className)
         {
             Type t = Type.GetType(i_className);
-            MethodInfo[] mi = t.GetMethods();
-            foreach (var m in mi)
+            MethodInfo[] mi;
+            string userInput;
+            int parsedVal;
+            bool parsedFlag;
+            while (true)
             {
-                Console.WriteLine(m.Name);
+                Console.Clear();
+                Console.WriteLine(t.Name);
+                Console.WriteLine("~~~~~~~~~~~~~~~");
+                mi = t.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+                for (int i = 0; i < mi.Length; i++)
+                {
+                    Console.WriteLine((i + 1) + ") " + mi[i].Name);
+                }
+                userInput = Console.ReadLine();
+                parsedFlag = int.TryParse(userInput, out parsedVal);
+                if (parsedFlag)
+                {
+                    try
+                    {
+                        mi[parsedVal - 1].Invoke(mi, null);
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("We aint got that index dude...!");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Make sure to enter a digit");
+                }
             }
+
+
+
+
+
+            Console.ReadKey();
         }
     }
 }
