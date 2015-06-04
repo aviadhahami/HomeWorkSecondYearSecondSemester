@@ -80,7 +80,9 @@ namespace Ex04.Menus.Interfaces
                     try
                     {
                         object classInstance = Activator.CreateInstance(t, null);
-                        mi[parsedVal - 1].Invoke(mi, null);
+                        mi[parsedVal - 1].Invoke(classInstance, null);
+                        Console.ReadKey();
+
                     }
                     catch (Exception)
                     {
