@@ -8,10 +8,10 @@ namespace Ex04.Menus.Test
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("test");
-            Console.ReadKey();
             Interfaces.MainMenu interfacesMenu = new Interfaces.MainMenu();
-            Console.WriteLine(interfacesMenu.MethodsMenu);
+            Console.WriteLine(interfacesMenu.GetType().Name);
+            Console.WriteLine("~~~~~~~~~~~~~~~~~~");
+            interfacesMenu.Show();
             Console.ReadKey();
         }
     }

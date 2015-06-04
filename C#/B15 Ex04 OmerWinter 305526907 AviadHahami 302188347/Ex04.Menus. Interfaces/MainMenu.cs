@@ -7,45 +7,21 @@ namespace Ex04.Menus.Interfaces
 {
     public class MainMenu
     {
-        private string m_MethodTitle;
         private InfoMenu m_InfoMenu;
         private ShowDateOrTimeMenu m_DateOrTimeMenu;
-        private List<Type> interfaces;
-        private string m_MethodsMenue;
 
         public MainMenu()
         {
-            m_MethodTitle = this.GetType().Name;
             m_InfoMenu = new InfoMenu();
             m_DateOrTimeMenu = new ShowDateOrTimeMenu();
-            List<Type> interfaces = new List<Type>();
-            interfaces.AddRange(m_InfoMenu.GetType().GetInterfaces());
-            interfaces.AddRange(m_DateOrTimeMenu.GetType().GetInterfaces());
-            int menuCounter = 0;
-            m_MethodsMenue = "";
-            foreach (Type iface in interfaces)
-            {
-                MethodInfo[] methods = iface.GetMethods();
-                foreach (MethodInfo method in methods)
-                {
-                    m_MethodsMenue += ++menuCounter + ") " + method.Name + "\n";
-                }
-            }
         }
-
-        public string MenuName
+        public void Show()
         {
-            get
-            {
-                return this.m_MethodTitle;
-            }
-        }
+            object[] test = { m_DateOrTimeMenu, m_InfoMenu };
 
-        public string MethodsMenu
-        {
-            get
+            foreach (var item in test)
             {
-                return this.m_MethodsMenue;
+                Console.WriteLine(item.GetType().FullName);
             }
         }
     }
