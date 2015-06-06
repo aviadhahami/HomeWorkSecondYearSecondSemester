@@ -31,29 +31,32 @@ namespace Ex04.Menus.Interfaces
 
             int userInput;
             bool userChoseToLeave = false;
-            StringBuilder menu = new StringBuilder();
+            StringBuilder menuContentString = new StringBuilder();
             int menuItemIndex = k_LeaveMenuOptionIndex;
-            
+
             do
             {
-                clearscreen();
-                menu.Append(generateMenuTitle(m_MenuTitle));
+                clearScreen();
+                menuContentString.Append(generateMenuTitle(m_MenuTitle));
+
                 // Inject title
-                menu.Append(generateOption(menuItemIndex, i_ExitWord));
-               // menuItemIndex++;
+                menuContentString.Append(generateOption(menuItemIndex, i_ExitWord));
+
+                // menuItemIndex++;
                 // Append menu items
                 foreach (MenuItem menuItem in i_MenuItems)
                 {
-                    menu.Append(generateOption(++menuItemIndex, menuItem.Title));
+                    menuContentString.Append(generateOption(++menuItemIndex, menuItem.Title));
                 }
 
-                Console.WriteLine(menu);
+                Console.WriteLine(menuContentString);
 
                 userInput = getUserInput(i_MenuItems);
 
                 invokeUserSelection(userInput, i_MenuItems, out userChoseToLeave);
+
                 // Re-init the stuff
-                menu.Length = 0;
+                menuContentString.Length = 0;
                 menuItemIndex = k_LeaveMenuOptionIndex;
 
                 // All this unless user wants out
@@ -69,7 +72,7 @@ namespace Ex04.Menus.Interfaces
             while (true)
             {
                 Console.WriteLine(k_EnterOption);
-                
+
                 userInput = Console.ReadLine();
                 parsingFalg = int.TryParse(userInput, out parsedValue);
                 if (parsingFalg)
@@ -92,19 +95,14 @@ namespace Ex04.Menus.Interfaces
             return parsedValue;
         }
 
-        private string generateMenuTitle(string m_MenuTitle)
+        private string generateMenuTitle(string i_MenuTitle)
         {
-            return ("~+~+~+~+~+~+" + m_MenuTitle + "~+~+~+~+~+~+\n");
+            return ("~+~+~+~+~+~+" + i_MenuTitle + "~+~+~+~+~+~+\n");
         }
 
         private string generateOption(int i_OptionIndex, string i_OptionText)
         {
             return (i_OptionIndex + ") " + i_OptionText + "\n");
-        }
-
-        private void clearscreen()
-        {
-            Console.Clear();
         }
 
         private void invokeUserSelection(int i_UserChoice, List<MenuItem> i_MenuItems, out bool io_UserWantsBack)
