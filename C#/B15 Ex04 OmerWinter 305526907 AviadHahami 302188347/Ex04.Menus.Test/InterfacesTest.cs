@@ -20,6 +20,10 @@ namespace Ex04.Menus.Test
             menuItem1.AddMenuItem(new Menus.Interfaces.MenuItem("Show Time", new ShowTimeInterface()));
             m_MainMenu.AddOption(menuItem1);
 
+            Interfaces.MenuItem menuItem2 = new Interfaces.MenuItem("Show info");
+            menuItem2.AddMenuItem(new Interfaces.MenuItem("Show version", new ShowVersionInterface()));
+            menuItem2.AddMenuItem(new Interfaces.MenuItem("Count words", new CountWordsInterface()));
+            m_MainMenu.AddOption(menuItem2);
             // Repeat stage one with the second menu
         }
         public void InvokeMenu()
