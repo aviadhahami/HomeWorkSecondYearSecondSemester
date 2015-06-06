@@ -16,6 +16,7 @@ namespace Ex04.Menus.Test
             userInput = Console.ReadLine();
             MatchCollection collection = Regex.Matches(userInput, @"[\S]+");
             Console.WriteLine("Amount of words: " + collection.Count);
+            Console.ReadLine();
         }
     }
 }

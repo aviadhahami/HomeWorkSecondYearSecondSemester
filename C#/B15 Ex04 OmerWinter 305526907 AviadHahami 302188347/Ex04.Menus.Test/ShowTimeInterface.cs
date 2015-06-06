@@ -9,6 +9,7 @@ namespace Ex04.Menus.Test
         public void performAction(string i_ActionToInvokes)
         {
             Console.WriteLine("Current time is: " + DateTime.Now.ToString("h:mm:ss tt"));
+            Console.ReadLine();
         }
     }
 }

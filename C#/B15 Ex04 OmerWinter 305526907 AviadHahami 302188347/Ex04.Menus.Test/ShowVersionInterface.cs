@@ -9,6 +9,7 @@ namespace Ex04.Menus.Test
         public void performAction(string i_ActionToInvokes)
         {
             Console.WriteLine("Version: 15.2.4.0");
+            Console.ReadLine();
         }
     }
 }
