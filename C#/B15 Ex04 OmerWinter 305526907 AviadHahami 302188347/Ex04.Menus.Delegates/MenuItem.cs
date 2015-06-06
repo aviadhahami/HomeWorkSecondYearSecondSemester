@@ -49,15 +49,12 @@ namespace Ex04.Menus.Delegates
             m_ActionToInvoke = i_ActionToInvoke;
         }
 
-        internal List<MenuItem> SubMenuItemsList
+        internal List<MenuItem> GetMenuItems()
         {
-            get
-            {
-                return r_SubmenuItems;
-            }
+            return r_SubmenuItems;
         }
 
-        internal string MenuItemTitle
+        internal string Title
         {
             get
             {

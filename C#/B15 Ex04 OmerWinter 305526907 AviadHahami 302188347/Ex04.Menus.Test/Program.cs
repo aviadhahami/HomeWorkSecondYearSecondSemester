@@ -15,13 +15,17 @@ namespace Ex04.Menus.Test
 
             // Initiate the interfaces menu
             //Interfaces.MainMenu interfacesMenu = new Interfaces.MainMenu();
-            InterfacesTest interfacesTest = new InterfacesTest("Main Menu");
+            InterfacesTest interfacesTest = new InterfacesTest("Main Menu - Interfaces");
             interfacesTest.InitMenu();
             interfacesTest.InvokeMenu();
 
             // Display informatic message
             Console.WriteLine("You're switching to Delegations based menues");
             Console.ReadLine();
+
+            DelegatesTest menuDelegates = new DelegatesTest("Main Menu - Delegates");
+            menuDelegates.InitMenu();
+            menuDelegates.InvokeMenu();
         }
     }
 }
