@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ex04.Menus.Interfaces
 {
-    interface IPerformAction
+    public interface IPerformAction
     {
         void performAction(string i_ActionToInvokes);
     }

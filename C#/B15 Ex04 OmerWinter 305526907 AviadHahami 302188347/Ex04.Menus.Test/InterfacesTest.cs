@@ -14,9 +14,13 @@ namespace Ex04.Menus.Test
         }
         public void InitMenu()
         {
+            // Create submenu, then inject it to main
             Interfaces.MenuItem menuItem1 = new Interfaces.MenuItem("Show date/time");
-            menuItem1.AddMenuItem()
-            m_MainMenu.AddMenuOption();
+            menuItem1.AddMenuItem(new Menus.Interfaces.MenuItem("Show Date", new ShowDateInterface()));
+            menuItem1.AddMenuItem(new Menus.Interfaces.MenuItem("Show Time", new ShowTimeInterface()));
+            m_MainMenu.AddOption(menuItem1);
+
+            // Repeat stage one with the second menu
         }
         public void InvokeMenu()
         {

@@ -129,5 +129,10 @@ namespace Ex04.Menus.Interfaces
         {
             Console.Clear();
         }
+
+        public void AddOption(MenuItem i_MenuItem)
+        {
+            r_MenuItems.Add(i_MenuItem);
+        }
     }
 }
