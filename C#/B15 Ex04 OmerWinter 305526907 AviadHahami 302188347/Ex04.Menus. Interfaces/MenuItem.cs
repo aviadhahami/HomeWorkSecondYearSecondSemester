@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ex04.Menus.Interfaces
 {
-    class MenuItem
+    public class MenuItem
     {
         private List<MenuItem> m_SubMenuItems;
         private IPerformAction m_ActionToInvoke;
@@ -44,5 +44,7 @@ namespace Ex04.Menus.Interfaces
         {
             m_ActionToInvoke.performAction(m_MenuTitle);
         }
+
+        public string Title { get { return m_MenuTitle; } }
     }
 }
