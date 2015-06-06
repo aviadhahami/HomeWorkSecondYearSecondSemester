@@ -33,11 +33,11 @@ namespace Ex04.Menus.Interfaces
             bool userChoseToLeave = false;
             StringBuilder menu = new StringBuilder();
             int menuItemIndex = k_LeaveMenuOptionIndex;
-            menu.Append(generateMenuTitle(m_MenuTitle));
+            
             do
             {
                 clearscreen();
-
+                menu.Append(generateMenuTitle(m_MenuTitle));
                 // Inject title
                 menu.Append(generateOption(menuItemIndex, i_ExitWord));
                // menuItemIndex++;
@@ -69,6 +69,7 @@ namespace Ex04.Menus.Interfaces
             while (true)
             {
                 Console.WriteLine(k_EnterOption);
+                
                 userInput = Console.ReadLine();
                 parsingFalg = int.TryParse(userInput, out parsedValue);
                 if (parsingFalg)
