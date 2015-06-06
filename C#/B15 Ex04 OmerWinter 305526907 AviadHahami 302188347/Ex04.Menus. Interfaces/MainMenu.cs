@@ -40,7 +40,7 @@ namespace Ex04.Menus.Interfaces
 
                 // Inject title
                 menu.Append(generateOption(menuItemIndex, i_ExitWord));
-                menuItemIndex++;
+               // menuItemIndex++;
                 // Append menu items
                 foreach (MenuItem menuItem in i_MenuItems)
                 {

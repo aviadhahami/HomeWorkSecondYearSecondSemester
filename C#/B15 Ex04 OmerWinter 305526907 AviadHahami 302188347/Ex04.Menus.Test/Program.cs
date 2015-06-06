@@ -15,8 +15,9 @@ namespace Ex04.Menus.Test
 
             // Initiate the interfaces menu
             //Interfaces.MainMenu interfacesMenu = new Interfaces.MainMenu();
-            Ex04.Menus.Interfaces.MainMenu interfacesMain = new Interfaces.MainMenu("Main Menu");
-            interfacesMain.Show();
+            InterfacesTest interfacesTest = new InterfacesTest("Main Menu");
+            interfacesTest.InitMenu();
+            interfacesTest.InvokeMenu();
 
             // Display informatic message
             Console.WriteLine("You're switching to Delegations based menues");
