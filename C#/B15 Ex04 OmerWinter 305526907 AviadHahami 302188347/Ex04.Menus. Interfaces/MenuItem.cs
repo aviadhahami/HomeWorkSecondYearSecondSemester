@@ -45,6 +45,12 @@ namespace Ex04.Menus.Interfaces
             m_ActionToInvoke.performAction(m_MenuTitle);
         }
 
-        public string Title { get { return m_MenuTitle; } }
+        public string Title
+        {
+            get
+            {
+                return m_MenuTitle;
+            }
+        }
     }
 }
