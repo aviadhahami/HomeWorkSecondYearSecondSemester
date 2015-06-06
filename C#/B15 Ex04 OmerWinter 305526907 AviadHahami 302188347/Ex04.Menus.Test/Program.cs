@@ -14,7 +14,7 @@ namespace Ex04.Menus.Test
             Console.Clear();
 
             // Initiate the interfaces menu
-            Interfaces.MainMenu interfacesMenu = new Interfaces.MainMenu();
+            //Interfaces.MainMenu interfacesMenu = new Interfaces.MainMenu();
             interfacesMenu.Show();
 
             // Display informatic message
