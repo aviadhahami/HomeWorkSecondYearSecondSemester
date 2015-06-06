@@ -34,8 +34,50 @@ namespace Ex04.Menus.Interfaces
         // Main show method
         public void Show()
         {
-
+            int i;
+            string userInput;
+            bool parsingFlag = false;
+            int parsedValue = -1;
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine(this.GetType().Name);
+                Console.WriteLine(k_HEADER_SEPARATOR);
+                i = 0;
+                Console.WriteLine(i + ") Exit");
+                foreach (object item in m_MenuItem)
+                {
+                    Console.WriteLine(++i + ") " + item.GetType().Name);
+                }
+                userInput = Console.ReadLine();
+                parsingFlag = int.TryParse(userInput, out parsedValue);
+                if (parsingFlag)
+                {
+                    if (validIndexRange(parsedValue))
+                    {
+                        // If we reached here, we should invoke something
+                        Console.WriteLine("Good good");
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        Console.WriteLine(k_NO_SUCH_OPTION);
+                        Console.ReadLine();
+                    }
+                }
+                else
+                {
+                    Console.WriteLine(k_WRONG_INPUT_TYPE);
+                    Console.ReadLine();
+                }
+            }
         }
+
+        private bool validIndexRange(int i_Index)
+        {
+            return i_Index >= 0 && i_Index <= m_MenuItem.Count;
+        }
+
 
         // Inherited
         public void NotifyPick()
