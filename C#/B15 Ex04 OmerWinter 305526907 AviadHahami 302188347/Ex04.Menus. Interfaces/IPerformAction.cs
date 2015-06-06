@@ -4,9 +4,8 @@ using System.Text;
 
 namespace Ex04.Menus.Interfaces
 {
-    interface IShowDateOrTime
+    interface IPerformAction
     {
-        void ShowTime();
-        void ShowDate();
+        void performAction(string i_ActionToInvokes);
     }
 }
