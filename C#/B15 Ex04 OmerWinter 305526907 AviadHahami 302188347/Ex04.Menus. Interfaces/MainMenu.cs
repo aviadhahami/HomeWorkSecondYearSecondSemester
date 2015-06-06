@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ex04.Menus.Interfaces
 {
-    public class MainMenu
+    public class MainMenu : IPickObserver
     {
         private const string k_WRONG_INPUT_TYPE = "Please type a proper choice's index";
         private const string k_HEADER_SEPARATOR = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
@@ -22,12 +22,23 @@ namespace Ex04.Menus.Interfaces
         public MainMenu()
         {
             // Add "workers" to "company"
-            m_MenuItem.Add(new InfoMenu());
-            m_MenuItem.Add(new ShowDateOrTimeMenu());
+            InfoMenu infoMenu = new InfoMenu();
+            infoMenu.AttachPickObserver(this as IPickObserver);
+            m_MenuItem.Add(infoMenu);
+
+            ShowDateOrTimeMenu showDateMenu = new ShowDateOrTimeMenu();
+            showDateMenu.AttachPickObserver(this as IPickObserver);
+            m_MenuItem.Add(showDateMenu);
         }
 
         // Main show method
         public void Show()
+        {
+
+        }
+
+        // Inherited
+        public void NotifyPick()
         {
 
         }
