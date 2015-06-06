@@ -56,8 +56,7 @@ namespace Ex04.Menus.Interfaces
                     if (validIndexRange(parsedValue))
                     {
                         // If we reached here, we should invoke something
-                        Console.WriteLine("Good good");
-                        Console.ReadKey();
+                        invokeAction(parsedValue);
                     }
                     else
                     {
@@ -70,6 +69,23 @@ namespace Ex04.Menus.Interfaces
                     Console.WriteLine(k_WRONG_INPUT_TYPE);
                     Console.ReadLine();
                 }
+            }
+        }
+
+        private void invokeAction(int i_OptionIndex)
+        {
+            if (i_OptionIndex == 0)
+            {
+                Console.WriteLine(k_SAY_BYE);
+                Console.ReadLine();
+                Environment.Exit(0);
+            }
+            else
+            {
+                Console.WriteLine(m_MenuItem[i_OptionIndex - 1].GetType().Name);
+                Console.ReadLine();
+                // BABAYOV
+                // m_MenuItem[i_OptionIndex - 1]();
             }
         }
 
