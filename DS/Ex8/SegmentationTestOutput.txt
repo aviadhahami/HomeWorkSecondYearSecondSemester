@@ -1,0 +1,89 @@
+Results for maze1.PNG
+true
+true
+true
+true
+true
+true
+false
+Number of components: 3
+Maze has solution: true
+------------------------------------------------
+Results for maze2.PNG
+true
+true
+true
+true
+true
+true
+true
+Number of components: 3
+Maze has solution: false
+------------------------------------------------
+Results for maze3.PNG
+true
+true
+true
+true
+false
+true
+false
+Number of components: 3
+Maze has solution: true
+------------------------------------------------
+Results for maze4.PNG
+true
+true
+true
+true
+false
+true
+false
+Number of components: 3
+Maze has solution: false
+------------------------------------------------
+Results for maze5.PNG
+false
+true
+true
+false
+true
+true
+false
+Number of components: 3
+Maze has solution: true
+------------------------------------------------
+Results for maze6.PNG
+false
+true
+true
+false
+true
+true
+false
+Number of components: 4
+Maze has solution: false
+------------------------------------------------
+Results for maze7.PNG
+false
+false
+true
+true
+true
+true
+false
+Number of components: 3
+Maze has solution: true
+------------------------------------------------
+Results for maze8.PNG
+true
+false
+true
+true
+true
+true
+false
+Number of components: 3
+Maze has solution: false
+------------------------------------------------
+
