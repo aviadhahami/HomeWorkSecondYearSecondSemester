@@ -51,9 +51,6 @@ namespace Ex05.Othello.UI
         }
 
         /// Handles the Elapsed event of the m_ComputerTurnTimer control.
-        /// <param name="i_Sender">The source of the event.</param>
-        /// <param name="i_ElapsedEventArgs">The <see cref="System.Timers.ElapsedEventArgs"/> instance containing the event data.</param>
-        /// <example>http://stackoverflow.com/questions/782274/using-c-methodinvoker-invoke-for-a-gui-app-is-this-good</example>
         private void m_ComputerTurnTimer_Elapsed(object i_Sender, ElapsedEventArgs i_ElapsedEventArgs)
         {
             m_ComputerTurnTimer.Enabled = false;
@@ -69,8 +66,6 @@ namespace Ex05.Othello.UI
         }
 
         /// Handles the OnTurnPassed event of the m_LogicBoard control.
-        /// <param name="i_Sender">The source of the event.</param>
-        /// <param name="i_PassTurnEventArgs">The <see cref="Ex05.Othello.Logic.PassTurnEventArgs"/> instance containing the event data.</param>
         private void m_LogicBoard_OnTurnPassed(object i_Sender, PassTurnEventArgs i_PassTurnEventArgs)
         {
             DiskMode passedFrom = i_PassTurnEventArgs.PassedFrom;
@@ -81,8 +76,6 @@ namespace Ex05.Othello.UI
         }
 
         /// Handles the OnGameOver event of the m_LogicBoard control.
-        /// <param name="i_Sender">The source of the event.</param>
-        /// <param name="i_EndGameEventArgs">The <see cref="Ex05.Othello.Logic.EndGameEventArgs"/> instance containing the event data.</param>
         private void m_LogicBoard_OnGameOver(object i_Sender, EndGameEventArgs i_EndGameEventArgs)
         {
             DiskMode winner = i_EndGameEventArgs.Winner;
@@ -121,7 +114,6 @@ namespace Ex05.Othello.UI
         }
 
         /// Calculates the dimensions.
-        /// <returns></returns>
         private Size calculateDimensions()
         {
             int buttonsSize = OthelloButton.ButtonSize * r_Size;
@@ -165,8 +157,6 @@ namespace Ex05.Othello.UI
         }
 
         /// Handles the Click event of the button control.
-        /// <param name="i_Sender">The source of the event.</param>
-        /// <param name="i_EventArgs">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void button_Click(object i_Sender, EventArgs i_EventArgs)
         {
             if (!m_ComputersTurn)
@@ -184,7 +174,6 @@ namespace Ex05.Othello.UI
         }
 
         /// Gets the random move.
-        /// <returns></returns>
         private OthelloDisk getRandomMove()
         {
             List<OthelloDisk> optionalMoves = m_LogicBoard.OptionalMoves;
@@ -195,8 +184,6 @@ namespace Ex05.Othello.UI
         }
 
         /// Changes the button display.
-        /// <param name="i_OthelloButton">The othell button.</param>
-        /// <param name="i_DiskMode">The disk mode.</param>
         private void changeButtonDisplay(OthelloButton i_OthelloButton, DiskMode i_DiskMode)
         {
             switch (i_DiskMode)
@@ -227,9 +214,8 @@ namespace Ex05.Othello.UI
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OthelloBoard));
             this.SuspendLayout();
-            // 
+
             // OthelloBoard
-            // 
             this.ClientSize = new System.Drawing.Size(284, 262);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "OthelloBoard";
