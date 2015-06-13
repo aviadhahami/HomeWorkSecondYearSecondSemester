@@ -10,9 +10,7 @@ namespace Ex05.Othello.UI
     {
         private event EventHandler<EventArgs> m_OnClose = null;
 
-        /// <summary>
         /// Occurs when [on close].
-        /// </summary>
         public event EventHandler<EventArgs> OnClose
         {
             add
@@ -25,9 +23,7 @@ namespace Ex05.Othello.UI
             }
         }
 
-        /// <summary>
         /// Raises the <see cref="E:Closed"/> event.
-        /// </summary>
         /// <param name="i_EventArgs">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected override void OnClosed(EventArgs i_EventArgs)
         {

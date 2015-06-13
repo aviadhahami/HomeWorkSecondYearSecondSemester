@@ -16,9 +16,7 @@ namespace Ex05.Othello.UI
         private static readonly int sr_Margin = 3;
         private static readonly string sr_Text = "O";
 
-        /// <summary>
         /// Initializes a new instance of the <see cref="OthelloButton"/> class.
-        /// </summary>
         /// <param name="i_Column">The i_ column.</param>
         /// <param name="i_Row">The i_ row.</param>
         public OthelloButton(int i_Column, int i_Row)
@@ -30,9 +28,7 @@ namespace Ex05.Othello.UI
             Disable();
         }
 
-        /// <summary>
         /// Gets the size of the button.
-        /// </summary>
         /// <value>
         /// The size of the button.
         /// </value>
@@ -41,33 +37,25 @@ namespace Ex05.Othello.UI
             get { return sr_Size; }
         }
 
-        /// <summary>
         /// Gets the button margin.
-        /// </summary>
         public static int ButtonMargin
         {
             get { return sr_Margin; }
         }
 
-        /// <summary>
         /// Gets the row.
-        /// </summary>
         public int Row
         {
             get { return sr_Row; }
         }
 
-        /// <summary>
         /// Gets the column.
-        /// </summary>
         public int Column
         {
             get { return sr_Column; }
         }
 
-        /// <summary>
         /// Converts the button to black.
-        /// </summary>
         public void ConvertToBlack()
         {
             bool enabled = true;
@@ -78,9 +66,7 @@ namespace Ex05.Othello.UI
             setStyle(sr_Text, backColor, foreColor, enabled);
         }
 
-        /// <summary>
         /// Converts the button to white.
-        /// </summary>
         public void ConvertToWhite()
         {
             bool enabled = true;
@@ -91,9 +77,7 @@ namespace Ex05.Othello.UI
             setStyle(sr_Text, backColor, foreColor, enabled);
         }
 
-        /// <summary>
         /// Converts the button to optional.
-        /// </summary>
         public void ConvertToOptional()
         {
             bool enabled = true;
@@ -104,9 +88,7 @@ namespace Ex05.Othello.UI
             setStyle(string.Empty, backColor, foreColor, enabled);
         }
 
-        /// <summary>
         /// Disables this button.
-        /// </summary>
         public void Disable()
         {
             bool enabled = false;
@@ -116,9 +98,7 @@ namespace Ex05.Othello.UI
             setStyle(string.Empty, backColor, foreColor, enabled);
         }
 
-        /// <summary>
         /// Sets the style.
-        /// </summary>
         /// <param name="i_Text">The text of the button .</param>
         /// <param name="i_BackColor">Backgound color of the button.</param>
         /// <param name="i_ForeColor">Foreground color of the i_ fore.</param>
@@ -131,9 +111,7 @@ namespace Ex05.Othello.UI
             this.ForeColor = i_ForeColor;
         }
 
-        /// <summary>
         /// Raises the <see cref="E:Click"/> event.
-        /// </summary>
         /// <param name="i_EventArgs">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected override void OnClick(EventArgs i_EventArgs)
         {   
@@ -144,9 +122,7 @@ namespace Ex05.Othello.UI
             }
         }
 
-        /// <summary>
         /// Raises the <see cref="E:MouseEnter"/> event.
-        /// </summary>
         /// <param name="i_EventArgs">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected override void OnMouseEnter(EventArgs i_EventArgs)
         {
@@ -158,9 +134,7 @@ namespace Ex05.Othello.UI
             }
         }
 
-        /// <summary>
         /// Raises the <see cref="E:MouseLeave"/> event.
-        /// </summary>
         /// <param name="i_EventArgs">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected override void OnMouseLeave(EventArgs i_EventArgs)
         {
@@ -169,9 +143,7 @@ namespace Ex05.Othello.UI
             base.OnMouseLeave(i_EventArgs);
         }
 
-        /// <summary>
         /// Returns a <see cref="System.String"/> that represents this instance.
-        /// </summary>
         /// <returns>
         /// A <see cref="System.String"/> that represents this instance.
         /// </returns>

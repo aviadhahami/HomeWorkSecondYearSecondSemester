@@ -15,10 +15,6 @@ namespace Ex05.Othello.Logic
         private event EventHandler<EndGameEventArgs> m_OnGameOver = null;
         private event EventHandler<PassTurnEventArgs> m_OnTurnPassed = null;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="OthelloLogicBoard"/> class.
-        /// </summary>
-        /// <param name="i_Size">Size of the board (Size x Size).</param>
         public OthelloLogicBoard(int i_Size)
         {
             r_Size = i_Size;
@@ -36,25 +32,18 @@ namespace Ex05.Othello.Logic
             }
         }
 
-        /// <summary>
         /// Gets the optional moves.
-        /// </summary>
         public List<OthelloDisk> OptionalMoves
         {
             get { return m_OptionalMoves; }
         }
 
-        /// <summary>
-        /// Gets the <see cref="Ex05.Othello.Logic.OthelloDisk"/> with the specified column/row.
-        /// </summary>
         public OthelloDisk this[int i_Column, int i_Row]
         {
             get { return m_OthelloDisks[i_Column, i_Row]; }
         }
 
-        /// <summary>
         /// Occurs when [on game over].
-        /// </summary>
         public event EventHandler<EndGameEventArgs> OnGameOver
         {
             add
@@ -67,9 +56,7 @@ namespace Ex05.Othello.Logic
             }
         }
 
-        /// <summary>
         /// Occurs when [on turn passed].
-        /// </summary>
         public event EventHandler<PassTurnEventArgs> OnTurnPassed
         {
             add
@@ -82,9 +69,7 @@ namespace Ex05.Othello.Logic
             }
         }
 
-        /// <summary>
         /// Creates a new game.
-        /// </summary>
         public void NewGame()
         {
             int halfSize = r_Size / 2;
@@ -114,11 +99,7 @@ namespace Ex05.Othello.Logic
             }
         }
 
-        /// <summary>
         /// Makes the move.
-        /// </summary>
-        /// <param name="i_Column">The i_ column.</param>
-        /// <param name="i_Row">The i_ row.</param>
         public void MakeMove(int i_Column, int i_Row)
         {
             int row = 0;
@@ -150,15 +131,8 @@ namespace Ex05.Othello.Logic
             calculateValidMoves();
         }
 
-        /// <summary>
         /// Determines whether [is valid move] [the specified i_ disk mode].
-        /// </summary>
-        /// <param name="i_DiskMode">The disk mode.</param>
-        /// <param name="i_Column">The column.</param>
-        /// <param name="i_Row">The row.</param>
-        /// <returns>
-        ///   <c>true</c> if [is valid move] [the specified disk mode]; otherwise, <c>false</c>.
-        /// </returns>
+        /// true if is valid move the specified disk mode; otherwise, false.
         private bool isValidMove(DiskMode i_DiskMode, int i_Column, int i_Row)
         {
             if (this[i_Column, i_Row].DiskMode == DiskMode.IlegalMove)
@@ -178,9 +152,7 @@ namespace Ex05.Othello.Logic
             return false;
         }
 
-        /// <summary>
         /// Calculates the valid moves.
-        /// </summary>
         private void calculateValidMoves()
         {
             bool hasOptionalMoves = false;
@@ -213,11 +185,7 @@ namespace Ex05.Othello.Logic
             }
         }
 
-        /// <summary>
         /// Tries the calculate valid moves.
-        /// </summary>
-        /// <param name="i_DiskMode">The disk mode.</param>
-        /// <returns></returns>
         private bool tryCalculateValidMoves(DiskMode i_DiskMode)
         {
             for (int row = 0; row < r_Size; row++)
@@ -237,9 +205,7 @@ namespace Ex05.Othello.Logic
             return m_OptionalMoves.Count > 0;
         }
 
-        /// <summary>
         /// Handles the game over.
-        /// </summary>
         private void handleGameOver()
         {
             if (m_OnGameOver != null)
@@ -255,12 +221,7 @@ namespace Ex05.Othello.Logic
             }
         }
 
-        /// <summary>
         /// Counts the disks.
-        /// </summary>
-        /// <param name="io_WinnerCount">The winner's disk count.</param>
-        /// <param name="io_LoserCount">The loser's disk count.</param>
-        /// <returns></returns>
         private DiskMode countDisks(out int io_WinnerCount, out int io_LoserCount)
         {
             int blackCount = 0;
@@ -303,9 +264,7 @@ namespace Ex05.Othello.Logic
             return winnerDiskMode;
         }
 
-        /// <summary>
         /// Clears the valid moves.
-        /// </summary>
         private void clearValidMoves()
         {
             foreach (OthelloDisk disk in m_OptionalMoves)
@@ -319,17 +278,8 @@ namespace Ex05.Othello.Logic
             m_OptionalMoves.Clear();
         }
 
-        /// <summary>
         /// Determines whether this instance [can convert to] the specified disk mode.
-        /// </summary>
-        /// <param name="i_DiskMode">The disk mode.</param>
-        /// <param name="i_StartRow">The start row.</param>
-        /// <param name="i_StartColumn">The start column.</param>
-        /// <param name="i_RowIncrementor">The row incrementor.</param>
-        /// <param name="i_ColumnIncrementor">The column incrementor.</param>
-        /// <returns>
-        ///   <c>true</c> if this instance [can convert to] the specified disk mode; otherwise, <c>false</c>.
-        /// </returns>
+        /// true if this instance can convert to the specified disk mode; otherwise, false.
         private bool canConvertTo(DiskMode i_DiskMode, int i_StartRow, int i_StartColumn, int i_RowIncrementor, int i_ColumnIncrementor)
         {
             // Try to find oponenet's disk
@@ -351,11 +301,7 @@ namespace Ex05.Othello.Logic
             return true;
         }
 
-        /// <summary>
         /// Gets the opposite mode.
-        /// </summary>
-        /// <param name="i_DiskMode">The disk mode.</param>
-        /// <returns></returns>
         private DiskMode getOppositeMode(DiskMode i_DiskMode)
         {
             return i_DiskMode == DiskMode.Black ? DiskMode.White : DiskMode.Black;

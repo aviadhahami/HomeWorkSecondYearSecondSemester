@@ -23,9 +23,7 @@ namespace Ex05.Othello.UI
         private System.Timers.Timer m_ComputerTurnTimer = null;
         private MethodInvoker m_MakeComputerMoveInvoker = null;
 
-        /// <summary>
         /// Initializes a new instance of the <see cref="OthelloBoard"/> class.
-        /// </summary>
         /// <param name="i_Size">Size of the Board (Size x Size)</param>
         /// <param name="i_GameMode">The game mode.</param>
         public OthelloBoard(int i_Size, GameMode i_GameMode)
@@ -51,9 +49,7 @@ namespace Ex05.Othello.UI
             this.Show();
         }
 
-        /// <summary>
         /// Handles the Elapsed event of the m_ComputerTurnTimer control.
-        /// </summary>
         /// <param name="i_Sender">The source of the event.</param>
         /// <param name="i_ElapsedEventArgs">The <see cref="System.Timers.ElapsedEventArgs"/> instance containing the event data.</param>
         /// <example>http://stackoverflow.com/questions/782274/using-c-methodinvoker-invoke-for-a-gui-app-is-this-good</example>
@@ -63,9 +59,7 @@ namespace Ex05.Othello.UI
             BeginInvoke(m_MakeComputerMoveInvoker);
         }
 
-        /// <summary>
         /// Makes the computer move.
-        /// </summary>
         private void makeComputerMove()
         {
             OthelloDisk computersDisk = getRandomMove();
@@ -73,9 +67,7 @@ namespace Ex05.Othello.UI
             m_ComputersTurn = false;
         }
 
-        /// <summary>
         /// Handles the OnTurnPassed event of the m_LogicBoard control.
-        /// </summary>
         /// <param name="i_Sender">The source of the event.</param>
         /// <param name="i_PassTurnEventArgs">The <see cref="Ex05.Othello.Logic.PassTurnEventArgs"/> instance containing the event data.</param>
         private void m_LogicBoard_OnTurnPassed(object i_Sender, PassTurnEventArgs i_PassTurnEventArgs)
@@ -87,9 +79,7 @@ namespace Ex05.Othello.UI
             MessageBox.Show(message, "Othello", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
-        /// <summary>
         /// Handles the OnGameOver event of the m_LogicBoard control.
-        /// </summary>
         /// <param name="i_Sender">The source of the event.</param>
         /// <param name="i_EndGameEventArgs">The <see cref="Ex05.Othello.Logic.EndGameEventArgs"/> instance containing the event data.</param>
         private void m_LogicBoard_OnGameOver(object i_Sender, EndGameEventArgs i_EndGameEventArgs)
@@ -129,9 +119,7 @@ namespace Ex05.Othello.UI
             }
         }
 
-        /// <summary>
         /// Calculates the dimensions.
-        /// </summary>
         /// <returns></returns>
         private Size calculateDimensions()
         {
@@ -141,9 +129,7 @@ namespace Ex05.Othello.UI
             return new Size(totalSize, totalSize + sr_FormBorderStyleHeight);
         }
 
-        /// <summary>
         /// Draws the butttons.
-        /// </summary>
         private void drawButttons()
         {
             int top = sr_FirstButtonLocation;
@@ -177,9 +163,7 @@ namespace Ex05.Othello.UI
             }
         }
 
-        /// <summary>
         /// Handles the Click event of the button control.
-        /// </summary>
         /// <param name="i_Sender">The source of the event.</param>
         /// <param name="i_EventArgs">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void button_Click(object i_Sender, EventArgs i_EventArgs)
@@ -198,9 +182,7 @@ namespace Ex05.Othello.UI
             }
         }
 
-        /// <summary>
         /// Gets the random move.
-        /// </summary>
         /// <returns></returns>
         private OthelloDisk getRandomMove()
         {
@@ -211,9 +193,7 @@ namespace Ex05.Othello.UI
             return optionalMoves[randomIndex];
         }
 
-        /// <summary>
         /// Changes the button display.
-        /// </summary>
         /// <param name="i_OthelloButton">The othell button.</param>
         /// <param name="i_DiskMode">The disk mode.</param>
         private void changeButtonDisplay(OthelloButton i_OthelloButton, DiskMode i_DiskMode)
