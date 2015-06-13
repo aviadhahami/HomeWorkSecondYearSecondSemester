@@ -8,7 +8,6 @@ namespace Ex05.Othello.Logic
         private DiskMode m_PassedTo;
         private DiskMode m_PassedFrom;
 
-        /// Initializes a new instance of the <see cref="PassTurnEventArgs"/> class.
         public PassTurnEventArgs(DiskMode i_PassedFrom, DiskMode i_PassedTo)
         {
             m_PassedTo = i_PassedTo;

@@ -9,9 +9,6 @@ namespace Ex05.Othello.Logic
         private int m_Column;
         private int m_Row;
 
-        /// Initializes a new instance of the <see cref="Location"/> struct.
-        /// <param name="i_Column">The column.</param>
-        /// <param name="i_Row">The row.</param>
         public Location(int i_Column, int i_Row)
         {
             m_Column = i_Column;
