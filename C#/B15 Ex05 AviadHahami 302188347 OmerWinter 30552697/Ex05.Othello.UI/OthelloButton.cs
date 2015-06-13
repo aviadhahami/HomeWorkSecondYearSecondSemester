@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
@@ -14,7 +13,7 @@ namespace Ex05.Othello.UI
         private readonly int sr_Row = 0;
         private static readonly int sr_Size = 32;
         private static readonly int sr_Margin = 3;
-        private static readonly string sr_Text = "O";
+        private static readonly string sr_Text = "Click Me";
 
         /// Initializes a new instance of the <see cref="OthelloButton"/> class.
         /// <param name="i_Column">The i_ column.</param>
