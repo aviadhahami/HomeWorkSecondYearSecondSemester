@@ -27,7 +27,7 @@ namespace Ex05.Othello.UI
         /// <param name="i_GameMode">The game mode.</param>
         public OthelloBoard(int i_Size, GameMode i_GameMode)
         {
-            this.Text = "Othello";
+            this.Text = "Othello GameZone";
             r_Size = i_Size;
             r_GameMode = i_GameMode;
             this.Size = calculateDimensions();
