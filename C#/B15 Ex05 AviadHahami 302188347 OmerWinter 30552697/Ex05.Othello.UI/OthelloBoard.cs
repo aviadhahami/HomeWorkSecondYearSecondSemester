@@ -174,7 +174,7 @@ namespace Ex05.Othello.UI
 
         private void modifyTitle(string i_CurrentTurnColor)
         {
-            this.Text = i_CurrentTurnColor + " player's turn";
+            this.Text = "Othello - " + i_CurrentTurnColor + "'s turn";
         }
 
 
