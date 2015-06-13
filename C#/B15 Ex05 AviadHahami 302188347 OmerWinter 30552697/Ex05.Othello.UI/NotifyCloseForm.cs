@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
@@ -34,11 +35,15 @@ namespace Ex05.Othello.UI
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NotifyCloseForm));
             this.SuspendLayout();
             // 
             // NotifyCloseForm
             // 
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Font = new System.Drawing.Font("Ubuntu Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NotifyCloseForm";
             this.Load += new System.EventHandler(this.NotifyCloseForm_Load);
             this.ResumeLayout(false);
@@ -49,5 +54,6 @@ namespace Ex05.Othello.UI
         {
 
         }
+        
     }
 }
