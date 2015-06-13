@@ -13,7 +13,7 @@ namespace Ex05.Othello.UI
         private readonly int r_Row = 0;
         private static readonly int sr_Size = 32;
         private static readonly int sr_Margin = 3;
-        private static readonly string sr_Text = "✈";
+        private static readonly string sr_Text = "O";
 
         /// Initializes a new instance of the OthelloButton class.
         public OthelloButton(int i_Column, int i_Row)
@@ -75,8 +75,8 @@ namespace Ex05.Othello.UI
         public void ConvertToOptional()
         {
             bool enabled = true;
-            Color backColor = Color.Coral;
-            Color foreColor = Color.Coral;
+            Color backColor = Color.GreenYellow;
+            Color foreColor = Color.GreenYellow;
 
             this.m_IsEnabled = true;
             setStyle(string.Empty, backColor, foreColor, enabled);

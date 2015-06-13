@@ -57,9 +57,11 @@ namespace Ex05.Othello.UI
         /// Makes the computer move.
         private void makeComputerMove()
         {
+           
             OthelloDisk computersDisk = getRandomMove();
             m_LogicBoard.MakeMove(computersDisk.DiskLocation.Column, computersDisk.DiskLocation.Row);
             m_ComputersTurn = false;
+            modifyTitle(m_LogicBoard.CurrentTurn);
         }
 
         /// Handles the OnTurnPassed event of the m_LogicBoard control.
@@ -156,19 +158,27 @@ namespace Ex05.Othello.UI
         /// Handles the Click event of the button control.
         private void button_Click(object i_Sender, EventArgs i_EventArgs)
         {
+           
             if (!m_ComputersTurn)
             {
                 OthelloButton button = i_Sender as OthelloButton;
-
                 m_LogicBoard.MakeMove(button.Column, button.Row);
-
                 if (r_GameMode == GameMode.AgainstComputer)
                 {
                     m_ComputersTurn = true;
                     m_ComputerTurnTimer.Enabled = true;
                 }
             }
+            modifyTitle(m_LogicBoard.CurrentTurn);
         }
+
+        private void modifyTitle(string i_CurrentTurnColor)
+        {
+            this.Text = i_CurrentTurnColor + " player's turn";
+        }
+
+
+
 
         /// Gets the random move.
         private OthelloDisk getRandomMove()

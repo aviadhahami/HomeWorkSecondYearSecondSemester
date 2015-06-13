@@ -32,7 +32,7 @@ namespace Ex05.Othello.UI
             intializeButtons();
         }
 
-        /// Occurs when [on settings changed].
+        /// Occurs when on settings changed.
         public event EventHandler<GameEventArgs> OnSettingsChanged
         {
             add

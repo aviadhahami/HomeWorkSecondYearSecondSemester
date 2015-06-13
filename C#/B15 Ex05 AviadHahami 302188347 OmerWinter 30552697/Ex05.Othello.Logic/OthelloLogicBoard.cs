@@ -124,7 +124,6 @@ namespace Ex05.Othello.Logic
                     }
                 }
             }
-
             m_CurrentDiskMode = oppositeMode;
             calculateValidMoves();
         }
@@ -303,6 +302,14 @@ namespace Ex05.Othello.Logic
         private DiskMode getOppositeMode(DiskMode i_DiskMode)
         {
             return i_DiskMode == DiskMode.Black ? DiskMode.White : DiskMode.Black;
+        }
+
+        public string CurrentTurn
+        {
+            get
+            {
+                return m_CurrentDiskMode.ToString();
+            }
         }
     }
 }
