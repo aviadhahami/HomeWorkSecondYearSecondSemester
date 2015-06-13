@@ -22,9 +22,6 @@ namespace Ex05.Othello.UI
         private System.Timers.Timer m_ComputerTurnTimer = null;
         private MethodInvoker m_MakeComputerMoveInvoker = null;
 
-        /// Initializes a new instance of the <see cref="OthelloBoard"/> class.
-        /// <param name="i_Size">Size of the Board (Size x Size)</param>
-        /// <param name="i_GameMode">The game mode.</param>
         public OthelloBoard(int i_Size, GameMode i_GameMode)
         {
             this.Text = "Othello GameZone";
