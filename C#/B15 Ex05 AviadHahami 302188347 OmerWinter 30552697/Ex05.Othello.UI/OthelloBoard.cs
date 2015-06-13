@@ -45,6 +45,8 @@ namespace Ex05.Othello.UI
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             m_LogicBoard.NewGame();
 
+            // For fun :)
+            this.Icon = Othello.UI.Properties.Resources.dog;
             this.Show();
         }
 
@@ -196,7 +198,7 @@ namespace Ex05.Othello.UI
         /// <param name="i_OthelloButton">The othell button.</param>
         /// <param name="i_DiskMode">The disk mode.</param>
         private void changeButtonDisplay(OthelloButton i_OthelloButton, DiskMode i_DiskMode)
-        {   
+        {
             switch (i_DiskMode)
             {
                 case DiskMode.IlegalMove:
@@ -219,6 +221,26 @@ namespace Ex05.Othello.UI
                     i_OthelloButton.ConvertToOptional();
                     break;
             }
+        }
+
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OthelloBoard));
+            this.SuspendLayout();
+            // 
+            // OthelloBoard
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "OthelloBoard";
+            this.Load += new System.EventHandler(this.OthelloBoard_Load);
+            this.ResumeLayout(false);
+
+        }
+
+        private void OthelloBoard_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

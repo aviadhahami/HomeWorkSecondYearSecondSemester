@@ -122,11 +122,13 @@ namespace Ex05.Othello.UI
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameSettings));
             this.SuspendLayout();
             // 
             // GameSettings
             // 
             this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GameSettings";
             this.Load += new System.EventHandler(this.GameSettings_Load);
             this.ResumeLayout(false);
