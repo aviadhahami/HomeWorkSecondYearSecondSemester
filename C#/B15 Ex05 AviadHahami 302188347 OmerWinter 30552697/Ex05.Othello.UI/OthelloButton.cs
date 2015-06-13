@@ -15,9 +15,7 @@ namespace Ex05.Othello.UI
         private static readonly int sr_Margin = 3;
         private static readonly string sr_Text = "✈";
 
-        /// Initializes a new instance of the <see cref="OthelloButton"/> class.
-        /// <param name="i_Column">The i_ column.</param>
-        /// <param name="i_Row">The i_ row.</param>
+        /// Initializes a new instance of the OthelloButton class.
         public OthelloButton(int i_Column, int i_Row)
         {
             this.r_Column = i_Column;
@@ -28,9 +26,6 @@ namespace Ex05.Othello.UI
         }
 
         /// Gets the size of the button.
-        /// <value>
-        /// The size of the button.
-        /// </value>
         public static int ButtonSize
         {
             get { return sr_Size; }
@@ -98,10 +93,6 @@ namespace Ex05.Othello.UI
         }
 
         /// Sets the style.
-        /// <param name="i_Text">The text of the button .</param>
-        /// <param name="i_BackColor">Backgound color of the button.</param>
-        /// <param name="i_ForeColor">Foreground color of the i_ fore.</param>
-        /// <param name="i_Enabled">if set to <c>true</c> [enabled].</param>
         private void setStyle(string i_Text, Color i_BackColor, Color i_ForeColor, bool i_Enabled)
         {
             this.Text = i_Text;
@@ -110,8 +101,6 @@ namespace Ex05.Othello.UI
             this.ForeColor = i_ForeColor;
         }
 
-        /// Raises the <see cref="E:Click"/> event.
-        /// <param name="i_EventArgs">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected override void OnClick(EventArgs i_EventArgs)
         {   
             //Prevent clicks when the button is not in optional mode
@@ -121,8 +110,6 @@ namespace Ex05.Othello.UI
             }
         }
 
-        /// Raises the <see cref="E:MouseEnter"/> event.
-        /// <param name="i_EventArgs">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected override void OnMouseEnter(EventArgs i_EventArgs)
         {
             //Change the cursor to hand in order to show that the button is clickable.
@@ -133,8 +120,6 @@ namespace Ex05.Othello.UI
             }
         }
 
-        /// Raises the <see cref="E:MouseLeave"/> event.
-        /// <param name="i_EventArgs">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected override void OnMouseLeave(EventArgs i_EventArgs)
         {
             //Change the cursor back to narmal when the button lost focus.
@@ -142,10 +127,6 @@ namespace Ex05.Othello.UI
             base.OnMouseLeave(i_EventArgs);
         }
 
-        /// Returns a <see cref="System.String"/> that represents this instance.
-        /// <returns>
-        /// A <see cref="System.String"/> that represents this instance.
-        /// </returns>
         public override string ToString()
         {
             return string.Format("Column :{0} Row: {1}", this.Column, this.Row); 
