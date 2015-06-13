@@ -9,8 +9,8 @@ namespace Ex05.Othello.UI
     public class OthelloButton : Button
     {
         private bool m_IsEnabled = false;
-        private readonly int sr_Column = 0;
-        private readonly int sr_Row = 0;
+        private readonly int r_Column = 0;
+        private readonly int r_Row = 0;
         private static readonly int sr_Size = 32;
         private static readonly int sr_Margin = 3;
         private static readonly string sr_Text = "✈";
@@ -20,8 +20,8 @@ namespace Ex05.Othello.UI
         /// <param name="i_Row">The i_ row.</param>
         public OthelloButton(int i_Column, int i_Row)
         {
-            this.sr_Column = i_Column;
-            this.sr_Row = i_Row;
+            this.r_Column = i_Column;
+            this.r_Row = i_Row;
             this.Size = new Size(sr_Size, sr_Size);
             this.Margin = new Padding(sr_Margin);
             Disable();
@@ -45,13 +45,13 @@ namespace Ex05.Othello.UI
         /// Gets the row.
         public int Row
         {
-            get { return sr_Row; }
+            get { return r_Row; }
         }
 
         /// Gets the column.
         public int Column
         {
-            get { return sr_Column; }
+            get { return r_Column; }
         }
 
         /// Converts the button to black.
