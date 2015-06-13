@@ -18,7 +18,6 @@ namespace Ex05.Othello.UI
         public Button m_PlayAgainstComputerButton = null;
         private event EventHandler<GameEventArgs> m_OnSettingsChanged = null;
 
-        /// Initializes a new instance of the <see cref="GameSettings"/> class.
         public GameSettings()
         {
             m_BoardSize = m_MinBoardSize;
@@ -74,8 +73,6 @@ namespace Ex05.Othello.UI
         }
 
         /// Handles the Click event of the m_BoardSizeButton control.
-        /// <param name="i_Sender">The source of the event.</param>
-        /// <param name="i_EventArgs">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void m_BoardSizeButton_Click(object i_Sender, EventArgs i_EventArgs)
         {
             if (m_BoardSize == m_MaxBoardSize)
@@ -91,8 +88,6 @@ namespace Ex05.Othello.UI
         }
 
         /// Handles the Click event of the m_PlayAgainstComputerButton control.
-        /// <param name="i_Sender">The source of the event.</param>
-        /// <param name="i_EventArgs">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void m_PlayAgainstComputerButton_Click(object i_Sender, EventArgs i_EventArgs)
         {
             if (m_OnSettingsChanged != null)
@@ -103,8 +98,6 @@ namespace Ex05.Othello.UI
         }
 
         /// Handles the Click event of the m_PlayAgainstFriendButton control.
-        /// <param name="i_Sender">The source of the event.</param>
-        /// <param name="i_EventArgs">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void m_PlayAgainstFriendButton_Click(object i_Sender, EventArgs i_EventArgs)
         {
             if (m_OnSettingsChanged != null)

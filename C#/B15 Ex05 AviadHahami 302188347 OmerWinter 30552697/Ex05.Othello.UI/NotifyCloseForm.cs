@@ -23,8 +23,6 @@ namespace Ex05.Othello.UI
             }
         }
 
-        /// Raises the <see cref="E:Closed"/> event.
-        /// <param name="i_EventArgs">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected override void OnClosed(EventArgs i_EventArgs)
         {
             if (m_OnClose != null)
@@ -37,9 +35,6 @@ namespace Ex05.Othello.UI
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NotifyCloseForm));
             this.SuspendLayout();
-            // 
-            // NotifyCloseForm
-            // 
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(284, 262);
             this.Font = new System.Drawing.Font("Ubuntu Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
