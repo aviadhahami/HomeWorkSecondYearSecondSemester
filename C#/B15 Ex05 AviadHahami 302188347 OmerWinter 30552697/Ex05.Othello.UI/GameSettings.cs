@@ -29,7 +29,7 @@ namespace Ex05.Othello.UI
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.ShowIcon = false;
-            this.Text = "Othello - Game Settings";
+            this.Text = "Othello - Pre-Game Settings";
             this.Size = new Size(308, 148);
 
             intializeButtons();
@@ -66,12 +66,12 @@ namespace Ex05.Othello.UI
 
             m_PlayAgainstFriendButton.Location = new Point(155, 73);
             m_PlayAgainstFriendButton.Size = new Size(128, 34);
-            m_PlayAgainstFriendButton.Text = "Play against your friend";
+            m_PlayAgainstFriendButton.Text = "Play against another user";
             m_PlayAgainstFriendButton.Click += new EventHandler(m_PlayAgainstFriendButton_Click);
 
             m_PlayAgainstComputerButton.Location = new Point(21, 73);
             m_PlayAgainstComputerButton.Size = new Size(128, 34);
-            m_PlayAgainstComputerButton.Text = "Play against the computer";
+            m_PlayAgainstComputerButton.Text = "Challenge our AI monkeys";
             m_PlayAgainstComputerButton.Click += new EventHandler(m_PlayAgainstComputerButton_Click);
 
             this.Controls.Add(m_BoardSizeButton);
